@@ -14,12 +14,23 @@ import java.util.List;
 public class CityDao {
     private MongoDatabase database = MongoConnectionFactory.getDatabase();
 
-    public List<City> getCityHomeBaseInfo() {
-
+    public List<City> getOnlineCity() {
         MongoCollection<Document> collection = database.getCollection("city");
         FindIterable<Document> iterable = collection.find(new Document("is_show", true));
 
         return mapper(iterable);
+    }
+
+    public City getSpecifiedCity(String cityId) {
+        MongoCollection<Document> collection = database.getCollection("city");
+        FindIterable<Document> iterable = collection.find(new Document("_id", new org.bson.types.ObjectId(cityId)));
+
+        List<City> cityList = mapper(iterable);
+        if (cityList.size() > 0) {
+            return cityList.get(0);
+        } else {
+            return null;
+        }
     }
 
     private List<City> mapper(FindIterable<Document> iterable) {

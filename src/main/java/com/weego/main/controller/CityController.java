@@ -2,7 +2,7 @@ package com.weego.main.controller;
 
 import com.weego.main.dao.CityDao;
 import com.weego.main.dao.WeatherDao;
-import com.weego.main.model.City;
+import com.weego.main.dto.CityHomeDto;
 import com.weego.main.model.Weather;
 import com.weego.main.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +23,13 @@ public class CityController {
     @Autowired
     CityService cityService;
 
-    @RequestMapping(value = "/home/{cityId}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public String getCityHome(@PathVariable("cityId") String cityId) {
+    @RequestMapping(value = "/home/{cityId}", method = RequestMethod.GET)
+    @ResponseBody
+    public CityHomeDto getCityHome(@PathVariable("cityId") String cityId) {
 
         System.out.println(cityId);
 
-        List<City> cityList = cityDao.getCityHomeBaseInfo();
-
-        String out = "";
-        for (City city : cityList) {
-            out += city.getId() + "<br/>";
-            out += city.getCityName() + "<br/>";
-            out += city.getCityNameEn() + "<br/>";
-            out += city.getCityNamePy() + "<br/>";
-            out += "<br/>";
-        }
-
-        return out;
+        return cityService.getCityHome(cityId);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
