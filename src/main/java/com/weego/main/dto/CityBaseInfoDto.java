@@ -1,6 +1,9 @@
 package com.weego.main.dto;
 
-public class CityBaseInfoDto {
+import java.io.Serializable;
+
+public class CityBaseInfoDto implements Serializable {
+    private static final long serialVersionUID = -52403591185356942L;
 
     private String cityId;
     private String cityName;

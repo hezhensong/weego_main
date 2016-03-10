@@ -1,6 +1,9 @@
 package com.weego.main.dto;
 
-public class CityActivityDto {
+import java.io.Serializable;
+
+public class CityActivityDto implements Serializable {
+    private static final long serialVersionUID = -3245523620591902191L;
 
     private String title;
     private String coverImage;
