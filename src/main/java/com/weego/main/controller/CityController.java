@@ -3,7 +3,7 @@ package com.weego.main.controller;
 import com.weego.main.dao.CityDao;
 import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.CityHomeDto;
-import com.weego.main.model.Weather;
+    import com.weego.main.model.Weather;
 import com.weego.main.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -32,6 +32,7 @@
         <junitversion>3.8.1</junitversion>
         <mongodb.version>3.2.2</mongodb.version>
         <jackson.version>1.9.13</jackson.version>
+        <log4j.version>2.5</log4j.version>
     </properties>
 
     <dependencies>
@@ -96,6 +97,24 @@
             <version>2.7.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
 
 
     </dependencies>

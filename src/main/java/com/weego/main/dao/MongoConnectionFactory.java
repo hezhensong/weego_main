@@ -2,9 +2,13 @@ package com.weego.main.dao;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MongoConnectionFactory {
@@ -22,7 +26,7 @@ public class MongoConnectionFactory {
             }
         }
 
-        String databaseName = "travel2";
+        String databaseName = "travel";
         database = mongoClient.getDatabase(databaseName);
 
         return database;
@@ -36,8 +40,33 @@ public class MongoConnectionFactory {
         builder.threadsAllowedToBlockForConnectionMultiplier(50);
         MongoClientOptions mongoClientOptions = builder.build();
 
-        String host = "192.168.230.128";
+        String host = "127.0.0.1";
         mongoClient = new MongoClient(host, mongoClientOptions);
+    }
+
+
+    public static MongoDatabase getMongodb() {
+        MongoDatabase mongoDB = null;
+        if (mongoDB == null) {
+
+            try {
+
+                ServerAddress sa = new ServerAddress("127.0.0.1", 27017);
+                List<ServerAddress> sends = new ArrayList<ServerAddress>();
+                sends.add(sa);
+                List<MongoCredential> mongoCredentialList = new ArrayList<MongoCredential>();
+                mongoCredentialList.add(MongoCredential.createCredential("weego", "admin","weego".toCharArray()));
+                mongoDB = new MongoClient(sends,mongoCredentialList).getDatabase("travel");
+
+            } catch (Exception e) {
+
+                throw new RuntimeException("连接MongoDB数据库错误", e);
+
+            }
+
+        }
+
+        return mongoDB;
     }
 
     @SuppressWarnings("unused")
