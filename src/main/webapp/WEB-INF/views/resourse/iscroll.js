@@ -505,7 +505,7 @@ iScroll.prototype = {
 			that.lastScale = scale / that.scale;
 			that.scale = scale;
 			that.x = that.originX - that.originX * that.lastScale + that.x;
-			that.y = that.originY - that.originY * that.lastScale + that.y;	
+			that.y = that.originY - that.originY * that.lastScale + that.y;
 			that.scroller.style[transitionDuration] = '200ms';
 			that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + that.scale + ')' + translateZ;
 
@@ -651,7 +651,7 @@ iScroll.prototype = {
 		if (that.options.wheelAction == 'zoom') {
 			deltaScale = that.scale * Math.pow(2, 1/3 * (wheelDeltaY ? wheelDeltaY / Math.abs(wheelDeltaY) : 0));
 			if (deltaScale < that.options.zoomMin) deltaScale = that.options.zoomMin;
-			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;	
+			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;
 			if (deltaScale != that.scale) {
 				if (!that.wheelZoomCount && that.options.onZoomStart) that.options.onZoomStart.call(that, e);
 				that.wheelZoomCount++;
