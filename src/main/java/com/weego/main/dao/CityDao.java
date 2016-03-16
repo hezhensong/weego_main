@@ -1,62 +1,34 @@
 package com.weego.main.dao;
 
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.weego.main.model.City;
-import org.bson.Document;
+import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Repository
 public class CityDao {
-    private MongoDatabase database = MongoConnectionFactory.getDatabase();
+    private DB database = MongoConnectionFactory.getDatabase();
 
     public List<City> getOnlineCity() {
-        MongoCollection<Document> collection = database.getCollection("city");
-        FindIterable<Document> iterable = collection.find(new Document("is_show", true));
+        DBCollection collection = database.getCollection("city");
 
-        return mapper(iterable);
+        JacksonDBCollection<City, String> jackCollection =
+                JacksonDBCollection.wrap(collection, City.class, String.class);
+
+        return jackCollection.find().is("is_show", true).toArray();
     }
 
     public City getSpecifiedCity(String cityId) {
-        MongoCollection<Document> collection = database.getCollection("city");
-        FindIterable<Document> iterable = collection.find(new Document("_id", new org.bson.types.ObjectId(cityId)));
+        DBCollection collection = database.getCollection("city");
 
-        List<City> cityList = mapper(iterable);
-        if (cityList.size() > 0) {
-            return cityList.get(0);
-        } else {
-            return null;
-        }
-    }
+        JacksonDBCollection<City, String> coll;
+        coll = JacksonDBCollection.wrap(collection, City.class, String.class);
 
-    private List<City> mapper(FindIterable<Document> iterable) {
-        List<City> cityList = new ArrayList<>();
-
-        for (Document document : iterable) {
-            City city = new City();
-
-            org.bson.types.ObjectId _id = (org.bson.types.ObjectId) document.get("_id");
-            city.setId(_id.toString());
-
-            String cityName = (String) document.get("city_name");
-            city.setCityName(cityName);
-
-            String cityNameEn = (String) document.get("city_name_en");
-            city.setCityNameEn(cityNameEn);
-
-            String cityNamePy = (String) document.get("city_name_py");
-            city.setCityNamePy(cityNamePy);
-
-            boolean isShow = (boolean) document.get("is_show");
-            city.setShow(isShow);
-
-            cityList.add(city);
-        }
-
-        return cityList;
+        City city = coll.findOne();
+        return city;
     }
 }
