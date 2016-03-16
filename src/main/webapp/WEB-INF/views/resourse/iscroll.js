@@ -141,7 +141,6 @@ var m = Math,
 
 		// User defined options
 		for (i in options) that.options[i] = options[i];
-		
 		// Set starting position
 		that.x = that.options.x;
 		that.y = that.options.y;
@@ -159,13 +158,11 @@ var m = Math,
 		if ( that.options.zoom && isAndroid ){
 			translateZ = '';
 		}
-		
 		// Set some default styles
 		that.scroller.style[transitionProperty] = that.options.useTransform ? cssVendor + 'transform' : 'top left';
 		that.scroller.style[transitionDuration] = '0';
 		that.scroller.style[transformOrigin] = '0 0';
 		if (that.options.useTransition) that.scroller.style[transitionTimingFunction] = 'cubic-bezier(0.33,0.66,0.66,1)';
-		
 		if (that.options.useTransform) that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px)' + translateZ;
 		else that.scroller.style.cssText += ';position:absolute;top:' + that.y + 'px;left:' + that.x + 'px';
 
@@ -198,7 +195,6 @@ iScroll.prototype = {
 	pagesX: [], pagesY: [],
 	aniTime: null,
 	wheelZoomCount: 0,
-	
 	handleEvent: function (e) {
 		var that = this;
 		switch(e.type) {
@@ -214,18 +210,15 @@ iScroll.prototype = {
 			case TRNEND_EV: that._transitionEnd(e); break;
 		}
 	},
-	
 	_checkDOMChanges: function () {
 		if (this.moved || this.zoomed || this.animating ||
 			(this.scrollerW == this.scroller.offsetWidth * this.scale && this.scrollerH == this.scroller.offsetHeight * this.scale)) return;
 
 		this.refresh();
 	},
-	
 	_scrollbar: function (dir) {
 		var that = this,
 			bar;
-
 		if (!that[dir + 'Scrollbar']) {
 			if (that[dir + 'ScrollbarWrapper']) {
 				if (hasTransform) that[dir + 'ScrollbarIndicator'].style[transform] = '';
@@ -278,12 +271,10 @@ iScroll.prototype = {
 		// Reset position
 		that._scrollbarPos(dir, true);
 	},
-	
 	_resize: function () {
 		var that = this;
 		setTimeout(function () { that.refresh(); }, isAndroid ? 200 : 0);
 	},
-	
 	_pos: function (x, y) {
 		if (this.zoomed) return;
 
@@ -337,7 +328,6 @@ iScroll.prototype = {
 		that[dir + 'ScrollbarWrapper'].style.opacity = hidden && that.options.hideScrollbar ? '0' : '1';
 		that[dir + 'ScrollbarIndicator'].style[transform] = 'translate(' + (dir == 'h' ? pos + 'px,0)' : '0,' + pos + 'px)') + translateZ;
 	},
-	
 	_start: function (e) {
 		var that = this,
 			point = hasTouch ? e.touches[0] : e,
@@ -382,7 +372,6 @@ iScroll.prototype = {
 				x = +getComputedStyle(that.scroller, null).left.replace(/[^0-9-]/g, '');
 				y = +getComputedStyle(that.scroller, null).top.replace(/[^0-9-]/g, '');
 			}
-			
 			if (x != that.x || y != that.y) {
 				if (that.options.useTransition) that._unbind(TRNEND_EV);
 				else cancelFrame(that.aniTime);
