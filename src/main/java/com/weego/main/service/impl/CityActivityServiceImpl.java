@@ -28,7 +28,7 @@ public class CityActivityServiceImpl implements CityActivityService {
 		data.put("CityActivity", cityActivity);
 
 		cityActivityHomeDto.setData(data);
-		
+
 		return cityActivityHomeDto;
 	}
 

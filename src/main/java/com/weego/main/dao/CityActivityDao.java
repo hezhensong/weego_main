@@ -11,18 +11,17 @@ import com.weego.main.model.CityActivity;
 public class CityActivityDao {
 
 	private DB database = MongoConnectionFactory.getDatabase();
-	
-	public CityActivity getSpecifiedCity(String cityActivityId){
+
+	public CityActivity getSpecifiedCity(String cityActivityId) {
 		DBCollection collection = database.getCollection("activity");
-		
+
 		JacksonDBCollection<CityActivity, String> coll;
 		coll = JacksonDBCollection.wrap(collection, CityActivity.class, String.class);
-		
-		//CityActivity cityActivity = coll.findOneById(cityActivityId);
+
+		// CityActivity cityActivity = coll.findOneById(cityActivityId);
 		CityActivity cityActivity = coll.findOne();
-		
+
 		return cityActivity;
-		
-		
+
 	}
 }

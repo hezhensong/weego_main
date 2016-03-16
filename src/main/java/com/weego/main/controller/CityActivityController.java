@@ -17,7 +17,7 @@ public class CityActivityController {
 	@Autowired
 	private CityActivityService cityActivityService;
 
-	@RequestMapping(value = "/{cityActivityId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public CityActivityHomeDto getCityActivityHome(@PathVariable("cityActivityId") String cityActivityId) {
 

@@ -9,158 +9,158 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CityActivity {
 
-	@Id
-	private String cityActivityId;
+    @Id
+    private String Id;
 
-	@JsonProperty("cover_image")
-	private String activityImage;
+    @JsonProperty("cover_image")
+    private String image;
 
-	@JsonProperty("type")
-	private String activityType;
+    @JsonProperty("type")
+    private String type;
 
-	@JsonProperty("title")
-	private String activityTitle;
+    @JsonProperty("title")
+    private String title;
 
-	@JsonProperty("detail_address")
-	private String activityDeaddress;
+    @JsonProperty("detail_address")
+    private String deaddress;
 
-	@JsonProperty("start_time")
-	private String activityOpenTime;
+    @JsonProperty("start_time")
+    private String openTime;
 
-	@JsonProperty("end_time")
-	private String activityCloseTime;
+    @JsonProperty("end_time")
+    private String closeTime;
 
-	@JsonProperty("act_time")
-	private String activityActtime;
+    @JsonProperty("act_time")
+    private String zcttime;
 
-	@JsonProperty("longitude")
-	private String activityLongitude;
+    @JsonProperty("longitude")
+    private String longitude;
 
-	@JsonProperty("latitude")
-	private String activityLatidute;
+    @JsonProperty("latitude")
+    private String latidute;
 
-	@JsonProperty("act_url")
-	private String activityActurl;
+    @JsonProperty("act_url")
+    private String acturl;
 
-	@JsonProperty("order_url")
-	private String activityOrderurl;
+    @JsonProperty("order_url")
+    private String orderurl;
 
-	@JsonProperty("desc")
-	private String activityDesc;
+    @JsonProperty("desc")
+    private String desc;
 
-	@JsonProperty("images_desc")
-	private Map<String, List<CityActivityImages>> images;
+    @JsonProperty("paragraphs")
+    private Map<String, List<CityActivityParagraphs>> paragraphs;
 
-	public String getCityActivityId() {
-		return cityActivityId;
-	}
+    public String getId() {
+        return Id;
+    }
 
-	public void setCityActivityId(String cityActivityId) {
-		this.cityActivityId = cityActivityId;
-	}
+    public void setId(String id) {
+        Id = id;
+    }
 
-	public String getActivityImage() {
-		return activityImage;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public void setActivityImage(String activityImage) {
-		this.activityImage = activityImage;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public String getActivityType() {
-		return activityType;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setActivityType(String activityType) {
-		this.activityType = activityType;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getActivityTitle() {
-		return activityTitle;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setActivityTitle(String activityTitle) {
-		this.activityTitle = activityTitle;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getActivityDeaddress() {
-		return activityDeaddress;
-	}
+    public String getDeaddress() {
+        return deaddress;
+    }
 
-	public void setActivityDeaddress(String activityDeaddress) {
-		this.activityDeaddress = activityDeaddress;
-	}
+    public void setDeaddress(String deaddress) {
+        this.deaddress = deaddress;
+    }
 
-	public String getActivityOpenTime() {
-		return activityOpenTime;
-	}
+    public String getOpenTime() {
+        return openTime;
+    }
 
-	public void setActivityOpenTime(String activityOpenTime) {
-		this.activityOpenTime = activityOpenTime;
-	}
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
 
-	public String getActivityCloseTime() {
-		return activityCloseTime;
-	}
+    public String getCloseTime() {
+        return closeTime;
+    }
 
-	public void setActivityCloseTime(String activityCloseTime) {
-		this.activityCloseTime = activityCloseTime;
-	}
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
 
-	public String getActivityActtime() {
-		return activityActtime;
-	}
+    public String getZcttime() {
+        return zcttime;
+    }
 
-	public void setActivityActtime(String activityActtime) {
-		this.activityActtime = activityActtime;
-	}
+    public void setZcttime(String zcttime) {
+        this.zcttime = zcttime;
+    }
 
-	public String getActivityLongitude() {
-		return activityLongitude;
-	}
+    public String getLongitude() {
+        return longitude;
+    }
 
-	public void setActivityLongitude(String activityLongitude) {
-		this.activityLongitude = activityLongitude;
-	}
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
-	public String getActivityLatidute() {
-		return activityLatidute;
-	}
+    public String getLatidute() {
+        return latidute;
+    }
 
-	public void setActivityLatidute(String activityLatidute) {
-		this.activityLatidute = activityLatidute;
-	}
+    public void setLatidute(String latidute) {
+        this.latidute = latidute;
+    }
 
-	public String getActivityActurl() {
-		return activityActurl;
-	}
+    public String getActurl() {
+        return acturl;
+    }
 
-	public void setActivityActurl(String activityActurl) {
-		this.activityActurl = activityActurl;
-	}
+    public void setActurl(String acturl) {
+        this.acturl = acturl;
+    }
 
-	public String getActivityOrderurl() {
-		return activityOrderurl;
-	}
+    public String getOrderurl() {
+        return orderurl;
+    }
 
-	public void setActivityOrderurl(String activityOrderurl) {
-		this.activityOrderurl = activityOrderurl;
-	}
+    public void setOrderurl(String orderurl) {
+        this.orderurl = orderurl;
+    }
 
-	public String getActivityDesc() {
-		return activityDesc;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public void setActivityDesc(String activityDesc) {
-		this.activityDesc = activityDesc;
-	}
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
-	public Map<String, List<CityActivityImages>> getImages() {
-		return images;
-	}
+    public Map<String, List<CityActivityParagraphs>> getParagraphs() {
+        return paragraphs;
+    }
 
-	public void setImages(Map<String, List<CityActivityImages>> images) {
-		this.images = images;
-	}
+    public void setParagraphs(Map<String, List<CityActivityParagraphs>> paragraphs) {
+        this.paragraphs = paragraphs;
+    }
 
 }

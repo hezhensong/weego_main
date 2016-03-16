@@ -2,7 +2,7 @@ package com.weego.main.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CityActivityImages {
+public class CityActivityParagraphs {
 
 	private String imageID;
 
