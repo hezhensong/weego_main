@@ -3,6 +3,7 @@ package com.weego.main.service.impl;
 import com.weego.main.dao.CityDao;
 import com.weego.main.dto.CityBaseInfoDto;
 import com.weego.main.dto.CityHomeDto;
+import com.weego.main.dto.CityListDto;
 import com.weego.main.model.City;
 import com.weego.main.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +21,14 @@ public class CityServiceImpl implements CityService {
     private CityDao cityDao;
 
     @Override
-    public List<CityBaseInfoDto> getOnlineCity() {
-        List<CityBaseInfoDto> cityBaseInfoDtoList = new ArrayList<>();
+    public List<CityListDto> getCityList() {
+        List<CityListDto> cityListDtoList = new ArrayList<>();
 
         List<City> cityList = cityDao.getOnlineCity();
         for (City city : cityList) {
-            CityBaseInfoDto cityBaseInfoDto = new CityBaseInfoDto();
-            cityBaseInfoDto.setCityId(city.getId());
-            cityBaseInfoDto.setCityName(city.getCityName());
-            cityBaseInfoDto.setCityNameEn(city.getCityNameEn());
-            cityBaseInfoDto.setCoverImage("图片还没有找到");
-
-            cityBaseInfoDtoList.add(cityBaseInfoDto);
         }
 
-        return cityBaseInfoDtoList;
+        return cityListDtoList;
     }
 
     @Override
@@ -44,9 +38,6 @@ public class CityServiceImpl implements CityService {
 
         CityBaseInfoDto cityBaseInfoDto = new CityBaseInfoDto();
         City city = cityDao.getSpecifiedCity(cityId);
-        cityBaseInfoDto.setCityId(city.getId());
-        cityBaseInfoDto.setCityName(city.getCityName());
-        cityBaseInfoDto.setCityNameEn(city.getCityNameEn());
         cityBaseInfoDto.setCoverImage("还没找到呢。");
 
         data.put("baseInfo", cityBaseInfoDto);

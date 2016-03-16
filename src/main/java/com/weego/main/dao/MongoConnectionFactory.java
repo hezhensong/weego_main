@@ -1,5 +1,6 @@
 package com.weego.main.dao;
 
+import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
@@ -14,8 +15,8 @@ import java.util.List;
 public class MongoConnectionFactory {
     private static MongoClient mongoClient = null;
 
-    public static MongoDatabase getDatabase() {
-        MongoDatabase database;
+    public static DB getDatabase() {
+        DB database;
 
         if (mongoClient == null) {
             try {
@@ -26,9 +27,8 @@ public class MongoConnectionFactory {
             }
         }
 
-        String databaseName = "travel";
-        database = mongoClient.getDatabase(databaseName);
-
+        String databaseName = "travel2";
+        database = mongoClient.getDB(databaseName);
         return database;
     }
 

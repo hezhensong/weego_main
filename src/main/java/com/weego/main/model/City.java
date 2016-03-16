@@ -1,15 +1,32 @@
 package com.weego.main.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mongojack.Id;
 
-import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-public class City implements Serializable {
-    private static final long serialVersionUID = -7851645676723567152L;
 
+public class City {
+
+    @Id
     private String id;
-    private String cityName;
-    private String cityNameEn;
-    private String cityNamePy;
+
+    private String name;
+
+    @JsonProperty("name_en")
+    private String nameEn;
+
+    @JsonProperty("name_py")
+    private String namePy;
+
+    @JsonProperty("cover_image")
+    private String coverImage;
+
+    @JsonProperty("label_list")
+    private Map<String, List<CityLabel>> labelList;
+
+    @JsonProperty("is_show")
     private boolean isShow;
 
     public String getId() {
@@ -20,28 +37,44 @@ public class City implements Serializable {
         this.id = id;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getName() {
+        return name;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCityNameEn() {
-        return cityNameEn;
+    public String getNameEn() {
+        return nameEn;
     }
 
-    public void setCityNameEn(String cityNameEn) {
-        this.cityNameEn = cityNameEn;
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
     }
 
-    public String getCityNamePy() {
-        return cityNamePy;
+    public String getNamePy() {
+        return namePy;
     }
 
-    public void setCityNamePy(String cityNamePy) {
-        this.cityNamePy = cityNamePy;
+    public void setNamePy(String namePy) {
+        this.namePy = namePy;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    public Map<String, List<CityLabel>> getLabelList() {
+        return labelList;
+    }
+
+    public void setLabelList(Map<String, List<CityLabel>> labelList) {
+        this.labelList = labelList;
     }
 
     public boolean isShow() {
