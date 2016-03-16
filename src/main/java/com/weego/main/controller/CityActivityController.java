@@ -13,17 +13,17 @@ import com.weego.main.service.CityActivityService;
 @RestController
 @RequestMapping("api/v3/city/activity")
 public class CityActivityController {
-	
+
 	@Autowired
 	private CityActivityService cityActivityService;
-	
+
 	@RequestMapping(value = "/{cityActivityId}", method = RequestMethod.GET)
 	@ResponseBody
-	public CityActivityHomeDto getCityActivityHome(@PathVariable("cityActivityId") String cityActivityId){
-		
+	public CityActivityHomeDto getCityActivityHome(@PathVariable("cityActivityId") String cityActivityId) {
+
 		System.out.println(cityActivityId);
 		return cityActivityService.getCityActivityHome(cityActivityId);
-		
+
 	}
 
 }
