@@ -473,7 +473,7 @@ iScroll.prototype = {
 			that.startTime = timestamp;
 			that.startX = that.x;
 			that.startY = that.y;
-		}	
+		}
 		if (that.options.onScrollMove) that.options.onScrollMove.call(that, e);
 	},
 	_end: function (e) {
@@ -508,7 +508,7 @@ iScroll.prototype = {
 			that.y = that.originY - that.originY * that.lastScale + that.y;	
 			that.scroller.style[transitionDuration] = '200ms';
 			that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + that.scale + ')' + translateZ;
-			
+
 			that.zoomed = false;
 			that.refresh();
 
@@ -647,11 +647,11 @@ iScroll.prototype = {
 			wheelDeltaX = wheelDeltaY = -e.detail * 3;
 		} else {
 			return;
-		}	
+		}
 		if (that.options.wheelAction == 'zoom') {
 			deltaScale = that.scale * Math.pow(2, 1/3 * (wheelDeltaY ? wheelDeltaY / Math.abs(wheelDeltaY) : 0));
 			if (deltaScale < that.options.zoomMin) deltaScale = that.options.zoomMin;
-			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;		
+			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;	
 			if (deltaScale != that.scale) {
 				if (!that.wheelZoomCount && that.options.onZoomStart) that.options.onZoomStart.call(that, e);
 				that.wheelZoomCount++;
@@ -705,7 +705,7 @@ iScroll.prototype = {
 
 		that.animating = true;
 		that.moved = true;
-		
+
 		if (that.options.useTransition) {
 			that._transitionTime(step.time);
 			that._pos(step.x, step.y);
@@ -861,9 +861,9 @@ iScroll.prototype = {
 			that._unbind('mousewheel');
 		}
 		if (that.options.useTransition) that._unbind(TRNEND_EV);
-		
+
 		if (that.options.checkDOMChanges) clearInterval(that.checkDOMTime);
-		
+
 		if (that.options.onDestroy) that.options.onDestroy.call(that);
 	},
 
@@ -949,7 +949,7 @@ iScroll.prototype = {
 		that.stop();
 
 		if (!step.length) step = [{ x: x, y: y, time: time, relative: relative }];
-		
+
 		for (i=0, l=step.length; i<l; i++) {
 			if (step[i].relative) { step[i].x = that.x - step[i].x; step[i].y = that.y - step[i].y; }
 			that.steps.push({ x: step[i].x, y: step[i].y, time: step[i].time || 0 });
@@ -976,7 +976,7 @@ iScroll.prototype = {
 
 	scrollToPage: function (pageX, pageY, time) {
 		var that = this, x, y;
-		
+
 		time = time === undefined ? 400 : time;
 
 		if (that.options.onScrollStart) that.options.onScrollStart.call(that);
