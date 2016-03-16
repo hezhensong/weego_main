@@ -22,11 +22,10 @@ public class RecommendController {
     }
 
     //动态推荐卡片
-    @RequestMapping(value="/recommendation/card/{cityId}/{lon,lat}/{time}",
+    @RequestMapping(value="/recommendation/card/{cityId}/{coordinate}/{time}",
                         method = RequestMethod.GET)
     public void getCard(@PathVariable("cityId") String cityId,
-                        @PathVariable("lon") String lon,
-                        @PathVariable("lat") String lat,
+                        @PathVariable("coordinate") String coordinate,
                         @PathVariable("time") Date time) {
 
     }
