@@ -12,20 +12,20 @@ import java.util.List;
 @RequestMapping("/api/v3/city")
 public class CityController {
 
-	@Autowired
-	CityService cityService;
+    @Autowired
+    CityService cityService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	@ResponseBody
-	public List<CityListDto> getCityList() {
-		return cityService.getCityList();
-	}
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CityListDto> getCityList() {
+        return cityService.getCityList();
+    }
 
-	@RequestMapping(value = "/home/{cityId}", method = RequestMethod.GET)
-	@ResponseBody
-	public CityHomeDto getCityHome(@PathVariable("cityId") String cityId) {
+    @RequestMapping(value = "/home/{cityId}", method = RequestMethod.GET)
+    @ResponseBody
+    public CityHomeDto getCityHome(@PathVariable("cityId") String cityId) {
 
-		System.out.println(cityId);
-		return cityService.getCityHome(cityId);
-	}
+        System.out.println(cityId);
+        return cityService.getCityHome(cityId);
+    }
 }
