@@ -397,7 +397,6 @@ iScroll.prototype = {
 		that._bind(END_EV, window);
 		that._bind(CANCEL_EV, window);
 	},
-	
 	_move: function (e) {
 		var that = this,
 			point = hasTouch ? e.touches[0] : e,
@@ -474,11 +473,9 @@ iScroll.prototype = {
 			that.startTime = timestamp;
 			that.startX = that.x;
 			that.startY = that.y;
-		}
-		
+		}	
 		if (that.options.onScrollMove) that.options.onScrollMove.call(that, e);
 	},
-	
 	_end: function (e) {
 		if (hasTouch && e.touches.length !== 0) return;
 
@@ -507,10 +504,8 @@ iScroll.prototype = {
 			scale = Math.min(that.options.zoomMax, scale);
 			that.lastScale = scale / that.scale;
 			that.scale = scale;
-
 			that.x = that.originX - that.originX * that.lastScale + that.x;
-			that.y = that.originY - that.originY * that.lastScale + that.y;
-			
+			that.y = that.originY - that.originY * that.lastScale + that.y;	
 			that.scroller.style[transitionDuration] = '200ms';
 			that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + that.scale + ')' + translateZ;
 			
@@ -611,7 +606,6 @@ iScroll.prototype = {
 		that._resetPos(200);
 		if (that.options.onTouchEnd) that.options.onTouchEnd.call(that, e);
 	},
-	
 	_resetPos: function (time) {
 		var that = this,
 			resetX = that.x >= 0 ? 0 : that.x < that.maxScrollX ? that.maxScrollX : that.x,
@@ -653,28 +647,22 @@ iScroll.prototype = {
 			wheelDeltaX = wheelDeltaY = -e.detail * 3;
 		} else {
 			return;
-		}
-		
+		}	
 		if (that.options.wheelAction == 'zoom') {
 			deltaScale = that.scale * Math.pow(2, 1/3 * (wheelDeltaY ? wheelDeltaY / Math.abs(wheelDeltaY) : 0));
 			if (deltaScale < that.options.zoomMin) deltaScale = that.options.zoomMin;
-			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;
-			
+			if (deltaScale > that.options.zoomMax) deltaScale = that.options.zoomMax;		
 			if (deltaScale != that.scale) {
 				if (!that.wheelZoomCount && that.options.onZoomStart) that.options.onZoomStart.call(that, e);
 				that.wheelZoomCount++;
-				
 				that.zoom(e.pageX, e.pageY, deltaScale, 400);
-				
 				setTimeout(function() {
 					that.wheelZoomCount--;
 					if (!that.wheelZoomCount && that.options.onZoomEnd) that.options.onZoomEnd.call(that, e);
 				}, 400);
 			}
-			
 			return;
 		}
-		
 		deltaX = that.x + wheelDeltaX;
 		deltaY = that.y + wheelDeltaY;
 
@@ -683,23 +671,18 @@ iScroll.prototype = {
 
 		if (deltaY > that.minScrollY) deltaY = that.minScrollY;
 		else if (deltaY < that.maxScrollY) deltaY = that.maxScrollY;
-    
 		if (that.maxScrollY < 0) {
 			that.scrollTo(deltaX, deltaY, 0);
 		}
 	},
-	
 	_transitionEnd: function (e) {
 		var that = this;
 
 		if (e.target != that.scroller) return;
 
 		that._unbind(TRNEND_EV);
-		
 		that._startAni();
 	},
-
-
 	/**
 	*
 	* Utilities
@@ -713,14 +696,11 @@ iScroll.prototype = {
 			animate;
 
 		if (that.animating) return;
-		
 		if (!that.steps.length) {
 			that._resetPos(400);
 			return;
 		}
-		
 		step = that.steps.shift();
-		
 		if (step.x == startX && step.y == startY) step.time = 0;
 
 		that.animating = true;
@@ -793,12 +773,10 @@ iScroll.prototype = {
 	_offset: function (el) {
 		var left = -el.offsetLeft,
 			top = -el.offsetTop;
-			
 		while (el = el.offsetParent) {
 			left -= el.offsetLeft;
 			top -= el.offsetTop;
 		}
-		
 		if (el != this.wrapper) {
 			left *= this.scale;
 			top *= this.scale;
@@ -878,12 +856,10 @@ iScroll.prototype = {
 		that._unbind(MOVE_EV, window);
 		that._unbind(END_EV, window);
 		that._unbind(CANCEL_EV, window);
-		
 		if (!that.options.hasTouch) {
 			that._unbind('DOMMouseScroll');
 			that._unbind('mousewheel');
 		}
-		
 		if (that.options.useTransition) that._unbind(TRNEND_EV);
 		
 		if (that.options.checkDOMChanges) clearInterval(that.checkDOMTime);
@@ -1036,11 +1012,9 @@ iScroll.prototype = {
 		this._unbind(END_EV, window);
 		this._unbind(CANCEL_EV, window);
 	},
-	
 	enable: function () {
 		this.enabled = true;
 	},
-	
 	stop: function () {
 		if (this.options.useTransition) this._unbind(TRNEND_EV);
 		else cancelFrame(this.aniTime);
@@ -1048,7 +1022,6 @@ iScroll.prototype = {
 		this.moved = false;
 		this.animating = false;
 	},
-	
 	zoom: function (x, y, scale, time) {
 		var that = this,
 			relScale = scale / that.scale;
@@ -1072,7 +1045,6 @@ iScroll.prototype = {
 		that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px) scale(' + scale + ')' + translateZ;
 		that.zoomed = false;
 	},
-	
 	isReady: function () {
 		return !this.moved && !this.zoomed && !this.animating;
 	}

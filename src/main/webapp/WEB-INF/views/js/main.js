@@ -33,8 +33,6 @@ function get_cover_img(){
 }
 
 function lister(rsp){
-	console.log(rsp);	
-} 
-
-    
+	console.log(rsp);
+}    
     
