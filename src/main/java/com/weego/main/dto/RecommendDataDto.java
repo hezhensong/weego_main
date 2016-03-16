@@ -1,20 +1,16 @@
-package com.weego.main.model;
+package com.weego.main.dto;
 
+import com.weego.main.model.DynamicContent;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.mongojack.Id;
+import java.util.Date;
 
 /**
  * Created by liuniandxx on 16-3-16.
  */
-public class RecommendDynamic {
-    @Id
+public class RecommendDataDto {
     private String id;
-
-    @JsonProperty("city_id")
     private String cityId;
-
-    @JsonProperty("content")
+    private Date time;
     private DynamicContent content;
 
     public String getId() {
@@ -31,6 +27,14 @@ public class RecommendDynamic {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public DynamicContent getContent() {

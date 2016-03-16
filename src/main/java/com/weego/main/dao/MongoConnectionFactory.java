@@ -2,7 +2,6 @@ package com.weego.main.dao;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
@@ -33,15 +32,16 @@ public class MongoConnectionFactory {
     }
 
     private static void initializeMongoClient() throws UnknownHostException {
-        MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
-        builder.connectionsPerHost(100);
-        builder.connectTimeout(1000 * 10);
-        builder.maxWaitTime(1000 * 10 * 2);
-        builder.threadsAllowedToBlockForConnectionMultiplier(50);
-        MongoClientOptions mongoClientOptions = builder.build();
+//        MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+//        builder.connectionsPerHost(100);
+//        builder.connectTimeout(1000 * 10);
+//        builder.maxWaitTime(1000 * 10 * 2);
+//        builder.threadsAllowedToBlockForConnectionMultiplier(50);
+//        MongoClientOptions mongoClientOptions = builder.build();
 
-        String host = "127.0.0.1";
-        mongoClient = new MongoClient(host, mongoClientOptions);
+        String host = "192.168.6.254";
+        Integer port = 37017;
+        mongoClient = new MongoClient(host, port);
     }
 
 

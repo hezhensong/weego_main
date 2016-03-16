@@ -1,32 +1,28 @@
-package com.weego.main.model;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.weego.main.dto;
 
 /**
  * Created by liuniandxx on 16-3-16.
  */
-public class RecommendContent {
+public class RecommendContentDto {
+    private String coverImage;
 
-    @JsonProperty("recommend_content_id")
     private String recommendContentId;
 
-    @JsonProperty("recommend_content_url")
-    private String recommedContentUrl;
-
-    @JsonProperty("recommend_content_title")
     private String recommendContentTitle;
 
-    @JsonProperty("recommend_content_first")
     private String recommendContentFirst;
 
-    @JsonProperty("recommend_content_second")
     private String recommendContentSecond;
 
-    @JsonProperty("recommend_content_desc")
     private String recommendContentDesc;
 
-    @JsonProperty("cover_image")
-    private String coverImage;
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
 
     public String getRecommendContentId() {
         return recommendContentId;
@@ -34,14 +30,6 @@ public class RecommendContent {
 
     public void setRecommendContentId(String recommendContentId) {
         this.recommendContentId = recommendContentId;
-    }
-
-    public String getRecommedContentUrl() {
-        return recommedContentUrl;
-    }
-
-    public void setRecommedContentUrl(String recommedContentUrl) {
-        this.recommedContentUrl = recommedContentUrl;
     }
 
     public String getRecommendContentTitle() {
@@ -74,13 +62,5 @@ public class RecommendContent {
 
     public void setRecommendContentDesc(String recommendContentDesc) {
         this.recommendContentDesc = recommendContentDesc;
-    }
-
-    public String getCoverImage() {
-        return coverImage;
-    }
-
-    public void setCoverImage(String coverImage) {
-        this.coverImage = coverImage;
     }
 }
