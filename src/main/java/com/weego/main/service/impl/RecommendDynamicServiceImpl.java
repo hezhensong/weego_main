@@ -1,6 +1,7 @@
 package com.weego.main.service.impl;
 
 import com.weego.main.dao.RecommendDynamicDao;
+import com.weego.main.dto.RecommendHistoryDto;
 import com.weego.main.model.RecommendDynamic;
 import com.weego.main.service.RecommendDynamicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class RecommendDynamicServiceImpl implements RecommendDynamicService {
     private RecommendDynamicDao recommendDynamicDao;
 
     @Override
-    public List<RecommendDynamic> getSpecityRecommendDynamic(String cityId) {
-        return recommendDynamicDao.getSpecifyRecommendDynamic(cityId);
+    public List<RecommendHistoryDto> getSpecityRecommendDynamic(String cityId) {
+        // TODO: 16-3-17
+        return null;
     }
 }
