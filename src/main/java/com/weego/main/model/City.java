@@ -26,6 +26,8 @@ public class City {
     @JsonProperty("label_list")
     private Map<String, List<CityLabel>> labelList;
 
+    private Area area;
+
     @JsonProperty("is_show")
     private boolean isShow;
 
@@ -83,5 +85,13 @@ public class City {
 
     public void setShow(boolean show) {
         isShow = show;
+    }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
     }
 }
