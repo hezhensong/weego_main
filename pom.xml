@@ -29,13 +29,13 @@
         <java.version>1.8</java.version>
         <junit.version>3.8.1</junit.version>
         <spring.version>4.2.5.RELEASE</spring.version>
-        <mongodbVersion>3.2.2</mongodbVersion>
-        <jacksonVersion>1.9.13</jacksonVersion>
-        <jacksonCoreVersion>2.7.2</jacksonCoreVersion>
-        <fastjsonVersion>1.2.8</fastjsonVersion>
-        <mongojackVersion>2.6.0</mongojackVersion>
-        <jstlVersion>1.2</jstlVersion>
-        <jstlApiVersion>1.2.1</jstlApiVersion>
+        <mongodb.version>3.2.2</mongodb.version>
+        <jackson.version>1.9.13</jackson.version>
+        <jackson.core.version>2.7.2</jackson.core.version>
+        <fastjson.version>1.2.8</fastjson.version>
+        <mongojack.version>2.6.0</mongojack.version>
+        <jstl.version>1.2</jstl.version>
+        <jstl.api.version>1.2.1</jstl.api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -81,50 +81,50 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>${mongodbVersion}</version>
+            <version>${mongodb.version}</version>
         </dependency>
 
         <!--MongoJack-->
         <dependency>
             <groupId>org.mongojack</groupId>
             <artifactId>mongojack</artifactId>
-            <version>${mongojackVersion}</version>
+            <version>${mongojack.version}</version>
         </dependency>
 
         <!--Jackson-->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
-            <version>${jacksonVersion}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jacksonVersion}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jacksonCoreVersion}</version>
+            <version>${jackson.core.version}</version>
         </dependency>
 
         <!--Json Libraries-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjsonVersion}</version>
+            <version>${fastjson.version}</version>
         </dependency>
 
         <!--JSTL and lib-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>${jstlVersion}</version>
+            <version>${jstl.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-            <version>${jstlApiVersion}</version>
+            <version>${jstl.api.version}</version>
         </dependency>
     </dependencies>
 </project>
