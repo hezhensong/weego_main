@@ -11,13 +11,13 @@ body, ul, li p div h3 {
 .extra{
 	margin-top: -204px;
 }
-
+/*
 .one {
     background-image: url(${head});
     background-size: cover;
     height: 640px;
     width: 100%;
-}
+}*/
 
 .two {
     margin: 6% 3%;
@@ -60,13 +60,13 @@ body, ul, li p div h3 {
     display: inline-block;
 }
 
-.pic_1{
+/*.pic_1{
     height: 420px;
     background-image: url(${pic_3});
     background-size: cover;
     margin: 2% 0;
     opacity: 0.7;
-}
+}*/
 
 .pic_2 .center{
     margin:0 auto;
