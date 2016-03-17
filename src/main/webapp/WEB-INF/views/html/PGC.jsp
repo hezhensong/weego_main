@@ -219,7 +219,7 @@
 <div class="detail">${title_1}</div>
 
 <h5>由weego重新排版&nbsp;<a>阅读原文</a></h5>
-<div class="logo"><img src="../resource/img/pgc/${pic_4}"></div>
+<div class="logo"><img src="../resource/img/pgc/${logo}"></div>
 <p class="weego">weego公众账号</p>
 
 <footer>weego基于旅行者的兴趣和意图依托强大的数据库的智能计算，帮助用户在简单旅行准备的同时，成为一个旅行中的实时向导。</footer>
