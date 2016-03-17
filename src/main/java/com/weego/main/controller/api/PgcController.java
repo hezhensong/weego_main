@@ -1,4 +1,4 @@
-package com.weego.main.controller;
+package com.weego.main.controller.api;
 
 import com.weego.main.dao.PgcDao;
 import com.weego.main.model.Pgc;

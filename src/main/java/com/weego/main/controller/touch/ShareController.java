@@ -1,4 +1,4 @@
-package com.weego.main.controller;
+package com.weego.main.controller.touch;
 
 import com.weego.main.service.PgcService;
 import org.springframework.beans.factory.annotation.Autowired;

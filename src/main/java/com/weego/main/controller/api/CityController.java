@@ -1,4 +1,4 @@
-package com.weego.main.controller;
+package com.weego.main.controller.api;
 
 import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListDto;
