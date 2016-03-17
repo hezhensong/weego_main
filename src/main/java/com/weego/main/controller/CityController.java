@@ -31,4 +31,11 @@ public class CityController {
         logger.info("cityId = {}", cityId);
         return cityService.getCityHome(cityId);
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String testmain() {
+//        System.out.println("Hello World!");
+        return "Hello World!";
+    }
 }
