@@ -27,7 +27,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <junit.version>3.8.1</junit.version>
+        <junit.version>4.11</junit.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <mongodb.version>3.2.2</mongodb.version>
         <jackson.version>1.9.13</jackson.version>
@@ -37,6 +37,7 @@
         <mongojack.version>2.6.0</mongojack.version>
         <jstl.version>1.2</jstl.version>
         <jstl.api.version>1.2.1</jstl.api.version>
+        <jodatime.version>2.9.2</jodatime.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -145,6 +146,29 @@
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
             <version>${jstl.api.version}</version>
+        </dependency>
+
+        <!-- joda time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${jodatime.version}</version>
+        </dependency>
+
+        <!-- spring test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--junit4-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
