@@ -1,0 +1,156 @@
+	body,ul,li p{
+	padding:0;
+	margin:0;
+	border:0;
+	}
+	body{
+		background-color: #364344;
+		color:#fff;
+	}
+	.float-r{
+		float: right;
+	}
+	.float-l{
+		float:left;
+	}
+	.extra{
+		margin-top: -204px;
+	}
+
+	header{
+		background-image: url(${pic_1});
+		background-size: cover;
+		height: 640px;
+		width: 100%;
+	}
+	header h1{
+		margin:0 3%;
+		top: 474px;
+		position: relative;
+		text-align: center;
+		font-size:54px ;
+		font-weight: bold;
+	}
+	header .head{
+		background:url(../resource/img/pgc_detail/pgc_avatar.png);
+		background-size: cover;
+		height:150px;
+		width: 150px;
+		position: relative;
+		top:500px;
+		left:410px;
+	}
+	header .head img{
+		margin: 16px;
+		height: 116px;
+		width: 116px;
+		border-radius: 50%;
+	}
+	.author{
+		text-align: center;
+		margin: 95px 3% 6% 3%;
+	}
+	.author h1{
+		text-align: center;
+		font-size: 46px;
+		font-family: bold;
+	}
+	.author p{
+		font-size: 30px;
+		line-height: 50px;
+		text-align: center;
+	}
+	.author .line{
+		margin:4% 0;
+		background-image: url(../resource/img/pgc_detail/pgc_line.png);
+		background-position: center;
+		height: 20px;
+	}
+	.drb{
+		margin:0 3%;
+		font-size: 30px;
+		line-height: 50px;
+	}
+	.drb img{
+		margin-right: 55px;
+	}
+	.page_1{
+		margin:5% 0 2% 0;
+	}
+	.page_1 h2{
+		font-size: 40px;
+		font:40px HelveticaNeue-Bold;
+		text-align: center;
+	}
+	.page_1 h2 .small{
+		margin-right: 25px;
+		height: 38px;width: 8px;
+		background-color: #ff4f4e;
+		display: inline-block;
+	}
+	.pic_1{
+		height: 420px;
+		background-image: url(${pic_3});
+		background-size: cover;
+		margin: 2% 0;
+		opacity: 0.7;
+	}
+	.pic_2 .center{
+		margin:0 auto;
+		height: 172px;
+		width: 422px;
+		border-bottom: 1px solid #fff;
+		position: relative;
+		top: -110px;
+	}
+	.pic_2 .center .line{
+		border-bottom: 1px solid #fff;
+		width: 150px;
+		display: inline-block;
+	}
+	.pic_2 .center .icon{
+		position: relative;
+		top:15px;
+		display: inline-block;
+		margin: 0 32px;
+		height: 30px;
+		width: 42px;
+		background-image:url(../resource/img/pgc_detail/icon.png);
+		background-size: cover;
+	}
+	.pic_2 .center h2{
+		font-size: 46px;
+		font-weight: bold;
+		text-align: center;
+		color: #fff;
+		z-index: 200;
+	}
+	.pic_2{
+		margin-bottom: 5%;
+	}
+	.pic_2 .type{
+		padding-top: 22px;
+		font-size: 26px;
+		text-align: center;
+		position: relative;
+		top: -377px;
+		background-image:url(../resource/img/pgc_detail/lable.png);
+		background-size: cover;
+		height: 60px;
+		width: 300px;
+	}
+	.pic_2 img{
+		width: 100%;
+		height: 420px;
+	}
+	.pic_2 h3{
+		margin:2% 0 6% 0;
+		font-size:24px ;
+		text-align: center;
+		opacity: 0.5;
+	}
+	footer{
+		margin: 11% 0 6.5% 0;
+		height: 100px;
+		background: url(${logo}) no-repeat center;
+	}
