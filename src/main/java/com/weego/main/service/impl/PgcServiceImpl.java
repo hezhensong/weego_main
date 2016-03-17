@@ -16,18 +16,19 @@ import java.util.Map;
 @Service("pgcService")
 public class PgcServiceImpl implements PgcService {
 
-	@Autowired
-	private PgcDao pgcDao;
+    @Autowired
+    private PgcDao pgcDao;
 
-	@Override
-	public List<PgcListDto> getPgcList() {
-		List<PgcListDto> pgcListDtoList = new ArrayList<>();
-
-		List<Pgc> pgcList = pgcDao.getOnlineCity();
-		for (Pgc pgc : pgcList) {
-		}
-
-		return pgcListDtoList;
-	}
+    @Override
+    public List<Pgc> getPgcList() {
+//		List<PgcListDto> pgcListDtoList = new ArrayList<>();
+//
+//		List<Pgc> pgcList = pgcDao.getOnlineCity();
+//		for (Pgc pgc : pgcList) {
+//		}
+//
+//		return pgcListDtoList;
+        return pgcDao.getOnlinePgc();
+    }
 
 }

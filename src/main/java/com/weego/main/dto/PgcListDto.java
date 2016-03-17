@@ -4,13 +4,13 @@ import java.util.List;
 
 public class PgcListDto extends BaseDto {
 
-	private List<CityListContinentDto> data;
+	private List<PgcListContinentDto> data;
 
-	public List<CityListContinentDto> getData() {
+	public List<PgcListContinentDto> getData() {
 		return data;
 	}
 
-	public void setData(List<CityListContinentDto> data) {
+     /*	public void setData(List<PgcListContinentDto> data) {
 		this.data = data;
-	}
+	}*/
 }

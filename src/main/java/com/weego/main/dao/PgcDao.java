@@ -10,14 +10,14 @@ import java.util.List;
 
 @Repository
 public class PgcDao {
-	private DB database = MongoConnectionFactory.getDatabase();
+    private DB database = MongoConnectionFactory.getDatabase();
 
-	public List<Pgc> getOnlineCity() {
-		DBCollection collection = database.getCollection("pgc");
+    public List<Pgc> getOnlinePgc() {
+        DBCollection collection = database.getCollection("pgc");
 
-		JacksonDBCollection<Pgc, String> jackCollection = JacksonDBCollection.wrap(collection, Pgc.class, String.class);
+        JacksonDBCollection<Pgc, String> jackCollection = JacksonDBCollection.wrap(collection, Pgc.class, String.class);
 
-		return jackCollection.find().toArray();
-	}
+        return jackCollection.find().toArray();
+    }
 
 }
