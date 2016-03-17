@@ -5,7 +5,7 @@
     <title>PGC活动详情页面</title>
     <style type="text/css">
         body {
-            background-image: url(../resource/img/pgc/bg.png);
+            background-image: url(../resource/img/pgc/${bg});
 
             background-size: cover;
             color: #fff;
@@ -18,7 +18,7 @@
         }
 
         .one {
-            background-image: url(../resource/img/pgc/1.jpg);
+            background-image: url(../resource/img/pgc/${head});
             background-size: cover;
             height: 640px;
             width: 100%;
