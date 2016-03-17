@@ -96,7 +96,7 @@
             height: 30px;
             width: 42px;
             background-image:url(../resource/img/pgc_detail/icon.png);
-            background-size: cover; 
+            background-size: cover;
         }
         .pic_2 .center h2{
             font-size: 46px;
@@ -114,8 +114,8 @@
             text-align: center;
             position: relative;
             top: -377px;
-            background-image:url(../resource/img/pgc_detail/lable.png); 
-            background-size: cover; 
+            background-image:url(../resource/img/pgc_detail/lable.png);
+            background-size: cover;
             height: 60px;
             width: 300px;
         }
