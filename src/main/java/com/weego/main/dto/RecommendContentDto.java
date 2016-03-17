@@ -6,15 +6,13 @@ package com.weego.main.dto;
 public class RecommendContentDto {
     private String coverImage;
 
-    private String recommendContentId;
+    private String contentTitle;
 
-    private String recommendContentTitle;
+    private String contentFirst;
 
-    private String recommendContentFirst;
+    private String contentSecond;
 
-    private String recommendContentSecond;
-
-    private String recommendContentDesc;
+    private String contentDesc;
 
     public String getCoverImage() {
         return coverImage;
@@ -24,43 +22,35 @@ public class RecommendContentDto {
         this.coverImage = coverImage;
     }
 
-    public String getRecommendContentId() {
-        return recommendContentId;
+    public String getContentTitle() {
+        return contentTitle;
     }
 
-    public void setRecommendContentId(String recommendContentId) {
-        this.recommendContentId = recommendContentId;
+    public void setContentTitle(String contentTitle) {
+        this.contentTitle = contentTitle;
     }
 
-    public String getRecommendContentTitle() {
-        return recommendContentTitle;
+    public String getContentFirst() {
+        return contentFirst;
     }
 
-    public void setRecommendContentTitle(String recommendContentTitle) {
-        this.recommendContentTitle = recommendContentTitle;
+    public void setContentFirst(String contentFirst) {
+        this.contentFirst = contentFirst;
     }
 
-    public String getRecommendContentFirst() {
-        return recommendContentFirst;
+    public String getContentSecond() {
+        return contentSecond;
     }
 
-    public void setRecommendContentFirst(String recommendContentFirst) {
-        this.recommendContentFirst = recommendContentFirst;
+    public void setContentSecond(String contentSecond) {
+        this.contentSecond = contentSecond;
     }
 
-    public String getRecommendContentSecond() {
-        return recommendContentSecond;
+    public String getContentDesc() {
+        return contentDesc;
     }
 
-    public void setRecommendContentSecond(String recommendContentSecond) {
-        this.recommendContentSecond = recommendContentSecond;
-    }
-
-    public String getRecommendContentDesc() {
-        return recommendContentDesc;
-    }
-
-    public void setRecommendContentDesc(String recommendContentDesc) {
-        this.recommendContentDesc = recommendContentDesc;
+    public void setContentDesc(String contentDesc) {
+        this.contentDesc = contentDesc;
     }
 }

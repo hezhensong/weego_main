@@ -1,25 +1,21 @@
 package com.weego.main.dto;
 
 import com.weego.main.model.DynamicContent;
+import com.weego.main.model.RecommendContent;
 
 import java.util.Date;
 
 /**
  * Created by liuniandxx on 16-3-16.
  */
-public class RecommendDataDto {
-    private String id;
+public class RecommendInfoDto {
     private String cityId;
+
+    private String cityName;
+
     private Date time;
-    private DynamicContent content;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private RecommendContentDto content;
 
     public String getCityId() {
         return cityId;
@@ -27,6 +23,14 @@ public class RecommendDataDto {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public Date getTime() {
@@ -37,11 +41,11 @@ public class RecommendDataDto {
         this.time = time;
     }
 
-    public DynamicContent getContent() {
+    public RecommendContentDto getContent() {
         return content;
     }
 
-    public void setContent(DynamicContent content) {
+    public void setContent(RecommendContentDto content) {
         this.content = content;
     }
 }

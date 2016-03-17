@@ -7,8 +7,6 @@ import com.weego.main.service.RecommendDynamicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by liuniandxx on 16-3-16.
  */
@@ -19,8 +17,7 @@ public class RecommendDynamicServiceImpl implements RecommendDynamicService {
     private RecommendDynamicDao recommendDynamicDao;
 
     @Override
-    public List<RecommendHistoryDto> getSpecityRecommendDynamic(String cityId) {
-        // TODO: 16-3-17
+    public RecommendHistoryDto getRecommendHistory(String cityId) {
         return null;
     }
 }

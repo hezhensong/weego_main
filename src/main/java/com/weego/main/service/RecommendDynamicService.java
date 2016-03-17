@@ -9,5 +9,5 @@ import java.util.List;
  * Created by liuniandxx on 16-3-16.
  */
 public interface RecommendDynamicService {
-    List<RecommendHistoryDto> getSpecityRecommendDynamic(String cityId);
+     RecommendHistoryDto getRecommendHistory(String cityId);
 }

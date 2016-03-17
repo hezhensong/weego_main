@@ -25,9 +25,11 @@ public class RecommendController {
                         method = RequestMethod.GET)
     public List<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
         logger.info("开始动态推荐列表查询");
+
+
         logger.info("cityId = {}", cityId);
 
-        // TODO: 16-3-17
+
         return null;
     }
 
