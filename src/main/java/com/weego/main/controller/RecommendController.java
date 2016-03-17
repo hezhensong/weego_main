@@ -21,8 +21,7 @@ public class RecommendController {
     private RecommendDynamicService recommendDynamicService;
 
     //动态推荐列表
-    @RequestMapping(value="/recommendation/history",
-                        method = RequestMethod.GET)
+    @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
     public List<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
         logger.info("开始动态推荐列表查询");
 
@@ -34,8 +33,7 @@ public class RecommendController {
     }
 
     //动态推荐卡片
-    @RequestMapping(value="/recommendation/card",
-                        method = RequestMethod.GET)
+    @RequestMapping(value="/recommendation/card", method = RequestMethod.GET)
     public void getCard(@RequestParam("cityId") String cityId,
                         @RequestParam("coordinate") String coordinate,
                         @RequestParam("time") Date time) {
