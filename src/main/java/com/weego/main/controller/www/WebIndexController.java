@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/web/v1")
-public class WwwIndexController {
+public class WebIndexController {
 
 	@ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.GET)

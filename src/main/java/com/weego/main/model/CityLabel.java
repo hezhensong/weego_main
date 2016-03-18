@@ -1,5 +1,6 @@
 package com.weego.main.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mongojack.Id;
 
 public class CityLabel {
@@ -7,6 +8,7 @@ public class CityLabel {
     @Id
     private String id;
 
+    @JsonProperty("name")
     private String name;
 
     public String getId() {

@@ -1,7 +1,11 @@
 package com.weego.main.controller.api;
 
+import com.weego.main.constant.ErrorCode;
+import com.weego.main.dao.TreeAreaDao;
 import com.weego.main.dto.CityHomeDto;
-import com.weego.main.dto.CityListDto;
+import com.weego.main.dto.CityListContinentDto;
+import com.weego.main.dto.ResponseDto;
+import com.weego.main.model.TreeAreaContinent;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,10 +22,24 @@ public class CityController {
     @Autowired
     CityService cityService;
 
+    @Autowired
+    TreeAreaDao treeAreaDao;
+
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<CityListDto> getCityList() {
-        return cityService.getCityList();
+    public ResponseDto<List<CityListContinentDto>> getCityList() {
+
+        ResponseDto<List<CityListContinentDto>> responseDto = new ResponseDto<>();
+        List<CityListContinentDto> cityListContinentDtoList = cityService.getOnlineCityList();
+        if (cityListContinentDtoList.size() == 0) {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SUCCESS);
+            responseDto.setData(cityService.getOnlineCityList());
+        }
+
+        return responseDto;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -34,8 +52,8 @@ public class CityController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
-    public String testmain() {
-//        System.out.println("Hello World!");
-        return "Hello World!";
+    public List<TreeAreaContinent> testmain() {
+
+        return treeAreaDao.getArea();
     }
 }
