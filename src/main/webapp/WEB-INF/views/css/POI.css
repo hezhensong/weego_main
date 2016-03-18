@@ -1,0 +1,248 @@
+body, ul, li p div h2 h3{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+body{
+	font-family: Helevtical Neue-Light;
+	color: #fff;
+	background:url(../resource/img/poi/poifood.png);
+	background-size: cover;
+}
+header{
+	background-image:url(../resource/img/pgc/4.jpg);
+	background-size: cover;
+	height: 640px;
+}
+.float_r{
+	float: right;
+}
+.title{
+	margin:3% auto;
+}
+.title .center{
+	margin:0 auto;
+	width: 422px;
+	border-bottom: 1px solid #fff;
+}
+.title .center .line{
+	border-bottom: 1px solid #fff;
+	width: 150px;
+	display: inline-block;
+}
+.title .center .icon{
+	position: relative;
+	top:15px;
+	display: inline-block;
+	margin: 0 32px;
+	height: 30px;
+	width: 42px;
+	background-image:url(../resource/img/pgc_detail/icon.png);
+	background-size: cover;
+}
+.title .center h2{
+	font-size: 54px;
+	text-align: center;
+}
+.title .center h3{
+	font-size: 30px;
+	text-align: center;
+}
+.title .score{
+	margin: 40px auto;
+	width: 300px;
+}
+.title .score img{
+	display: inline-block;
+	margin-right: 12px;
+	margin-bottom: -10px;
+}
+.title .score .reviews{
+	display: inline-block;
+	font-size: 26px;
+	color: #fff;
+	opacity: 0.5;
+}
+.tips{
+	padding-bottom: 30px;
+	border-bottom: 1px solid #8a8a8a;
+	margin: 0 3% 6% 3%;
+}
+.tips h2{
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+}
+.tips .special{
+	width:635px;
+	margin: 3% auto 4% auto;
+}
+.tips .special .single{
+	font-size: 30px;
+	width: 180px;
+	text-align: center;
+	border:3px solid #ff514e;
+	display: inline-block;
+	margin:0 7.5px;
+	border-radius: 50px;
+	padding: 7px 0;
+}
+.tips .special .first{
+	background-color: #ff514e;
+}
+.tips .breif{
+	width: 300px;
+	margin: 0 auto;
+}
+.tips .breif img{
+	margin: 0 20px -6px 0;
+	width: 50px;
+	height: 44px;
+	display: inline-block;
+}
+.tips .breif h3{
+	margin:0;
+	display: inline-block;
+	font-size: 46px;
+}
+.tips .margin{
+	margin-top:30px;
+}
+.tips p{
+	margin: 0;
+	font-size: 30px;
+	line-height: 50px;
+}
+.tips .menu{
+	margin: 70px 16px 30px 16px;
+	height: 420px;
+}
+.tips .first_menu{
+	background:url(../resource/img/pgc/2.jpg);
+	background-size: cover;
+}
+.tips .second_menu{
+	background:url(../resource/img/pgc/4.jpg);
+	background-size: cover;
+}
+.tips .menu .type{
+	letter-spacing: 5px;
+	float: left;
+	padding-left: 28px;
+	padding-top: 22px;
+	font-size: 28px;
+	position: relative;
+	top:-150px;
+	background-image:url(../resource/img/pgc_detail/lable.png);
+	background-size: cover;
+	height: 60px;
+	width: 215px;
+}
+.tips .menu .menu_name{
+	position: relative;
+	top: 150px;
+	left: -223px;
+	float: left;
+	font-size: 36px;
+
+}
+.tips .menu .overlay{
+	position: relative;
+	top: 238px;
+	width: 100%;
+}
+.tips .comment{
+	height: 115px;
+	text-align: center;
+	margin:60px auto;
+	width: 490px;
+}
+.tips .comment .left{
+	border-right: 1px solid #8a8a8a;
+	padding-right: 40px;
+	float: left;
+}
+.tips .comment .left img{
+	width: 60px;
+	height: 60px;
+	margin-bottom: 20px;
+}
+.tips .comment .left p{
+	letter-spacing: 5px;
+	font-size: 24px; 
+}
+.tips .comment .right{
+	display: inline-block;
+	float: left;
+	padding-left: 40px;
+}
+.tips .comment .right p{
+	font-size: 46px;
+	margin-bottom: 30px;
+}
+.tips .main_comment{
+	font-size: 36px;
+	text-align: center;
+}
+.tips .good_comment{
+	margin:0 3%;
+	font-size: 30px;
+	line-height: 50px;
+}
+.tips .good_comment img{
+	margin-right: 55px;
+}
+.tips .map{
+	margin-top: 100px;
+	height: 420px;
+	border:1px solid red;
+}
+.tips .message .details{
+	font-size: 30px;
+	border-bottom: 1px solid #8a8a8a;
+}
+.tips .message .details img{
+	height: 30px;
+	width: 30px;
+	margin-right:20px;
+	display: inline-block;
+}
+.tips .message .details p{
+	display: inline-block;
+	margin-right: 80px;
+}
+.tips .message .details h3{
+	display: inline-block;
+	color: #ff4f4e
+}
+
+.tips .message .details .all{
+	margin:38px 32px;
+}
+.tips .message .details .all .little{
+	display: inline-block;
+
+	margin:0 5% 40px 5%;
+}
+.tips .message .details .all .little img{
+	height: 40px;
+	width: 88px;
+	margin:0;
+}
+.tips .message .details .all .little .text{
+	margin-top: 16px;
+}
+.last_tip{
+	border-bottom: none;
+}
+#last_tip{
+	border-bottom: none;
+}
+footer{
+	height: 52px;
+	margin:40px 0 60px 0;
+	background: url(../resource/img/poi/1.png) no-repeat center;
+}
+.footer img{
+	height: 52px;
+}
