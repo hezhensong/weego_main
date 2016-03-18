@@ -2,9 +2,13 @@ package com.weego.main.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Restaurant extends BasePOI {
+	@JsonProperty("dish")
 	private List<RestaurantDish> restaurantDishs;
 
+	@JsonProperty("facilities")
 	private RestaurantFacilities restaurantFacilities;
 
 	public List<RestaurantDish> getRestaurantDishs() {
