@@ -16,18 +16,17 @@ import com.weego.main.service.RestaurantService;
 
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
-	
+
 	@Autowired
 	RestaurantDao restaurantDao;
-
 	@Override
 	public POIListDto getRestaurantsByCityId(String cityId) {
 		POIListDto poiListDto = new POIListDto();
 		Map<String, Object> data = new HashMap<String, Object>();
-		
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
-		List<Restaurant> restaurants =  restaurantDao.getRestaurantsByCityId(cityId);
-		for(Restaurant restaurant : restaurants) {
+		List<Restaurant> restaurants = restaurantDao
+				.getRestaurantsByCityId(cityId);
+		for (Restaurant restaurant : restaurants) {
 			POIBaseDto poiBaseDto = new POIBaseDto();
 			poiBaseDto.setCardId(restaurant.getId());
 			poiBaseDto.setBrief(restaurant.getBriefIntroduce());
@@ -36,10 +35,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 			poiBaseDto.setTitle(restaurant.getName());
 			poiBaseDtos.add(poiBaseDto);
 		}
-		
 		data.put("baseInfo", poiBaseDtos);
 		poiListDto.setData(data);
 		return poiListDto;
 	}
-	
+
 }

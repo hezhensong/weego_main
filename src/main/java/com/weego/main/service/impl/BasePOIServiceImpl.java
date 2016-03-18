@@ -14,20 +14,17 @@ public class BasePOIServiceImpl implements BasePOIService {
 
 	@Autowired
 	AttractionService attractionService;
-	
 	@Autowired
 	RestaurantService restaurantService;
-	
 	@Autowired
 	ShoppingService shoppingService;
-	
 	@Override
 	public POIListDto getPOIsByCityId(String cityId, Integer type) {
-		if(type == 0) {
+		if (type == 0) {
 			return attractionService.getAttractionsByCityId(cityId);
-		} else if(type == 1) {
+		} else if (type == 1) {
 			return restaurantService.getRestaurantsByCityId(cityId);
-		} else if(type == 2) {
+		} else if (type == 2) {
 			return shoppingService.getShoppingsByCityId(cityId);
 		} else {
 			System.out.println("type 参数值有误");

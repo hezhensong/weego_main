@@ -19,15 +19,15 @@ public class AttractionServiceImpl implements AttractionService {
 
 	@Autowired
 	AttractionDao attractionDao;
-	
+
 	@Override
 	public POIListDto getAttractionsByCityId(String cityId) {
 		POIListDto poiListDto = new POIListDto();
 		Map<String, Object> data = new HashMap<String, Object>();
-		
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
-		List<Attraction> attractions =  attractionDao.getAttractionsByCityId(cityId);
-		for(Attraction attraction : attractions) {
+		List<Attraction> attractions = attractionDao
+				.getAttractionsByCityId(cityId);
+		for (Attraction attraction : attractions) {
 			POIBaseDto poiBaseDto = new POIBaseDto();
 			poiBaseDto.setCardId(attraction.getId());
 			poiBaseDto.setBrief(attraction.getBriefIntroduce());
@@ -36,10 +36,9 @@ public class AttractionServiceImpl implements AttractionService {
 			poiBaseDto.setTitle(attraction.getName());
 			poiBaseDtos.add(poiBaseDto);
 		}
-		
 		data.put("baseInfo", poiBaseDtos);
 		poiListDto.setData(data);
 		return poiListDto;
 	}
-	
+
 }

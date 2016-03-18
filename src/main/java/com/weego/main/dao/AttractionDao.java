@@ -9,18 +9,16 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.weego.main.model.Attraction;
 
-
 @Repository
 public class AttractionDao {
 	private DB database = MongoConnectionFactory.getDatabase();
-	
+
 	public List<Attraction> getAttractionsByCityId(String cityId) {
 		DBCollection collection = database.getCollection("attraction");
-		
-		JacksonDBCollection<Attraction, String> jackCollection =
-                JacksonDBCollection.wrap(collection, Attraction.class, String.class);
+		JacksonDBCollection<Attraction, String> jackCollection = JacksonDBCollection
+				.wrap(collection, Attraction.class, String.class);
 
-        return jackCollection.find().toArray();
+		return jackCollection.find().toArray();
 	}
-	
+
 }
