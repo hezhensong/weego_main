@@ -32,7 +32,18 @@ public class ShareController {
 
         ModelAndView mv = pgcService.getSpecifiedPgc(pgcId);
 
+<<<<<<< HEAD:src/main/java/com/weego/main/controller/ShareController.java
+        ModelAndView mv = new ModelAndView("PGC");
+        mv.addObject("author", "刘钰");
+        mv.addObject("head", "1.jpg");
+        mv.addObject("article_1", "aaaxxxcccc");
+        mv.addObject("article_2", "dddddxxxcccc");
+        mv.addObject("article_3", "aavvvxxcccc");
+        mv.addObject("head", "1.jpg");
+        mv.addObject("head", "1.jpg");
+=======
 //        ModelAndView mv = new ModelAndView("PGC");
+>>>>>>> ea8c322cbc3ad06a13e60c4fd651c4a456be6858:src/main/java/com/weego/main/controller/touch/ShareController.java
 
         return mv;
     }
