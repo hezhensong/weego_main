@@ -12,6 +12,7 @@ public class City {
     @Id
     private String id;
 
+    @JsonProperty("name")
     private String name;
 
     @JsonProperty("name_en")
@@ -26,6 +27,7 @@ public class City {
     @JsonProperty("label_list")
     private Map<String, List<CityLabel>> labelList;
 
+    @JsonProperty("area")
     private Area area;
 
     @JsonProperty("is_show")

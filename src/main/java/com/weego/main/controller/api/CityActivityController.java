@@ -1,4 +1,4 @@
-package com.weego.main.controller;
+package com.weego.main.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,7 @@ import com.weego.main.dto.CityActivityHomeDto;
 import com.weego.main.service.CityActivityService;
 
 @RestController
-@RequestMapping("api/v3/city/activity")
+@RequestMapping("/api/v3/city/activity")
 public class CityActivityController {
 
 	@Autowired

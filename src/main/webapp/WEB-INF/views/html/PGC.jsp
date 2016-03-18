@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>PGC活动详情页面</title>
     <link rel="stylesheet" type="text/css" href="../css/PGC.css">
+    <style >
+        .one {
+            background-image: url(${head});
+            background-size: cover;
+            height: 640px;
+            width: 100%;
+        }
+        .pic_1{
+            height: 420px;
+            background-image: url(${pic_3});
+            background-size: cover;
+            margin: 2% 0;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,7 +28,7 @@
     作者：<span id="author">${author}</span>, 来源：<span id="from">${resource_1}</span>
 </div>
 
-<div class="detail"><img src="../resource/img/pgc/yin1.png"></br>&nbsp;${article}</br>
+<div class="detail"><img src="../resource/img/pgc/yin1.png"><br/>&nbsp;${article}<br/>
     <img class="float-r" src="../resource/img/pgc/yin2.png">
 </div>
 
@@ -52,9 +67,9 @@
 
 <div class="pic_2">
     <img src="${pic_5}">
-    <h3>(图片来源：${resource_3)</h3>
+    <h3>(图片来源：${resource_3}</h3>
 </div>
-<div class="detail">${title_1}</div>
+<div class="detail">${title_4}</div>
 
 <h5>由weego重新排版&nbsp;<a>阅读原文</a></h5>
 <div class="logo"><img src="${logo}"></div>

@@ -4,6 +4,6 @@
     <title>Weego</title>
 </head>
 <body>
-    <h1>This is ${name} !</h1>
+    <h1>This is ${name}!</h1>
 </body>
 </html>

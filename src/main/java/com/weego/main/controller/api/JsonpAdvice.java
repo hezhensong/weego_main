@@ -1,4 +1,4 @@
-package com.weego.main.controller;
+package com.weego.main.controller.api;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;

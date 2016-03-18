@@ -1,98 +1,94 @@
 package com.weego.main.model;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mongojack.Id;
+
 import java.util.List;
-import java.util.Map;
 
 public class Pgc {
-	@Id
-	private String _id;
 
-	@JsonProperty("title")
-	private String title;
+    @Id
+    private String pgcId;
 
-	@JsonProperty("cover_image")
-	private String coverImage;
+    private String title;
 
-	@JsonProperty("person")
-	private String person;
+    @JsonProperty("cover_image")
+    private String coverImage;
 
-	@JsonProperty("poi_list")
-	private List<String> poiList;
+    private String person;
 
-	@JsonProperty("head_image")
-	private String headImage;
+    @JsonProperty("poi_list")
+    private List<String> poiList;
 
-	@JsonProperty("introduction")
-	private String introduction;
+    @JsonProperty("head_image")
+    private String headImage;
 
-	@JsonProperty("city_id")
-	private String cityId;
+    private String introduction;
 
-	public List<String> getPoiList() {
-		return poiList;
-	}
+    @JsonProperty("city_id")
+    private String cityId;
 
-	public void setPoiList(List<String> poiList) {
-		this.poiList = poiList;
-	}
+    public String getPgcId() {
+        return pgcId;
+    }
 
-	public String getHeadImage() {
-		return headImage;
-	}
+    public void setPgcId(String pgcId) {
+        this.pgcId = pgcId;
+    }
 
-	public void setHeadImage(String headImage) {
-		this.headImage = headImage;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getIntroduction() {
-		return introduction;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
+    public String getCoverImage() {
+        return coverImage;
+    }
 
-	public String getPerson() {
-		return person;
-	}
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
 
-	public void setPerson(String person) {
-		this.person = person;
-	}
+    public String getPerson() {
+        return person;
+    }
 
-	public String getCityId() {
-		return cityId;
-	}
+    public void setPerson(String person) {
+        this.person = person;
+    }
 
-	public void setCityId(String cityId) {
-		this.cityId = cityId;
-	}
+    public List<String> getPoiList() {
+        return poiList;
+    }
 
-	public String get_id() {
-		return _id;
-	}
+    public void setPoiList(List<String> poiList) {
+        this.poiList = poiList;
+    }
 
-	public void set_id(String _id) {
-		this._id = _id;
-	}
+    public String getHeadImage() {
+        return headImage;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getIntroduction() {
+        return introduction;
+    }
 
-	public String getCoverImage() {
-		return coverImage;
-	}
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
-	public void setCoverImage(String coverImage) {
-		this.coverImage = coverImage;
-	}
+    public String getCityId() {
+        return cityId;
+    }
 
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
 }

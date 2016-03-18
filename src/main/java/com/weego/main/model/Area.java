@@ -1,9 +1,13 @@
 package com.weego.main.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Area {
 
+    @JsonProperty("continent")
     private String continent;
 
+    @JsonProperty("country")
     private String country;
 
     public String getContinent() {

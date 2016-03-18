@@ -39,4 +39,5 @@
     <!-- JSP资源路径 -->
     <mvc:resources mapping="/share/resource/**" location="/WEB-INF/views/resource/"/>
     <mvc:resources mapping="/share/js/**" location="/WEB-INF/views/js/"/>
+    <mvc:resources mapping="/share/css/**" location="/WEB-INF/views/css/"/>
 </beans>
