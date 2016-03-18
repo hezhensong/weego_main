@@ -1,7 +1,7 @@
 package com.weego.main.model;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.mongojack.Id;
 
@@ -22,34 +22,37 @@ public class CityActivity {
     private String title;
 
     @JsonProperty("detail_address")
-    private String deaddress;
+    private String detailAddress;
 
     @JsonProperty("start_time")
-    private String openTime;
+    private Date openTime;
 
     @JsonProperty("end_time")
-    private String closeTime;
+    private Date closeTime;
 
     @JsonProperty("act_time")
-    private String zcttime;
+    private String actTime;
 
-    @JsonProperty("longitude")
-    private String longitude;
-
-    @JsonProperty("latitude")
-    private String latidute;
+    @JsonProperty("coordination")
+    private String coordination;
 
     @JsonProperty("act_url")
-    private String acturl;
+    private String actUrl;
 
     @JsonProperty("order_url")
-    private String orderurl;
+    private String orderUrl;
 
-    @JsonProperty("desc")
-    private String desc;
+    @JsonProperty("description")
+    private String description;
 
     @JsonProperty("paragraphs")
-    private Map<String, List<CityActivityParagraphs>> paragraphs;
+    private List<CityActivityParagraphs> paragraphs;
+
+    @JsonProperty("last_modified_time")
+    private Date lastModifiedTime;
+
+    @JsonProperty("last_modified_person")
+    private String lastModifiedPerson;
 
     public String getId() {
         return Id;
@@ -83,83 +86,91 @@ public class CityActivity {
         this.title = title;
     }
 
-    public String getDeaddress() {
-        return deaddress;
+    public String getDetailAddress() {
+        return detailAddress;
     }
 
-    public void setDeaddress(String deaddress) {
-        this.deaddress = deaddress;
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 
-    public String getOpenTime() {
+    public Date getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(String openTime) {
+    public void setOpenTime(Date openTime) {
         this.openTime = openTime;
     }
 
-    public String getCloseTime() {
+    public Date getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(String closeTime) {
+    public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
     }
 
-    public String getZcttime() {
-        return zcttime;
+    public String getActTime() {
+        return actTime;
     }
 
-    public void setZcttime(String zcttime) {
-        this.zcttime = zcttime;
+    public void setActTime(String actTime) {
+        this.actTime = actTime;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getCoordination() {
+        return coordination;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setCoordination(String coordination) {
+        this.coordination = coordination;
     }
 
-    public String getLatidute() {
-        return latidute;
+    public String getActUrl() {
+        return actUrl;
     }
 
-    public void setLatidute(String latidute) {
-        this.latidute = latidute;
+    public void setActUrl(String actUrl) {
+        this.actUrl = actUrl;
     }
 
-    public String getActurl() {
-        return acturl;
+    public String getOrderUrl() {
+        return orderUrl;
     }
 
-    public void setActurl(String acturl) {
-        this.acturl = acturl;
+    public void setOrderUrl(String orderUrl) {
+        this.orderUrl = orderUrl;
     }
 
-    public String getOrderurl() {
-        return orderurl;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOrderurl(String orderurl) {
-        this.orderurl = orderurl;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDesc() {
-        return desc;
+    public Date getLastModifiedTime() {
+        return lastModifiedTime;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
     }
 
-    public Map<String, List<CityActivityParagraphs>> getParagraphs() {
+    public String getLastModifiedPerson() {
+        return lastModifiedPerson;
+    }
+
+    public void setLastModifiedPerson(String lastModifiedPerson) {
+        this.lastModifiedPerson = lastModifiedPerson;
+    }
+
+    public List<CityActivityParagraphs> getParagraphs() {
         return paragraphs;
     }
 
-    public void setParagraphs(Map<String, List<CityActivityParagraphs>> paragraphs) {
+    public void setParagraphs(List<CityActivityParagraphs> paragraphs) {
         this.paragraphs = paragraphs;
     }
 

@@ -4,46 +4,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CityActivityParagraphs {
 
-	private String imageID;
+    @JsonProperty("image_url")
+    private String imageUrl;
 
-	private String imageTitle;
+    @JsonProperty("image_title")
+    private String imageTitle;
 
-	@JsonProperty("desc")
-	private String imageDesc;
+    @JsonProperty("detail_up")
+    private String detailUp;
 
-	@JsonProperty("imageDesc")
-	private String imageBrief;
+    @JsonProperty("detail_down")
+    private String detailDown;
 
-	public String getImageID() {
-		return imageID;
-	}
+    @JsonProperty("image_brief")
+    private String imageBrief;
 
-	public void setImageID(String imageID) {
-		this.imageID = imageID;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getImageTitle() {
-		return imageTitle;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public void setImageTitle(String imageTitle) {
-		this.imageTitle = imageTitle;
-	}
+    public String getImageTitle() {
+        return imageTitle;
+    }
 
-	public String getImageDesc() {
-		return imageDesc;
-	}
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle = imageTitle;
+    }
 
-	public void setImageDesc(String imageDesc) {
-		this.imageDesc = imageDesc;
-	}
+    public String getDetailUp() {
+        return detailUp;
+    }
 
-	public String getImageBrief() {
-		return imageBrief;
-	}
+    public void setDetailUp(String detailUp) {
+        this.detailUp = detailUp;
+    }
 
-	public void setImageBrief(String imageBrief) {
-		this.imageBrief = imageBrief;
-	}
+    public String getDetailDown() {
+        return detailDown;
+    }
+
+    public void setDetailDown(String detailDown) {
+        this.detailDown = detailDown;
+    }
+
+    public String getImageBrief() {
+        return imageBrief;
+    }
+
+    public void setImageBrief(String imageBrief) {
+        this.imageBrief = imageBrief;
+    }
 
 }
