@@ -20,7 +20,7 @@ var myScroll;
 
 
 
-$(function(){
+/*$(function(){
 	get_cover_img();
 })
 
@@ -35,4 +35,4 @@ function get_cover_img(){
 function lister(rsp){
 	console.log(rsp);
 }    
-    
+    */
