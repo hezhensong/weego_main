@@ -6,7 +6,7 @@ public class BasePOIActivies {
 
 	@Id
 	private String id;
-	
+
 	private String title;
 
 	public String getId() {
