@@ -6,6 +6,8 @@ public class BOITag {
 
 	@Id
 	private String id;
+	
+	
 
 	private String tag;
 
