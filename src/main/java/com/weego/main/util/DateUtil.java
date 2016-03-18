@@ -43,7 +43,7 @@ public class DateUtil {
     //n > 0 获取n天后的当前时间 n <= 0 获取n天前的当前时间
     public static Date afterNDays(Date date, int n) {
         DateTime dateTime = new DateTime(date);
-        dateTime.plusDays(n);
+        dateTime = dateTime.plusDays(n);
         return dateTime.toDate();
     }
 

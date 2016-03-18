@@ -38,7 +38,7 @@ public class RecommendDynamicDao {
                                         String.class);
         return jacksonDBCollection.find(DBQuery.and(
                                             DBQuery.is("city_id", cityId),
-                                            DBQuery.is("recommend_end_date", date)
+                                            DBQuery.is("content.recommend_end_date", date)
                                         )).toArray();
     }
 }
