@@ -15,7 +15,7 @@ import java.util.List;
 public class PgcDao {
     private DB database = MongoConnectionFactory.getDatabase();
 
-    public List<Pgc> getOnlinePgc() {
+    public List<Pgc> getListPgc() {
         DBCollection collection = database.getCollection("pgc");
         JacksonDBCollection<Pgc, String> jackCollection = JacksonDBCollection.wrap(collection, Pgc.class, String.class);
 

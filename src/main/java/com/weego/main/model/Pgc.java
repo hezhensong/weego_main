@@ -7,9 +7,10 @@ import java.util.List;
 
 public class Pgc {
 
-    @Id
+    @JsonProperty("_id")
     private String pgcId;
 
+    @JsonProperty("title")
     private String title;
 
     @JsonProperty("cover_image")

@@ -16,7 +16,7 @@ public class BasePOI {
 	private List<BasePOIActivies> activies;
 
 	@JsonProperty("master_tag")
-	private List<BOITag> masterTag;
+	private BOITag masterTag;
 
 	@JsonProperty("sub_tag")
 	private List<BOITag> subTag;
@@ -62,10 +62,10 @@ public class BasePOI {
 	private String website;
 	private String tel;
 
-	@JsonProperty("comment_from")
+	@JsonProperty("comments_from")
 	private String commentFrom;
 
-	@JsonProperty("comment_url")
+	@JsonProperty("comments_url")
 	private String commentsUrl;
 
 	private List<BasePOIComments> comments;
@@ -92,11 +92,11 @@ public class BasePOI {
 		this.activies = activies;
 	}
 
-	public List<BOITag> getMasterTag() {
+	public BOITag getMasterTag() {
 		return masterTag;
 	}
 
-	public void setMasterTag(List<BOITag> masterTag) {
+	public void setMasterTag(BOITag masterTag) {
 		this.masterTag = masterTag;
 	}
 
