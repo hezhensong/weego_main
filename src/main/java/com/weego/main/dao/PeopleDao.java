@@ -16,7 +16,7 @@ public class PeopleDao {
     private DB database = MongoConnectionFactory.getDatabase();
 
     public List<Person> getPgcPersonList(String personId) {//查询person中的userName、headImage
-        DBCollection collection = database.getCollection("people");
+        DBCollection collection = database.getCollection("person");
         JacksonDBCollection<Person, String> jackCollection = JacksonDBCollection.wrap(collection, Person.class, String.class);
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(personId));
