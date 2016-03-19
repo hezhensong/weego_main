@@ -2,7 +2,7 @@
 <Configuration status="WARN">
 
     <properties>
-        <property name="logPath">/var/log/weego_main</property>
+        <property name="logPath">{RootPath}/weego_main</property>
     </properties>
 
     <Appenders>
