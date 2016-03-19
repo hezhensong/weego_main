@@ -1,11 +1,36 @@
 package com.weego.main.dto;
 
-//import java.util.List;
 
 public class PgcListContinentDto {
-
+    private String pgcId;
     private String title;
     private String coverImage;
+    private String userName;
+    private String headImage;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
+
+    public String getPgcId() {
+        return pgcId;
+    }
+
+    public void setPgcId(String pgcId) {
+        this.pgcId = pgcId;
+    }
 
     public String getCoverImage() {
         return coverImage;
@@ -22,15 +47,6 @@ public class PgcListContinentDto {
     public void setTitle(String title) {
         this.title = title;
     }
-//    private List<CityListCityDto> cityList;
 
 
-
-   /* public List<CityListCityDto> getCityList() {
-        return cityList;
-    }
-
-    public void setCityList(List<CityListCityDto> cityList) {
-        this.cityList = cityList;
-    }*/
 }

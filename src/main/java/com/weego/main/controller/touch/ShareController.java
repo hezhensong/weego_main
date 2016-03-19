@@ -30,9 +30,14 @@ public class ShareController {
     @ResponseBody
     public ModelAndView getPgc(@RequestParam("pgcId") String pgcId) {
 
-        ModelAndView mv = pgcService.getSpecifiedPgc(pgcId);
-
-//        ModelAndView mv = new ModelAndView("PGC");
+        ModelAndView mv = new ModelAndView("PGC");
+        mv.addObject("author", "刘钰");
+        mv.addObject("head", "1.jpg");
+        mv.addObject("article_1", "aaaxxxcccc");
+        mv.addObject("article_2", "dddddxxxcccc");
+        mv.addObject("article_3", "aavvvxxcccc");
+        mv.addObject("head", "1.jpg");
+        mv.addObject("head", "1.jpg");
 
         return mv;
     }
