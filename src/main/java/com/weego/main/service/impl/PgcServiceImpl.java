@@ -34,21 +34,22 @@ public class PgcServiceImpl implements PgcService {
         List<Pgc> pgcList = pgcDao.getListPgc();
 
         for (Pgc pgc : pgcList) {
-
-            List<People> pgcPersonList = peopleDao.getListPgcPerson(pgc.getPerson());
-
-            People ple=new People();
-
-
             PgcListContinentDto pgcListDto1 = new PgcListContinentDto();
+
+            if (pgc.getPerson() != null) {
+                List<People> pgcPersonList = peopleDao.getListPgcPerson(pgc.getPerson());
+                for (People ple : pgcPersonList) {
+                    pgcListDto1.setUserName(ple.getUserName());//人物名称
+                    pgcListDto1.setHeadImage(ple.getHeadImage());//人物头像
+                }
+            } else {
+                pgcListDto1.setUserName("");//人物名称
+                pgcListDto1.setHeadImage("");//人物头像
+            }
 
             pgcListDto1.setPgcId(pgc.getPgcId());
 
             pgcListDto1.setTitle(pgc.getTitle());
-
-            pgcListDto1.setUserName(ple.getUserName());//人物名称
-
-            pgcListDto1.setHeadImage(ple.getHeadImage());//人物头像
 
             pgcListDto1.setCoverImage(pgc.getCoverImage());
 
