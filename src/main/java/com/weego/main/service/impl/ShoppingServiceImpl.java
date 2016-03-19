@@ -22,8 +22,6 @@ import com.weego.main.dto.POISpecialDto;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
-import com.weego.main.model.Restaurant;
-import com.weego.main.model.RestaurantDish;
 import com.weego.main.model.Shopping;
 import com.weego.main.model.ShoppingBrand;
 import com.weego.main.service.ShoppingService;
@@ -219,7 +217,6 @@ public class ShoppingServiceImpl implements ShoppingService {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
 					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
 					poiDetailCommentsDto.setDate(basePOIComment.getDate());
-					System.out.println(basePOIComment.getDate());
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
