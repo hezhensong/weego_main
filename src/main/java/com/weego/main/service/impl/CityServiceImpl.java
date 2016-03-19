@@ -46,7 +46,7 @@ public class CityServiceImpl implements CityService {
         for (City city : cityList) {
 
             CityListCityDto cityListCityDto = new CityListCityDto();
-            cityListCityDto.setCityId(city.getId());
+            cityListCityDto.setCityId(city.getId().toString());
             cityListCityDto.setCityName(city.getName());
             cityListCityDto.setCityNameEn(city.getNameEn());
 
