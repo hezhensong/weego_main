@@ -2,7 +2,7 @@ package com.weego.main.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CityActivityParagraphs {
+public class ActivityParagraphs {
 
     @JsonProperty("image_url")
     private String imageUrl;

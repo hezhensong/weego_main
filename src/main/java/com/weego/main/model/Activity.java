@@ -7,7 +7,7 @@ import org.mongojack.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CityActivity {
+public class Activity {
 
     @Id
     private String Id;
@@ -46,7 +46,7 @@ public class CityActivity {
     private String description;
 
     @JsonProperty("paragraphs")
-    private List<CityActivityParagraphs> paragraphs;
+    private List<ActivityParagraphs> paragraphs;
 
     @JsonProperty("last_modified_time")
     private Date lastModifiedTime;
@@ -166,11 +166,11 @@ public class CityActivity {
         this.lastModifiedPerson = lastModifiedPerson;
     }
 
-    public List<CityActivityParagraphs> getParagraphs() {
+    public List<ActivityParagraphs> getParagraphs() {
         return paragraphs;
     }
 
-    public void setParagraphs(List<CityActivityParagraphs> paragraphs) {
+    public void setParagraphs(List<ActivityParagraphs> paragraphs) {
         this.paragraphs = paragraphs;
     }
 
