@@ -1,7 +1,7 @@
 package com.weego.main.dto;
 
-import com.weego.main.model.DynamicContent;
 import com.weego.main.model.RecommendContent;
+import org.bson.types.ObjectId;
 
 import java.util.Date;
 
@@ -9,28 +9,28 @@ import java.util.Date;
  * Created by liuniandxx on 16-3-16.
  */
 public class RecommendInfoDto {
-    private String cityId;
+    private String id;
 
-    private String cityName;
+    private Integer type;
 
     private Date time;
 
     private RecommendContentDto content;
 
-    public String getCityId() {
-        return cityId;
+    public String getId() {
+        return id;
     }
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getCityName() {
-        return cityName;
+    public Integer getType() {
+        return type;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getTime() {

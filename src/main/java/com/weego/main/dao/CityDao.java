@@ -3,6 +3,8 @@ package com.weego.main.dao;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.weego.main.model.City;
+import org.bson.types.ObjectId;
+import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +30,7 @@ public class CityDao {
         JacksonDBCollection<City, String> coll;
         coll = JacksonDBCollection.wrap(collection, City.class, String.class);
 
-        City city = coll.findOne();
+        City city = coll.findOne(DBQuery.is("_id", new ObjectId(cityId)));
         return city;
     }
 }
