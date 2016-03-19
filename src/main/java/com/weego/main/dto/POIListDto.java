@@ -1,15 +1,15 @@
 package com.weego.main.dto;
 
-import java.util.Map;
+import java.util.List;
 
 public class POIListDto extends BaseDto {
-	private Map<String, Object> data;
+	private List<POIBaseDto> data;
 
-	public Map<String, Object> getData() {
+	public List<POIBaseDto> getData() {
 		return data;
 	}
 
-	public void setData(Map<String, Object> data) {
+	public void setData(List<POIBaseDto> data) {
 		this.data = data;
 	}
 
