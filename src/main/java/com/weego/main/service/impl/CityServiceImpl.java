@@ -2,11 +2,9 @@ package com.weego.main.service.impl;
 
 import com.weego.main.dao.CityDao;
 import com.weego.main.dao.TreeAreaDao;
+import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.*;
-import com.weego.main.model.City;
-import com.weego.main.model.TreeAreaCity;
-import com.weego.main.model.TreeAreaContinent;
-import com.weego.main.model.TreeAreaCountry;
+import com.weego.main.model.*;
 import com.weego.main.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,9 @@ public class CityServiceImpl implements CityService {
 
     @Autowired
     private TreeAreaDao treeAreaDao;
+
+    @Autowired
+    private WeatherDao weatherDao;
 
     @Override
     public List<CityListDto> getCityList() {
@@ -82,15 +83,117 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityHomeDto getCityHome(String cityId) {
         CityHomeDto cityHomeDto = new CityHomeDto();
-        Map<String, Object> data = new HashMap<>();
 
-        CityBaseInfoDto cityBaseInfoDto = new CityBaseInfoDto();
+        // 获取城市基本信息
+        CityHomeBaseInfoDto cityHomeBaseInfoDto = new CityHomeBaseInfoDto();
+        cityHomeDto.setBaseInfo(cityHomeBaseInfoDto);
+
         City city = cityDao.getSpecifiedCity(cityId);
-        cityBaseInfoDto.setCoverImage("还没找到呢。");
+        cityHomeBaseInfoDto.setCityId(city.getId());
+        cityHomeBaseInfoDto.setCityName(city.getName());
+        cityHomeBaseInfoDto.setCityNameEn(city.getNameEn());
+        cityHomeBaseInfoDto.setCoverImage(city.getCoverImage());
 
-        data.put("baseInfo", cityBaseInfoDto);
+        // 获取城市Label列表
+        CityHomeLabelDto cityHomeLabelDto = new CityHomeLabelDto();
+        cityHomeDto.setLabels(cityHomeLabelDto);
 
-        cityHomeDto.setData(data);
+        Map<String, List<CityLabel>> labelListMap = city.getLabelList();
+        for (String type : labelListMap.keySet()) {
+
+            if (type.equals("0")) {
+                List<Map<String, String>> attractionLabelList = new ArrayList<>();
+
+                List<CityLabel> cityLabelList = labelListMap.get("0");
+                for (CityLabel cityLabel : cityLabelList) {
+                    Map<String, String> attractionLabel = new HashMap<>();
+                    attractionLabel.put("id", cityLabel.getId());
+                    attractionLabel.put("title", cityLabel.getName());
+                    attractionLabelList.add(attractionLabel);
+                }
+                cityHomeLabelDto.setAttractionLabel(attractionLabelList);
+
+            } else if (type.equals("1")) {
+                List<Map<String, String>> restaurantLabelList = new ArrayList<>();
+
+                List<CityLabel> cityLabelList = labelListMap.get("1");
+                for (CityLabel cityLabel : cityLabelList) {
+                    Map<String, String> attractionLabel = new HashMap<>();
+                    attractionLabel.put("id", cityLabel.getId());
+                    attractionLabel.put("title", cityLabel.getName());
+                    restaurantLabelList.add(attractionLabel);
+                }
+                cityHomeLabelDto.setRestaurantLabel(restaurantLabelList);
+
+            } else if (type.equals("2")) {
+                List<Map<String, String>> shoppingLabelList = new ArrayList<>();
+
+                List<CityLabel> cityLabelList = labelListMap.get("2");
+                for (CityLabel cityLabel : cityLabelList) {
+                    Map<String, String> shoppingLabel = new HashMap<>();
+                    shoppingLabel.put("id", cityLabel.getId());
+                    shoppingLabel.put("title", cityLabel.getName());
+                    shoppingLabelList.add(shoppingLabel);
+                }
+                cityHomeLabelDto.setShoppingLabel(shoppingLabelList);
+            }
+        }
+
+        // 获取城市天气信息
+        CityHomeWeatherDto cityHomeWeatherDto = new CityHomeWeatherDto();
+        cityHomeDto.setWeather(cityHomeWeatherDto);
+
+        Weather weather = weatherDao.getWeatherByCityId(cityId);
+
+        // 当天天气
+        WeatherCondition weatherCondition = weather.getCondition();
+        WeatherConditionDto weatherConditionDto = new WeatherConditionDto();
+        cityHomeWeatherDto.setCondition(weatherConditionDto);
+
+        weatherConditionDto.setUpdateTime(weatherCondition.getUpdate_time().toString());
+        weatherConditionDto.setHigh(weatherCondition.getHigh() + "");
+        weatherConditionDto.setLow(weatherCondition.getLow() + "");
+        weatherConditionDto.setSunrise(weatherCondition.getSunrise());
+        weatherConditionDto.setSunset(weatherCondition.getSunset());
+        weatherConditionDto.setDescription(weatherCondition.getDescription());
+        weatherConditionDto.setTemperature(weatherCondition.getTemperature() + "");
+
+        // 5天预告
+        List<WeatherForecast> weatherForecastList = weather.getForecast();
+        List<WeatherForecastDto> weatherForecastDtoList = new ArrayList<>();
+        cityHomeWeatherDto.setForecast(weatherForecastDtoList);
+
+        for (WeatherForecast weatherForecast : weatherForecastList) {
+            WeatherForecastDto weatherForecastDto = new WeatherForecastDto();
+
+            weatherForecastDto.setDate(weatherForecast.getDate().toString());
+            weatherForecastDto.setHigh(weatherForecast.getHigh() + "");
+            weatherForecastDto.setLow(weatherForecast.getLow() + "");
+            weatherForecastDto.setDescription(weatherForecast.getDescription());
+
+            weatherForecastDtoList.add(weatherForecastDto);
+        }
+
+        // 获取城市计划
+        CityHomePlanDto cityHomePlanDto = new CityHomePlanDto();
+        cityHomePlanDto.setHavePlan(false);
+        cityHomePlanDto.setDateRange("");
+        cityHomeDto.setPlan(cityHomePlanDto);
+
+        // 获取城市活动
+        CityHomeActivityDto cityHomeActivityDto = new CityHomeActivityDto();
+        cityHomeDto.setCityActivity(cityHomeActivityDto);
+
+        cityHomeActivityDto.setTitle("第十一届圣帕特里克系列音乐会");
+        cityHomeActivityDto.setCoverImage("http://weegotest.b0.upaiyun.com/activities/iosimgs/56c6a57482b914445e000008.jpeg");
+
+        // 获取城市PGC
+        CityHomePgcDto cityHomePgcDto = new CityHomePgcDto();
+        cityHomeDto.setPgc(cityHomePgcDto);
+
+        cityHomePgcDto.setTitle("华裔名厨蔡明昊");
+        cityHomePgcDto.setCoverImage("http://weegotest.b0.upaiyun.com/activities/iosimgs/56cc5cf22ddd9d3d17000022.jpeg");
+
         return cityHomeDto;
     }
 
