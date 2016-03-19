@@ -4,10 +4,12 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by liuniandxx on 16-3-16. 时间操作通用类
@@ -30,6 +32,33 @@ public class DateUtil {
         return dateTime.toDate();
     }
 
+    // Date 转化为 yyyyMMdd
+    public static String formatyyyyMMddHHmmss(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
+
+    // 时间格式转换为Date
+    public static Date yyyyMMddHHmmssToDate(String datestr) throws ParseException {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = sdf.parse(datestr);
+        return date;
+    }
+    
+    public static Date getnow(){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+
+        java.util.Date date=null;
+        try {
+           date= sdf.parse(sdf.format(new Date()));
+
+        } catch (ParseException e) {
+
+           e.printStackTrace();
+        }
+        return date;
+    }
+    
     // 获取时间格式 yyyyMMdd
     public static Date yyyyMMdd(Date date) {
         DateTime dateTime = new DateTime(date);
@@ -62,7 +91,9 @@ public class DateUtil {
     public static int daysBetween(Date smdate, Date bdate) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         smdate = sdf.parse(sdf.format(smdate));
+        System.out.println("较小时间"+smdate);
         bdate = sdf.parse(sdf.format(bdate));
+        System.out.println("较大时间是"+bdate);
         Calendar cal = Calendar.getInstance();
         cal.setTime(smdate);
         long time1 = cal.getTimeInMillis();
