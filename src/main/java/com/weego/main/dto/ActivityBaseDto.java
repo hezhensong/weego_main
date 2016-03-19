@@ -1,8 +1,6 @@
 package com.weego.main.dto;
 
-import java.util.List;
-
-public class ActivityDetailDto {
+public class ActivityBaseDto {
 
     private String id;
 
@@ -19,18 +17,6 @@ public class ActivityDetailDto {
     private String closeTime;
 
     private String actTime;
-
-    private String longitude;
-
-    private String latidute;
-
-    private String actUrl;
-
-    private String orderUrl;
-
-    private String description;
-
-    private List<ActivityParagraphsDto> paragraphs;
 
     public String getId() {
         return id;
@@ -94,54 +80,6 @@ public class ActivityDetailDto {
 
     public void setActTime(String actTime) {
         this.actTime = actTime;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatidute() {
-        return latidute;
-    }
-
-    public void setLatidute(String latidute) {
-        this.latidute = latidute;
-    }
-
-    public String getActUrl() {
-        return actUrl;
-    }
-
-    public void setActUrl(String actUrl) {
-        this.actUrl = actUrl;
-    }
-
-    public String getOrderUrl() {
-        return orderUrl;
-    }
-
-    public void setOrderUrl(String orderUrl) {
-        this.orderUrl = orderUrl;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<ActivityParagraphsDto> getParagraphs() {
-        return paragraphs;
-    }
-
-    public void setParagraphs(List<ActivityParagraphsDto> paragraphs) {
-        this.paragraphs = paragraphs;
     }
 
 }

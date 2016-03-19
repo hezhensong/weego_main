@@ -4,6 +4,6 @@ import com.weego.main.dto.CityActivityHomeDto;
 
 public interface CityActivityService {
 
-	CityActivityHomeDto getCityActivityHome(String cityActivityId);
+    CityActivityHomeDto getCityActivityHome(String cityActivityId);
 
 }
