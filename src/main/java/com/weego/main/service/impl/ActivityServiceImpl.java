@@ -113,16 +113,21 @@ public class ActivityServiceImpl implements ActivityService {
                  * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
                  * 
                  */
-                Date now = new Date();
+                Date datenow = new Date();
+                System.out.println("当前时间是" + datenow);
                 Date openTime = cityActivity.getOpenTime();
+                System.out.println("开始时间是s" + cityActivity.getOpenTime());
                 Date closeTime = cityActivity.getCloseTime();
+                System.out.println("结束时间是s" + cityActivity.getCloseTime());
                 if (openTime != null && closeTime != null) {
                     // 计算活动开始时间与当前日期相差的天数
                     int opennow;
                     int nowclose;
                     try {
-                        opennow = DateUtil.daysBetween(now, openTime);
-                        nowclose = DateUtil.daysBetween(closeTime, now);
+                        opennow = DateUtil.daysBetween(datenow, openTime);
+                        System.out.println("看看相差几天opennow" + opennow);
+                        nowclose = DateUtil.daysBetween(closeTime, datenow);
+                        System.out.println("看看相差几天nowclose" + nowclose);
                         // 计算活动结束日期与当前日期相差的天数
 
                         if (opennow <= 7 & opennow > 0) {
@@ -133,8 +138,8 @@ public class ActivityServiceImpl implements ActivityService {
                             // 获取开始日期和结束日期的年份
                             int openYear = openTime.getYear();
                             int closeYear = closeTime.getYear();
-                            String openMMdd = openTime.getMonth() + "月" + openTime.getDay() + "日";
-                            String closeMMdd = closeTime.getMonth() + "月" + closeTime.getDay() + "日";
+                            String openMMdd = (openTime.getMonth() + 1) + "月" + openTime.getDate() + "日";
+                            String closeMMdd = (closeTime.getMonth() + 1) + "月" + closeTime.getDate() + "日";
                             if (openYear == openYear) {
                                 // 不是跨年，不显示年份
                                 activityBaseDto.setActTime(openMMdd + "-" + closeMMdd);
@@ -161,5 +166,6 @@ public class ActivityServiceImpl implements ActivityService {
         activityListDto.setActivityList(activityBaseDtoList);
         return activityListDto;
     }
+
 
 }
