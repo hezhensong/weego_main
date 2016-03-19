@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.RestaurantDao;
 import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
 import com.weego.main.dto.POIDetailDto;
@@ -15,6 +16,11 @@ import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
 import com.weego.main.dto.POIListDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISpecialDto;
+import com.weego.main.model.Attraction;
+import com.weego.main.model.AttractionSpot;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
@@ -162,4 +168,72 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return poiDetailDto;
 	}
 
+	@Override
+	public POISpecialDto getRestaurantDishesById(String id) {
+		POISpecialDto poiSpecialDto = new POISpecialDto();
+		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
+		Restaurant restaurant = restaurantDao.getRestaurantById(id);
+		List<RestaurantDish> restaurantDishs = new ArrayList<RestaurantDish>(); 
+		if (restaurant != null) {
+			restaurantDishs = restaurant.getRestaurantDishs();
+			if (restaurantDishs != null && restaurantDishs.size() > 0) {
+				for (RestaurantDish restaurantDish : restaurantDishs) {
+					POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+					poiSepcialBaseDto.setSpecialId(null);
+					poiSepcialBaseDto.setCoverImage(restaurantDish.getCoverImage());
+					poiSepcialBaseDto.setTag(restaurantDish.getTag());
+					poiSepcialBaseDto.setTitle(restaurantDish.getTitle());
+					poiSepcialBaseDto.setDesc(restaurantDish.getDesc());
+					poiSepcialBaseDtos.add(poiSepcialBaseDto);
+				}
+			}
+			poiSpecialDto.setData(poiSepcialBaseDtos);
+		}
+		return poiSpecialDto;
+	}
+
+	@Override
+	public POISpecialDetailDto getRestaurantDishDetail(String specialId) {
+		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
+		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+
+		// 假数据
+		poiSepcialBaseDto.setSpecialId(null);
+		poiSepcialBaseDto.setCoverImage("56595a752a3885bc3700017e.jpeg");
+		poiSepcialBaseDto.setTitle("An Amazing Dinning Experience");
+		poiSepcialBaseDto.setTag("recommend");
+		poiSepcialBaseDto.setDesc("Beef pastrami");
+		
+		poiSpecialDetailDto.setData(poiSepcialBaseDto);
+		return poiSpecialDetailDto;
+	}
+
+	@Override
+	public POICommentsDto getRestaurantCommentsById(String id) {
+		POICommentsDto poiCommentsDto = new POICommentsDto();
+		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
+		Restaurant restaurant = restaurantDao.getRestaurantById(id);
+		if(restaurant != null) {
+			List<BasePOIComments> basePOIComments = restaurant.getComments();
+			if(basePOIComments != null && basePOIComments.size() > 0) {
+				for(BasePOIComments basePOIComment:basePOIComments) {
+					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					System.out.println(basePOIComment.getDate());
+					poiDetailCommentsDto.setText(basePOIComment.getText());
+					poiDetailCommentsDto.setRating(basePOIComment.getRating());
+					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
+					poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
+					poiDetailCommentsDtos.add(poiDetailCommentsDto);
+				}
+			}
+			poiCommentsDto.setData(poiDetailCommentsDtos);	
+		}
+		return poiCommentsDto;
+	}
+
+	
+	
+	
 }

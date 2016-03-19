@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.AttractionDao;
 import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
 import com.weego.main.dto.POIDetailDto;
@@ -15,6 +16,9 @@ import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
 import com.weego.main.dto.POIListDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISpecialDto;
 import com.weego.main.model.Attraction;
 import com.weego.main.model.AttractionSpot;
 import com.weego.main.model.BasePOIActivities;
@@ -41,7 +45,7 @@ public class AttractionServiceImpl implements AttractionService {
 				poiBaseDto.setBrief(attraction.getBriefIntroduction());
 				poiBaseDto.setCoverImage(attraction.getCoverImage());
 				List<BasePOITag> tags = attraction.getSubTag();
-				if(tags != null && tags.size() > 0) {
+				if (tags != null && tags.size() > 0) {
 					poiBaseDto.setTag(attraction.getSubTag().get(0).getTag());
 				}
 				poiBaseDto.setTitle(attraction.getName());
@@ -165,4 +169,68 @@ public class AttractionServiceImpl implements AttractionService {
 		return poiDetailDto;
 	}
 
+	@Override
+	public POISpecialDto getAttractionSpotsById(String id) {
+		POISpecialDto poiSpecialDto = new POISpecialDto();
+		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
+		Attraction attraction = attractionDao.getAttractionById(id);
+		List<AttractionSpot> attractionSpots = new ArrayList<AttractionSpot>();
+		if (attraction != null) {
+			attractionSpots = attraction.getAttractionSpots();
+			if (attractionSpots != null && attractionSpots.size() > 0) {
+				for (AttractionSpot attractionSpot : attractionSpots) {
+					POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+					poiSepcialBaseDto.setSpecialId(null);
+					poiSepcialBaseDto.setCoverImage(attractionSpot.getCoverImage());
+					poiSepcialBaseDto.setTag(attractionSpot.getTag());
+					poiSepcialBaseDto.setTitle(attractionSpot.getTitle());
+					poiSepcialBaseDto.setDesc(attractionSpot.getDesc());
+					poiSepcialBaseDtos.add(poiSepcialBaseDto);
+				}
+			}
+			poiSpecialDto.setData(poiSepcialBaseDtos);
+		}
+		return poiSpecialDto;
+	}
+
+	@Override
+	public POISpecialDetailDto getAttractionSpotDetail(String specialId) {
+		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
+		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+		
+		// 假数据
+		poiSepcialBaseDto.setSpecialId(null);
+		poiSepcialBaseDto.setCoverImage("565d66aa53ab912870000010.jpeg");
+		poiSepcialBaseDto.setTitle("大理石拱门");
+		poiSepcialBaseDto.setTag("推荐");
+		poiSepcialBaseDto.setDesc("广场上最醒目的建筑。这座拱门原建于1889年，是为纪念美国国父乔治华盛顿宣誓就职100年而建，1892年被史丹利怀特设计的大理石拱门取代，拱门右侧有一个隐藏式楼梯可攀登其上。");
+		
+		poiSpecialDetailDto.setData(poiSepcialBaseDto);
+		return poiSpecialDetailDto;
+	    
+	}
+
+	@Override
+	public POICommentsDto getAttractionCommentsById(String id) {
+		POICommentsDto poiCommentsDto = new POICommentsDto();
+		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
+		Attraction attraction = attractionDao.getAttractionById(id);
+		if(attraction != null) {
+			List<BasePOIComments> basePOIComments = attraction.getComments();
+			if(basePOIComments != null && basePOIComments.size() > 0) {
+				for(BasePOIComments basePOIComment:basePOIComments) {
+					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setText(basePOIComment.getText());
+					poiDetailCommentsDto.setRating(basePOIComment.getRating());
+					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
+					poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
+					poiDetailCommentsDtos.add(poiDetailCommentsDto);
+				}
+			}
+			poiCommentsDto.setData(poiDetailCommentsDtos);	
+		}
+		return poiCommentsDto;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.ShoppingDao;
 import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
 import com.weego.main.dto.POIDetailDto;
@@ -15,9 +16,14 @@ import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
 import com.weego.main.dto.POIListDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISpecialDto;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
+import com.weego.main.model.Restaurant;
+import com.weego.main.model.RestaurantDish;
 import com.weego.main.model.Shopping;
 import com.weego.main.model.ShoppingBrand;
 import com.weego.main.service.ShoppingService;
@@ -161,4 +167,68 @@ public class ShoppingServiceImpl implements ShoppingService {
 		return poiDetailDto;
 	}
 
+	@Override
+	public POISpecialDto getShoppingBrandsById(String id) {
+		POISpecialDto poiSpecialDto = new POISpecialDto();
+		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
+		Shopping shopping = shoppingDao.getShoppingById(id);
+		List<ShoppingBrand> shoppingBrands = new ArrayList<ShoppingBrand>(); 
+		if (shopping != null) {
+			shoppingBrands = shopping.getShoppingBrands();
+			if (shoppingBrands != null && shoppingBrands.size() > 0) {
+				for (ShoppingBrand shoppingBrand : shoppingBrands) {
+					POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+					poiSepcialBaseDto.setSpecialId(null);
+					poiSepcialBaseDto.setCoverImage(shoppingBrand.getCoverImage());
+					poiSepcialBaseDto.setTag(shoppingBrand.getTag());
+					poiSepcialBaseDto.setTitle(shoppingBrand.getTitle());
+					poiSepcialBaseDto.setDesc(shoppingBrand.getDesc());
+					poiSepcialBaseDtos.add(poiSepcialBaseDto);
+				}
+			}
+			poiSpecialDto.setData(poiSepcialBaseDtos);
+		}
+		return poiSpecialDto;
+	}
+
+	@Override
+	public POISpecialDetailDto getShoppingBrandDetail(String specialId) {
+		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
+		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
+
+		// 假数据
+		poiSepcialBaseDto.setSpecialId(null);
+		poiSepcialBaseDto.setCoverImage("56595a752a3885bc3700017e.jpeg");
+		poiSepcialBaseDto.setTitle("Stuart Weitzman");
+		poiSepcialBaseDto.setTag("good");
+		poiSepcialBaseDto.setDesc("Beautiful place");
+		
+		poiSpecialDetailDto.setData(poiSepcialBaseDto);
+		return poiSpecialDetailDto;
+	}
+
+	@Override
+	public POICommentsDto getShoppingCommentsById(String id) {
+		POICommentsDto poiCommentsDto = new POICommentsDto();
+		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
+		Shopping shopping = shoppingDao.getShoppingById(id);
+		if(shopping != null) {
+			List<BasePOIComments> basePOIComments = shopping.getComments();
+			if(basePOIComments != null && basePOIComments.size() > 0) {
+				for(BasePOIComments basePOIComment:basePOIComments) {
+					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					System.out.println(basePOIComment.getDate());
+					poiDetailCommentsDto.setText(basePOIComment.getText());
+					poiDetailCommentsDto.setRating(basePOIComment.getRating());
+					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
+					poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
+					poiDetailCommentsDtos.add(poiDetailCommentsDto);
+				}
+			}
+			poiCommentsDto.setData(poiDetailCommentsDtos);	
+		}
+		return poiCommentsDto;
+	}
 }

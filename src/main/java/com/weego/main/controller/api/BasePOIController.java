@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
+import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISpecialDto;
 import com.weego.main.service.BasePOIService;
 
 @RestController
@@ -35,5 +38,32 @@ public class BasePOIController {
     		@RequestParam("type") Integer type) {
 		
        return basePOIService.getPOIDetailById(id, type);
+    }
+	
+	@RequestMapping(value = "/discovery/specialList", method = RequestMethod.GET)
+    @ResponseBody
+    public POISpecialDto getPOISpecialList(
+    		@RequestParam("poiId") String poiId,
+    		@RequestParam("type") Integer type) {
+		
+       return basePOIService.getPOISpecialById(poiId, type);
+    }
+	
+	@RequestMapping(value = "/discovery/specialDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public POISpecialDetailDto getPOISpecialDetail(
+    		@RequestParam("specialId") String specialId,
+    		@RequestParam("type") Integer type) {
+		
+       return basePOIService.getPOISpecialDetailById(specialId, type);
+    }
+	
+	@RequestMapping(value = "/discovery/comment", method = RequestMethod.GET)
+    @ResponseBody
+    public POICommentsDto getPOIComments(
+    		@RequestParam("poiId") String poiId,
+    		@RequestParam("type") Integer type) {
+		
+       return basePOIService.getPOICommentsById(poiId, type);
     }
 }
