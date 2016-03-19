@@ -2,7 +2,7 @@ package com.weego.main.service.impl;
 
 import com.weego.main.dao.PeopleDao;
 import com.weego.main.dto.PgcListContinentDto;
-import com.weego.main.model.People;
+import com.weego.main.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,34 +29,35 @@ public class PgcServiceImpl implements PgcService {
 
         PgcListDto pgcListDto = new PgcListDto();
 
-        List<PgcListContinentDto> pgcListDtoList = new ArrayList<>();
+        List<PgcListContinentDto> pgcListContinentDto = new ArrayList<>();
 
-        List<Pgc> pgcList = pgcDao.getListPgc();
+        List<Pgc> pgcList = pgcDao.getPgcDaoList();
 
         for (Pgc pgc : pgcList) {
+            PgcListContinentDto pgcDtoList = new PgcListContinentDto();
 
-            List<People> pgcPersonList = peopleDao.getListPgcPerson(pgc.getPerson());
+            if (pgc.getPerson() != null) {
+                List<Person> pgcPersonList = peopleDao.getPgcPersonList(pgc.getPerson());
+                for (Person person : pgcPersonList) {
+                    pgcDtoList.setUserName(person.getUserName());//人物名称
+                    pgcDtoList.setHeadImage(person.getHeadImage());//人物头像
+                }
+            } else {
+                pgcDtoList.setUserName("");//人物名称
+                pgcDtoList.setHeadImage("");//人物头像
+            }
 
-            People ple=new People();
+            pgcDtoList.setPgcId(pgc.getPgcId());
 
+            pgcDtoList.setTitle(pgc.getTitle());
 
-            PgcListContinentDto pgcListDto1 = new PgcListContinentDto();
+            pgcDtoList.setCoverImage(pgc.getCoverImage());
 
-            pgcListDto1.setPgcId(pgc.getPgcId());
-
-            pgcListDto1.setTitle(pgc.getTitle());
-
-            pgcListDto1.setUserName(ple.getUserName());//人物名称
-
-            pgcListDto1.setHeadImage(ple.getHeadImage());//人物头像
-
-            pgcListDto1.setCoverImage(pgc.getCoverImage());
-
-            pgcListDtoList.add(pgcListDto1);
+            pgcListContinentDto.add(pgcDtoList);
 
         }
 
-        pgcListDto.setData(pgcListDtoList);
+        pgcListDto.setData(pgcListContinentDto);
 
         return pgcListDto;
     }

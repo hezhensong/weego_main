@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class People {
+public class Person {
 
     @JsonProperty("_id")
     private String personId;
