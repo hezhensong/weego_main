@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
 import com.weego.main.service.BasePOIService;
 
@@ -19,10 +20,20 @@ public class BasePOIController {
 	
 	@RequestMapping(value = "/discovery", method = RequestMethod.GET)
     @ResponseBody
-    public POIListDto getCityList(
+    public POIListDto getPOIList(
     		@RequestParam("cityId") String cityId,
+    		@RequestParam("type") Integer type,
+    		@RequestParam("labelId") String labelId) {
+		
+        return basePOIService.getPOIsByCityId(cityId, type, labelId);
+    }
+	
+	@RequestMapping(value = "/discovery/poi", method = RequestMethod.GET)
+    @ResponseBody
+    public POIDetailDto getPOIDetail(
+    		@RequestParam("id") String id,
     		@RequestParam("type") Integer type) {
 		
-        return basePOIService.getPOIsByCityId(cityId, type);
+       return basePOIService.getPOIDetailById(id, type);
     }
 }

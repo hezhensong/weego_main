@@ -2,7 +2,7 @@ package com.weego.main.model;
 
 import org.mongojack.Id;
 
-public class BasePOIActivies {
+public class BasePOIActivities {
 
 	@Id
 	private String id;

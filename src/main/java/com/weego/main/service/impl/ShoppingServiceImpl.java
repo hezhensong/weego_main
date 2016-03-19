@@ -1,17 +1,25 @@
 package com.weego.main.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.ShoppingDao;
 import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailActivitiesDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailDto;
+import com.weego.main.dto.POIDetailSpecialDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POIDetailTagDto;
 import com.weego.main.dto.POIListDto;
+import com.weego.main.model.BasePOIActivities;
+import com.weego.main.model.BasePOIComments;
+import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Shopping;
+import com.weego.main.model.ShoppingBrand;
 import com.weego.main.service.ShoppingService;
 
 @Service("shoppingService")
@@ -19,27 +27,138 @@ public class ShoppingServiceImpl implements ShoppingService {
 
 	@Autowired
 	ShoppingDao shoppingDao;
-	
+
 	@Override
-	public POIListDto getShoppingsByCityId(String cityId) {
+	public POIListDto getShoppingsByCityId(String cityId, String labelId) {
 		POIListDto poiListDto = new POIListDto();
-		Map<String, Object> data = new HashMap<String, Object>();
-		
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
-		List<Shopping> shoppings = shoppingDao.getShoppingsByCityId(cityId);
-		for(Shopping shopping : shoppings) {
-			POIBaseDto poiBaseDto = new POIBaseDto();
-			poiBaseDto.setCardId(shopping.getId());
-			poiBaseDto.setBrief(shopping.getBriefIntroduce());
-			poiBaseDto.setCoverImage(shopping.getCoverImage());
-			poiBaseDto.setTag(shopping.getMasterTag().getTag());
-			poiBaseDto.setTitle(shopping.getName());
-			poiBaseDtos.add(poiBaseDto);
+		List<Shopping> shoppings = shoppingDao.getShoppingsByCityId(cityId,labelId);
+		if (shoppings != null && shoppings.size() > 0) {
+			for (Shopping shopping : shoppings) {
+				POIBaseDto poiBaseDto = new POIBaseDto();
+				poiBaseDto.setCardId(shopping.getId());
+				poiBaseDto.setBrief(shopping.getBriefIntroduction());
+				poiBaseDto.setCoverImage(shopping.getCoverImage());
+				List<BasePOITag> tags = shopping.getSubTag();
+				if(tags != null && tags.size() > 0) {
+					poiBaseDto.setTag(shopping.getSubTag().get(0).getTag());
+				}
+				poiBaseDto.setTitle(shopping.getName());
+				poiBaseDtos.add(poiBaseDto);
+			}
 		}
-		
-		data.put("baseInfo", poiBaseDtos);
-		poiListDto.setData(data);
+		poiListDto.setData(poiBaseDtos);
 		return poiListDto;
+	}
+
+	@Override
+	public POIDetailDto getShoppingById(String id) {
+		POIDetailDto poiDetailDto = new POIDetailDto();
+		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
+		Shopping shopping = shoppingDao.getShoppingById(id);
+		if (shopping != null) {
+			poiDetailSumDto.setId(shopping.getId());
+			poiDetailSumDto.setType(2);
+			poiDetailSumDto.setName(shopping.getName());
+			poiDetailSumDto.setNameEn(shopping.getNameEn());
+			poiDetailSumDto.setAddress(shopping.getAddress());
+			poiDetailSumDto.setTel(shopping.getTel());
+			poiDetailSumDto.setWebsite(shopping.getWebsite());
+			poiDetailSumDto.setBriefIntroduction(shopping
+					.getBriefIntroduction());
+			poiDetailSumDto.setIntroduction(shopping.getIntroduction());
+			poiDetailSumDto.setCityName(shopping.getCityName());
+			poiDetailSumDto.setCityId(shopping.getCityId());
+
+			String coordination = shopping.getCoordination();
+			if (coordination != null && coordination.split(",").length >= 2) {
+				String latitude = coordination.split(",")[1];
+				String longitude = coordination.split(",")[0];
+				poiDetailSumDto.setLatitude(latitude);
+				poiDetailSumDto.setLongitude(longitude);
+			}
+
+			poiDetailSumDto.setImage(shopping.getImage());
+			poiDetailSumDto.setCoverImage(shopping.getCoverImage());
+			poiDetailSumDto.setOpenTime(shopping.getOpenTime());
+			poiDetailSumDto.setPriceDesc(shopping.getPriceDesc());
+			poiDetailSumDto.setRating(shopping.getRating());
+
+			List<POIDetailSpecialDto> poiDetailSpecialDtos = new ArrayList<POIDetailSpecialDto>();
+			List<ShoppingBrand> shoppingBrands = shopping.getShoppingBrands();
+			if (shoppingBrands != null && shoppingBrands.size() > 0) {
+				for (ShoppingBrand shoppingBrand : shoppingBrands) {
+					POIDetailSpecialDto poiDetailSpecialDto = new POIDetailSpecialDto();
+					poiDetailSpecialDto.setAdvice(shoppingBrand.getAdvice());
+					poiDetailSpecialDto.setDesc(shoppingBrand.getDesc());
+					poiDetailSpecialDto.setTitle(shoppingBrand.getTitle());
+					poiDetailSpecialDto.setTag(shoppingBrand.getTag());
+					poiDetailSpecialDto.setCoverImage(shoppingBrand
+							.getCoverImage());
+					poiDetailSpecialDtos.add(poiDetailSpecialDto);
+				}
+			}
+			poiDetailSumDto.setSpecial(poiDetailSpecialDtos);
+
+			List<POIDetailActivitiesDto> poiDetailActivitiesDtos = new ArrayList<POIDetailActivitiesDto>();
+			List<BasePOIActivities> basePOIActivities = shopping
+					.getActivities();
+			if (basePOIActivities != null && basePOIActivities.size() > 0) {
+				for (BasePOIActivities basePOIActivity : basePOIActivities) {
+					POIDetailActivitiesDto poiDetailActivitiesDto = new POIDetailActivitiesDto();
+					poiDetailActivitiesDto.setActivityId(basePOIActivity
+							.getId());
+					poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
+					// not finished
+
+					poiDetailActivitiesDtos.add(poiDetailActivitiesDto);
+				}
+			}
+			poiDetailSumDto.setActivities(poiDetailActivitiesDtos);
+
+			List<POIDetailTagDto> poiDetailTagDtos = new ArrayList<POIDetailTagDto>();
+			List<BasePOITag> basePOITags = shopping.getSubTag();
+			if (basePOITags != null && basePOITags.size() > 0) {
+				for (BasePOITag basePOITag : basePOITags) {
+					POIDetailTagDto poiDetailTagDto = new POIDetailTagDto();
+					poiDetailTagDto.setId(basePOITag.getId());
+					poiDetailTagDto.setName(basePOITag.getTag());
+					poiDetailTagDtos.add(poiDetailTagDto);
+				}
+			}
+			poiDetailSumDto.setTag(poiDetailTagDtos);
+
+			poiDetailSumDto.setTips(shopping.getTips());
+			poiDetailSumDto.setCommentsUrl(shopping.getCommentsUrl());
+			poiDetailSumDto.setCommentFrom(shopping.getCommentFrom());
+
+			List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
+			List<BasePOIComments> basePOIComments = shopping.getComments();
+			if (basePOIComments != null && basePOIComments.size() > 0) {
+				for (BasePOIComments basePOIComment : basePOIComments) {
+					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
+					poiDetailCommentsDto.setNickname(basePOIComment
+							.getNickname());
+					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setText(basePOIComment.getText());
+					poiDetailCommentsDto.setRating(basePOIComment.getRating());
+					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
+					poiDetailCommentsDto.setLanguage(basePOIComment
+							.getLanguage());
+					poiDetailCommentsDtos.add(poiDetailCommentsDto);
+				}
+			}
+			poiDetailSumDto.setComments(poiDetailCommentsDtos);
+
+			poiDetailSumDto.setDistance(0L);
+			poiDetailSumDto.setOpenTimeDesc("测试一下");
+			poiDetailSumDto.setOpenTableUrl(shopping.getOpenTableUrl());
+			poiDetailSumDto.setOpenDay(0);
+
+			poiDetailSumDto.setFacilities(null);
+			poiDetailDto.setData(poiDetailSumDto);
+		}
+		return poiDetailDto;
 	}
 
 }

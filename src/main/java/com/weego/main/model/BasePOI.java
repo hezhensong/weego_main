@@ -13,13 +13,13 @@ public class BasePOI {
 	private String id;
 
 	@JsonProperty("activities")
-	private List<BasePOIActivies> activies;
+	private List<BasePOIActivities> activities;
 
-	@JsonProperty("master_tag")
-	private BOITag masterTag;
+	@JsonProperty("master_label")
+	private BasePOILabel masterLabel;
 
 	@JsonProperty("sub_tag")
-	private List<BOITag> subTag;
+	private List<BasePOITag> subTag;
 
 	@JsonProperty("cover_image")
 	private String coverImage;
@@ -41,7 +41,7 @@ public class BasePOI {
 	private String introduction;
 
 	@JsonProperty("brief_introduction")
-	private String briefIntroduce;
+	private String briefIntroduction;
 
 	private String coordination;
 
@@ -84,27 +84,27 @@ public class BasePOI {
 		this.id = id;
 	}
 
-	public List<BasePOIActivies> getActivies() {
-		return activies;
+	public List<BasePOIActivities> getActivities() {
+		return activities;
 	}
 
-	public void setActivies(List<BasePOIActivies> activies) {
-		this.activies = activies;
+	public void setActivities(List<BasePOIActivities> activities) {
+		this.activities = activities;
 	}
 
-	public BOITag getMasterTag() {
-		return masterTag;
+	public BasePOILabel getMasterLabel() {
+		return masterLabel;
 	}
 
-	public void setMasterTag(BOITag masterTag) {
-		this.masterTag = masterTag;
+	public void setMasterLabel(BasePOILabel masterLabel) {
+		this.masterLabel = masterLabel;
 	}
 
-	public List<BOITag> getSubTag() {
+	public List<BasePOITag> getSubTag() {
 		return subTag;
 	}
 
-	public void setSubTag(List<BOITag> subTag) {
+	public void setSubTag(List<BasePOITag> subTag) {
 		this.subTag = subTag;
 	}
 
@@ -172,12 +172,12 @@ public class BasePOI {
 		this.introduction = introduction;
 	}
 
-	public String getBriefIntroduce() {
-		return briefIntroduce;
+	public String getBriefIntroduction() {
+		return briefIntroduction;
 	}
 
-	public void setBriefIntroduce(String briefIntroduce) {
-		this.briefIntroduce = briefIntroduce;
+	public void setBriefIntroduction(String briefIntroduction) {
+		this.briefIntroduction = briefIntroduction;
 	}
 
 	public String getCoordination() {

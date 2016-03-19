@@ -2,12 +2,10 @@ package com.weego.main.model;
 
 import org.mongojack.Id;
 
-public class BOITag {
-
+public class BasePOILabel {
 	@Id
 	private String id;
-
-	private String tag;
+	private String label;
 
 	public String getId() {
 		return id;
@@ -17,12 +15,12 @@ public class BOITag {
 		this.id = id;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }
