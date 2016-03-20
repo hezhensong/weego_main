@@ -34,8 +34,8 @@ public class MongoConnectionFactory {
         // builder.threadsAllowedToBlockForConnectionMultiplier(50);
         // MongoClientOptions mongoClientOptions = builder.build();
 
-        String host = "127.0.0.1";
-        Integer port = 27017;
+        String host = "192.168.6.254";
+        Integer port = 37017;
         mongoClient = new MongoClient(host, port);
     }
 
