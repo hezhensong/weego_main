@@ -29,7 +29,6 @@ public class CityDao {
 
         JacksonDBCollection<City, String> coll;
         coll = JacksonDBCollection.wrap(collection, City.class, String.class);
-
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(cityId));
         List<City> cityList = coll.find(query).toArray();

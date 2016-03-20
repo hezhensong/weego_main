@@ -1,6 +1,7 @@
 package com.weego.main.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bson.types.ObjectId;
 import org.mongojack.Id;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class City {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     @JsonProperty("name")
     private String name;
@@ -33,11 +34,11 @@ public class City {
     @JsonProperty("is_show")
     private boolean isShow;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

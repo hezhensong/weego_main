@@ -7,73 +7,73 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class RecommendContent {
 
-    @JsonProperty("recommend_content_id")
-    private String recommendContentId;
+    @JsonProperty("content_id")
+    private String contentId;
 
-    @JsonProperty("recommend_content_url")
-    private String recommedContentUrl;
+    @JsonProperty("content_url")
+    private String contentUrl;
 
-    @JsonProperty("recommend_content_title")
-    private String recommendContentTitle;
+    @JsonProperty("content_title")
+    private String contentTitle;
 
-    @JsonProperty("recommend_content_first")
-    private String recommendContentFirst;
+    @JsonProperty("content_first")
+    private String contentFirst;
 
-    @JsonProperty("recommend_content_second")
-    private String recommendContentSecond;
+    @JsonProperty("content_second")
+    private String contentSecond;
 
-    @JsonProperty("recommend_content_desc")
-    private String recommendContentDesc;
+    @JsonProperty("content_desc")
+    private String contentDesc;
 
     @JsonProperty("cover_image")
     private String coverImage;
 
-    public String getRecommendContentId() {
-        return recommendContentId;
+    public String getContentId() {
+        return contentId;
     }
 
-    public void setRecommendContentId(String recommendContentId) {
-        this.recommendContentId = recommendContentId;
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
     }
 
-    public String getRecommedContentUrl() {
-        return recommedContentUrl;
+    public String getContentUrl() {
+        return contentUrl;
     }
 
-    public void setRecommedContentUrl(String recommedContentUrl) {
-        this.recommedContentUrl = recommedContentUrl;
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
     }
 
-    public String getRecommendContentTitle() {
-        return recommendContentTitle;
+    public String getContentTitle() {
+        return contentTitle;
     }
 
-    public void setRecommendContentTitle(String recommendContentTitle) {
-        this.recommendContentTitle = recommendContentTitle;
+    public void setContentTitle(String contentTitle) {
+        this.contentTitle = contentTitle;
     }
 
-    public String getRecommendContentFirst() {
-        return recommendContentFirst;
+    public String getContentFirst() {
+        return contentFirst;
     }
 
-    public void setRecommendContentFirst(String recommendContentFirst) {
-        this.recommendContentFirst = recommendContentFirst;
+    public void setContentFirst(String contentFirst) {
+        this.contentFirst = contentFirst;
     }
 
-    public String getRecommendContentSecond() {
-        return recommendContentSecond;
+    public String getContentSecond() {
+        return contentSecond;
     }
 
-    public void setRecommendContentSecond(String recommendContentSecond) {
-        this.recommendContentSecond = recommendContentSecond;
+    public void setContentSecond(String contentSecond) {
+        this.contentSecond = contentSecond;
     }
 
-    public String getRecommendContentDesc() {
-        return recommendContentDesc;
+    public String getContentDesc() {
+        return contentDesc;
     }
 
-    public void setRecommendContentDesc(String recommendContentDesc) {
-        this.recommendContentDesc = recommendContentDesc;
+    public void setContentDesc(String contentDesc) {
+        this.contentDesc = contentDesc;
     }
 
     public String getCoverImage() {

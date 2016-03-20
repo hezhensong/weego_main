@@ -1,6 +1,7 @@
 package com.weego.main.dto;
 
-import java.util.List;
+import org.bson.types.ObjectId;
+
 import java.util.Map;
 
 /**
@@ -16,4 +17,5 @@ public class RecommendHistoryDto extends BaseDto {
     public void setData(Map<String, Object> data) {
         this.data = data;
     }
+
 }

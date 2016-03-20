@@ -48,7 +48,7 @@ public class CityServiceImpl implements CityService {
             for (City city : cityList) {
 
                 CityListCityDto cityListCityDto = new CityListCityDto();
-                cityListCityDto.setCityId(city.getId());
+                cityListCityDto.setCityId(city.getId().toString());
                 cityListCityDto.setCityName(city.getName());
                 cityListCityDto.setCityNameEn(city.getNameEn());
 
@@ -90,7 +90,7 @@ public class CityServiceImpl implements CityService {
         cityHomeDto.setBaseInfo(cityHomeBaseInfoDto);
 
         City city = cityDao.getSpecifiedCity(cityId);
-        cityHomeBaseInfoDto.setCityId(city.getId());
+        cityHomeBaseInfoDto.setCityId(city.getId().toString());
         cityHomeBaseInfoDto.setCityName(city.getName());
         cityHomeBaseInfoDto.setCityNameEn(city.getNameEn());
         cityHomeBaseInfoDto.setCoverImage(city.getCoverImage());
