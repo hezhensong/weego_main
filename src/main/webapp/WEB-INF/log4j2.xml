@@ -2,7 +2,7 @@
 <Configuration status="WARN">
 
     <properties>
-        <property name="logPath">/var/log/weego_main</property>
+        <property name="logPath">/opt/weego_main/logs</property>
     </properties>
 
     <Appenders>
@@ -18,8 +18,8 @@
                 <SizeBasedTriggeringPolicy size="20 MB"/>
             </Policies>
         </RollingFile>
-
     </Appenders>
+
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>
