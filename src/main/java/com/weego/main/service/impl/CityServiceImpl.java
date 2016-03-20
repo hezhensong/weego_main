@@ -175,7 +175,7 @@ public class CityServiceImpl implements CityService {
             weatherForecastDtoList.add(weatherForecastDto);
         }
 
-        // 获取城市计划
+        // 获取城市计划 TODO 行程计划单独做
         CityHomePlanDto cityHomePlanDto = new CityHomePlanDto();
         cityHomePlanDto.setHavePlan(false);
         cityHomePlanDto.setDateRange("");

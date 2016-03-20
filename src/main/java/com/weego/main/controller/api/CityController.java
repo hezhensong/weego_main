@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v3/city")
 public class CityController {
-    private Logger logger = LogManager.getLogger(CityController.class);
+    private static Logger logger = LogManager.getLogger(CityController.class);
 
     @Autowired
     CityService cityService;
@@ -33,6 +33,7 @@ public class CityController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<CityHomeDto> getCityHome(@RequestParam("cityId") String cityId) {
+        logger.info("userId=[{}]", cityId);
 
         ResponseDto<CityHomeDto> responseDto = new ResponseDto<>();
         CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
