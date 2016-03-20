@@ -29,7 +29,7 @@ public class City {
     private Map<String, List<CityLabel>> labelList;
 
     @JsonProperty("area")
-    private Area area;
+    private CityArea area;
 
     @JsonProperty("is_show")
     private boolean isShow;
@@ -90,11 +90,11 @@ public class City {
         isShow = show;
     }
 
-    public Area getArea() {
+    public CityArea getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(CityArea area) {
         this.area = area;
     }
 }
