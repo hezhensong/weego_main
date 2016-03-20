@@ -24,7 +24,7 @@ public class RecommendInfoDaoTest extends BaseTest {
 
     @Test
     public void testGetRecomendsSpecifyDay() {
-        Date date = DateUtil.yyyyMMddToDate("20160203");
+        Date date = DateUtil.yyyyMMddToDate("20160206");
         String cityId = "516a34f958e3511036000001";
         List<RecommendInfo> list = dao.getRecomendsSpecifyDay(cityId, date);
         System.out.println(list.size());

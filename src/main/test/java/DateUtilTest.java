@@ -37,6 +37,19 @@ public class DateUtilTest extends BaseTest {
     public void testyyyyMMddtoDate() {
         Date today = DateUtil.yyyyMMddToDate("20160318");
         Assert.assertEquals(today, DateUtil.yyyyMMdd(new Date()));
+
     }
 
+    @Test
+    public void testFormatMMdd() {
+        Assert.assertEquals("0320", DateUtil.formatMMdd(new Date()));
+    }
+
+    @Test
+    public void testConvertGMTtoUTC() {
+        Date today = DateUtil.yyyyMMddToDate("20160318");
+
+        Date utc = DateUtil.covertCMTtoUTC(today);
+        System.out.println(utc.toString());
+    }
 }
