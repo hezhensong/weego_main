@@ -7,7 +7,6 @@ import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.model.Area;
-import com.weego.main.model.Weather;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,12 +44,15 @@ public class CityController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<List<CityListContinentDto>> getCityList() {
+        logger.info("user={}", "test");
 
         ResponseDto<List<CityListContinentDto>> responseDto = new ResponseDto<>();
         List<CityListContinentDto> cityListContinentDtoList = cityService.getOnlineCityList();
 
         if (cityListContinentDtoList.size() == 0) {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("城市列表数据为空");
+
         } else {
             responseDto.setCodeMessage(ErrorCode.SUCCESS);
             responseDto.setData(cityListContinentDtoList);

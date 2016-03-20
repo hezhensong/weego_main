@@ -24,6 +24,7 @@ public class RecommendController {
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
     public RecommendHistoryDto getHistory(@RequestParam("cityId") String cityId) {
         logger.info("开始动态推荐列表查询");
+
         return recommendDynamicService.getRecommendHistory(cityId);
     }
 
