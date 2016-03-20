@@ -1,10 +1,12 @@
 package com.weego.main.controller.api;
 
 import com.weego.main.constant.ErrorCode;
+import com.weego.main.dao.AreaDao;
 import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
+import com.weego.main.model.Area;
 import com.weego.main.model.Weather;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v3/city")
@@ -25,6 +28,9 @@ public class CityController {
     @Autowired
     WeatherDao weatherDao;
 
+    @Autowired
+    AreaDao areaDao;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<CityHomeDto> getCityHome(@RequestParam("cityId") String cityId) {
@@ -33,7 +39,6 @@ public class CityController {
         CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
 
         responseDto.setData(cityHomeDto);
-
         return responseDto;
     }
 
@@ -56,10 +61,11 @@ public class CityController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
-    public Weather getTest() {
+    public Map<String, Area> getTest() {
 
-        return weatherDao.getWeatherByCityId("516a3519f8a6461636000003");
+//        return weatherDao.getWeatherByCityId("516a3519f8a6461636000003");
 
+        return areaDao.getArea();
     }
 
 }
