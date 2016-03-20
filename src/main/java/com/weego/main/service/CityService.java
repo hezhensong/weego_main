@@ -10,9 +10,9 @@ public interface CityService {
 
     List<CityListDto> getCityList();
 
-    List<CityListContinentDto> getOnlineCityList();
-
     CityHomeDto getCityHome(String cityId);
+
+    List<CityListContinentDto> getOnlineCityList();
 
     List<CityListContinentDto> getCityList1();
 

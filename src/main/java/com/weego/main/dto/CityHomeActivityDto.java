@@ -1,6 +1,6 @@
 package com.weego.main.dto;
 
-public class CityActivityDto {
+public class CityHomeActivityDto {
 
     private String title;
     private String coverImage;

@@ -1,10 +1,10 @@
 package com.weego.main.dao;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.weego.main.model.City;
 import org.bson.types.ObjectId;
-import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +29,14 @@ public class CityDao {
 
         JacksonDBCollection<City, String> coll;
         coll = JacksonDBCollection.wrap(collection, City.class, String.class);
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(cityId));
+        List<City> cityList = coll.find(query).toArray();
 
-        City city = coll.findOne(DBQuery.is("_id", new ObjectId(cityId)));
-        return city;
+        if (cityList != null && cityList.size() > 0) {
+            return cityList.get(0);
+        } else {
+            return null;
+        }
     }
 }

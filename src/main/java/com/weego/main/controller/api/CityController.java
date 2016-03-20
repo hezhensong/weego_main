@@ -1,11 +1,11 @@
 package com.weego.main.controller.api;
 
 import com.weego.main.constant.ErrorCode;
-import com.weego.main.dao.TreeAreaDao;
+import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
-import com.weego.main.model.TreeAreaContinent;
+import com.weego.main.model.Weather;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,8 +23,19 @@ public class CityController {
     CityService cityService;
 
     @Autowired
-    TreeAreaDao treeAreaDao;
+    WeatherDao weatherDao;
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseDto<CityHomeDto> getCityHome(@RequestParam("cityId") String cityId) {
+
+        ResponseDto<CityHomeDto> responseDto = new ResponseDto<>();
+        CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
+
+        responseDto.setData(cityHomeDto);
+
+        return responseDto;
+    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
@@ -32,28 +43,23 @@ public class CityController {
 
         ResponseDto<List<CityListContinentDto>> responseDto = new ResponseDto<>();
         List<CityListContinentDto> cityListContinentDtoList = cityService.getOnlineCityList();
+
         if (cityListContinentDtoList.size() == 0) {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
         } else {
             responseDto.setCodeMessage(ErrorCode.SUCCESS);
-            responseDto.setData(cityService.getOnlineCityList());
+            responseDto.setData(cityListContinentDtoList);
         }
 
         return responseDto;
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    @ResponseBody
-    public CityHomeDto getCityHome(@RequestParam("cityId") String cityId) {
-
-        logger.info("cityId = {}", cityId);
-        return cityService.getCityHome(cityId);
-    }
-
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
-    public List<TreeAreaContinent> testmain() {
+    public Weather getTest() {
 
-        return treeAreaDao.getArea();
+        return weatherDao.getWeatherByCityId("516a3519f8a6461636000003");
+
     }
+
 }
