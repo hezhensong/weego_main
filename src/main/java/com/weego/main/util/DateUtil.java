@@ -19,6 +19,8 @@ public class DateUtil {
     private static final String yyyyMMddHHmmss = "yyyyMMdd HH:mm:ss";
     private static final String yyyyMMdd = "yyyyMMdd";
     private static final String HHmmss = "HH:mm:ss";
+    private static final String MMdd = "MMdd";
+    private static final String utcFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
     // Date 转化为 yyyyMMdd
     public static String formatyyyyMMdd(Date date) {
@@ -80,6 +82,28 @@ public class DateUtil {
     }
 
     /**
+     * 获取日期的 月日 格式MMdd
+     * @param date
+     * @return
+     */
+    public static String formatMMdd(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(MMdd);
+        return format.format(date);
+    }
+
+    /**
+     * GMT 转化为 UTC
+     * @param date
+     * @return
+     */
+    public static Date covertTimeToUTC(Date date) {
+        DateTime dateTime = new DateTime(date);
+        dateTime.plusHours(8);
+        return dateTime.toDate();
+    }
+
+
+    /**
      * 计算两个日期之间相差的天数
      * 
      * @param smdate
@@ -104,5 +128,4 @@ public class DateUtil {
 
         return Integer.parseInt(String.valueOf(between_days));
     }
-
 }

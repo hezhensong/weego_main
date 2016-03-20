@@ -1,16 +1,14 @@
 package com.weego.main.service.impl;
 
 import com.weego.main.constant.RecommendType;
-import com.weego.main.dao.CityDao;
-import com.weego.main.dao.RecommendInfoDao;
+import com.weego.main.dao.*;
 import com.weego.main.dto.*;
-import com.weego.main.model.City;
-import com.weego.main.model.RecommendContent;
-import com.weego.main.model.RecommendInfo;
+import com.weego.main.model.*;
 import com.weego.main.service.RecommendInfoService;
 import com.weego.main.util.DateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,16 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
     private CityDao cityDao;
 
     @Autowired
+    private AttractionDao attractionDao;
+
+    @Autowired
     private RecommendInfoDao recommendInfoDao;
+
+    @Autowired
+    private RestaurantDao restaurantDao;
+
+    @Autowired
+    private ActivityDao activityDao;
 
     @Override
     public RecommendHistoryDto getRecommendHistory(String cityId) {
@@ -87,21 +94,79 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         List<RecommendInfo> recommendInfos = recommendInfoDao.getRecomendsSpecifyDay(cityId, dateTime);
 
         recommendCardDto.setData(new ArrayList<BaseCardDto>());
-
+        List<BaseCardDto> datas = recommendCardDto.getData();
         if(recommendInfos != null && recommendInfos.size() > 0) {
             for(RecommendInfo elem : recommendInfos) {
                 if (RecommendType.ATTRACTION.getType().equals(elem.getType())) {
-                    // TODO: 16-3-19 封装card为AttrctionCard
+                    AttractionCardDto cardDto = new AttractionCardDto();
+                    cardDto.setId(elem.getContent().getContentId());
+                    cardDto.setType(elem.getType());
+                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                    cardDto.setCoverImage(elem.getContent().getCoverImage());
+                    cardDto.setDesc(elem.getContent().getContentDesc());
 
+                    Attraction attraction = attractionDao.getAttractionById(cardDto.getId());
+                    if(attraction != null) {
+                        cardDto.setAttractionName(attraction.getName());
+                    }
+
+                    datas.add(cardDto);
                 } else if(RecommendType.RESTAURANT.getType().equals(elem.getType())) {
-                    // TODO: 16-3-19 封装card为RestaurantCard
+                    RestaurantCardDto cardDto = new RestaurantCardDto();
+                    cardDto.setId(elem.getContent().getContentId());
+                    cardDto.setType(elem.getType());
+                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                    cardDto.setCoverImage(elem.getContent().getCoverImage());
+                    cardDto.setDesc(elem.getContent().getContentDesc());
 
+                    Restaurant restaurant = restaurantDao.getRestaurantById(cardDto.getId());
+                    if(restaurant != null) {
+                        cardDto.setRestaurantName(restaurant.getName());
+                    }
+                    datas.add(cardDto);
                 } else if(RecommendType.ACTIVITY.getType().equals(elem.getType())) {
-                    // TODO: 16-3-19 封装card为ActivityCard
-                } else {
-                    // TODO: 16-3-19 封装card为ActivityCard
-                }
+                    ActivityCardDto cardDto = new ActivityCardDto();
+                    cardDto.setId(elem.getContent().getContentId());
+                    cardDto.setType(elem.getType());
+                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                    cardDto.setDesc(elem.getContent().getContentDesc());
 
+                    Activity activity = activityDao.getSpecifiedCity(cardDto.getId());
+                    if(activity != null) {
+                        Date startDate = activity.getOpenTime();
+                        Date endDate = activity.getCloseTime();
+                        DateTime startDateTime = new DateTime(startDate);
+                        DateTime endDateTime = new DateTime(endDate);
+                        logger.info("判断城市活动的开始结束时间是否为同一年");
+                        logger.info("startDate = {}， endDate = {}",
+                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatyyyyMMdd(endDate));
+                        if (endDateTime.getYear() > startDateTime.getYear()) {
+                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                                    "-" +
+                                    DateUtil.formatyyyyMMdd(endDate));
+                        } else {
+                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                                    "-" +
+                                    DateUtil.formatMMdd(endDate));
+                        }
+
+                        logger.info("Activity Time: {}", cardDto.getActivityTime());
+                    }
+                    datas.add(cardDto);
+                } else {
+                    BaseCardDto cardDto = new BaseCardDto();
+                    cardDto.setId(elem.getContent().getContentId());
+                    cardDto.setType(elem.getType());
+                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                    cardDto.setCoverImage(elem.getContent().getCoverImage());
+                    cardDto.setDesc(elem.getContent().getContentDesc());
+
+                    datas.add(cardDto);
+                }
             }
         }
         return recommendCardDto;
