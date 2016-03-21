@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v3/city/activity")
+@RequestMapping("/api/v3/city")
 public class ActivityController {
     private Logger logger = LogManager.getLogger(ActivityController.class);
 
     @Autowired
     private ActivityService cityActivityService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/activity/list", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<List<ActivityBaseDto>> getActivityList(@RequestParam("cityId") String cityId) {
 
@@ -35,15 +35,15 @@ public class ActivityController {
         return responseDto;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/activity", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityDetailDto> getActivityDetail(@RequestParam("cityActivityId") String cityActivityId) {
+    public ResponseDto<ActivityDetailDto> getActivityDetail(@RequestParam("activityId") String activityId) {
 
         logger.info("开始城市活动详情查询");
-        logger.info("cityActivityId = {}", cityActivityId);
+        logger.info("activityId = {}", activityId);
         ResponseDto<ActivityDetailDto> responseDto = new ResponseDto<>();
 
-        ActivityDetailDto activityDetailDto = cityActivityService.getActivityDetail(cityActivityId);
+        ActivityDetailDto activityDetailDto = cityActivityService.getActivityDetail(activityId);
 
         if (activityDetailDto != null) {
             responseDto.setCodeMessage(ErrorCode.SUCCESS);

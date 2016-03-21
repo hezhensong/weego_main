@@ -33,59 +33,60 @@ public class ActivityServiceImpl implements ActivityService {
         ActivityDetailDto activityDetailDto = new ActivityDetailDto();
 
         Activity cityActivity = cityActivityDao.getSpecifiedCity(cityActivityId);
+        
+        if(cityActivity!=null){
+            // 将数据库中的数据赋值给dto
+            activityDetailDto.setId(cityActivity.getId());
+            activityDetailDto.setActTime(cityActivity.getActTime());
+            activityDetailDto.setActUrl(cityActivity.getActUrl());
+            // 将时间格式转换成字符串
+            String closeTime = DateUtil.formatyyyyMMdd(cityActivity.getCloseTime());
+            System.out.println("看看时间格式" + closeTime);
+            String openTime = DateUtil.formatyyyyMMdd(cityActivity.getOpenTime());
+            activityDetailDto.setCloseTime(closeTime);
+            activityDetailDto.setOpenTime(openTime);
 
-        // 将数据库中的数据赋值给dto
-        activityDetailDto.setId(cityActivity.getId());
-        activityDetailDto.setActTime(cityActivity.getActTime());
-        activityDetailDto.setActUrl(cityActivity.getActUrl());
-        // 将时间格式转换成字符串
-        String closeTime = DateUtil.formatyyyyMMdd(cityActivity.getCloseTime());
-        System.out.println("看看时间格式" + closeTime);
-        String openTime = DateUtil.formatyyyyMMdd(cityActivity.getOpenTime());
-        activityDetailDto.setCloseTime(closeTime);
-        activityDetailDto.setOpenTime(openTime);
+            activityDetailDto.setDescription(cityActivity.getDescription());
+            activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
+            activityDetailDto.setId(cityActivity.getId());
+            activityDetailDto.setImage(cityActivity.getImage());
 
-        activityDetailDto.setDescription(cityActivity.getDescription());
-        activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
-        activityDetailDto.setId(cityActivity.getId());
-        activityDetailDto.setImage(cityActivity.getImage());
+            // 将coordinate拆成longitude和latitude
+            String coordination = cityActivity.getCoordination();
 
-        // 将coordinate拆成longitude和latitude
-        String coordination = cityActivity.getCoordination();
-
-        if (coordination != null && coordination.length() != 0) {
-            String[] lonlat = coordination.split(",");
-            activityDetailDto.setLongitude(lonlat[0]);
-            activityDetailDto.setLatidute(lonlat[1]);
-        }
-
-        activityDetailDto.setOrderUrl(cityActivity.getOrderUrl());
-        activityDetailDto.setTitle(cityActivity.getTitle());
-        activityDetailDto.setType(cityActivity.getType());
-
-        // 将数据库中activity表中的paragraphs数组转成相应的dto
-        List<ActivityParagraphs> cityActivityParagraphsList = cityActivity.getParagraphs();
-
-        List<ActivityParagraphsDto> activityParagraphsDtoList = new ArrayList<ActivityParagraphsDto>();
-
-        if (cityActivityParagraphsList != null && !cityActivityParagraphsList.isEmpty()) {
-            for (ActivityParagraphs cityActivityParagraphs : cityActivityParagraphsList) {
-
-                ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
-
-                activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
-                System.out.println(cityActivityParagraphs.getDetailDown());
-                activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
-                activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
-                activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
-                activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());
-
-                activityParagraphsDtoList.add(activityParagraphsDto);
-
+            if (coordination != null && coordination.length() != 0) {
+                String[] lonlat = coordination.split(",");
+                activityDetailDto.setLongitude(lonlat[0]);
+                activityDetailDto.setLatidute(lonlat[1]);
             }
 
-            activityDetailDto.setParagraphs(activityParagraphsDtoList);
+            activityDetailDto.setOrderUrl(cityActivity.getOrderUrl());
+            activityDetailDto.setTitle(cityActivity.getTitle());
+            activityDetailDto.setType(cityActivity.getType());
 
+            // 将数据库中activity表中的paragraphs数组转成相应的dto
+            List<ActivityParagraphs> cityActivityParagraphsList = cityActivity.getParagraphs();
+
+            List<ActivityParagraphsDto> activityParagraphsDtoList = new ArrayList<ActivityParagraphsDto>();
+
+            if (cityActivityParagraphsList != null && !cityActivityParagraphsList.isEmpty()) {
+                for (ActivityParagraphs cityActivityParagraphs : cityActivityParagraphsList) {
+
+                    ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
+
+                    activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
+                    System.out.println(cityActivityParagraphs.getDetailDown());
+                    activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
+                    activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
+                    activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
+                    activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());
+
+                    activityParagraphsDtoList.add(activityParagraphsDto);
+
+                }
+
+                activityDetailDto.setParagraphs(activityParagraphsDtoList);
+        }
         }
 
         logger.info("-------查询城市活动详细信息结束----------");
