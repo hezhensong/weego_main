@@ -3,8 +3,8 @@ package com.weego.main.util;
 public class DistanceUtil {
     private static double EARTH_RADIUS = 6378.137;
 
-    private static double rad(double d) {
-        return d * Math.PI / 180.0;
+    private static double rad(String d) {
+        return Double.valueOf(d) * Math.PI / 180.0;
     }
 
     /**
@@ -18,7 +18,7 @@ public class DistanceUtil {
      *            第二个坐标的经度
      * @return 返回距离是  km
      */
-    public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
+    public static double getDistance(String lat1, String lon1, String lat2, String lon2) {
         double radLat1 = rad(lat1);
         double radLat2 = rad(lat2);
         double a = radLat1 - radLat2;
@@ -39,9 +39,9 @@ public class DistanceUtil {
 
         // 117.01028712333508(Double), 117.22593287666493(Double),
         // 36.44829619896034(Double), 36.92138380103966(Double)
-        System.out.println(getDistance(39.9960970000, 116.3640600000, 39.9672990000, 116.3650490000));
+        System.out.println(getDistance("39.9960970000", "116.3640600000", "39.9672990000", "116.3650490000"));
 
-        System.out.println(getDistance(36.68484, 117.11811, 36.66123, 117.00999000000002));
+        System.out.println(getDistance("36.68484", "117.11811", "36.66123", "117.00999000000002"));
 
     }
 }

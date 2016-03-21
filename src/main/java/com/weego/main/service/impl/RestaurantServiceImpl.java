@@ -267,8 +267,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 						if (coordination.split(",").length >= 2) {
 							String longitude = coordination.split(",")[0];
 							String latitude = coordination.split(",")[1];
-							String distance = DistanceUtil.getDistance(newLongitude, newLatitude, longitude, latitude);
-							searchNearByBaseDto.setDistance(Double.valueOf(distance));
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(distance);
 						}
 					}
 
