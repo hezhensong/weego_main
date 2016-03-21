@@ -52,9 +52,8 @@ public class RecommendInfoDao {
         orderBy.put("end_time", 1);
         return jacksonDBCollection.find(DBQuery.and(
                                             DBQuery.is("city_id", new ObjectId(cityId)),
-                                            DBQuery.and(
                                             DBQuery.greaterThanEquals("end_time", date),
                                             DBQuery.lessThan("end_time", nextDay))
-                                        )).sort(orderBy).toArray();
+                                        ).sort(orderBy).toArray();
     }
 }

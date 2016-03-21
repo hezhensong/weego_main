@@ -49,7 +49,7 @@ public class DateUtilTest extends BaseTest {
     public void testConvertGMTtoUTC() {
         Date today = DateUtil.yyyyMMddToDate("20160318");
 
-        Date utc = DateUtil.covertCMTtoUTC(today);
+        Date utc = DateUtil.covertTimeToUTC(today);
         System.out.println(utc.toString());
     }
 }
