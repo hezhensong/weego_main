@@ -262,7 +262,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 						if (coordination.split(",").length >= 2) {
 							String latitude = coordination.split(",")[1];
 							String longitude = coordination.split(",")[0];
-							String distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
 							searchNearByBaseDto.setDistance(Double.valueOf(distance));
 						}
 					}
