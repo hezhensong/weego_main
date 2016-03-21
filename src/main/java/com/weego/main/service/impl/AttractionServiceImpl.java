@@ -263,16 +263,16 @@ public class AttractionServiceImpl implements AttractionService {
 
 				String newCoordination = attraction.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
-					String newLatitude = newCoordination.split(",")[1];
 					String newLongitude = newCoordination.split(",")[0];
+					String newLatitude = newCoordination.split(",")[1];
 
 					if (!coordination.contains(",")) {
 						logger.info("coordination 参数值有误");
 					} else {
 						if (coordination.split(",").length >= 2) {
-							String latitude = coordination.split(",")[1];
 							String longitude = coordination.split(",")[0];
-							String distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							String latitude = coordination.split(",")[1];
+							String distance = DistanceUtil.getDistance(newLongitude, newLatitude, longitude, latitude);
 							searchNearByBaseDto.setDistance(Double.valueOf(distance));
 						}
 					}
