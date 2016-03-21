@@ -44,15 +44,12 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         logger.info("cityId = {}", cityId);
 
         RecommendHistoryDto historyDto = new RecommendHistoryDto();
-        historyDto.setCode(0);
-        historyDto.setMessage("success");
 
-        historyDto.setData(new HashMap<String, Object>());
-        historyDto.getData().put("cityId", cityId);
+        historyDto.setCityId(cityId);
 
         logger.info("查询城市信息, cityId = {}", cityId);
         City city = cityDao.getSpecifiedCity(cityId);
-        historyDto.getData().put("cityName", city.getName());
+        historyDto.setCityName(city.getName());
 
         logger.info("----查询当天的推荐记录----");
         Date today = DateUtil.yyyyMMdd(new Date());
@@ -75,9 +72,9 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         List<RecommendInfoDto> dayBeforeYestDtos = covertToDto(dayBeforeYestRecommends, dayBeforYest);
         logger.info("----查询前天推荐记录结束----");
 
-        historyDto.getData().put("today", todayDtos);
-        historyDto.getData().put("yesterday", yesterdayDtos);
-        historyDto.getData().put("dayBeforeYest", dayBeforeYestDtos);
+        historyDto.setToday(todayDtos);
+        historyDto.setYesterday(yesterdayDtos);
+        historyDto.setDayBeforeYest(dayBeforeYestDtos);
 
         return historyDto;
     }
@@ -196,4 +193,3 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         return dtos;
     }
 }
-

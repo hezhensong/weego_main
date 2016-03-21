@@ -2,6 +2,8 @@ package com.weego.main.controller.api;
 
 import com.weego.main.dto.RecommendCardDto;
 import com.weego.main.dto.RecommendHistoryDto;
+import com.weego.main.dto.RecommendInfoDto;
+import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,14 +20,19 @@ public class RecommendController {
     private Logger logger = LogManager.getLogger(RecommendController.class);
 
     @Autowired
-    private RecommendInfoService recommendDynamicService;
+    private RecommendInfoService recommendInfoService;
 
     //动态推荐列表
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
-    public RecommendHistoryDto getHistory(@RequestParam("cityId") String cityId) {
+    public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
         logger.info("开始动态推荐列表查询");
+        logger.info("cityId = {}", cityId);
 
-        return recommendDynamicService.getRecommendHistory(cityId);
+        ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
+        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
+
+        responseDto.setData(recommendHistoryDto);
+        return responseDto;
     }
 
     //动态推荐卡片
@@ -34,6 +41,8 @@ public class RecommendController {
                                     @RequestParam("coordinate") String coordinate,
                                     @RequestParam("time") String time) {
         logger.info("开始动态推荐卡片查询");
-        return recommendDynamicService.getRecommendCards(cityId, coordinate, time);
+        logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
+
+        return recommendInfoService.getRecommendCards(cityId, coordinate, time);
     }
 }
