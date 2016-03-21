@@ -30,7 +30,7 @@ public class MongoConnectionFactory {
     }
 
     private static void initializeMongoClient() throws UnknownHostException {
-<<<<<<< HEAD
+
         // MongoClientOptions.Builder builder = new
         // MongoClientOptions.Builder();
         // builder.connectionsPerHost(100);
@@ -43,10 +43,10 @@ public class MongoConnectionFactory {
         Integer port = 37017;
 //        String host = "10.12.10.200";
 //        Integer port = 27017;
-=======
-        String host = "192.168.37.128";
-        Integer port = 27017;
->>>>>>> b651e9582c8092c8bc601bc1510aa347d7fc70e7
+
+//        String host = "192.168.37.128";
+//        Integer port = 27017;
+
         mongoClient = new MongoClient(host, port);
     }
 
