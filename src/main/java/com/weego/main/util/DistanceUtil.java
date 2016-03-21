@@ -3,8 +3,8 @@ package com.weego.main.util;
 public class DistanceUtil {
     private static double EARTH_RADIUS = 6378.137;
 
-    private static double rad(double d) {
-        return d * Math.PI / 180.0;
+    private static double rad(String d) {
+        return Double.valueOf(d) * Math.PI / 180.0;
     }
 
     /**
@@ -18,6 +18,7 @@ public class DistanceUtil {
      *            第二个坐标的经度
      * @return 返回距离是 km
      */
+<<<<<<< HEAD
     public static double getDistance(String lat1, String lng1, String lat2, String lng2) {
         Double Lat1 = Double.parseDouble(lat1);
         Double Lng1 = Double.parseDouble(lng1);
@@ -25,6 +26,11 @@ public class DistanceUtil {
         Double Lng2 = Double.parseDouble(lng2);
         double radLat1 = rad(Lat1);
         double radLat2 = rad(Lat2);
+=======
+    public static double getDistance(String lat1, String lon1, String lat2, String lon2) {
+        double radLat1 = rad(lat1);
+        double radLat2 = rad(lat2);
+>>>>>>> 7984c2be5df194dbf17bf6c97a3e4c4e07bcce19
         double a = radLat1 - radLat2;
         double b = rad(Lng1) - rad(Lng2);
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2)
@@ -47,7 +53,10 @@ public class DistanceUtil {
 
         System.out.println(getDistance("36.68484", "117.11811", "36.66123", "117.00999000000002"));
 
+<<<<<<< HEAD
         // long a= new Long("36.68484").longValue();
         // System.out.println(a);
+=======
+>>>>>>> 7984c2be5df194dbf17bf6c97a3e4c4e07bcce19
     }
 }

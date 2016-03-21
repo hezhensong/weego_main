@@ -23,7 +23,6 @@ import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.SearchNearByBaseDto;
 import com.weego.main.dto.SearchNearByDto;
-import com.weego.main.model.Attraction;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
@@ -259,17 +258,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 				
 				String newCoordination = restaurant.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
-					String newLatitude = newCoordination.split(",")[1];
 					String newLongitude = newCoordination.split(",")[0];
+					String newLatitude = newCoordination.split(",")[1];
 
 					if (!coordination.contains(",")) {
 						logger.info("coordination 参数值有误");
 					} else {
 						if (coordination.split(",").length >= 2) {
-							String latitude = coordination.split(",")[1];
 							String longitude = coordination.split(",")[0];
-							String distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
-							searchNearByBaseDto.setDistance(Double.valueOf(distance));
+							String latitude = coordination.split(",")[1];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(distance);
 						}
 					}
 
