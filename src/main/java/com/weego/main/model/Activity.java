@@ -12,6 +12,9 @@ public class Activity {
     @Id
     private String Id;
 
+    @JsonProperty("city_id")
+    private String cityId;
+
     @JsonProperty("cover_image")
     private String image;
 
@@ -29,12 +32,6 @@ public class Activity {
 
     @JsonProperty("end_time")
     private Date closeTime;
-    
-//    @JsonProperty("start_time")
-//    private long openTime;
-//
-//    @JsonProperty("end_time")
-//    private long closeTime;
 
     @JsonProperty("act_time")
     private String actTime;
@@ -68,6 +65,14 @@ public class Activity {
         Id = id;
     }
 
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
+
     public String getImage() {
         return image;
     }
@@ -99,8 +104,6 @@ public class Activity {
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
     }
-    
-    
 
     public Date getOpenTime() {
         return openTime;
@@ -117,22 +120,6 @@ public class Activity {
     public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
     }
-
-//    public long getOpenTime() {
-//        return openTime;
-//    }
-//
-//    public void setOpenTime(long openTime) {
-//        this.openTime = openTime;
-//    }
-//
-//    public long getCloseTime() {
-//        return closeTime;
-//    }
-//
-//    public void setCloseTime(long closeTime) {
-//        this.closeTime = closeTime;
-//    }
 
     public String getActTime() {
         return actTime;

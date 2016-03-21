@@ -56,6 +56,6 @@ public class ActivityDao {
         return coll.find(DBQuery.and(
                              DBQuery.greaterThanEquals("end_time", dateNow),
                              DBQuery.greaterThanEquals("start_time", dateBefore)
-                         )).limit(10).sort(orderBy).toArray();
+                         )).sort(orderBy).toArray();
     }
 }
