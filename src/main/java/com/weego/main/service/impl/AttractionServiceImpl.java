@@ -3,6 +3,8 @@ package com.weego.main.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +21,20 @@ import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.SearchNearByBaseDto;
+import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.model.Attraction;
 import com.weego.main.model.AttractionSpot;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.service.AttractionService;
+import com.weego.main.util.DistanceUtil;
 
 @Service("attractionService")
 public class AttractionServiceImpl implements AttractionService {
+
+	private static Logger logger = LogManager.getLogger(AttractionServiceImpl.class);
 
 	@Autowired
 	AttractionDao attractionDao;
@@ -181,7 +188,8 @@ public class AttractionServiceImpl implements AttractionService {
 				for (AttractionSpot attractionSpot : attractionSpots) {
 					POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
 					poiSepcialBaseDto.setSpecialId(null);
-					poiSepcialBaseDto.setCoverImage(attractionSpot.getCoverImage());
+					poiSepcialBaseDto.setCoverImage(attractionSpot
+							.getCoverImage());
 					poiSepcialBaseDto.setTag(attractionSpot.getTag());
 					poiSepcialBaseDto.setTitle(attractionSpot.getTitle());
 					poiSepcialBaseDto.setDesc(attractionSpot.getDesc());
@@ -197,17 +205,18 @@ public class AttractionServiceImpl implements AttractionService {
 	public POISpecialDetailDto getAttractionSpotDetail(String specialId) {
 		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
 		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
-		
+
 		// 假数据
 		poiSepcialBaseDto.setSpecialId(null);
 		poiSepcialBaseDto.setCoverImage("565d66aa53ab912870000010.jpeg");
 		poiSepcialBaseDto.setTitle("大理石拱门");
 		poiSepcialBaseDto.setTag("推荐");
-		poiSepcialBaseDto.setDesc("广场上最醒目的建筑。这座拱门原建于1889年，是为纪念美国国父乔治华盛顿宣誓就职100年而建，1892年被史丹利怀特设计的大理石拱门取代，拱门右侧有一个隐藏式楼梯可攀登其上。");
-		
+		poiSepcialBaseDto
+				.setDesc("广场上最醒目的建筑。这座拱门原建于1889年，是为纪念美国国父乔治华盛顿宣誓就职100年而建，1892年被史丹利怀特设计的大理石拱门取代，拱门右侧有一个隐藏式楼梯可攀登其上。");
+
 		poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		return poiSpecialDetailDto;
-	    
+
 	}
 
 	@Override
@@ -215,22 +224,74 @@ public class AttractionServiceImpl implements AttractionService {
 		POICommentsDto poiCommentsDto = new POICommentsDto();
 		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
 		Attraction attraction = attractionDao.getAttractionById(id);
-		if(attraction != null) {
+		if (attraction != null) {
 			List<BasePOIComments> basePOIComments = attraction.getComments();
-			if(basePOIComments != null && basePOIComments.size() > 0) {
-				for(BasePOIComments basePOIComment:basePOIComments) {
+			if (basePOIComments != null && basePOIComments.size() > 0) {
+				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					poiDetailCommentsDto.setNickname(basePOIComment
+							.getNickname());
 					poiDetailCommentsDto.setDate(basePOIComment.getDate());
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
-					poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
+					poiDetailCommentsDto.setLanguage(basePOIComment
+							.getLanguage());
 					poiDetailCommentsDtos.add(poiDetailCommentsDto);
 				}
 			}
-			poiCommentsDto.setData(poiDetailCommentsDtos);	
+			poiCommentsDto.setData(poiDetailCommentsDtos);
 		}
 		return poiCommentsDto;
+	}
+
+	@Override
+	public SearchNearByDto getAttractionsByCityIdAndCoordination(String cityId,
+			String coordination) {
+		SearchNearByDto searchNearByDto = new SearchNearByDto();
+		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
+		List<Attraction> attractions = attractionDao
+				.getAttractionsByCityIdAndCoordination(cityId, coordination);
+
+		if (attractions != null && attractions.size() > 0) {
+			for (Attraction attraction : attractions) {
+				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+				searchNearByBaseDto.setId(attraction.getId());
+				searchNearByBaseDto.setName(attraction.getName());
+				searchNearByBaseDto.setAddress(attraction.getAddress());
+				searchNearByBaseDto.setCoverImage(attraction.getCoverImage());
+
+				String newCoordination = attraction.getCoordination();
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String newLongitude = newCoordination.split(",")[0];
+					String newLatitude = newCoordination.split(",")[1];
+
+					if (!coordination.contains(",")) {
+						logger.info("coordination 参数值有误");
+					} else {
+						if (coordination.split(",").length >= 2) {
+							String longitude = coordination.split(",")[0];
+							String latitude = coordination.split(",")[1];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(distance);
+						}
+					}
+
+					searchNearByBaseDto.setLatitude(newLatitude);
+					searchNearByBaseDto.setLongitude(newLongitude);
+				}
+
+				searchNearByBaseDto.setScore(attraction.getRating());
+				List<BasePOITag> tags = attraction.getSubTag();
+				if (tags != null && tags.size() > 0) {
+					searchNearByBaseDto.setTag(attraction.getSubTag().get(0)
+							.getTag());
+				}
+
+				searchNearByBaseDtos.add(searchNearByBaseDto);
+			}
+		}
+		searchNearByDto.setData(searchNearByBaseDtos);
+		return searchNearByDto;
 	}
 }

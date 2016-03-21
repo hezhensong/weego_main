@@ -114,20 +114,15 @@ public class ActivityServiceImpl implements ActivityService {
                  * 
                  */
                 Date datenow = new Date();
-                System.out.println("当前时间是" + datenow);
                 Date openTime = cityActivity.getOpenTime();
-                System.out.println("开始时间是s" + cityActivity.getOpenTime());
                 Date closeTime = cityActivity.getCloseTime();
-                System.out.println("结束时间是s" + cityActivity.getCloseTime());
                 if (openTime != null && closeTime != null) {
                     // 计算活动开始时间与当前日期相差的天数
                     int opennow;
                     int nowclose;
                     try {
                         opennow = DateUtil.daysBetween(datenow, openTime);
-                        System.out.println("看看相差几天opennow" + opennow);
-                        nowclose = DateUtil.daysBetween(closeTime, datenow);
-                        System.out.println("看看相差几天nowclose" + nowclose);
+                        nowclose = DateUtil.daysBetween(datenow, closeTime);
                         // 计算活动结束日期与当前日期相差的天数
 
                         if (opennow <= 7 & opennow > 0) {

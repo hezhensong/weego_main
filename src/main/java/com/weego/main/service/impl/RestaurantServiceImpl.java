@@ -3,6 +3,8 @@ package com.weego.main.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,25 +21,29 @@ import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
-import com.weego.main.model.Attraction;
-import com.weego.main.model.AttractionSpot;
+import com.weego.main.dto.SearchNearByBaseDto;
+import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Restaurant;
 import com.weego.main.model.RestaurantDish;
 import com.weego.main.service.RestaurantService;
+import com.weego.main.util.DistanceUtil;
 
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
 
+	private static Logger logger = LogManager.getLogger(RestaurantServiceImpl.class);
+	
 	@Autowired
 	RestaurantDao restaurantDao;
 
 	public POIListDto getRestaurantsByCityId(String cityId, String labelId) {
 		POIListDto poiListDto = new POIListDto();
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
-		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityId(cityId, labelId);
+		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityId(
+				cityId, labelId);
 		if (restaurants != null && restaurants.size() > 0) {
 			for (Restaurant restaurant : restaurants) {
 				POIBaseDto poiBaseDto = new POIBaseDto();
@@ -45,7 +51,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				poiBaseDto.setBrief(restaurant.getBriefIntroduction());
 				poiBaseDto.setCoverImage(restaurant.getCoverImage());
 				List<BasePOITag> tags = restaurant.getSubTag();
-				if(tags != null && tags.size() > 0) {
+				if (tags != null && tags.size() > 0) {
 					poiBaseDto.setTag(restaurant.getSubTag().get(0).getTag());
 				}
 				poiBaseDto.setTitle(restaurant.getName());
@@ -173,14 +179,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 		POISpecialDto poiSpecialDto = new POISpecialDto();
 		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
-		List<RestaurantDish> restaurantDishs = new ArrayList<RestaurantDish>(); 
+		List<RestaurantDish> restaurantDishs = new ArrayList<RestaurantDish>();
 		if (restaurant != null) {
 			restaurantDishs = restaurant.getRestaurantDishs();
 			if (restaurantDishs != null && restaurantDishs.size() > 0) {
 				for (RestaurantDish restaurantDish : restaurantDishs) {
 					POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
 					poiSepcialBaseDto.setSpecialId(null);
-					poiSepcialBaseDto.setCoverImage(restaurantDish.getCoverImage());
+					poiSepcialBaseDto.setCoverImage(restaurantDish
+							.getCoverImage());
 					poiSepcialBaseDto.setTag(restaurantDish.getTag());
 					poiSepcialBaseDto.setTitle(restaurantDish.getTitle());
 					poiSepcialBaseDto.setDesc(restaurantDish.getDesc());
@@ -203,7 +210,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		poiSepcialBaseDto.setTitle("An Amazing Dinning Experience");
 		poiSepcialBaseDto.setTag("recommend");
 		poiSepcialBaseDto.setDesc("Beef pastrami");
-		
+
 		poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		return poiSpecialDetailDto;
 	}
@@ -213,27 +220,72 @@ public class RestaurantServiceImpl implements RestaurantService {
 		POICommentsDto poiCommentsDto = new POICommentsDto();
 		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
-		if(restaurant != null) {
+		if (restaurant != null) {
 			List<BasePOIComments> basePOIComments = restaurant.getComments();
-			if(basePOIComments != null && basePOIComments.size() > 0) {
-				for(BasePOIComments basePOIComment:basePOIComments) {
+			if (basePOIComments != null && basePOIComments.size() > 0) {
+				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					poiDetailCommentsDto.setNickname(basePOIComment
+							.getNickname());
 					poiDetailCommentsDto.setDate(basePOIComment.getDate());
 					System.out.println(basePOIComment.getDate());
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
-					poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
+					poiDetailCommentsDto.setLanguage(basePOIComment
+							.getLanguage());
 					poiDetailCommentsDtos.add(poiDetailCommentsDto);
 				}
 			}
-			poiCommentsDto.setData(poiDetailCommentsDtos);	
+			poiCommentsDto.setData(poiDetailCommentsDtos);
 		}
 		return poiCommentsDto;
 	}
 
-	
-	
-	
+	@Override
+	public SearchNearByDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination) {
+		SearchNearByDto searchNearByDto = new SearchNearByDto();
+		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
+		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityIdAndCoordination(cityId, coordination);
+
+		if (restaurants != null && restaurants.size() > 0) {
+			for (Restaurant restaurant : restaurants) {
+				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+				searchNearByBaseDto.setId(restaurant.getId());
+				searchNearByBaseDto.setName(restaurant.getName());
+				searchNearByBaseDto.setAddress(restaurant.getAddress());
+				searchNearByBaseDto.setCoverImage(restaurant.getCoverImage());
+				
+				String newCoordination = restaurant.getCoordination();
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String newLongitude = newCoordination.split(",")[0];
+					String newLatitude = newCoordination.split(",")[1];
+
+					if (!coordination.contains(",")) {
+						logger.info("coordination 参数值有误");
+					} else {
+						if (coordination.split(",").length >= 2) {
+							String longitude = coordination.split(",")[0];
+							String latitude = coordination.split(",")[1];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(distance);
+						}
+					}
+
+					searchNearByBaseDto.setLatitude(newLatitude);
+					searchNearByBaseDto.setLongitude(newLongitude);
+				}
+
+				searchNearByBaseDto.setScore(restaurant.getRating());
+				List<BasePOITag> tags = restaurant.getSubTag();
+				if (tags != null && tags.size() > 0) {
+					searchNearByBaseDto.setTag(restaurant.getSubTag().get(0).getTag());
+				}
+				searchNearByBaseDtos.add(searchNearByBaseDto);
+			}
+		}
+		searchNearByDto.setData(searchNearByBaseDtos);
+		return searchNearByDto;
+	}
+
 }

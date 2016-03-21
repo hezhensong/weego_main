@@ -3,6 +3,8 @@ package com.weego.main.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,21 @@ import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.SearchNearByBaseDto;
+import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Shopping;
 import com.weego.main.model.ShoppingBrand;
 import com.weego.main.service.ShoppingService;
+import com.weego.main.util.DistanceUtil;
 
 @Service("shoppingService")
 public class ShoppingServiceImpl implements ShoppingService {
 
+	private static Logger logger = LogManager.getLogger(ShoppingServiceImpl.class);
+	
 	@Autowired
 	ShoppingDao shoppingDao;
 
@@ -227,5 +234,51 @@ public class ShoppingServiceImpl implements ShoppingService {
 			poiCommentsDto.setData(poiDetailCommentsDtos);	
 		}
 		return poiCommentsDto;
+	}
+
+	@Override
+	public SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination) {
+		SearchNearByDto searchNearByDto = new SearchNearByDto();
+		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
+		List<Shopping> shoppings = shoppingDao.getShoppingsByCityIdAndCoordination(cityId, coordination);
+		
+		if(shoppings != null && shoppings.size() > 0) {
+			for(Shopping shopping : shoppings) {
+				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+				searchNearByBaseDto.setId(shopping.getId());
+				searchNearByBaseDto.setName(shopping.getName());
+				searchNearByBaseDto.setAddress(shopping.getAddress());
+				searchNearByBaseDto.setCoverImage(shopping.getCoverImage());
+
+				String newCoordination = shopping.getCoordination();
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String newLongitude = newCoordination.split(",")[0];
+					String newLatitude = newCoordination.split(",")[1];
+
+					if (!coordination.contains(",")) {
+						logger.info("coordination 参数值有误");
+					} else {
+						if (coordination.split(",").length >= 2) {
+							String longitude = coordination.split(",")[0];
+							String latitude = coordination.split(",")[1];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(Double.valueOf(distance));
+						}
+					}
+
+					searchNearByBaseDto.setLatitude(newLatitude);
+					searchNearByBaseDto.setLongitude(newLongitude);
+				}
+				
+				searchNearByBaseDto.setScore(shopping.getRating());
+				List<BasePOITag> tags = shopping.getSubTag();
+				if (tags != null && tags.size() > 0) {
+					searchNearByBaseDto.setTag(shopping.getSubTag().get(0).getTag());
+				}
+				searchNearByBaseDtos.add(searchNearByBaseDto);
+			}
+		}
+		searchNearByDto.setData(searchNearByBaseDtos);
+		return searchNearByDto;
 	}
 }
