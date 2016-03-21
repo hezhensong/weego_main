@@ -29,12 +29,10 @@ public class PersonServiceImpl implements PersonService {
         Person person = peopleDao.getPersonById(personId);
 
 
-        Map<String, Object> data = new HashMap<String, Object>();
-
         if(person != null) {
-            data.put("headImage", person.getHeadImage());
-            data.put("userName", person.getUserName());
-            data.put("jobDesc", person.getJobDesc());
+            personDto.setHeadImage(person.getHeadImage());
+            personDto.setUserName(person.getUserName());
+            personDto.setJobDesc(person.getJobDesc());
 
             List<PersonSimpleIntroduceDto> intros = new ArrayList<PersonSimpleIntroduceDto>();
             List<PeopleSimpleIntroduce> simpleIntroduces = person.getSimpleIntroduce();
@@ -49,7 +47,7 @@ public class PersonServiceImpl implements PersonService {
                     intros.add(introduceDto);
                 }
             }
-            data.put("simpleIntroduce", intros);
+            personDto.setSimpleIntroduce(intros);
         }
         return personDto;
     }
