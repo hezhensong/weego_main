@@ -19,10 +19,7 @@ public class Pgc {
     private String person;
 
     @JsonProperty("poi_list")
-    private List<String> poiList;
-
-    @JsonProperty("head_image")
-    private String headImage;
+    private List<PgcPoi> poiList;
 
     private String introduction;
 
@@ -61,20 +58,12 @@ public class Pgc {
         this.person = person;
     }
 
-    public List<String> getPoiList() {
+    public List<PgcPoi> getPoiList() {
         return poiList;
     }
 
-    public void setPoiList(List<String> poiList) {
+    public void setPoiList(List<PgcPoi> poiList) {
         this.poiList = poiList;
-    }
-
-    public String getHeadImage() {
-        return headImage;
-    }
-
-    public void setHeadImage(String headImage) {
-        this.headImage = headImage;
     }
 
     public String getIntroduction() {

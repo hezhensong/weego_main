@@ -22,10 +22,10 @@ public class ActivityController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityListDto> getActivityList() {
+    public ResponseDto<ActivityListDto> getActivityList(@PathVariable("cityId") String cityId) {
 
         ResponseDto<ActivityListDto> responseDto = new ResponseDto<>();
-        ActivityListDto activityBaseList = cityActivityService.getActivityList();
+        ActivityListDto activityBaseList = cityActivityService.getActivityList(cityId);
         if (activityBaseList != null) {
             responseDto.setCodeMessage(ErrorCode.SUCCESS);
             responseDto.setData(activityBaseList);
@@ -36,7 +36,7 @@ public class ActivityController {
 
     }
 
-    @RequestMapping(value = "/{cityActivityId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<ActivityDetailDto> getActivityDetail(@PathVariable("cityActivityId") String cityActivityId) {
 
