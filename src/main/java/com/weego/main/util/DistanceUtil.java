@@ -14,35 +14,20 @@ private static double EARTH_RADIUS = 6378.137;
      * @param lon2 第二个坐标的经度
      * @return
      */
-    public static double GetDistance(double lat1, double lon1, double lat2, double lon2)
-    {
-       double radLat1 = rad(lat1);
-       double radLat2 = rad(lat2);
-       double a = radLat1 - radLat2;
-       double b = rad(lon1) - rad(lon2);
-       double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) + 
-       Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
-       s = s * EARTH_RADIUS;
-       return s;
+    public static double GetDistance(double lat1, double lon1, double lat2, double lon2) {
+        double radLat1 = rad(lat1);
+        double radLat2 = rad(lat2);
+        double a = radLat1 - radLat2;
+        double b = rad(lon1) - rad(lon2);
+        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) +
+                Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        return s;
     }
 
     public static void main(String[] args) {
-        //济南国际会展中心经纬度：117.11811  36.68484
-        //趵突泉：117.00999000000002  36.66123
-<<<<<<< HEAD
-        //北京科技大学  纬度 和 经度39.9960970000,116.3640600000 
-        //北京邮电大学 纬度 和 经度 39.9672990000,116.3650490000
-        
-=======
-        System.out.println(getDistance("117.11811","36.68484","40.708635","-74.008249"));
-          
-        System.out.println(getAround("117.11811", "36.68484", "13000"));
->>>>>>> 58769693c8b7efc15b6a900c738f705ff98b4894
-        //117.01028712333508(Double), 117.22593287666493(Double),
-        //36.44829619896034(Double), 36.92138380103966(Double)
+
         System.out.println(GetDistance(39.9960970000,116.3640600000,39.9672990000,116.3650490000));
-        
         System.out.println(GetDistance(36.68484,117.11811,36.66123,117.00999000000002));
-          
     }
 }

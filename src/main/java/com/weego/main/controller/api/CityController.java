@@ -33,7 +33,7 @@ public class CityController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<CityHomeDto> getCityHome(@RequestParam("cityId") String cityId) {
-        logger.info("userId=[{}]", cityId);
+        logger.info("cityId=[{}]", cityId);
 
         ResponseDto<CityHomeDto> responseDto = new ResponseDto<>();
         CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
