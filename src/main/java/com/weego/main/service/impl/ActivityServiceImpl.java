@@ -88,11 +88,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public ActivityListDto getActivityList() {
+    public ActivityListDto getActivityList(String cityId) {
 
         ActivityListDto activityListDto = new ActivityListDto();
 
-        List<Activity> activityList = cityActivityDao.getAllActivity();
+        List<Activity> activityList = cityActivityDao.getAllActivity(cityId);
 
         List<ActivityBaseDto> activityBaseDtoList = new ArrayList<ActivityBaseDto>();
 

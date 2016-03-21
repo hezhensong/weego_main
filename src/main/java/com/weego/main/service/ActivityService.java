@@ -7,6 +7,6 @@ public interface ActivityService {
 
     ActivityDetailDto getActivityDetail(String cityActivityId);
 
-    ActivityListDto getActivityList();
+    ActivityListDto getActivityList(String cityId);
 
 }

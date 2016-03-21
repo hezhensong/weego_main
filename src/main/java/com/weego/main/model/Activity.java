@@ -3,6 +3,7 @@ package com.weego.main.model;
 import java.util.Date;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongojack.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +14,7 @@ public class Activity {
     private String Id;
 
     @JsonProperty("city_id")
-    private String cityId;
+    private ObjectId cityId;
 
     @JsonProperty("cover_image")
     private String image;
@@ -65,11 +66,11 @@ public class Activity {
         Id = id;
     }
 
-    public String getCityId() {
+    public ObjectId getCityId() {
         return cityId;
     }
 
-    public void setCityId(String cityId) {
+    public void setCityId(ObjectId cityId) {
         this.cityId = cityId;
     }
 

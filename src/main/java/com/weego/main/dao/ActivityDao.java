@@ -39,11 +39,12 @@ public class ActivityDao {
 
     }
 
-    public List<Activity> getAllActivity() {
+    public List<Activity> getAllActivity(String cityId) {
         DBCollection collection = database.getCollection("activity");
 
         JacksonDBCollection<Activity, String> coll;
         coll = JacksonDBCollection.wrap(collection, Activity.class, String.class);
+        
         // 获取当前时间并转成数据库时间
         Date date = new Date();
         Date dateNow = DateUtil.covertTimeToUTC(date);
@@ -54,6 +55,7 @@ public class ActivityDao {
         orderBy.put("start_time", 1);
         // 按照活动开始日期由近到远.
         return coll.find(DBQuery.and(
+                             DBQuery.is("city_id", new ObjectId(cityId)),
                              DBQuery.greaterThanEquals("end_time", dateNow),
                              DBQuery.greaterThanEquals("start_time", dateBefore)
                          )).sort(orderBy).toArray();
