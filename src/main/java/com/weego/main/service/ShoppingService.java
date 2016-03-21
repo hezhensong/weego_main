@@ -5,6 +5,7 @@ import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.SearchNearByDto;
 
 public interface ShoppingService {
 	POIListDto getShoppingsByCityId(String cityId, String labelId);
@@ -16,4 +17,6 @@ public interface ShoppingService {
 	POISpecialDetailDto getShoppingBrandDetail(String specialId);
 	
 	POICommentsDto getShoppingCommentsById(String id);
+	
+	SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination);
 }

@@ -128,7 +128,7 @@ public class DateUtil {
 
         return Integer.parseInt(String.valueOf(between_days));
     }
-<<<<<<< HEAD
+
 
     /**
      * 计算两个long型日期之间相差的天数
@@ -180,6 +180,5 @@ public class DateUtil {
         System.out.println(new Date().getTime());
         System.out.println(longChangeToDateStr(1454803200));
     }
-=======
->>>>>>> b651e9582c8092c8bc601bc1510aa347d7fc70e7
+
 }

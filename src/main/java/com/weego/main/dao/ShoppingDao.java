@@ -32,4 +32,14 @@ public class ShoppingDao {
 		query.put("_id", new ObjectId(id));
 		return jackCollection.findOne(query);
 	}
+	
+	public List<Shopping> getShoppingsByCityIdAndCoordination(String cityId, String coordination) {
+		DBCollection collection = database.getCollection("shopping");
+		JacksonDBCollection<Shopping, String> jackCollection = JacksonDBCollection
+				.wrap(collection, Shopping.class, String.class);
+		BasicDBObject query = new BasicDBObject();
+		query.put("city_id", new ObjectId(cityId));
+//		query.put("","");   经纬度的处理
+		return jackCollection.find(query).toArray();
+	}
 }

@@ -19,6 +19,9 @@ import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.SearchNearByBaseDto;
+import com.weego.main.dto.SearchNearByDto;
+import com.weego.main.model.Attraction;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
@@ -227,5 +230,40 @@ public class ShoppingServiceImpl implements ShoppingService {
 			poiCommentsDto.setData(poiDetailCommentsDtos);	
 		}
 		return poiCommentsDto;
+	}
+
+	@Override
+	public SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination) {
+		SearchNearByDto searchNearByDto = new SearchNearByDto();
+		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
+		List<Shopping> shoppings = shoppingDao.getShoppingsByCityIdAndCoordination(cityId, coordination);
+		
+		if(shoppings != null && shoppings.size() > 0) {
+			for(Shopping shopping : shoppings) {
+				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+				searchNearByBaseDto.setId(shopping.getId());
+				searchNearByBaseDto.setName(shopping.getName());
+				searchNearByBaseDto.setAddress(shopping.getAddress());
+				searchNearByBaseDto.setCoverImage(shopping.getCoverImage());
+//				searchNearByBaseDto.setDistance(8807.0); 距离的计算
+				
+				String newCoordination = shopping.getCoordination();
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String latitude = newCoordination.split(",")[1];
+					String longitude = newCoordination.split(",")[0];
+					searchNearByBaseDto.setLatitude(latitude);
+					searchNearByBaseDto.setLongitude(longitude);
+				}
+				
+				searchNearByBaseDto.setScore(shopping.getRating());
+				List<BasePOITag> tags = shopping.getSubTag();
+				if (tags != null && tags.size() > 0) {
+					searchNearByBaseDto.setTag(shopping.getSubTag().get(0).getTag());
+				}
+				searchNearByBaseDtos.add(searchNearByBaseDto);
+			}
+		}
+		searchNearByDto.setData(searchNearByBaseDtos);
+		return searchNearByDto;
 	}
 }
