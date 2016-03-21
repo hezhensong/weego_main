@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import com.weego.main.model.Activity;
 import com.weego.main.util.DateUtil;
 
@@ -42,16 +44,18 @@ public class ActivityDao {
 
         JacksonDBCollection<Activity, String> coll;
         coll = JacksonDBCollection.wrap(collection, Activity.class, String.class);
-        BasicDBObject query = new BasicDBObject();
-//        String datenowStr =DateUtil2.getCurDateTime();
-//        Date datenow = DateUtil2.getDate(datenowStr);
-//        System.out.println("dao层获取当前时间"+datenow);
-//        Date date = new Date();
-//        long datetime = date.getTime()/1000;
-       // Date date = new Date();
-        Date dateNow = DateUtil.covertTimeToUTC(new Date());
-        query.put("end_time", new BasicDBObject("$gt", dateNow));
+        // 获取当前时间并转成数据库时间
+        Date date = new Date();
+        Date dateNow = DateUtil.covertTimeToUTC(date);
+        // 获取距离今天七天之内的活动
+        Date dateSeven = DateUtil.afterNDays(date, -7);
+        Date dateBefore = DateUtil.covertTimeToUTC(dateSeven);
+        DBObject orderBy = new BasicDBObject();
+        orderBy.put("start_time", 1);
         // 按照活动开始日期由近到远.
-        return coll.find(query).limit(10).sort(new BasicDBObject("start_time", 1)).toArray();
+        return coll.find(DBQuery.and(
+                             DBQuery.greaterThanEquals("end_time", dateNow),
+                             DBQuery.greaterThanEquals("start_time", dateBefore)
+                         )).limit(10).sort(orderBy).toArray();
     }
 }
