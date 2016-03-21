@@ -1,7 +1,8 @@
 package com.weego.main.dto;
 
 
-public class PgcListContinentDto {
+public class PgcListPgcDto {
+
     private String pgcId;
     private String title;
     private String coverImage;

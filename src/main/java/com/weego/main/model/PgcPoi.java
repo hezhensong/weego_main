@@ -2,13 +2,13 @@ package com.weego.main.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Created by liuniandxx on 16-3-21.
- */
 public class PgcPoi {
 
     @JsonProperty("_id")
     private String id;
+
+    @JsonProperty("name")
+    private String name;
 
     @JsonProperty("type")
     private String type;
@@ -22,8 +22,13 @@ public class PgcPoi {
     @JsonProperty("poi_image_desc")
     private String poiImageDesc;
 
-    @JsonProperty("name")
-    private String name;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -31,14 +36,6 @@ public class PgcPoi {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getType() {

@@ -3,10 +3,13 @@ package com.weego.main.service.impl;
 import com.weego.main.dao.CityDao;
 import com.weego.main.dao.AreaDao;
 import com.weego.main.dao.WeatherDao;
+import com.weego.main.dao.WeatherTranslationDao;
 import com.weego.main.dto.*;
 import com.weego.main.model.*;
 import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import java.util.Map;
 
 @Service("cityService")
 public class CityServiceImpl implements CityService {
+    private static Logger logger = LogManager.getLogger(CityServiceImpl.class);
 
     @Autowired
     private CityDao cityDao;
@@ -26,6 +30,9 @@ public class CityServiceImpl implements CityService {
 
     @Autowired
     private WeatherDao weatherDao;
+
+    @Autowired
+    private WeatherTranslationDao weatherTranslationDao;
 
     @Autowired
     private ActivityService cityActivityService;
@@ -136,8 +143,16 @@ public class CityServiceImpl implements CityService {
         weatherConditionDto.setLow(weatherCondition.getLow() + "");
         weatherConditionDto.setSunrise(weatherCondition.getSunrise());
         weatherConditionDto.setSunset(weatherCondition.getSunset());
-        weatherConditionDto.setDescription(weatherCondition.getDescription());
         weatherConditionDto.setTemperature(weatherCondition.getTemperature() + "");
+
+        String description = weatherCondition.getDescription().toLowerCase();
+        Map<String, String> translationMap = weatherTranslationDao.getWeatherTranslation();
+        if (translationMap.keySet().contains(description)) {
+            weatherConditionDto.setDescription(translationMap.get(description));
+        } else {
+            weatherConditionDto.setDescription("未知");
+            logger.error("天气描述未知：{}", description);
+        }
 
         // 5天预告
         List<WeatherForecast> weatherForecastList = weather.getForecast();
@@ -150,7 +165,14 @@ public class CityServiceImpl implements CityService {
             weatherForecastDto.setDate(weatherForecast.getDate().toString());
             weatherForecastDto.setHigh(weatherForecast.getHigh() + "");
             weatherForecastDto.setLow(weatherForecast.getLow() + "");
-            weatherForecastDto.setDescription(weatherForecast.getDescription());
+
+            description = weatherForecast.getDescription().toLowerCase();
+            if (translationMap.keySet().contains(description)) {
+                weatherForecastDto.setDescription(translationMap.get(description));
+            } else {
+                weatherForecastDto.setDescription("未知");
+                logger.error("天气描述未知：{}", description);
+            }
 
             weatherForecastDtoList.add(weatherForecastDto);
         }

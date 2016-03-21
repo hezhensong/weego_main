@@ -2,7 +2,7 @@ package com.weego.main.controller.api;
 
 import com.weego.main.dao.PgcDao;
 import com.weego.main.dto.PgcDetailDto;
-import com.weego.main.dto.PgcListContinentDto;
+import com.weego.main.dto.PgcListPgcDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.model.Pgc;
 import com.weego.main.service.PgcService;
@@ -26,11 +26,12 @@ public class PgcController {
 
     @RequestMapping(value = "/pgc/list", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<List<PgcListContinentDto>> getPgcList() {
-        ResponseDto<List<PgcListContinentDto>> responseDto = new ResponseDto<List<PgcListContinentDto>>();
+    public ResponseDto<List<PgcListPgcDto>> getPgcList(@RequestParam("cityId") String cityId) {
+        ResponseDto<List<PgcListPgcDto>> responseDto = new ResponseDto<>();
 
-        List<PgcListContinentDto> pgcListContinentDtos = pgcService.getPgcList();
-        responseDto.setData(pgcListContinentDtos);
+        List<PgcListPgcDto> pgcListContinentDtoList = pgcService.getPgcList(cityId);
+        responseDto.setData(pgcListContinentDtoList);
+
         return responseDto;
     }
 

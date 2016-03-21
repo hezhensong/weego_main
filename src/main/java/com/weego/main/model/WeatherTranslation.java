@@ -8,10 +8,10 @@ public class WeatherTranslation {
     @Id
     private String id;
 
-    @JsonProperty("date")
+    @JsonProperty("english")
     private String english;
 
-    @JsonProperty("date")
+    @JsonProperty("chinese")
     private String chinese;
 
 

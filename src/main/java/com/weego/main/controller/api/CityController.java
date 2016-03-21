@@ -1,13 +1,9 @@
 package com.weego.main.controller.api;
 
 import com.weego.main.constant.ErrorCode;
-import com.weego.main.dao.AreaDao;
-import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
-import com.weego.main.model.Area;
-import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v3/city")
