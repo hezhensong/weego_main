@@ -10,19 +10,23 @@ public class DistanceUtil {
     /**
      * @param lat1
      *            第一个坐标的纬度
-     * @param lon1
+     * @param lng1
      *            第一个坐标的经度
      * @param lat2
      *            第二个坐标的纬度
-     * @param lon2
+     * @param lng2
      *            第二个坐标的经度
-     * @return 返回距离是  km
+     * @return 返回距离是 km
      */
-    public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
-        double radLat1 = rad(lat1);
-        double radLat2 = rad(lat2);
+    public static double getDistance(String lat1, String lng1, String lat2, String lng2) {
+        Double Lat1 = Double.parseDouble(lat1);
+        Double Lng1 = Double.parseDouble(lng1);
+        Double Lat2 = Double.parseDouble(lat2);
+        Double Lng2 = Double.parseDouble(lng2);
+        double radLat1 = rad(Lat1);
+        double radLat2 = rad(Lat2);
         double a = radLat1 - radLat2;
-        double b = rad(lon1) - rad(lon2);
+        double b = rad(Lng1) - rad(Lng2);
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2)
                 * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;
@@ -30,6 +34,7 @@ public class DistanceUtil {
     }
 
     public static void main(String[] args) {
+
         // 济南国际会展中心经纬度：117.11811 36.68484
         // 趵突泉：117.00999000000002 36.66123
 
@@ -38,8 +43,11 @@ public class DistanceUtil {
 
         // 117.01028712333508(Double), 117.22593287666493(Double),
         // 36.44829619896034(Double), 36.92138380103966(Double)
-        System.out.println(getDistance(39.9960970000, 116.3640600000, 39.9672990000, 116.3650490000));
+        System.out.println(getDistance("39.9960970000", "116.3640600000", "39.9672990000", "116.3650490000"));
 
-        System.out.println(getDistance(36.68484, 117.11811, 36.66123, 117.00999000000002));
+        System.out.println(getDistance("36.68484", "117.11811", "36.66123", "117.00999000000002"));
+
+        // long a= new Long("36.68484").longValue();
+        // System.out.println(a);
     }
 }
