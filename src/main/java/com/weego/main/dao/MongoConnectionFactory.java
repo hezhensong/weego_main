@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.net.UnknownHostException;
 
 public class MongoConnectionFactory {
+
 	private static Logger logger = LogManager
 			.getLogger(MongoConnectionFactory.class);
 	private static MongoClient mongoClient = null;

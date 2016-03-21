@@ -3,7 +3,7 @@ package com.weego.main.util;
 import java.util.HashMap;
 import java.util.Map;
   
-public class MapDistance { 
+public class DistanceUtil { 
         
     private static double EARTH_RADIUS = 6378.137; 
     
