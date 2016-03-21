@@ -5,10 +5,10 @@ import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.SearchNearByDto;
 
 public interface BasePOIService {
-	POIListDto getPOIsByCityId(String cityId, Integer type, String labelId);
+	POIListDto getPOIsByCityId(String cityId, Integer type, String labelId, 
+							Integer page, Integer count);
 	
 	POIDetailDto getPOIDetailById(String id, Integer type);
 	

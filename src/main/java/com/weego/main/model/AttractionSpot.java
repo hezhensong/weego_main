@@ -1,8 +1,13 @@
 package com.weego.main.model;
 
+import org.mongojack.Id;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AttractionSpot {
+
+	@Id
+	private String id;
 
 	@JsonProperty("cover_image")
 	private String coverImage;
@@ -11,6 +16,14 @@ public class AttractionSpot {
 	private String desc;
 	private String tag;
 	private String advice;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getCoverImage() {
 		return coverImage;

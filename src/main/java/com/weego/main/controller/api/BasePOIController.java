@@ -26,9 +26,11 @@ public class BasePOIController {
     public POIListDto getPOIList(
     		@RequestParam("cityId") String cityId,
     		@RequestParam("type") Integer type,
-    		@RequestParam("labelId") String labelId) {
+    		@RequestParam("labelId") String labelId,
+    		@RequestParam("page") Integer page,
+    		@RequestParam("count") Integer count) {
 		
-        return basePOIService.getPOIsByCityId(cityId, type, labelId);
+        return basePOIService.getPOIsByCityId(cityId, type, labelId, page, count);
     }
 	
 	@RequestMapping(value = "/discovery/poi", method = RequestMethod.GET)

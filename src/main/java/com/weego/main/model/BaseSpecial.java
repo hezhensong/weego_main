@@ -4,18 +4,15 @@ import org.mongojack.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RestaurantDish {
-
+public class BaseSpecial {
 	@Id
 	private String id;
-
 	@JsonProperty("cover_image")
 	private String coverImage;
-
 	private String title;
 	private String desc;
-	private String tag;
 	private String advice;
+	private String tag;
 
 	public String getId() {
 		return id;
@@ -49,20 +46,20 @@ public class RestaurantDish {
 		this.desc = desc;
 	}
 
-	public String getTag() {
-		return tag;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
 	public String getAdvice() {
 		return advice;
 	}
 
 	public void setAdvice(String advice) {
 		this.advice = advice;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 }

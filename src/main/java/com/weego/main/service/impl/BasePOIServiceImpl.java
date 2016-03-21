@@ -1,5 +1,7 @@
 package com.weego.main.service.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +12,16 @@ import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
 import com.weego.main.service.AttractionService;
 import com.weego.main.service.BasePOIService;
+import com.weego.main.service.BrandService;
+import com.weego.main.service.DishService;
 import com.weego.main.service.RestaurantService;
 import com.weego.main.service.ShoppingService;
+import com.weego.main.service.SpotService;
 
 @Service("basePOIService")
 public class BasePOIServiceImpl implements BasePOIService {
+	
+	private static Logger logger = LogManager.getLogger(BasePOIServiceImpl.class);
 
 	@Autowired
 	AttractionService attractionService;
@@ -22,17 +29,24 @@ public class BasePOIServiceImpl implements BasePOIService {
 	RestaurantService restaurantService;
 	@Autowired
 	ShoppingService shoppingService;
+	@Autowired
+	SpotService spotService;
+	@Autowired
+	DishService dishService;
+	@Autowired
+	BrandService brandService;
 	
 	@Override
-	public POIListDto getPOIsByCityId(String cityId, Integer type, String labelId) {
+	public POIListDto getPOIsByCityId(String cityId, Integer type, String labelId, 
+			Integer page, Integer count) {
 		if (type == 0) {
-			return attractionService.getAttractionsByCityId(cityId, labelId);
+			return attractionService.getAttractionsByCityId(cityId, labelId, page, count);
 		} else if (type == 1) {
-			return restaurantService.getRestaurantsByCityId(cityId, labelId);
+			return restaurantService.getRestaurantsByCityId(cityId, labelId, page, count);
 		} else if (type == 2) {
-			return shoppingService.getShoppingsByCityId(cityId, labelId);
+			return shoppingService.getShoppingsByCityId(cityId, labelId, page, count);
 		} else {
-			System.out.println("type 参数值有误");
+			logger.info("type 参数值有误");
 			return null;
 		}
 	}
@@ -46,7 +60,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 		} else if (type == 2) {
 			return shoppingService.getShoppingById(id);
 		} else {
-			System.out.println("type 参数值有误");
+			logger.info("type 参数值有误");
 			return null;
 		}
 	}
@@ -60,7 +74,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 		} else if (type == 2) {
 			return shoppingService.getShoppingBrandsById(id);
 		} else {
-			System.out.println("type 参数值有误");
+			logger.info("type 参数值有误");
 			return null;
 		}
 	}
@@ -68,13 +82,13 @@ public class BasePOIServiceImpl implements BasePOIService {
 	@Override
 	public POISpecialDetailDto getPOISpecialDetailById(String specialId, Integer type) {
 		if (type == 0) {
-			return attractionService.getAttractionSpotDetail(specialId);
+			return spotService.getSpotById(specialId);
 		} else if (type == 1) {
-			return restaurantService.getRestaurantDishDetail(specialId);
+			return dishService.getDishById(specialId);
 		} else if (type == 2) {
-			return shoppingService.getShoppingBrandDetail(specialId);
+			return brandService.getBrandById(specialId);
 		} else {
-			System.out.println("type 参数值有误");
+			logger.info("type 参数值有误");
 			return null;
 		}
 	}
@@ -88,7 +102,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 		} else if (type == 2) {
 			return shoppingService.getShoppingCommentsById(id);
 		} else {
-			System.out.println("type 参数值有误");
+			logger.info("type 参数值有误");
 			return null;
 		}
 	}

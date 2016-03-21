@@ -15,13 +15,14 @@ import com.weego.main.model.Shopping;
 public class ShoppingDao {
 	private DB database = MongoConnectionFactory.getDatabase();
 
-	public List<Shopping> getShoppingsByCityId(String cityId, String labelId) {
+	public List<Shopping> getShoppingsByCityId(String cityId, String labelId, Integer page, Integer count) {
 		DBCollection collection = database.getCollection("shopping");
 		JacksonDBCollection<Shopping, String> jackCollection = JacksonDBCollection
 				.wrap(collection, Shopping.class, String.class);
+		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-		return jackCollection.find(query).toArray();
+		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 
 	public Shopping getShoppingById(String id) {
@@ -39,7 +40,6 @@ public class ShoppingDao {
 				.wrap(collection, Shopping.class, String.class);
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-//		query.put("","");   经纬度的处理
 		return jackCollection.find(query).toArray();
 	}
 }

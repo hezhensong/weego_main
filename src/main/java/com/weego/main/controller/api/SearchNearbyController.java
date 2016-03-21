@@ -21,8 +21,9 @@ public class SearchNearbyController {
 	public SearchNearByDto getSearchNearByInfos(
 			@RequestParam("cityId") String cityId,
     		@RequestParam("type") Integer type,
-    		@RequestParam("coordination") String coordination) {
+    		@RequestParam("coordination") String coordination,
+			@RequestParam("sort") String sort) {
 		
-		return searchNearByService.getSearchNearByInfos(cityId, type, coordination);
+		return searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort);
 	}
 }
