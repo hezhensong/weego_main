@@ -1,5 +1,7 @@
 package com.weego.main.controller.api;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import com.weego.main.service.ActivityService;
 @RequestMapping("/api/v3/city/activity")
 public class ActivityController {
 
+    private Logger logger = LogManager.getLogger(ActivityController.class);
+
     @Autowired
     private ActivityService cityActivityService;
 
@@ -24,6 +28,8 @@ public class ActivityController {
     @ResponseBody
     public ResponseDto<ActivityListDto> getActivityList(@PathVariable("cityId") String cityId) {
 
+        logger.info("开始城市活动列表查询");
+        logger.info("cityId = {}", cityId);
         ResponseDto<ActivityListDto> responseDto = new ResponseDto<>();
         ActivityListDto activityBaseList = cityActivityService.getActivityList(cityId);
         if (activityBaseList != null) {
@@ -32,6 +38,7 @@ public class ActivityController {
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
         }
+        logger.info("结束城市活动列表查询");
         return responseDto;
 
     }
@@ -40,7 +47,8 @@ public class ActivityController {
     @ResponseBody
     public ResponseDto<ActivityDetailDto> getActivityDetail(@PathVariable("cityActivityId") String cityActivityId) {
 
-        System.out.println(cityActivityId);
+        logger.info("开始城市活动详情查询");
+        logger.info("cityActivityId = {}", cityActivityId);
         ResponseDto<ActivityDetailDto> responseDto = new ResponseDto<>();
 
         ActivityDetailDto activityDetailDto = cityActivityService.getActivityDetail(cityActivityId);
@@ -51,6 +59,7 @@ public class ActivityController {
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
         }
+        logger.info("结束城市活动详情查询");
         return responseDto;
 
     }

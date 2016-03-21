@@ -47,21 +47,21 @@ public class DateUtil {
         Date date = sdf.parse(datestr);
         return date;
     }
-    
-    public static Date getnow(){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
 
-        java.util.Date date=null;
+    public static Date getnow() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+        java.util.Date date = null;
         try {
-           date= sdf.parse(sdf.format(new Date()));
+            date = sdf.parse(sdf.format(new Date()));
 
         } catch (ParseException e) {
 
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return date;
     }
-    
+
     // 获取时间格式 yyyyMMdd
     public static Date yyyyMMdd(Date date) {
         DateTime dateTime = new DateTime(date);
@@ -83,6 +83,7 @@ public class DateUtil {
 
     /**
      * 获取日期的 月日 格式MMdd
+     * 
      * @param date
      * @return
      */
@@ -93,6 +94,7 @@ public class DateUtil {
 
     /**
      * GMT 转化为 UTC
+     * 
      * @param date
      * @return
      */
@@ -101,7 +103,6 @@ public class DateUtil {
         dateTime.plusHours(8);
         return dateTime.toDate();
     }
-
 
     /**
      * 计算两个日期之间相差的天数
@@ -113,24 +114,13 @@ public class DateUtil {
      * @return 相差天数
      * @throws ParseException
      */
-    public static int daysBetween(Date smdate, Date bdate) throws ParseException{
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        smdate = sdf.parse(sdf.format(smdate));
-//        System.out.println("较小时间"+smdate);
-//        bdate = sdf.parse(sdf.format(bdate));
-//        System.out.println("较大时间是"+bdate);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(smdate);
-//        long time1 = cal.getTimeInMillis();
-//        cal.setTime(bdate);
-//        long time2 = cal.getTimeInMillis();
+    public static int daysBetween(Date smdate, Date bdate) throws ParseException {
         long time1 = smdate.getTime();
         long time2 = bdate.getTime();
         long between_days = (time2 - time1) / (1000 * 3600 * 24);
 
         return Integer.parseInt(String.valueOf(between_days));
     }
-
 
     /**
      * 计算两个long型日期之间相差的天数
@@ -142,42 +132,43 @@ public class DateUtil {
      * @return 相差天数
      * @throws ParseException
      */
-    public static int daysBetween(long smdate, long bdate) throws ParseException{
+    public static int daysBetween(long smdate, long bdate) throws ParseException {
         long between_days = (bdate - smdate) / (3600 * 24);
         return Integer.parseInt(String.valueOf(between_days));
     }
-    
-    
+
     /**
      * 将时间戳转换成Date
+     * 
      * @param datetime
      * @return
      * @throws ParseException
      */
-    public static Date longChangeToDate(long datetime) throws ParseException{
-      //时间戳转化为Sting或Date  
-        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");  
-        String d = format.format(datetime);  
+    public static Date longChangeToDate(long datetime) throws ParseException {
+        // 时间戳转化为Sting或Date
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String d = format.format(datetime);
         Date date = format.parse(d);
-        return date;  
-       
+        return date;
+
     }
-    
+
     /**
      * 将时间戳转换成时间类型的字符串
+     * 
      * @param datetime
      * @return
      * @throws ParseException
      */
-    public static String longChangeToDateStr(long datetime) throws ParseException{
-      //时间戳转化为Sting或Date  
-        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");  
-        String dateStr = format.format(datetime);  
-       // Date date = format.parse(d);
-        return dateStr;  
-       
+    public static String longChangeToDateStr(long datetime) throws ParseException {
+        // 时间戳转化为Sting或Date
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = format.format(datetime);
+        // Date date = format.parse(d);
+        return dateStr;
+
     }
-    
+
     public static void main(String[] args) throws ParseException {
         System.out.println(new Date().getTime());
         System.out.println(longChangeToDateStr(1454803200));

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,15 @@ import com.weego.main.util.DateUtil;
 @Service("cityActivityService")
 public class ActivityServiceImpl implements ActivityService {
 
+    private Logger logger = LogManager.getLogger(ActivityServiceImpl.class);
     @Autowired
     private ActivityDao cityActivityDao;
 
     public ActivityDetailDto getActivityDetail(String cityActivityId) {
 
+        logger.info("查询城市活动详细信息, cityActivityId = {}", cityActivityId);
+        
+        logger.info("-------查询城市活动详细信息开始----------");
         ActivityDetailDto activityDetailDto = new ActivityDetailDto();
 
         Activity cityActivity = cityActivityDao.getSpecifiedCity(cityActivityId);
@@ -84,11 +90,16 @@ public class ActivityServiceImpl implements ActivityService {
 
         }
 
+        logger.info("-------查询城市活动详细信息结束----------");
         return activityDetailDto;
     }
 
     @Override
     public ActivityListDto getActivityList(String cityId) {
+        
+        logger.info("查询城市活动列表, cityId = {}", cityId);
+        
+        logger.info("---------查询城市活动列表开始----------");
 
         ActivityListDto activityListDto = new ActivityListDto();
 
@@ -116,6 +127,7 @@ public class ActivityServiceImpl implements ActivityService {
                 Date datenow = new Date();
                 Date openTime = cityActivity.getOpenTime();
                 Date closeTime = cityActivity.getCloseTime();
+                logger.info("---------查询城市活动列表开始----------");
                 if (openTime != null && closeTime != null) {
                     // 计算活动开始时间与当前日期相差的天数
                     int opennow;
@@ -159,6 +171,7 @@ public class ActivityServiceImpl implements ActivityService {
             }
         }
         activityListDto.setActivityList(activityBaseDtoList);
+        logger.info("---------查询城市活动列表结束----------");
         return activityListDto;
     }
 

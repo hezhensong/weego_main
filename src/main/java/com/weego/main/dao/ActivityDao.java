@@ -49,15 +49,15 @@ public class ActivityDao {
         Date date = new Date();
         Date dateNow = DateUtil.covertTimeToUTC(date);
         // 获取距离今天七天之内的活动
-        Date dateSeven = DateUtil.afterNDays(date, -7);
-        Date dateBefore = DateUtil.covertTimeToUTC(dateSeven);
+        Date dateSeven = DateUtil.afterNDays(date, 7);
+        Date dateAfter = DateUtil.covertTimeToUTC(dateSeven);
         DBObject orderBy = new BasicDBObject();
         orderBy.put("start_time", 1);
         // 按照活动开始日期由近到远.
         return coll.find(DBQuery.and(
                              DBQuery.is("city_id", new ObjectId(cityId)),
                              DBQuery.greaterThanEquals("end_time", dateNow),
-                             DBQuery.greaterThanEquals("start_time", dateBefore)
+                             DBQuery.lessThanEquals("start_time", dateAfter)
                          )).sort(orderBy).toArray();
     }
 }
