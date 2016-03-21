@@ -21,7 +21,6 @@ public class ActivityDao {
     private DB database = MongoConnectionFactory.getDatabase();
 
     public Activity getSpecifiedCity(String cityActivityId) {
-
         DBCollection collection = database.getCollection("activity");
 
         JacksonDBCollection<Activity, String> coll;
@@ -36,7 +35,6 @@ public class ActivityDao {
         } else {
             return null;
         }
-
     }
 
     public List<Activity> getAllActivity(String cityId) {
@@ -44,20 +42,22 @@ public class ActivityDao {
 
         JacksonDBCollection<Activity, String> coll;
         coll = JacksonDBCollection.wrap(collection, Activity.class, String.class);
-        
+
         // 获取当前时间并转成数据库时间
         Date date = new Date();
         Date dateNow = DateUtil.covertTimeToUTC(date);
+
         // 获取距离今天七天之内的活动
         Date dateSeven = DateUtil.afterNDays(date, 7);
         Date dateAfter = DateUtil.covertTimeToUTC(dateSeven);
         DBObject orderBy = new BasicDBObject();
         orderBy.put("start_time", 1);
+
         // 按照活动开始日期由近到远.
         return coll.find(DBQuery.and(
-                             DBQuery.is("city_id", new ObjectId(cityId)),
-                             DBQuery.greaterThanEquals("end_time", dateNow),
-                             DBQuery.lessThanEquals("start_time", dateAfter)
-                         )).sort(orderBy).toArray();
+                DBQuery.is("city_id", new ObjectId(cityId)),
+                DBQuery.greaterThanEquals("end_time", dateNow),
+                DBQuery.lessThanEquals("start_time", dateAfter)
+        )).sort(orderBy).toArray();
     }
 }

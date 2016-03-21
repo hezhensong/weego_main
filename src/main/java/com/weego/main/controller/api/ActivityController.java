@@ -1,25 +1,20 @@
 package com.weego.main.controller.api;
 
+import com.weego.main.constant.ErrorCode;
+import com.weego.main.dto.ActivityBaseDto;
+import com.weego.main.dto.ActivityDetailDto;
+import com.weego.main.dto.ResponseDto;
+import com.weego.main.service.ActivityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.weego.main.constant.ErrorCode;
-import com.weego.main.dto.ActivityDetailDto;
-import com.weego.main.dto.ActivityListDto;
-import com.weego.main.dto.ResponseDto;
-import com.weego.main.service.ActivityService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v3/city/activity")
 public class ActivityController {
-
     private Logger logger = LogManager.getLogger(ActivityController.class);
 
     @Autowired
@@ -27,14 +22,17 @@ public class ActivityController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public ActivityListDto getActivityList(@RequestParam("cityId") String cityId) {
+    public ResponseDto<List<ActivityBaseDto>> getActivityList(@RequestParam("cityId") String cityId) {
 
         logger.info("开始城市活动列表查询");
         logger.info("cityId = {}", cityId);
-        ActivityListDto activityBaseList = cityActivityService.getActivityList(cityId);
-        logger.info("结束城市活动列表查询");
-        return activityBaseList;
+        List<ActivityBaseDto> activityBaseList = cityActivityService.getActivityList(cityId);
 
+        logger.info("结束城市活动列表查询");
+        ResponseDto<List<ActivityBaseDto>> responseDto = new ResponseDto<>();
+        responseDto.setData(activityBaseList);
+
+        return responseDto;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
