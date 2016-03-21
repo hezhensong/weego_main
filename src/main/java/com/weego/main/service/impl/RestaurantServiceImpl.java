@@ -285,20 +285,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 				searchNearByBaseDto.setCoverImage(restaurant.getCoverImage());
 
 				String newCoordination = restaurant.getCoordination();
-				if (newCoordination != null
-						&& newCoordination.split(",").length >= 2) {
-					String newLongitude = newCoordination.split(",")[0];
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];
+					String newLongitude = newCoordination.split(",")[0];
 
 					if (!coordination.contains(",")) {
 						logger.info("coordination 参数值有误");
 					} else {
 						if (coordination.split(",").length >= 2) {
-							String longitude = coordination.split(",")[0];
 							String latitude = coordination.split(",")[1];
-							Double distance = DistanceUtil.getDistance(
-									newLatitude, newLongitude, latitude,
-									longitude);
+							String longitude = coordination.split(",")[0];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
 							searchNearByBaseDto.setDistance(distance);
 						}
 					}

@@ -74,7 +74,7 @@ public class CityServiceImpl implements CityService {
                 cityListContinentDtoList.add(cityListContinentDto);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -103,39 +103,15 @@ public class CityServiceImpl implements CityService {
         for (String type : labelListMap.keySet()) {
 
             if (type.equals("0")) {
-                List<Map<String, String>> attractionLabelList = new ArrayList<>();
-
-                List<CityLabel> cityLabelList = labelListMap.get("0");
-                for (CityLabel cityLabel : cityLabelList) {
-                    Map<String, String> attractionLabel = new HashMap<>();
-                    attractionLabel.put("id", cityLabel.getId());
-                    attractionLabel.put("title", cityLabel.getName());
-                    attractionLabelList.add(attractionLabel);
-                }
+                List<Map<String, String>> attractionLabelList = convertCityLabelListToMap(labelListMap.get("0"));
                 cityHomeLabelDto.setAttractionLabel(attractionLabelList);
 
             } else if (type.equals("1")) {
-                List<Map<String, String>> restaurantLabelList = new ArrayList<>();
-
-                List<CityLabel> cityLabelList = labelListMap.get("1");
-                for (CityLabel cityLabel : cityLabelList) {
-                    Map<String, String> attractionLabel = new HashMap<>();
-                    attractionLabel.put("id", cityLabel.getId());
-                    attractionLabel.put("title", cityLabel.getName());
-                    restaurantLabelList.add(attractionLabel);
-                }
+                List<Map<String, String>> restaurantLabelList = convertCityLabelListToMap(labelListMap.get("1"));
                 cityHomeLabelDto.setRestaurantLabel(restaurantLabelList);
 
             } else if (type.equals("2")) {
-                List<Map<String, String>> shoppingLabelList = new ArrayList<>();
-
-                List<CityLabel> cityLabelList = labelListMap.get("2");
-                for (CityLabel cityLabel : cityLabelList) {
-                    Map<String, String> shoppingLabel = new HashMap<>();
-                    shoppingLabel.put("id", cityLabel.getId());
-                    shoppingLabel.put("title", cityLabel.getName());
-                    shoppingLabelList.add(shoppingLabel);
-                }
+                List<Map<String, String>> shoppingLabelList = convertCityLabelListToMap(labelListMap.get("2"));
                 cityHomeLabelDto.setShoppingLabel(shoppingLabelList);
             }
         }
@@ -181,7 +157,7 @@ public class CityServiceImpl implements CityService {
         cityHomePlanDto.setDateRange("");
         cityHomeDto.setPlan(cityHomePlanDto);
 
-        // 获取城市活动
+        // 获取城市活动 TODO 需要制定城市活动获取规则
         CityHomeActivityDto cityHomeActivityDto = new CityHomeActivityDto();
         cityHomeDto.setCityActivity(cityHomeActivityDto);
 
@@ -196,6 +172,18 @@ public class CityServiceImpl implements CityService {
         cityHomePgcDto.setCoverImage("http://weegotest.b0.upaiyun.com/activities/iosimgs/56cc5cf22ddd9d3d17000022.jpeg");
 
         return cityHomeDto;
+    }
+
+    private List<Map<String, String>> convertCityLabelListToMap(List<CityLabel> cityLabelList) {
+        List<Map<String, String>> attractionLabelList = new ArrayList<>();
+
+        for (CityLabel cityLabel : cityLabelList) {
+            Map<String, String> attractionLabel = new HashMap<>();
+            attractionLabel.put("id", cityLabel.getId());
+            attractionLabel.put("title", cityLabel.getName());
+            attractionLabelList.add(attractionLabel);
+        }
+        return attractionLabelList;
     }
 
     @Override

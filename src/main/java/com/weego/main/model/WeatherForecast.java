@@ -2,10 +2,6 @@ package com.weego.main.model;
 
 import java.util.Date;
 
-/**
- * Created  by Eric He on 2016-03-19 下午 05:25.
- * Modified by Eric He on 2016-03-19 下午 05:25.
- */
 public class WeatherForecast {
 
     private Date date;

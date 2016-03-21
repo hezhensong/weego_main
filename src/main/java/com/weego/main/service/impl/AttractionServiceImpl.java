@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.codehaus.jackson.map.util.Comparators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -266,20 +265,17 @@ public class AttractionServiceImpl implements AttractionService {
 				searchNearByBaseDto.setCoverImage(attraction.getCoverImage());
 
 				String newCoordination = attraction.getCoordination();
-				if (newCoordination != null
-						&& newCoordination.split(",").length >= 2) {
-					String newLongitude = newCoordination.split(",")[0];
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];
+					String newLongitude = newCoordination.split(",")[0];
 
 					if (!coordination.contains(",")) {
 						logger.info("coordination 参数值有误");
 					} else {
 						if (coordination.split(",").length >= 2) {
-							String longitude = coordination.split(",")[0];
 							String latitude = coordination.split(",")[1];
-							Double distance = DistanceUtil.getDistance(
-									newLatitude, newLongitude, latitude,
-									longitude);
+							String longitude = coordination.split(",")[0];
+							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
 							searchNearByBaseDto.setDistance(distance);
 						}
 					}

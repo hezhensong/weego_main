@@ -1,46 +1,46 @@
 package com.weego.main.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.weego.main.constant.ErrorCode;
+import com.weego.main.dto.ActivityBaseDto;
 import com.weego.main.dto.ActivityDetailDto;
-import com.weego.main.dto.ActivityListDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.ActivityService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v3/city/activity")
 public class ActivityController {
+    private Logger logger = LogManager.getLogger(ActivityController.class);
 
     @Autowired
     private ActivityService cityActivityService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityListDto> getActivityList() {
+    public ResponseDto<List<ActivityBaseDto>> getActivityList(@RequestParam("cityId") String cityId) {
 
-        ResponseDto<ActivityListDto> responseDto = new ResponseDto<>();
-        ActivityListDto activityBaseList = cityActivityService.getActivityList();
-        if (activityBaseList != null) {
-            responseDto.setCodeMessage(ErrorCode.SUCCESS);
-            responseDto.setData(activityBaseList);
-        } else {
-            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
-        }
+        logger.info("开始城市活动列表查询");
+        logger.info("cityId = {}", cityId);
+        List<ActivityBaseDto> activityBaseList = cityActivityService.getActivityList(cityId);
+
+        logger.info("结束城市活动列表查询");
+        ResponseDto<List<ActivityBaseDto>> responseDto = new ResponseDto<>();
+        responseDto.setData(activityBaseList);
+
         return responseDto;
-
     }
 
-    @RequestMapping(value = "/{cityActivityId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityDetailDto> getActivityDetail(@PathVariable("cityActivityId") String cityActivityId) {
+    public ResponseDto<ActivityDetailDto> getActivityDetail(@RequestParam("cityActivityId") String cityActivityId) {
 
-        System.out.println(cityActivityId);
+        logger.info("开始城市活动详情查询");
+        logger.info("cityActivityId = {}", cityActivityId);
         ResponseDto<ActivityDetailDto> responseDto = new ResponseDto<>();
 
         ActivityDetailDto activityDetailDto = cityActivityService.getActivityDetail(cityActivityId);
@@ -51,8 +51,8 @@ public class ActivityController {
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
         }
+        logger.info("结束城市活动详情查询");
         return responseDto;
 
     }
-
 }

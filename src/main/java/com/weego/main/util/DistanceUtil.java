@@ -28,7 +28,7 @@ public class DistanceUtil {
         s = s * EARTH_RADIUS;
         return s;
     }
-    
+
     public static void main(String[] args) {
 
         // 济南国际会展中心经纬度：117.11811 36.68484
