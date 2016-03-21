@@ -34,4 +34,15 @@ public class RestaurantDao {
 		query.put("_id", new ObjectId(id));
 		return jackCollection.findOne(query);
 	}
+	
+	public List<Restaurant> getRestaurantsByCityIdAndCoordination(String cityId, String coordination) {
+		DBCollection collection = database.getCollection("restaurant");
+
+		JacksonDBCollection<Restaurant, String> jackCollection = JacksonDBCollection
+				.wrap(collection, Restaurant.class, String.class);
+		BasicDBObject query = new BasicDBObject();
+		query.put("city_id", new ObjectId(cityId));
+//		query.put("", "");   经纬度的处理
+		return jackCollection.find(query).toArray();
+	}
 }

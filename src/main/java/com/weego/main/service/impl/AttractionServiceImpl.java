@@ -19,6 +19,8 @@ import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.SearchNearByBaseDto;
+import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.model.Attraction;
 import com.weego.main.model.AttractionSpot;
 import com.weego.main.model.BasePOIActivities;
@@ -113,8 +115,7 @@ public class AttractionServiceImpl implements AttractionService {
 			if (basePOIActivities != null && basePOIActivities.size() > 0) {
 				for (BasePOIActivities basePOIActivity : basePOIActivities) {
 					POIDetailActivitiesDto poiDetailActivitiesDto = new POIDetailActivitiesDto();
-					poiDetailActivitiesDto.setActivityId(basePOIActivity
-							.getId());
+					poiDetailActivitiesDto.setActivityId(basePOIActivity.getId());
 					poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
 					// not finished
 
@@ -233,4 +234,40 @@ public class AttractionServiceImpl implements AttractionService {
 		}
 		return poiCommentsDto;
 	}
+
+	@Override
+	public SearchNearByDto getAttractionsByCityIdAndCoordination(String cityId, String coordination) {
+		SearchNearByDto searchNearByDto = new SearchNearByDto();
+		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
+		List<Attraction> attractions = attractionDao.getAttractionsByCityIdAndCoordination(cityId, coordination);
+		
+		if(attractions != null && attractions.size() > 0) {
+			for(Attraction attraction : attractions) {
+				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+				searchNearByBaseDto.setId(attraction.getId());
+				searchNearByBaseDto.setName(attraction.getName());
+				searchNearByBaseDto.setAddress(attraction.getAddress());
+				searchNearByBaseDto.setCoverImage(attraction.getCoverImage());
+//				searchNearByBaseDto.setDistance(8807.0); 距离的计算
+				
+				String newCoordination = attraction.getCoordination();
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String latitude = newCoordination.split(",")[1];
+					String longitude = newCoordination.split(",")[0];
+					searchNearByBaseDto.setLatitude(latitude);
+					searchNearByBaseDto.setLongitude(longitude);
+				}
+				
+				searchNearByBaseDto.setScore(attraction.getRating());
+				List<BasePOITag> tags = attraction.getSubTag();
+				if (tags != null && tags.size() > 0) {
+					searchNearByBaseDto.setTag(attraction.getSubTag().get(0).getTag());
+				}
+				
+				searchNearByBaseDtos.add(searchNearByBaseDto);
+			}
+		}
+		searchNearByDto.setData(searchNearByBaseDtos);
+		return searchNearByDto;
+	}	
 }
