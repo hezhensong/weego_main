@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by liuniandxx on 16-3-21.
  */
-public class PersonDto extends BaseDto {
+public class PersonDto {
     private Map<String, Object> data;
 
     public Map<String, Object> getData() {
