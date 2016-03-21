@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,26 +27,19 @@ public class ActivityController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityListDto> getActivityList(@PathVariable("cityId") String cityId) {
+    public ActivityListDto getActivityList(@RequestParam("cityId") String cityId) {
 
         logger.info("开始城市活动列表查询");
         logger.info("cityId = {}", cityId);
-        ResponseDto<ActivityListDto> responseDto = new ResponseDto<>();
         ActivityListDto activityBaseList = cityActivityService.getActivityList(cityId);
-        if (activityBaseList != null) {
-            responseDto.setCodeMessage(ErrorCode.SUCCESS);
-            responseDto.setData(activityBaseList);
-        } else {
-            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
-        }
         logger.info("结束城市活动列表查询");
-        return responseDto;
+        return activityBaseList;
 
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDto<ActivityDetailDto> getActivityDetail(@PathVariable("cityActivityId") String cityActivityId) {
+    public ResponseDto<ActivityDetailDto> getActivityDetail(@RequestParam("cityActivityId") String cityActivityId) {
 
         logger.info("开始城市活动详情查询");
         logger.info("cityActivityId = {}", cityActivityId);
@@ -63,5 +57,4 @@ public class ActivityController {
         return responseDto;
 
     }
-
 }

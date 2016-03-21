@@ -2,7 +2,7 @@ package com.weego.main.dto;
 
 import java.util.List;
 
-public class ActivityListDto {
+public class ActivityListDto extends BaseDto{
 
     private List<ActivityBaseDto> activityList;
 
