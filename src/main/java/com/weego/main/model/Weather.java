@@ -1,22 +1,27 @@
 package com.weego.main.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mongojack.Id;
+
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 public class Weather implements Serializable {
     private static final long serialVersionUID = -7264688807134534953L;
 
+    @Id
     private String id;
+
+    @JsonProperty("date")
+    private Date date;
+
+    @JsonProperty("city_id")
     private String cityId;
-    private String timestamp;
-    private String yahooWeather;
 
-    public String getYahooWeather() {
-        return yahooWeather;
-    }
+    private WeatherCondition condition;
 
-    public void setYahooWeather(String yahooWeather) {
-        this.yahooWeather = yahooWeather;
-    }
+    private List<WeatherForecast> forecast;
 
     public String getId() {
         return id;
@@ -24,6 +29,14 @@ public class Weather implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCityId() {
@@ -34,11 +47,19 @@ public class Weather implements Serializable {
         this.cityId = cityId;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public WeatherCondition getCondition() {
+        return condition;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setCondition(WeatherCondition condition) {
+        this.condition = condition;
+    }
+
+    public List<WeatherForecast> getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(List<WeatherForecast> forecast) {
+        this.forecast = forecast;
     }
 }

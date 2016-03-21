@@ -1,6 +1,7 @@
 package com.weego.main.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bson.types.ObjectId;
 import org.mongojack.Id;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class City {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     @JsonProperty("name")
     private String name;
@@ -28,16 +29,16 @@ public class City {
     private Map<String, List<CityLabel>> labelList;
 
     @JsonProperty("area")
-    private Area area;
+    private CityArea area;
 
     @JsonProperty("is_show")
     private boolean isShow;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -89,11 +90,11 @@ public class City {
         isShow = show;
     }
 
-    public Area getArea() {
+    public CityArea getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(CityArea area) {
         this.area = area;
     }
 }

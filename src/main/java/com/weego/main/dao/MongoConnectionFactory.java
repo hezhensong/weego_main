@@ -2,10 +2,13 @@ package com.weego.main.dao;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.UnknownHostException;
 
 public class MongoConnectionFactory {
+    private static Logger logger = LogManager.getLogger(MongoConnectionFactory.class);
     private static MongoClient mongoClient = null;
 
     public static DB getDatabase() {
@@ -16,7 +19,7 @@ public class MongoConnectionFactory {
                 initializeMongoClient();
             } catch (UnknownHostException e) {
                 e.printStackTrace();
-                System.out.println("数据库服务器不可用");
+                logger.fatal("数据库服务器不可用 {}" + e.getStackTrace());
             }
         }
 
@@ -27,6 +30,7 @@ public class MongoConnectionFactory {
     }
 
     private static void initializeMongoClient() throws UnknownHostException {
+<<<<<<< HEAD
         // MongoClientOptions.Builder builder = new
         // MongoClientOptions.Builder();
         // builder.connectionsPerHost(100);
@@ -39,6 +43,10 @@ public class MongoConnectionFactory {
         Integer port = 37017;
 //        String host = "10.12.10.200";
 //        Integer port = 27017;
+=======
+        String host = "192.168.37.128";
+        Integer port = 27017;
+>>>>>>> b651e9582c8092c8bc601bc1510aa347d7fc70e7
         mongoClient = new MongoClient(host, port);
     }
 
