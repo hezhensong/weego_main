@@ -3,6 +3,8 @@ package com.weego.main.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +30,13 @@ import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Restaurant;
 import com.weego.main.model.RestaurantDish;
 import com.weego.main.service.RestaurantService;
+import com.weego.main.util.DistanceUtil;
 
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
 
+	private static Logger logger = LogManager.getLogger(RestaurantServiceImpl.class);
+	
 	@Autowired
 	RestaurantDao restaurantDao;
 
@@ -251,15 +256,25 @@ public class RestaurantServiceImpl implements RestaurantService {
 				searchNearByBaseDto.setName(restaurant.getName());
 				searchNearByBaseDto.setAddress(restaurant.getAddress());
 				searchNearByBaseDto.setCoverImage(restaurant.getCoverImage());
-				// searchNearByBaseDto.setDistance(8807.0); 距离的计算
-
+				
 				String newCoordination = restaurant.getCoordination();
-				if (newCoordination != null
-						&& newCoordination.split(",").length >= 2) {
-					String latitude = newCoordination.split(",")[1];
-					String longitude = newCoordination.split(",")[0];
-					searchNearByBaseDto.setLatitude(latitude);
-					searchNearByBaseDto.setLongitude(longitude);
+				if (newCoordination != null && newCoordination.split(",").length >= 2) {
+					String newLatitude = newCoordination.split(",")[1];
+					String newLongitude = newCoordination.split(",")[0];
+
+					if (!coordination.contains(",")) {
+						logger.info("coordination 参数值有误");
+					} else {
+						if (coordination.split(",").length >= 2) {
+							String latitude = coordination.split(",")[1];
+							String longitude = coordination.split(",")[0];
+							String distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
+							searchNearByBaseDto.setDistance(Double.valueOf(distance));
+						}
+					}
+
+					searchNearByBaseDto.setLatitude(newLatitude);
+					searchNearByBaseDto.setLongitude(newLongitude);
 				}
 
 				searchNearByBaseDto.setScore(restaurant.getRating());
