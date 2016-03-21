@@ -17,53 +17,52 @@ import com.weego.main.service.BasePOIService;
 @RestController
 @RequestMapping("/api/v3/city")
 public class BasePOIController {
-	
+
 	@Autowired
 	BasePOIService basePOIService;
-	
+
 	@RequestMapping(value = "/discovery", method = RequestMethod.GET)
-    @ResponseBody
-    public POIListDto getPOIList(
-    		@RequestParam("cityId") String cityId,
-    		@RequestParam("type") Integer type,
-    		@RequestParam("labelId") String labelId) {
-		
-        return basePOIService.getPOIsByCityId(cityId, type, labelId);
-    }
-	
+	@ResponseBody
+	public POIListDto getPOIList(@RequestParam("cityId") String cityId,
+			@RequestParam("type") Integer type,
+			@RequestParam("labelId") String labelId,
+			@RequestParam("page") Integer page,
+			@RequestParam("count") Integer count) {
+
+		return basePOIService.getPOIsByCityId(cityId, type, labelId, page,
+				count);
+	}
+
 	@RequestMapping(value = "/discovery/poi", method = RequestMethod.GET)
-    @ResponseBody
-    public POIDetailDto getPOIDetail(
-    		@RequestParam("id") String id,
-    		@RequestParam("type") Integer type) {
-		
-       return basePOIService.getPOIDetailById(id, type);
-    }
-	
+	@ResponseBody
+	public POIDetailDto getPOIDetail(@RequestParam("id") String id,
+			@RequestParam("type") Integer type) {
+
+		return basePOIService.getPOIDetailById(id, type);
+	}
+
 	@RequestMapping(value = "/discovery/specialList", method = RequestMethod.GET)
-    @ResponseBody
-    public POISpecialDto getPOISpecialList(
-    		@RequestParam("poiId") String poiId,
-    		@RequestParam("type") Integer type) {
-		
-       return basePOIService.getPOISpecialById(poiId, type);
-    }
-	
+	@ResponseBody
+	public POISpecialDto getPOISpecialList(@RequestParam("poiId") String poiId,
+			@RequestParam("type") Integer type) {
+
+		return basePOIService.getPOISpecialById(poiId, type);
+	}
+
 	@RequestMapping(value = "/discovery/specialDetail", method = RequestMethod.GET)
-    @ResponseBody
-    public POISpecialDetailDto getPOISpecialDetail(
-    		@RequestParam("specialId") String specialId,
-    		@RequestParam("type") Integer type) {
-		
-       return basePOIService.getPOISpecialDetailById(specialId, type);
-    }
-	
+	@ResponseBody
+	public POISpecialDetailDto getPOISpecialDetail(
+			@RequestParam("specialId") String specialId,
+			@RequestParam("type") Integer type) {
+
+		return basePOIService.getPOISpecialDetailById(specialId, type);
+	}
+
 	@RequestMapping(value = "/discovery/comment", method = RequestMethod.GET)
-    @ResponseBody
-    public POICommentsDto getPOIComments(
-    		@RequestParam("poiId") String poiId,
-    		@RequestParam("type") Integer type) {
-		
-       return basePOIService.getPOICommentsById(poiId, type);
-    }
+	@ResponseBody
+	public POICommentsDto getPOIComments(@RequestParam("poiId") String poiId,
+			@RequestParam("type") Integer type) {
+
+		return basePOIService.getPOICommentsById(poiId, type);
+	}
 }

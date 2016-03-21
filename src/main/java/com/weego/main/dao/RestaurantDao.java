@@ -15,14 +15,14 @@ import com.weego.main.model.Restaurant;
 public class RestaurantDao {
 	private DB database = MongoConnectionFactory.getDatabase();
 
-	public List<Restaurant> getRestaurantsByCityId(String cityId, String labelId) {
+	public List<Restaurant> getRestaurantsByCityId(String cityId, String labelId, Integer page, Integer count) {
 		DBCollection collection = database.getCollection("restaurant");
-
 		JacksonDBCollection<Restaurant, String> jackCollection = JacksonDBCollection
 				.wrap(collection, Restaurant.class, String.class);
+		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-		return jackCollection.find(query).toArray();
+		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 	
 	public Restaurant getRestaurantById(String id) {
@@ -42,7 +42,6 @@ public class RestaurantDao {
 				.wrap(collection, Restaurant.class, String.class);
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-//		query.put("", "");   经纬度的处理
 		return jackCollection.find(query).toArray();
 	}
 }

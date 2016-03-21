@@ -5,6 +5,7 @@ import com.weego.main.dao.AreaDao;
 import com.weego.main.dao.WeatherDao;
 import com.weego.main.dto.*;
 import com.weego.main.model.*;
+import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class CityServiceImpl implements CityService {
 
     @Autowired
     private WeatherDao weatherDao;
+
+    @Autowired
+    private ActivityService cityActivityService;
 
     @Override
     public List<CityListDto> getCityList() {
@@ -157,12 +161,15 @@ public class CityServiceImpl implements CityService {
         cityHomePlanDto.setDateRange("");
         cityHomeDto.setPlan(cityHomePlanDto);
 
-        // 获取城市活动 TODO 需要制定城市活动获取规则
+        // 获取城市活动
         CityHomeActivityDto cityHomeActivityDto = new CityHomeActivityDto();
-        cityHomeDto.setCityActivity(cityHomeActivityDto);
-
-        cityHomeActivityDto.setTitle("第十一届圣帕特里克系列音乐会");
-        cityHomeActivityDto.setCoverImage("http://weegotest.b0.upaiyun.com/activities/iosimgs/56c6a57482b914445e000008.jpeg");
+        List<ActivityBaseDto> activityBaseList = cityActivityService.getActivityList(cityId);
+        if (activityBaseList.size() > 0) {
+            ActivityBaseDto activityBaseDto = activityBaseList.get(0);
+            cityHomeActivityDto.setTitle(activityBaseDto.getTitle());
+            cityHomeActivityDto.setCoverImage(activityBaseDto.getImage());
+            cityHomeDto.setCityActivity(cityHomeActivityDto);
+        }
 
         // 获取城市PGC
         CityHomePgcDto cityHomePgcDto = new CityHomePgcDto();

@@ -1,11 +1,20 @@
 package com.weego.main.dto;
 
 public class POIDetailSpecialDto {
+	private String id;
 	private String advice;
 	private String desc;
 	private String title;
 	private String tag;
 	private String coverImage;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getAdvice() {
 		return advice;

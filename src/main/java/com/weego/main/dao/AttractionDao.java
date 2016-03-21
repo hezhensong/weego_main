@@ -15,15 +15,15 @@ import com.weego.main.model.Attraction;
 public class AttractionDao {
 	private DB database = MongoConnectionFactory.getDatabase();
 
-	public List<Attraction> getAttractionsByCityId(String cityId, String labelId) {
+	public List<Attraction> getAttractionsByCityId(String cityId, String labelId,Integer page, Integer count) {
 		DBCollection collection = database.getCollection("attraction");
 		JacksonDBCollection<Attraction, String> jackCollection = JacksonDBCollection
 				.wrap(collection, Attraction.class, String.class);
-		
+		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
 		query.put("master_label._id",new ObjectId(labelId));
-		return jackCollection.find(query).toArray();
+		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 	
 	public Attraction getAttractionById(String id) {
@@ -43,7 +43,6 @@ public class AttractionDao {
 		
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-//		query.put("","");    经纬度的处理
 		return jackCollection.find(query).toArray();
 	}
 

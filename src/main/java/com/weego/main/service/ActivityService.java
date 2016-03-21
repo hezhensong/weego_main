@@ -1,12 +1,14 @@
 package com.weego.main.service;
 
+import com.weego.main.dto.ActivityBaseDto;
 import com.weego.main.dto.ActivityDetailDto;
-import com.weego.main.dto.ActivityListDto;
+
+import java.util.List;
 
 public interface ActivityService {
 
     ActivityDetailDto getActivityDetail(String cityActivityId);
 
-    ActivityListDto getActivityList(String cityId);
+    List<ActivityBaseDto> getActivityList(String cityId);
 
 }

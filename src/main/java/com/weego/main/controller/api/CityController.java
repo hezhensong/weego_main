@@ -7,6 +7,7 @@ import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.model.Area;
+import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,12 +24,6 @@ public class CityController {
 
     @Autowired
     CityService cityService;
-
-    @Autowired
-    WeatherDao weatherDao;
-
-    @Autowired
-    AreaDao areaDao;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
@@ -61,14 +56,4 @@ public class CityController {
 
         return responseDto;
     }
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String, Area> getTest() {
-
-//        return weatherDao.getWeatherByCityId("516a3519f8a6461636000003");
-
-        return areaDao.getArea();
-    }
-
 }

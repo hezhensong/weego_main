@@ -19,13 +19,13 @@ public class SearchNearByServiceImpl implements SearchNearByService {
 	ShoppingService shoppingService;
 	@Override
 	public SearchNearByDto getSearchNearByInfos(String cityId, Integer type,
-			String coordination) {
+			String coordination, String sort) {
 		if (type == 0) {
-			return attractionService.getAttractionsByCityIdAndCoordination(cityId, coordination);
+			return attractionService.getAttractionsByCityIdAndCoordination(cityId, coordination, sort);
 		} else if (type == 1) {
-			return restaurantService.getRestaurantsByCityIdAndCoordination(cityId, coordination);
+			return restaurantService.getRestaurantsByCityIdAndCoordination(cityId, coordination, sort);
 		} else if (type == 2) {
-			return shoppingService.getShoppingsByCityIdAndCoordination(cityId, coordination);
+			return shoppingService.getShoppingsByCityIdAndCoordination(cityId, coordination, sort);
 		} else {
 			System.out.println("type 参数值有误");
 			return null;
