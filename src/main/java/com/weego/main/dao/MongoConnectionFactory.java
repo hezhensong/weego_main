@@ -20,6 +20,7 @@ public class MongoConnectionFactory {
             }
         }
 
+//        String databaseName = "test";
         String databaseName = "travel2";
         database = mongoClient.getDB(databaseName);
         return database;
@@ -36,6 +37,8 @@ public class MongoConnectionFactory {
 
         String host = "192.168.6.254";
         Integer port = 37017;
+//        String host = "10.12.10.200";
+//        Integer port = 27017;
         mongoClient = new MongoClient(host, port);
     }
 
