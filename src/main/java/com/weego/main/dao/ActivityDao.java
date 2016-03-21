@@ -48,8 +48,9 @@ public class ActivityDao {
 //        System.out.println("dao层获取当前时间"+datenow);
 //        Date date = new Date();
 //        long datetime = date.getTime()/1000;
-        Date date = new Date();
-        query.put("end_time", new BasicDBObject("$gt", new Date()));
+       // Date date = new Date();
+        Date dateNow = DateUtil.covertTimeToUTC(new Date());
+        query.put("end_time", new BasicDBObject("$gt", dateNow));
         // 按照活动开始日期由近到远.
         return coll.find(query).limit(10).sort(new BasicDBObject("start_time", 1)).toArray();
     }
