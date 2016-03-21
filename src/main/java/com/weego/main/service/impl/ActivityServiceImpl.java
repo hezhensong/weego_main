@@ -126,7 +126,7 @@ public class ActivityServiceImpl implements ActivityService {
                     try {
                         opennow = DateUtil.daysBetween(datenow, openTime);
                         System.out.println("看看相差几天opennow" + opennow);
-                        nowclose = DateUtil.daysBetween(closeTime, datenow);
+                        nowclose = DateUtil.daysBetween(datenow, closeTime);
                         System.out.println("看看相差几天nowclose" + nowclose);
                         // 计算活动结束日期与当前日期相差的天数
 
