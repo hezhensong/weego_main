@@ -1,15 +1,13 @@
 package com.weego.main.controller.api;
 
-import com.weego.main.dto.RecommendCardDto;
-import com.weego.main.dto.RecommendHistoryDto;
-import com.weego.main.dto.RecommendInfoDto;
-import com.weego.main.dto.ResponseDto;
+import com.weego.main.dto.*;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by liuniandxx on 16-3-14.
@@ -37,12 +35,16 @@ public class RecommendController {
 
     //动态推荐卡片
     @RequestMapping(value="/recommendation/card", method = RequestMethod.GET)
-    public RecommendCardDto getCard(@RequestParam("cityId") String cityId,
-                                    @RequestParam("coordinate") String coordinate,
-                                    @RequestParam("time") String time) {
+    public ResponseDto<List<BaseCardDto>> getCard(@RequestParam("cityId") String cityId,
+                                                  @RequestParam("coordinate") String coordinate,
+                                                  @RequestParam("time") String time) {
         logger.info("开始动态推荐卡片查询");
         logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
 
-        return recommendInfoService.getRecommendCards(cityId, coordinate, time);
+        ResponseDto<List<BaseCardDto>> responseDto = new ResponseDto<List<BaseCardDto>>();
+
+        List<BaseCardDto> data = recommendInfoService.getRecommendCards(cityId, coordinate, time);
+        responseDto.setData(data);
+        return responseDto;
     }
 }

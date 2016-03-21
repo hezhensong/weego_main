@@ -27,9 +27,7 @@ public class PgcServiceImpl implements PgcService {
     private PeopleDao peopleDao;
 
     @Override
-    public PgcListDto getPgcList() {
-
-        PgcListDto pgcListDto = new PgcListDto();
+    public List<PgcListContinentDto> getPgcList() {
 
         List<PgcListContinentDto> pgcListContinentDto = new ArrayList<>();
 
@@ -38,7 +36,7 @@ public class PgcServiceImpl implements PgcService {
         for (Pgc pgc : pgcList) {
             PgcListContinentDto pgcDtoList = new PgcListContinentDto();
 
-            if (pgc.getPerson() != null) {
+            if (!Strings.isNullOrEmpty(pgc.getPerson())) {
                 List<Person> pgcPersonList = peopleDao.getPgcPersonList(pgc.getPerson());
                 for (Person person : pgcPersonList) {
                     pgcDtoList.setUserName(person.getUserName());//人物名称
@@ -59,9 +57,7 @@ public class PgcServiceImpl implements PgcService {
 
         }
 
-        pgcListDto.setData(pgcListContinentDto);
-
-        return pgcListDto;
+        return pgcListContinentDto;
     }
 
     @Override

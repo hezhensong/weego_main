@@ -80,18 +80,14 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
     }
 
     @Override
-    public RecommendCardDto getRecommendCards(String cityId, String coordinate, String time) {
+    public List<BaseCardDto> getRecommendCards(String cityId, String coordinate, String time) {
         logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
-        RecommendCardDto recommendCardDto = new RecommendCardDto();
-        recommendCardDto.setCode(0);
-        recommendCardDto.setMessage("success");
 
         logger.info("----查询指定时间的动态推荐----");
         Date dateTime = DateUtil.yyyyMMddToDate(time);
         List<RecommendInfo> recommendInfos = recommendInfoDao.getRecomendsSpecifyDay(cityId, dateTime);
 
-        recommendCardDto.setData(new ArrayList<BaseCardDto>());
-        List<BaseCardDto> datas = recommendCardDto.getData();
+        List<BaseCardDto> datas = new ArrayList<BaseCardDto>();
         if(recommendInfos != null && recommendInfos.size() > 0) {
             for(RecommendInfo elem : recommendInfos) {
                 if (RecommendType.ATTRACTION.getType().equals(elem.getType())) {
@@ -166,7 +162,7 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
                 }
             }
         }
-        return recommendCardDto;
+        return datas;
     }
 
     private List<RecommendInfoDto> covertToDto(List<RecommendInfo> recommends, Date date) {

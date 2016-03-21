@@ -2,7 +2,7 @@ package com.weego.main.controller.api;
 
 import com.weego.main.dao.PgcDao;
 import com.weego.main.dto.PgcDetailDto;
-import com.weego.main.dto.PgcListDto;
+import com.weego.main.dto.PgcListContinentDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.model.Pgc;
 import com.weego.main.service.PgcService;
@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v3/city")
@@ -24,8 +26,12 @@ public class PgcController {
 
     @RequestMapping(value = "/pgc/list", method = RequestMethod.GET)
     @ResponseBody
-    public PgcListDto getPgcList() {
-        return pgcService.getPgcList();
+    public ResponseDto<List<PgcListContinentDto>> getPgcList() {
+        ResponseDto<List<PgcListContinentDto>> responseDto = new ResponseDto<List<PgcListContinentDto>>();
+
+        List<PgcListContinentDto> pgcListContinentDtos = pgcService.getPgcList();
+        responseDto.setData(pgcListContinentDtos);
+        return responseDto;
     }
 
     @RequestMapping(value = "/pgc/test", method = RequestMethod.GET)
