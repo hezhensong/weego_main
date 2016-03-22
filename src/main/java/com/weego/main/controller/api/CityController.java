@@ -28,7 +28,14 @@ public class CityController {
         ResponseDto<CityHomeDto> responseDto = new ResponseDto<>();
         CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
 
-        responseDto.setData(cityHomeDto);
+        if (cityHomeDto == null) {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("城市首页数据为空");
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SUCCESS);
+            responseDto.setData(cityHomeDto);
+        }
+
         return responseDto;
     }
 
