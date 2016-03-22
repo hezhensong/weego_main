@@ -135,15 +135,15 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
                         DateTime endDateTime = new DateTime(endDate);
                         logger.info("判断城市活动的开始结束时间是否为同一年");
                         logger.info("startDate = {}， endDate = {}",
-                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatyyyyMMdd(endDate));
+                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatDate(endDate, "yyyy/MM/dd"));
                         if (endDateTime.getYear() > startDateTime.getYear()) {
-                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
                                     "-" +
-                                    DateUtil.formatyyyyMMdd(endDate));
+                                    DateUtil.formatDate(endDate, "yyyy/MM/dd"));
                         } else {
-                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
                                     "-" +
-                                    DateUtil.formatMMdd(endDate));
+                                    DateUtil.formatDate(endDate, "MM/dd"));
                         }
 
                         logger.info("Activity Time: {}", cardDto.getActivityTime());

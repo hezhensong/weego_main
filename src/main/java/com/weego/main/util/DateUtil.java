@@ -22,6 +22,15 @@ public class DateUtil {
     private static final String MMdd = "MMdd";
     private static final String utcFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
+    private static final String slantYMD = "yyyy/MM/dd";
+    private static final String slantMD = "MM/dd";
+
+
+    public static String formatDate(Date date, String format) {
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        return formatter.format(date);
+    }
+
     // Date 转化为 yyyyMMdd
     public static String formatyyyyMMdd(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(yyyyMMdd);
@@ -61,6 +70,7 @@ public class DateUtil {
         }
         return date;
     }
+
 
     // 获取时间格式 yyyyMMdd
     public static Date yyyyMMdd(Date date) {
@@ -168,11 +178,27 @@ public class DateUtil {
         return dateStr;
 
     }
+    
+    /**
+     * 将 Date 类型转为字符串: XXXX 年 XX 月 XX 日
+     * 
+     * @param date
+     * @return
+     */
+    public static String getDiscoveryTimeFormatter(Date date) {
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(date);
+    	int year = calendar.get(Calendar.YEAR);
+    	int month = calendar.get(Calendar.MONTH) + 1;
+    	int day = calendar.get(Calendar.DATE);
+    	return year + "年" + month + "月" + day + "日";
+    }
 
     public static void main(String[] args) throws ParseException {
         System.out.println(new Date().getTime());
         System.out.println(longChangeToDateStr(1454803200));
         System.out.println(covertTimeToUTC(new Date()));
+        System.out.println(getDiscoveryTimeFormatter(new Date()));
     }
 
 }

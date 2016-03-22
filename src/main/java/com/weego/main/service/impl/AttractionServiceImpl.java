@@ -32,6 +32,7 @@ import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.service.AttractionService;
+import com.weego.main.util.DateUtil;
 import com.weego.main.util.DistanceUtil;
 
 @Service("attractionService")
@@ -116,8 +117,7 @@ public class AttractionServiceImpl implements AttractionService {
 					poiDetailSpecialDto.setDesc(attractionSpot.getDesc());
 					poiDetailSpecialDto.setTitle(attractionSpot.getTitle());
 					poiDetailSpecialDto.setTag(attractionSpot.getTag());
-					poiDetailSpecialDto.setCoverImage(attractionSpot
-							.getCoverImage());
+					poiDetailSpecialDto.setCoverImage(attractionSpot.getCoverImage());
 					poiDetailSpecialDtos.add(poiDetailSpecialDto);
 				}
 			}
@@ -171,9 +171,10 @@ public class AttractionServiceImpl implements AttractionService {
 			if (basePOIComments != null && basePOIComments.size() > 0) {
 				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment
-							.getNickname());
-					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					if(basePOIComment.getDate() != null) {
+						poiDetailCommentsDto.setDate(DateUtil.getDiscoveryTimeFormatter(basePOIComment.getDate()));
+					}
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
@@ -232,9 +233,10 @@ public class AttractionServiceImpl implements AttractionService {
 			if (basePOIComments != null && basePOIComments.size() > 0) {
 				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment
-							.getNickname());
-					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					if(basePOIComment.getDate() != null) {
+						poiDetailCommentsDto.setDate(DateUtil.getDiscoveryTimeFormatter(basePOIComment.getDate()));
+					}
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());

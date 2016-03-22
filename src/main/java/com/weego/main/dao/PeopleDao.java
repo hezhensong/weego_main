@@ -33,6 +33,4 @@ public class PeopleDao {
         Person person = jackCollection.findOne(query);
         return person;
     }
-
-
 }
