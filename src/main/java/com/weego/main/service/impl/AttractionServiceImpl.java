@@ -25,6 +25,8 @@ import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.SearchNearByBaseDto;
 import com.weego.main.dto.SearchNearByDto;
+import com.weego.main.dto.SearchNearByListDto;
+import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
 import com.weego.main.model.Attraction;
 import com.weego.main.model.AttractionSpot;
@@ -251,20 +253,23 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public SearchNearByDto getAttractionsByCityIdAndCoordination(String cityId,
-			String coordination, String sort) {
-		SearchNearByDto searchNearByDto = new SearchNearByDto();
-		List<SearchNearByBaseDto> searchNearByBaseDtos = new ArrayList<SearchNearByBaseDto>();
-		List<Attraction> attractions = attractionDao
-				.getAttractionsByCityIdAndCoordination(cityId, coordination);
-
+	public SearchNearByDto getAttractionsByCityIdAndCoordination(String cityId, String coordination, String sort,
+			Double range, Integer price, String special) {
+		
+		SearchNearByDto searchNearByDto = new SearchNearByDto();		
+		SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
+		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
+		
+		List<SearchNearByListDto> searchNearByListDtos = new ArrayList<SearchNearByListDto>();
+		List<Attraction> attractions = attractionDao.getAttractionsByCityIdAndCoordination(cityId, coordination);
+		
 		if (attractions != null && attractions.size() > 0) {
 			for (Attraction attraction : attractions) {
-				SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
-				searchNearByBaseDto.setId(attraction.getId());
-				searchNearByBaseDto.setName(attraction.getName());
-				searchNearByBaseDto.setAddress(attraction.getAddress());
-				searchNearByBaseDto.setCoverImage(attraction.getCoverImage());
+				SearchNearByListDto searchNearByListDto = new SearchNearByListDto();
+				searchNearByListDto.setId(attraction.getId());
+				searchNearByListDto.setName(attraction.getName());
+				searchNearByListDto.setAddress(attraction.getAddress());
+				searchNearByListDto.setCoverImage(attraction.getCoverImage());
 
 				String newCoordination = attraction.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
@@ -278,51 +283,71 @@ public class AttractionServiceImpl implements AttractionService {
 							String latitude = coordination.split(",")[1];
 							String longitude = coordination.split(",")[0];
 							Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
-							searchNearByBaseDto.setDistance(distance);
+							searchNearByListDto.setDistance(distance);
 						}
 					}
-					searchNearByBaseDto.setLatitude(newLatitude);
-					searchNearByBaseDto.setLongitude(newLongitude);
+					searchNearByListDto.setLatitude(newLatitude);
+					searchNearByListDto.setLongitude(newLongitude);
 				}
 
-				searchNearByBaseDto.setScore(attraction.getRating());
+				searchNearByListDto.setScore(attraction.getRating());
 				List<BasePOITag> tags = attraction.getSubTag();
 				if (tags != null && tags.size() > 0) {
-					searchNearByBaseDto.setTag(attraction.getSubTag().get(0)
-							.getTag());
+					List<SearchNearByTagDto> tempTags = new ArrayList<SearchNearByTagDto>();
+					for(int i=0; i<tags.size(); i++) {
+						SearchNearByTagDto searchNearByTagDto = new SearchNearByTagDto();
+						searchNearByTagDto.setId(tags.get(i).getId());
+						searchNearByTagDto.setTag(tags.get(i).getTag());
+						tempTags.add(searchNearByTagDto);
+						if(!tagList.contains(searchNearByTagDto)) {
+							tagList.add(searchNearByTagDto);
+						}
+					}
+					searchNearByListDto.setTags(tempTags);
 				}
-				searchNearByBaseDtos.add(searchNearByBaseDto);
+				searchNearByListDtos.add(searchNearByListDto);
 			}
 		}
 		
-		if(searchNearByBaseDtos != null && searchNearByBaseDtos.size() > 0) {
-			// 排序
-			if (sort.equals("distance")) {
-				Collections.sort(searchNearByBaseDtos,
-						new Comparator<SearchNearByBaseDto>() {
-							public int compare(SearchNearByBaseDto o1, SearchNearByBaseDto o2) {
-								if(o1.getDistance() == null) {
-									return -1;
-								}
-								
-								if(o2.getDistance() == null) {
-									return 1;
-								}
-								
-								int comparation = o1.getDistance().compareTo(o2.getDistance());
-								if(comparation == 0) {
-									return o2.getScore().compareTo(o1.getScore());
-								} else {
-									return comparation;
-								}
-							};
-						});
-			} else if (sort.equals("rating")) {
-				Collections.sort(searchNearByBaseDtos,
-						new Comparator<SearchNearByBaseDto>() {
-							public int compare(SearchNearByBaseDto o1, SearchNearByBaseDto o2) {
-								int comparation = o2.getScore().compareTo(o1.getScore());
-								if(comparation == 0) {
+		if(searchNearByListDtos != null && searchNearByListDtos.size() > 0) {
+			
+			for(int i=0;i<searchNearByListDtos.size();i++) {
+				SearchNearByListDto tempSearch = searchNearByListDtos.get(i);
+				List<SearchNearByTagDto> tempTag = tempSearch.getTags();
+				List<String> tempTagIds = new ArrayList<String>();
+				if(tempTag != null) {
+					for(SearchNearByTagDto temp:tempTag) {
+						tempTagIds.add(temp.getId());
+					}
+				}
+			    
+				Double tempRange = tempSearch.getDistance();
+				if(tempRange == null || tempRange > range) {
+					searchNearByListDtos.remove(i);
+					// List 每 remove 掉一个元素以后,后面的元素都会向前移动,需要把 i 移回来
+					i--;
+				} else if(!special.split(",")[0].equals("sp")) {
+					List<String> specialTags = new ArrayList<String>();
+					for(int k=0; k<special.split(",").length; k++) {
+						specialTags.add(special.split(",")[k]);
+					}
+					if(tempTag == null || tempTagIds.size()> 0  && !tempTagIds.containsAll(specialTags)) {
+						searchNearByListDtos.remove(i);
+						i--;
+					}
+				}
+			}
+			
+			if(searchNearByListDtos.size() > 0) {
+				// 排序
+				if (sort.equals("distance")) {
+					Collections.sort(searchNearByListDtos,
+							new Comparator<SearchNearByListDto>() {
+								public int compare(SearchNearByListDto o1, SearchNearByListDto o2) {
+									if(o1.getDistance() == null && o2.getDistance() == null) {
+										return 0;
+									}
+									
 									if(o1.getDistance() == null) {
 										return -1;
 									}
@@ -331,15 +356,45 @@ public class AttractionServiceImpl implements AttractionService {
 										return 1;
 									}
 									
-									return o1.getDistance().compareTo(o2.getDistance());
-								} else {
-									return comparation;
-								}
-							};
-						});
+									int comparation = o1.getDistance().compareTo(o2.getDistance());
+									if(comparation == 0) {
+										return o2.getScore().compareTo(o1.getScore());
+									} else {
+										return comparation;
+									}
+								};
+							});
+				} else if (sort.equals("rating")) {
+					Collections.sort(searchNearByListDtos,
+							new Comparator<SearchNearByListDto>() {
+								public int compare(SearchNearByListDto o1, SearchNearByListDto o2) {
+									int comparation = o2.getScore().compareTo(o1.getScore());
+									if(comparation == 0) {
+										if(o1.getDistance() == null && o2.getDistance() == null) {
+											return 0;
+										}
+										
+										if(o1.getDistance() == null) {
+											return -1;
+										}
+										
+										if(o2.getDistance() == null) {
+											return 1;
+										}
+										
+										return o1.getDistance().compareTo(o2.getDistance());
+									} else {
+										return comparation;
+									}
+								};
+							});
+				}
 			}
 		}
-		searchNearByDto.setData(searchNearByBaseDtos);
+		
+		searchNearByBaseDto.setTagList(tagList);
+		searchNearByBaseDto.setSearches(searchNearByListDtos);
+		searchNearByDto.setData(searchNearByBaseDto);
 		return searchNearByDto;
 	}
 }

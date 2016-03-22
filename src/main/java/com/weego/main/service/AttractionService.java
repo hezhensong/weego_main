@@ -15,5 +15,6 @@ public interface AttractionService {
 	
 	POICommentsDto getAttractionCommentsById(String id);
 	
-	SearchNearByDto getAttractionsByCityIdAndCoordination(String  cityId, String coordination, String sort);
+	SearchNearByDto getAttractionsByCityIdAndCoordination(String  cityId, String coordination, String sort,
+			Double range, Integer price, String special);
 }

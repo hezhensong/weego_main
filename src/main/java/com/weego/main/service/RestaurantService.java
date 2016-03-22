@@ -15,5 +15,6 @@ public interface RestaurantService {
 	
 	POICommentsDto getRestaurantCommentsById(String id);
 	
-	SearchNearByDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort);
+	SearchNearByDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort,
+			Double range, Integer price, String special);
 }

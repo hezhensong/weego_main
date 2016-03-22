@@ -25,7 +25,7 @@ public class DishServiceImpl implements DishService {
 			poiSepcialBaseDto.setCoverImage(dish.getCoverImage());
 			poiSepcialBaseDto.setTitle(dish.getTitle());
 			poiSepcialBaseDto.setDesc(dish.getDesc());
-			poiSepcialBaseDto.setDesc(dish.getDesc());
+			poiSepcialBaseDto.setTag(dish.getTag());
 			poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		}
 		return poiSpecialDetailDto;
