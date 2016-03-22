@@ -40,17 +40,6 @@ public class CityServiceImpl implements CityService {
     private PgcService pgcService;
 
     @Override
-    public List<CityListDto> getCityList() {
-        List<CityListDto> cityListDtoList = new ArrayList<>();
-
-        List<City> cityList = cityDao.getOnlineCity();
-        for (City city : cityList) {
-        }
-
-        return cityListDtoList;
-    }
-
-    @Override
     public List<CityListContinentDto> getOnlineCityList() {
         List<CityListContinentDto> cityListContinentDtoList = new ArrayList<>();
 
@@ -76,15 +65,19 @@ public class CityServiceImpl implements CityService {
             }
 
             // get area 表, 查询城市所在大洲的信息
-            Map<String, Area> areaMap = areaDao.getArea();
-            for (String continent : cityListContinentMap.keySet()) {
-                CityListContinentDto cityListContinentDto = new CityListContinentDto();
+            Map<Integer, Area> areaMap = areaDao.getArea();
+            for (Area area : areaMap.values()) {
+                for (String continent : cityListContinentMap.keySet()) {
+                    if (area.getName().equals(continent)) {
 
-                Area area = areaMap.get(continent);
-                cityListContinentDto.setContinentName(area.getName());
-                cityListContinentDto.setContinentNameEn(area.getNameEn());
-                cityListContinentDto.setCityList(cityListContinentMap.get(continent));
-                cityListContinentDtoList.add(cityListContinentDto);
+                        CityListContinentDto cityListContinentDto = new CityListContinentDto();
+                        cityListContinentDto.setContinentName(area.getName());
+                        cityListContinentDto.setContinentNameEn(area.getNameEn());
+                        cityListContinentDto.setCityList(cityListContinentMap.get(continent));
+
+                        cityListContinentDtoList.add(cityListContinentDto);
+                    }
+                }
             }
 
         } catch (Exception e) {
@@ -227,42 +220,4 @@ public class CityServiceImpl implements CityService {
         }
         return attractionLabelList;
     }
-
-//    @Override
-//    public List<CityListContinentDto> getCityList1() {
-//        List<CityListContinentDto> cityListContinentDtoList = new ArrayList<>();
-//
-////        // get area 表
-////        List<TreeAreaContinent> treeAreaContinentList = areaDao.getArea();
-////        for (TreeAreaContinent treeAreaContinent : treeAreaContinentList) {
-////
-////            // set 每个大洲的中英文名
-////            CityListContinentDto cityListContinentDto = new CityListContinentDto();
-////            cityListContinentDto.setContinentName(treeAreaContinent.getName());
-////            cityListContinentDto.setContinentNameEn(treeAreaContinent.getNameEn());
-////
-////            List<CityListCityDto> cityListCityDtoList = new ArrayList<>();
-////
-////            // 遍历每个国家
-////            List<TreeAreaCountry> treeAreaCountryList = treeAreaContinent.getCountryList();
-////            for (TreeAreaCountry treeAreaCountry : treeAreaCountryList) {
-////
-////                // 遍历每个城市
-////                List<TreeAreaCity> treeAreaCityList = treeAreaCountry.getCityList();
-////                for (TreeAreaCity treeAreaCity : treeAreaCityList) {
-////
-////                    CityListCityDto cityListCityDto = new CityListCityDto();
-////                    cityListCityDto.setCityId(treeAreaCity.getId());
-////                    cityListCityDto.setCityName(treeAreaCity.getName());
-////                    cityListCityDto.setCityNameEn(treeAreaCity.getNameEn());
-////                    cityListCityDtoList.add(cityListCityDto);
-////                }
-////            }
-////            cityListContinentDto.setCityList(cityListCityDtoList);
-////
-////            cityListContinentDtoList.add(cityListContinentDto);
-////        }
-//
-//        return cityListContinentDtoList;
-//    }
 }
