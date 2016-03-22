@@ -25,5 +25,12 @@ public class PeopleDao {
         return personPgc;
     }
 
-
+    public Person getPersonById(String personId) {
+        DBCollection collection = database.getCollection("person");
+        JacksonDBCollection<Person, String> jackCollection = JacksonDBCollection.wrap(collection, Person.class, String.class);
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(personId));
+        Person person = jackCollection.findOne(query);
+        return person;
+    }
 }

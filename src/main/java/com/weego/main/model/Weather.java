@@ -3,12 +3,10 @@ package com.weego.main.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mongojack.Id;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Weather implements Serializable {
-    private static final long serialVersionUID = -7264688807134534953L;
+public class Weather {
 
     @Id
     private String id;

@@ -8,7 +8,9 @@ import org.apache.logging.log4j.Logger;
 import java.net.UnknownHostException;
 
 public class MongoConnectionFactory {
-    private static Logger logger = LogManager.getLogger(MongoConnectionFactory.class);
+
+    private static Logger logger = LogManager
+            .getLogger(MongoConnectionFactory.class);
     private static MongoClient mongoClient = null;
 
     public static DB getDatabase() {
@@ -29,8 +31,10 @@ public class MongoConnectionFactory {
     }
 
     private static void initializeMongoClient() throws UnknownHostException {
-        String host = "192.168.37.128";
-        Integer port = 27017;
+
+        String host = "192.168.6.254";
+        Integer port = 37017;
+
         mongoClient = new MongoClient(host, port);
     }
 

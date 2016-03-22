@@ -44,15 +44,12 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         logger.info("cityId = {}", cityId);
 
         RecommendHistoryDto historyDto = new RecommendHistoryDto();
-        historyDto.setCode(0);
-        historyDto.setMessage("success");
 
-        historyDto.setData(new HashMap<String, Object>());
-        historyDto.getData().put("cityId", cityId);
+        historyDto.setCityId(cityId);
 
         logger.info("查询城市信息, cityId = {}", cityId);
         City city = cityDao.getSpecifiedCity(cityId);
-        historyDto.getData().put("cityName", city.getName());
+        historyDto.setCityName(city.getName());
 
         logger.info("----查询当天的推荐记录----");
         Date today = DateUtil.yyyyMMdd(new Date());
@@ -75,26 +72,22 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         List<RecommendInfoDto> dayBeforeYestDtos = covertToDto(dayBeforeYestRecommends, dayBeforYest);
         logger.info("----查询前天推荐记录结束----");
 
-        historyDto.getData().put("today", todayDtos);
-        historyDto.getData().put("yesterday", yesterdayDtos);
-        historyDto.getData().put("dayBeforeYest", dayBeforeYestDtos);
+        historyDto.setToday(todayDtos);
+        historyDto.setYesterday(yesterdayDtos);
+        historyDto.setDayBeforeYest(dayBeforeYestDtos);
 
         return historyDto;
     }
 
     @Override
-    public RecommendCardDto getRecommendCards(String cityId, String coordinate, String time) {
+    public List<BaseCardDto> getRecommendCards(String cityId, String coordinate, String time) {
         logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
-        RecommendCardDto recommendCardDto = new RecommendCardDto();
-        recommendCardDto.setCode(0);
-        recommendCardDto.setMessage("success");
 
         logger.info("----查询指定时间的动态推荐----");
         Date dateTime = DateUtil.yyyyMMddToDate(time);
         List<RecommendInfo> recommendInfos = recommendInfoDao.getRecomendsSpecifyDay(cityId, dateTime);
 
-        recommendCardDto.setData(new ArrayList<BaseCardDto>());
-        List<BaseCardDto> datas = recommendCardDto.getData();
+        List<BaseCardDto> datas = new ArrayList<BaseCardDto>();
         if(recommendInfos != null && recommendInfos.size() > 0) {
             for(RecommendInfo elem : recommendInfos) {
                 if (RecommendType.ATTRACTION.getType().equals(elem.getType())) {
@@ -142,15 +135,15 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
                         DateTime endDateTime = new DateTime(endDate);
                         logger.info("判断城市活动的开始结束时间是否为同一年");
                         logger.info("startDate = {}， endDate = {}",
-                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatyyyyMMdd(endDate));
+                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatDate(endDate, "yyyy/MM/dd"));
                         if (endDateTime.getYear() > startDateTime.getYear()) {
-                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
                                     "-" +
-                                    DateUtil.formatyyyyMMdd(endDate));
+                                    DateUtil.formatDate(endDate, "yyyy/MM/dd"));
                         } else {
-                            cardDto.setActivityTime(DateUtil.formatyyyyMMdd(startDate) +
+                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
                                     "-" +
-                                    DateUtil.formatMMdd(endDate));
+                                    DateUtil.formatDate(endDate, "MM/dd"));
                         }
 
                         logger.info("Activity Time: {}", cardDto.getActivityTime());
@@ -169,7 +162,7 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
                 }
             }
         }
-        return recommendCardDto;
+        return datas;
     }
 
     private List<RecommendInfoDto> covertToDto(List<RecommendInfo> recommends, Date date) {
@@ -196,4 +189,3 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         return dtos;
     }
 }
-

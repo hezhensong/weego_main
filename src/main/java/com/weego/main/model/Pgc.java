@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Pgc {
 
-    @JsonProperty("_id")
-    private String pgcId;
+    @Id
+    private String id;
 
     @JsonProperty("title")
     private String title;
@@ -16,25 +16,24 @@ public class Pgc {
     @JsonProperty("cover_image")
     private String coverImage;
 
+    @JsonProperty("person")
     private String person;
 
     @JsonProperty("poi_list")
-    private List<String> poiList;
+    private List<PgcPoi> poiList;
 
-    @JsonProperty("head_image")
-    private String headImage;
-
+    @JsonProperty("introduction")
     private String introduction;
 
     @JsonProperty("city_id")
     private String cityId;
 
-    public String getPgcId() {
-        return pgcId;
+    public String getId() {
+        return id;
     }
 
-    public void setPgcId(String pgcId) {
-        this.pgcId = pgcId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -61,20 +60,12 @@ public class Pgc {
         this.person = person;
     }
 
-    public List<String> getPoiList() {
+    public List<PgcPoi> getPoiList() {
         return poiList;
     }
 
-    public void setPoiList(List<String> poiList) {
+    public void setPoiList(List<PgcPoi> poiList) {
         this.poiList = poiList;
-    }
-
-    public String getHeadImage() {
-        return headImage;
-    }
-
-    public void setHeadImage(String headImage) {
-        this.headImage = headImage;
     }
 
     public String getIntroduction() {

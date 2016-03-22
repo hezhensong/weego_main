@@ -1,13 +1,13 @@
 package com.weego.main.controller.api;
 
-import com.weego.main.dto.RecommendCardDto;
-import com.weego.main.dto.RecommendHistoryDto;
+import com.weego.main.dto.*;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by liuniandxx on 16-3-14.
@@ -18,22 +18,33 @@ public class RecommendController {
     private Logger logger = LogManager.getLogger(RecommendController.class);
 
     @Autowired
-    private RecommendInfoService recommendDynamicService;
+    private RecommendInfoService recommendInfoService;
 
     //动态推荐列表
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
-    public RecommendHistoryDto getHistory(@RequestParam("cityId") String cityId) {
+    public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
         logger.info("开始动态推荐列表查询");
+        logger.info("cityId = {}", cityId);
 
-        return recommendDynamicService.getRecommendHistory(cityId);
+        ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
+        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
+
+        responseDto.setData(recommendHistoryDto);
+        return responseDto;
     }
 
     //动态推荐卡片
     @RequestMapping(value="/recommendation/card", method = RequestMethod.GET)
-    public RecommendCardDto getCard(@RequestParam("cityId") String cityId,
-                                    @RequestParam("coordinate") String coordinate,
-                                    @RequestParam("time") String time) {
+    public ResponseDto<List<BaseCardDto>> getCard(@RequestParam("cityId") String cityId,
+                                                  @RequestParam("coordinate") String coordinate,
+                                                  @RequestParam("time") String time) {
         logger.info("开始动态推荐卡片查询");
-        return recommendDynamicService.getRecommendCards(cityId, coordinate, time);
+        logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
+
+        ResponseDto<List<BaseCardDto>> responseDto = new ResponseDto<List<BaseCardDto>>();
+
+        List<BaseCardDto> data = recommendInfoService.getRecommendCards(cityId, coordinate, time);
+        responseDto.setData(data);
+        return responseDto;
     }
 }

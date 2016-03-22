@@ -1,16 +1,18 @@
 package com.weego.main.service.impl;
 
+import com.weego.main.constant.RecommendType;
 import com.weego.main.dao.PeopleDao;
-import com.weego.main.dto.PgcListContinentDto;
+import com.weego.main.dto.*;
 import com.weego.main.model.Person;
+import com.weego.main.model.PgcPoi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.PgcDao;
-import com.weego.main.dto.PgcListDto;
 import com.weego.main.model.Pgc;
 import com.weego.main.service.PgcService;
 import org.springframework.web.servlet.ModelAndView;
+import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,41 +27,33 @@ public class PgcServiceImpl implements PgcService {
     private PeopleDao peopleDao;
 
     @Override
-    public PgcListDto getPgcList() {
+    public List<PgcListPgcDto> getPgcList(String cityId) {
+        List<PgcListPgcDto> pgcListPgcDtoList = new ArrayList<>();
 
-        PgcListDto pgcListDto = new PgcListDto();
-
-        List<PgcListContinentDto> pgcListContinentDto = new ArrayList<>();
-
-        List<Pgc> pgcList = pgcDao.getPgcDaoList();
-
-        for (Pgc pgc : pgcList) {
-            PgcListContinentDto pgcDtoList = new PgcListContinentDto();
-
-            if (pgc.getPerson() != null) {
-                List<Person> pgcPersonList = peopleDao.getPgcPersonList(pgc.getPerson());
-                for (Person person : pgcPersonList) {
-                    pgcDtoList.setUserName(person.getUserName());//人物名称
-                    pgcDtoList.setHeadImage(person.getHeadImage());//人物头像
-                }
-            } else {
-                pgcDtoList.setUserName("");//人物名称
-                pgcDtoList.setHeadImage("");//人物头像
-            }
-
-            pgcDtoList.setPgcId(pgc.getPgcId());
-
-            pgcDtoList.setTitle(pgc.getTitle());
-
-            pgcDtoList.setCoverImage(pgc.getCoverImage());
-
-            pgcListContinentDto.add(pgcDtoList);
-
+        List<Pgc> pgcList = pgcDao.getPgcByCityId(cityId);
+        if(pgcList == null || pgcList.size() == 0){
+            return pgcListPgcDtoList;
         }
 
-        pgcListDto.setData(pgcListContinentDto);
+        for (Pgc pgc : pgcList) {
+            PgcListPgcDto pgcListPgcDto = new PgcListPgcDto();
 
-        return pgcListDto;
+            if (!Strings.isNullOrEmpty(pgc.getPerson())) {
+                Person person = peopleDao.getPersonById(pgc.getPerson());
+                pgcListPgcDto.setUserName(person.getUserName());   //人物名称
+                pgcListPgcDto.setHeadImage(person.getHeadImage()); //人物头像
+            } else {
+                pgcListPgcDto.setUserName("");  //人物名称
+                pgcListPgcDto.setHeadImage(""); //人物头像
+            }
+
+            pgcListPgcDto.setPgcId(pgc.getId());
+            pgcListPgcDto.setTitle(pgc.getTitle());
+            pgcListPgcDto.setCoverImage(pgc.getCoverImage());
+
+            pgcListPgcDtoList.add(pgcListPgcDto);
+        }
+        return pgcListPgcDtoList;
     }
 
     @Override
@@ -93,6 +87,82 @@ public class PgcServiceImpl implements PgcService {
 
             return mv;
         }
+
+    }
+
+    @Override
+    public PgcDetailDto getPgcDetail(String pgcId) {
+        PgcDetailDto pgcDetailDto = new PgcDetailDto();
+
+        Pgc pgc = pgcDao.getSpecifiedPgc(pgcId);
+        pgcDetailDto.setCoverImage(pgc.getCoverImage());
+        pgcDetailDto.setTitle(pgc.getTitle());
+
+        if (Strings.isNullOrEmpty(pgc.getPerson())) {
+            PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
+            pgcPeopleDto.setId("");
+            pgcPeopleDto.setHeadImage("");
+            pgcPeopleDto.setUserName("");
+            pgcPeopleDto.setJobDesc("");
+
+            pgcDetailDto.setPgcPeople(pgcPeopleDto);
+        } else {
+            Person person = peopleDao.getPersonById(pgc.getPerson().trim());
+            PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
+            pgcPeopleDto.setId(person.getPersonId());
+            pgcPeopleDto.setHeadImage(person.getHeadImage());
+            pgcPeopleDto.setUserName(person.getUserName());
+            pgcPeopleDto.setJobDesc(person.getJobDesc());
+
+            pgcDetailDto.setPgcPeople(pgcPeopleDto);
+        }
+
+
+        pgcDetailDto.setIntroduction(pgc.getIntroduction());
+
+        List<PgcPoi> pgcPois = pgc.getPoiList();
+        List<BasePoiDto> pgcPoiDtos = new ArrayList<BasePoiDto>();
+        if (pgcPois != null && pgcPois.size() > 0) {
+            for (PgcPoi elem : pgcPois) {
+                if (isSpecifyType(elem.getType())) {
+                    PgcPoiDto pgcPoiDto = new PgcPoiDto();
+                    pgcPoiDto.setId(elem.getId());
+                    pgcPoiDto.setType(elem.getType());
+                    pgcPoiDto.setPoiDes(elem.getPoiDesc());
+                    pgcPoiDto.setPoiImage(elem.getPoiImage());
+                    pgcPoiDto.setName(Strings.nullToEmpty(elem.getName()));
+
+                    pgcPoiDtos.add(pgcPoiDto);
+                } else {
+                    BasePoiDto poiDto = new BasePoiDto();
+                    poiDto.setType(elem.getType());
+                    poiDto.setId(elem.getId());
+                    poiDto.setPoiDes(elem.getPoiDesc());
+                    poiDto.setPoiImage(elem.getPoiImage());
+
+                    pgcPoiDtos.add(poiDto);
+                }
+
+            }
+        }
+        pgcDetailDto.setPgcPoi(pgcPoiDtos);
+        return pgcDetailDto;
+    }
+
+    private Boolean isSpecifyType(String type) {
+        if (Strings.isNullOrEmpty(type)) {
+            return false;
+        }
+
+        Integer intType = Integer.parseInt(type.trim());
+        if (intType.equals(RecommendType.ATTRACTION.getType())
+                || intType.equals(RecommendType.RESTAURANT.getType())
+                || intType.equals(RecommendType.SHOPPING.getType())
+                || intType.equals(RecommendType.SHOPPINGCIRCLE.getType())) {
+            return true;
+        }
+
+        return false;
 
     }
 }

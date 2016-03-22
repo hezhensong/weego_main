@@ -10,11 +10,9 @@ public class ActivityBaseDto {
 
     private String title;
 
-    private String detailAddress;
+    private String address;
 
     private String actTime;
-
-    private int sortTag;
 
     public String getId() {
         return id;
@@ -48,12 +46,12 @@ public class ActivityBaseDto {
         this.title = title;
     }
 
-    public String getDetailAddress() {
-        return detailAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getActTime() {
@@ -62,14 +60,6 @@ public class ActivityBaseDto {
 
     public void setActTime(String actTime) {
         this.actTime = actTime;
-    }
-
-    public int getSortTag() {
-        return sortTag;
-    }
-
-    public void setSortTag(int sortTag) {
-        this.sortTag = sortTag;
     }
 
 }

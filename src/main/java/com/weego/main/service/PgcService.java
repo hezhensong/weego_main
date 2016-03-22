@@ -1,12 +1,17 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.PgcListDto;
+import com.weego.main.dto.PgcDetailDto;
+import com.weego.main.dto.PgcListPgcDto;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 public interface PgcService {
 
 
-	PgcListDto getPgcList();
+	List<PgcListPgcDto> getPgcList(String cityId);
 
 	ModelAndView getSpecifiedPgc(String pgcId);
+
+	PgcDetailDto getPgcDetail(String pgcId);
 }

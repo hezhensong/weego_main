@@ -46,15 +46,16 @@ public class RecommendInfoDao {
                 JacksonDBCollection.wrap(collection,
                                         RecommendInfo.class,
                                         String.class);
+        //将时间转化为UTC时间
+        date = DateUtil.covertTimeToUTC(date);
         Date nextDay  = DateUtil.afterNDays(date, 1);
 
         DBObject orderBy = new BasicDBObject();
         orderBy.put("end_time", 1);
         return jacksonDBCollection.find(DBQuery.and(
                                             DBQuery.is("city_id", new ObjectId(cityId)),
-                                            DBQuery.and(
                                             DBQuery.greaterThanEquals("end_time", date),
                                             DBQuery.lessThan("end_time", nextDay))
-                                        )).sort(orderBy).toArray();
+                                        ).sort(orderBy).toArray();
     }
 }
