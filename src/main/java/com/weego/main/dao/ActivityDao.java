@@ -46,10 +46,6 @@ public class ActivityDao {
         // 获取当前时间并转成数据库时间
         Date date = new Date();
         Date dateNow = DateUtil.covertTimeToUTC(date);
-
-        // 获取距离今天七天之内的活动
-//        Date dateSeven = DateUtil.afterNDays(date, 7);
-//        Date dateAfter = DateUtil.covertTimeToUTC(dateSeven);
         
        // 获取已经开始30天之内的活动
         Date dateThirty = DateUtil.afterNDays(date, -30);

@@ -96,10 +96,12 @@ public class ActivityServiceImpl implements ActivityService {
 
                 activityDetailDto.setParagraphs(activityParagraphsDtoList);
             }
+            return activityDetailDto;
+        }else{
+            return null;
+           
         }
-
-        logger.info("-------查询城市活动详细信息结束----------");
-        return activityDetailDto;
+      
     }
 
     @Override
