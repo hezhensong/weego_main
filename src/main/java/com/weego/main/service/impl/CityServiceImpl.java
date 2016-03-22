@@ -9,15 +9,13 @@ import com.weego.main.model.*;
 import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
 import com.weego.main.service.PgcService;
+import com.weego.main.util.DateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("cityService")
 public class CityServiceImpl implements CityService {
@@ -167,9 +165,11 @@ public class CityServiceImpl implements CityService {
             for (WeatherForecast weatherForecast : weatherForecastList) {
                 WeatherForecastDto weatherForecastDto = new WeatherForecastDto();
 
-                weatherForecastDto.setDate(weatherForecast.getDate().toString());
-                weatherForecastDto.setHigh(weatherForecast.getHigh() + "");
-                weatherForecastDto.setLow(weatherForecast.getLow() + "");
+                String date = DateUtil.formatMM_dd(weatherForecast.getDate());
+                weatherForecastDto.setDate(date);
+
+                weatherForecastDto.setHigh(String.valueOf(weatherForecast.getHigh()));
+                weatherForecastDto.setLow(String.valueOf(weatherForecast.getLow()));
 
                 description = weatherForecast.getDescription().toLowerCase();
                 if (translationMap.keySet().contains(description)) {

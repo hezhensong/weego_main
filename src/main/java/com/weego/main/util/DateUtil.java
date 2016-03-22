@@ -37,6 +37,12 @@ public class DateUtil {
         return format.format(date);
     }
 
+    // Date 转化为 MM/dd
+    public static String formatMM_dd(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantMD);
+        return format.format(date);
+    }
+
     // 时间格式转换为Date
     public static Date yyyyMMddToDate(String date) {
         DateTimeFormatter format = DateTimeFormat.forPattern(yyyyMMdd);
