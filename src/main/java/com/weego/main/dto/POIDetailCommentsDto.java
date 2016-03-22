@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class POIDetailCommentsDto {
 	private String nickname;
-	private Date date;
+	private String date;
 	private String text;
 	private Integer rating;
 	private String title;
@@ -18,11 +18,11 @@ public class POIDetailCommentsDto {
 		this.nickname = nickname;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

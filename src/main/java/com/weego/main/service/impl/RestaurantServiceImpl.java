@@ -34,6 +34,7 @@ import com.weego.main.model.Restaurant;
 import com.weego.main.model.RestaurantDish;
 import com.weego.main.model.RestaurantFacilities;
 import com.weego.main.service.RestaurantService;
+import com.weego.main.util.DateUtil;
 import com.weego.main.util.DistanceUtil;
 
 @Service("restaurantService")
@@ -167,9 +168,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (basePOIComments != null && basePOIComments.size() > 0) {
 				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment
-							.getNickname());
-					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					if(basePOIComment.getDate() != null) {
+						poiDetailCommentsDto.setDate(DateUtil.getDiscoveryTimeFormatter(basePOIComment.getDate()));
+					}
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
 					poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
@@ -252,9 +254,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (basePOIComments != null && basePOIComments.size() > 0) {
 				for (BasePOIComments basePOIComment : basePOIComments) {
 					POIDetailCommentsDto poiDetailCommentsDto = new POIDetailCommentsDto();
-					poiDetailCommentsDto.setNickname(basePOIComment
-							.getNickname());
-					poiDetailCommentsDto.setDate(basePOIComment.getDate());
+					poiDetailCommentsDto.setNickname(basePOIComment.getNickname());
+					if(basePOIComment.getDate() != null) {
+						poiDetailCommentsDto.setDate(DateUtil.getDiscoveryTimeFormatter(basePOIComment.getDate()));
+					}
 					System.out.println(basePOIComment.getDate());
 					poiDetailCommentsDto.setText(basePOIComment.getText());
 					poiDetailCommentsDto.setRating(basePOIComment.getRating());
