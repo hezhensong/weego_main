@@ -10,7 +10,7 @@ public class ActivityBaseDto {
 
     private String title;
 
-    private String detailAddress;
+    private String address;
 
     private String actTime;
 
@@ -48,12 +48,12 @@ public class ActivityBaseDto {
         this.title = title;
     }
 
-    public String getDetailAddress() {
-        return detailAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getActTime() {
