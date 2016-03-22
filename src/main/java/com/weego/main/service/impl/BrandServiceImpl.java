@@ -25,7 +25,7 @@ public class BrandServiceImpl implements BrandService {
 			poiSepcialBaseDto.setCoverImage(brand.getCoverImage());
 			poiSepcialBaseDto.setTitle(brand.getTitle());
 			poiSepcialBaseDto.setDesc(brand.getDesc());
-			poiSepcialBaseDto.setDesc(brand.getDesc());
+			poiSepcialBaseDto.setTag(brand.getTag());;
 			poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		}
 		return poiSpecialDetailDto;

@@ -18,14 +18,14 @@ public class SearchNearByServiceImpl implements SearchNearByService {
 	@Autowired
 	ShoppingService shoppingService;
 	@Override
-	public SearchNearByDto getSearchNearByInfos(String cityId, Integer type,
-			String coordination, String sort) {
+	public SearchNearByDto getSearchNearByInfos(String cityId, Integer type, String coordination, String sort,
+			Double range, Integer price, String special) {
 		if (type == 0) {
-			return attractionService.getAttractionsByCityIdAndCoordination(cityId, coordination, sort);
+			return attractionService.getAttractionsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
 		} else if (type == 1) {
-			return restaurantService.getRestaurantsByCityIdAndCoordination(cityId, coordination, sort);
+			return restaurantService.getRestaurantsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
 		} else if (type == 2) {
-			return shoppingService.getShoppingsByCityIdAndCoordination(cityId, coordination, sort);
+			return shoppingService.getShoppingsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
 		} else {
 			System.out.println("type 参数值有误");
 			return null;
