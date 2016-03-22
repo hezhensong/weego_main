@@ -37,6 +37,12 @@ public class DateUtil {
         return format.format(date);
     }
 
+    // Date 转化为 MM/dd
+    public static String formatMM_dd(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantMD);
+        return format.format(date);
+    }
+
     // 时间格式转换为Date
     public static Date yyyyMMddToDate(String date) {
         DateTimeFormatter format = DateTimeFormat.forPattern(yyyyMMdd);
@@ -127,11 +133,41 @@ public class DateUtil {
     public static int daysBetween(Date smdate, Date bdate) throws ParseException {
         long time1 = smdate.getTime();
         long time2 = bdate.getTime();
+       
         long between_days = (time2 - time1) / (1000 * 3600 * 24);
+        int days = Integer.parseInt(String.valueOf(between_days));
 
-        return Integer.parseInt(String.valueOf(between_days));
+        if(time1>time2&&days==0){
+            return -1;
+        }else if(time2>time1&&days==0){
+            return 1;
+        }else{
+            return days;
+        }
+       
     }
 
+    
+    /** 
+     * 比较两个日期之间的大小 
+     *  
+     * @param d1 
+     * @param d2 
+     * @return 前者大于后者返回true 反之false 
+     */  
+    public static boolean compareDate(Date d1, Date d2) {  
+        Calendar c1 = Calendar.getInstance();  
+        Calendar c2 = Calendar.getInstance();  
+        c1.setTime(d1);  
+        c2.setTime(d2);  
+      
+        int result = c1.compareTo(c2);  
+        if (result >= 0)  
+            return true;  
+        else  
+            return false;  
+    }  
+    
     /**
      * 计算两个long型日期之间相差的天数
      * 

@@ -96,10 +96,12 @@ public class ActivityServiceImpl implements ActivityService {
 
                 activityDetailDto.setParagraphs(activityParagraphsDtoList);
             }
+            return activityDetailDto;
+        }else{
+            return null;
+           
         }
-
-        logger.info("-------查询城市活动详细信息结束----------");
-        return activityDetailDto;
+      
     }
 
     @Override
@@ -131,7 +133,9 @@ public class ActivityServiceImpl implements ActivityService {
                  * 
                  */
                 Date dateNow = new Date();
+                
                 Date openTime = cityActivity.getOpenTime();
+                System.out.println("openTime:"+openTime);
                 Date closeTime = cityActivity.getCloseTime();
 
                 logger.info("---------查询城市活动列表开始----------");
@@ -142,12 +146,12 @@ public class ActivityServiceImpl implements ActivityService {
                     int nowClose;
                     try {
                         openNow = DateUtil.daysBetween(dateNow, openTime);
+                        System.out.println("看看相差几天 openNow"+openNow);
                         nowClose = DateUtil.daysBetween(dateNow, closeTime);
-
                         // 计算活动结束日期与当前日期相差的天数
-                        if (openNow <= 7 & openNow > 0) {
+                        if (openNow <= 7 & openNow >0) {
                             activityBaseDto.setActTime("即将开始");
-                        } else if (openNow <= 0 & nowClose > 0) {
+                        } else if (openNow<=0 & nowClose > 0) {
                             activityBaseDto.setActTime("进行中");
                         } else if (openNow > 7) {
                             // 获取开始日期和结束日期的年份
