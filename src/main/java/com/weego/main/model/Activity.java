@@ -25,9 +25,12 @@ public class Activity {
 	@JsonProperty("title")
 	private String title;
 
-	@JsonProperty("detail_address")
-	private String detailAddress;
+    @JsonProperty("address")
+    private String address;
 
+    @JsonProperty("detail_address")
+    private String detailAddress;
+    
 	@JsonProperty("start_time")
 	private Date openTime;
 
@@ -57,8 +60,6 @@ public class Activity {
 
 	@JsonProperty("last_modified_person")
 	private String lastModifiedPerson;
-
-	private String address;
 
 	public String getId() {
 		return Id;

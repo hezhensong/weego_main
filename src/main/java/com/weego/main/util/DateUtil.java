@@ -22,6 +22,15 @@ public class DateUtil {
     private static final String MMdd = "MMdd";
     private static final String utcFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
+    private static final String slantYMD = "yyyy/MM/dd";
+    private static final String slantMD = "MM/dd";
+
+
+    public static String formatDate(Date date, String format) {
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        return formatter.format(date);
+    }
+
     // Date 转化为 yyyyMMdd
     public static String formatyyyyMMdd(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(yyyyMMdd);
@@ -61,6 +70,7 @@ public class DateUtil {
         }
         return date;
     }
+
 
     // 获取时间格式 yyyyMMdd
     public static Date yyyyMMdd(Date date) {
