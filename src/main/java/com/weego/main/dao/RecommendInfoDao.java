@@ -46,6 +46,8 @@ public class RecommendInfoDao {
                 JacksonDBCollection.wrap(collection,
                                         RecommendInfo.class,
                                         String.class);
+        //将时间转化为UTC时间
+        date = DateUtil.covertTimeToUTC(date);
         Date nextDay  = DateUtil.afterNDays(date, 1);
 
         DBObject orderBy = new BasicDBObject();

@@ -25,6 +25,9 @@ public class Activity {
     @JsonProperty("title")
     private String title;
 
+    @JsonProperty("address")
+    private String address;
+
     @JsonProperty("detail_address")
     private String detailAddress;
 
@@ -96,6 +99,14 @@ public class Activity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDetailAddress() {
