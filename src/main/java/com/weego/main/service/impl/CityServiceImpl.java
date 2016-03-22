@@ -8,6 +8,7 @@ import com.weego.main.dto.*;
 import com.weego.main.model.*;
 import com.weego.main.service.ActivityService;
 import com.weego.main.service.CityService;
+import com.weego.main.service.PgcService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class CityServiceImpl implements CityService {
 
     @Autowired
     private ActivityService cityActivityService;
+
+    @Autowired
+    private PgcService pgcService;
 
     @Override
     public List<CityListDto> getCityList() {
@@ -196,10 +200,13 @@ public class CityServiceImpl implements CityService {
 
             // 获取城市PGC
             CityHomePgcDto cityHomePgcDto = new CityHomePgcDto();
-            cityHomeDto.setPgc(cityHomePgcDto);
-
-            cityHomePgcDto.setTitle("华裔名厨蔡明昊");
-            cityHomePgcDto.setCoverImage("http://weegotest.b0.upaiyun.com/activities/iosimgs/56cc5cf22ddd9d3d17000022.jpeg");
+            List<PgcListPgcDto> pgcListPgcDtoList = pgcService.getPgcList(cityId);
+            if (pgcListPgcDtoList.size() > 0) {
+                PgcListPgcDto pgcListPgcDto = pgcListPgcDtoList.get(0);
+                cityHomePgcDto.setTitle(pgcListPgcDto.getTitle());
+                cityHomePgcDto.setCoverImage(pgcListPgcDto.getCoverImage());
+                cityHomeDto.setPgc(cityHomePgcDto);
+            }
 
         } catch (Exception e) {
             logger.fatal("城市首页接口获取数据失败 {}", e.getStackTrace());

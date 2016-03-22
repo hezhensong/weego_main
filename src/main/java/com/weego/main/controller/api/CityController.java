@@ -5,6 +5,7 @@ import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.CityService;
+import com.weego.main.service.PgcService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class CityController {
 
     @Autowired
     CityService cityService;
+
+    @Autowired
+    PgcService pgcService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
