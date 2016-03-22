@@ -32,76 +32,77 @@ public class ActivityServiceImpl implements ActivityService {
         logger.info("-------查询城市活动详细信息开始----------");
         ActivityDetailDto activityDetailDto = new ActivityDetailDto();
 
-        Activity cityActivity = cityActivityDao.getSpecifiedCity(cityActivityId);
+        try {
+            Activity cityActivity = cityActivityDao.getSpecifiedCity(cityActivityId);
 
-        if (cityActivity != null) {
-            // 将数据库中的数据赋值给dto
-            activityDetailDto.setId(cityActivity.getId());
-            activityDetailDto.setActTime(cityActivity.getActTime());
-            activityDetailDto.setActUrl(cityActivity.getActUrl());
-            // 将时间格式转换成字符串
-            String closeTime = DateUtil.formatyyyyMMdd(cityActivity.getCloseTime());
-            System.out.println("看看时间格式" + closeTime);
-            String openTime = DateUtil.formatyyyyMMdd(cityActivity.getOpenTime());
-            activityDetailDto.setCloseTime(closeTime);
-            activityDetailDto.setOpenTime(openTime);
+            if (cityActivity != null) {
+                // 将数据库中的数据赋值给dto
+                activityDetailDto.setId(cityActivity.getId().toString());
+                activityDetailDto.setActTime(cityActivity.getActTime());
+                activityDetailDto.setActUrl(cityActivity.getActUrl());
+                activityDetailDto.setDescription(cityActivity.getDescription());
 
-            activityDetailDto.setDescription(cityActivity.getDescription());
-            // 详情页的地址需要拼接
-            if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null&&!cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())) {
-                activityDetailDto.setDetailAddress(cityActivity.getDetailAddress() + ", " + cityActivity.getAddress());
-            } else if (cityActivity.getDetailAddress() == null && cityActivity.getAddress() != null) {
-                activityDetailDto.setDetailAddress(cityActivity.getAddress());
-            } else if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() == null) {
-                activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
-            } else if(cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null&&cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())){
-                activityDetailDto.setDetailAddress(cityActivity.getAddress());
-            }
-
-            activityDetailDto.setId(cityActivity.getId());
-            activityDetailDto.setImage(cityActivity.getImage());
-
-            // 将coordinate拆成longitude和latitude
-            String coordination = cityActivity.getCoordination();
-
-            if (coordination != null && coordination.length() != 0) {
-                String[] lonlat = coordination.split(",");
-                activityDetailDto.setLongitude(lonlat[0]);
-                activityDetailDto.setLatidute(lonlat[1]);
-            }
-
-            activityDetailDto.setOrderUrl(cityActivity.getOrderUrl());
-            activityDetailDto.setTitle(cityActivity.getTitle());
-            activityDetailDto.setType(cityActivity.getType());
-
-            // 将数据库中activity表中的paragraphs数组转成相应的dto
-            List<ActivityParagraphs> cityActivityParagraphsList = cityActivity.getParagraphs();
-
-            List<ActivityParagraphsDto> activityParagraphsDtoList = new ArrayList<ActivityParagraphsDto>();
-
-            if (cityActivityParagraphsList != null && !cityActivityParagraphsList.isEmpty()) {
-                for (ActivityParagraphs cityActivityParagraphs : cityActivityParagraphsList) {
-
-                    ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
-
-                    activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
-                    activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
-                    activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
-                    activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
-                    activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());
-
-                    activityParagraphsDtoList.add(activityParagraphsDto);
-
+                // 详情页的地址需要拼接
+                if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null
+                        && !cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())) {
+                    activityDetailDto.setDetailAddress(cityActivity.getDetailAddress() + ", "
+                            + cityActivity.getAddress());
+                } else if (cityActivity.getDetailAddress() == null && cityActivity.getAddress() != null) {
+                    activityDetailDto.setDetailAddress(cityActivity.getAddress());
+                } else if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() == null) {
+                    activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
+                } else if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null
+                        && cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())) {
+                    activityDetailDto.setDetailAddress(cityActivity.getAddress());
                 }
 
-                activityDetailDto.setParagraphs(activityParagraphsDtoList);
+                activityDetailDto.setId(cityActivity.getId().toString());
+                activityDetailDto.setImage(cityActivity.getImage());
+
+                // 将coordinate拆成longitude和latitude
+                String coordination = cityActivity.getCoordination();
+
+                if (coordination != null && coordination.length() != 0) {
+                    String[] lonlat = coordination.split(",");
+                    activityDetailDto.setLongitude(lonlat[0]);
+                    activityDetailDto.setLatidute(lonlat[1]);
+                }
+
+                activityDetailDto.setOrderUrl(cityActivity.getOrderUrl());
+                activityDetailDto.setTitle(cityActivity.getTitle().trim());
+                activityDetailDto.setType(cityActivity.getType());
+
+                // 将数据库中activity表中的paragraphs数组转成相应的dto
+                List<ActivityParagraphs> cityActivityParagraphsList = cityActivity.getParagraphs();
+
+                List<ActivityParagraphsDto> activityParagraphsDtoList = new ArrayList<ActivityParagraphsDto>();
+
+                if (cityActivityParagraphsList != null && !cityActivityParagraphsList.isEmpty()) {
+                    for (ActivityParagraphs cityActivityParagraphs : cityActivityParagraphsList) {
+
+                        ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
+
+                        activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
+                        activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
+                        activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
+                        activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
+                        activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());
+
+                        activityParagraphsDtoList.add(activityParagraphsDto);
+
+                    }
+
+                    activityDetailDto.setParagraphs(activityParagraphsDtoList);
+                }
+
             }
-            return activityDetailDto;
-        }else{
+        } catch (Exception e) {
+            logger.fatal("城市活动详情页接口获取数据失败 {}", e.getStackTrace());
             return null;
-           
         }
-      
+
+        return activityDetailDto;
+
     }
 
     @Override
@@ -110,75 +111,77 @@ public class ActivityServiceImpl implements ActivityService {
         logger.info("---------查询城市活动列表开始----------");
 
         List<ActivityBaseDto> activityBaseDtoList = new ArrayList<>();
-        List<Activity> activityList = cityActivityDao.getAllActivity(cityId);
 
-        if (activityList != null && !activityList.isEmpty()) {
-            for (int i = 0; i < activityList.size(); i++) {
+        try {
+            List<Activity> activityList = cityActivityDao.getAllActivity(cityId);
 
-                ActivityBaseDto activityBaseDto = new ActivityBaseDto();
-                Activity cityActivity = activityList.get(i);
+            if (activityList != null && !activityList.isEmpty()) {
+                for (int i = 0; i < activityList.size(); i++) {
 
-                // 开始赋值
-                activityBaseDto.setId(cityActivity.getId());
-                activityBaseDto.setAddress(cityActivity.getAddress());
-                activityBaseDto.setTitle(cityActivity.getTitle());
-                activityBaseDto.setType(cityActivity.getType());
-                activityBaseDto.setImage(cityActivity.getImage());
+                    ActivityBaseDto activityBaseDto = new ActivityBaseDto();
+                    Activity cityActivity = activityList.get(i);
 
-                // 设置活动具体时间
-                /**
-                 * 前端acttime字段展示逻辑 1.时间格式：X月X日，需要跨年的显示x年
-                 * 2.活动开始日期-今天<=7天，显示“即将开始” 活动开始日期<=今天<=活动结束日期，显示“进行中”
-                 * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
-                 * 
-                 */
-                Date dateNow = new Date();
-                
-                Date openTime = cityActivity.getOpenTime();
-                System.out.println("openTime:"+openTime);
-                Date closeTime = cityActivity.getCloseTime();
+                    // 开始赋值
+                    activityBaseDto.setId(cityActivity.getId().toString());
+                    activityBaseDto.setAddress(cityActivity.getAddress());
+                    activityBaseDto.setTitle(cityActivity.getTitle().trim());
+                    activityBaseDto.setType(cityActivity.getType());
+                    activityBaseDto.setImage(cityActivity.getImage());
 
-                logger.info("---------查询城市活动列表开始----------");
-                if (openTime != null && closeTime != null) {
+                    // 设置活动具体时间
+                    /**
+                     * 前端acttime字段展示逻辑 1.时间格式：X月X日，需要跨年的显示x年
+                     * 2.活动开始日期-今天<=7天，显示“即将开始” 活动开始日期<=今天<=活动结束日期，显示“进行中”
+                     * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
+                     * 
+                     */
+                    Date dateNow = new Date();
 
-                    // 计算活动开始时间与当前日期相差的天数
-                    int openNow;
-                    int nowClose;
-                    try {
-                        openNow = DateUtil.daysBetween(dateNow, openTime);
-                        System.out.println("看看相差几天 openNow"+openNow);
-                        nowClose = DateUtil.daysBetween(dateNow, closeTime);
-                        // 计算活动结束日期与当前日期相差的天数
-                        if (openNow <= 7 & openNow >0) {
-                            activityBaseDto.setActTime("即将开始");
-                        } else if (openNow<=0 & nowClose > 0) {
-                            activityBaseDto.setActTime("进行中");
-                        } else if (openNow > 7) {
-                            // 获取开始日期和结束日期的年份
-                            int openYear = openTime.getYear();
-                            int closeYear = closeTime.getYear();
-                            String openMMdd = (openTime.getMonth() + 1) + "月" + openTime.getDate() + "日";
-                            String closeMMdd = (closeTime.getMonth() + 1) + "月" + closeTime.getDate() + "日";
+                    Date openTime = cityActivity.getOpenTime();
+                    System.out.println("openTime:" + openTime);
+                    Date closeTime = cityActivity.getCloseTime();
 
-                            if (openYear == openYear) {
-                                // 不是跨年，不显示年份
-                                activityBaseDto.setActTime(openMMdd + "-" + closeMMdd);
-                            } else {
-                                // 跨年需要显示年月日
-                                activityBaseDto.setActTime(openYear + "年" + openMMdd + "-" + closeYear + "年"
-                                        + closeMMdd);
+                    logger.info("---------查询城市活动列表开始----------");
+                    if (openTime != null && closeTime != null) {
+
+                        // 计算活动开始时间与当前日期相差的天数
+                        int openNow;
+                        int nowClose;
+                        try {
+                            openNow = DateUtil.daysBetween(dateNow, openTime);
+                            nowClose = DateUtil.daysBetween(dateNow, closeTime);
+                            // 计算活动结束日期与当前日期相差的天数
+                            if (openNow <= 7 & openNow > 0) {
+                                activityBaseDto.setActTime("即将开始");
+                            } else if (openNow <= 0 & nowClose > 0) {
+                                activityBaseDto.setActTime("进行中");
+                            } else if (openNow > 7) {
+                                // 获取开始日期和结束日期的年份
+                                int openYear = openTime.getYear();
+                                int closeYear = closeTime.getYear();
+                                String openMMdd = (openTime.getMonth() + 1) + "月" + openTime.getDate() + "日";
+                                String closeMMdd = (closeTime.getMonth() + 1) + "月" + closeTime.getDate() + "日";
+
+                                if (openYear == openYear) {
+                                    // 不是跨年，不显示年份
+                                    activityBaseDto.setActTime(openMMdd + "-" + closeMMdd);
+                                } else {
+                                    // 跨年需要显示年月日
+                                    activityBaseDto.setActTime(openYear + "年" + openMMdd + "-" + closeYear + "年"
+                                            + closeMMdd);
+                                }
                             }
+
+                        } catch (ParseException e) {
+                            logger.fatal("时间转换错误 {}", e.getStackTrace());
                         }
-
-                    } catch (ParseException e) {
-                        logger.fatal("时间转换错误 {}", e.getStackTrace());
                     }
-                }
 
-                // 设置排序字段
-                activityBaseDto.setSortTag(i + 1);
-                activityBaseDtoList.add(activityBaseDto);
+                    activityBaseDtoList.add(activityBaseDto);
+                }
             }
+        } catch (Exception e) {
+            logger.fatal("城市活动列表接口获取数据失败 {}", e.getStackTrace());
         }
 
         return activityBaseDtoList;

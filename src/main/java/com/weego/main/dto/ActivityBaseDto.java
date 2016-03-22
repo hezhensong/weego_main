@@ -14,8 +14,6 @@ public class ActivityBaseDto {
 
     private String actTime;
 
-    private int sortTag;
-
     public String getId() {
         return id;
     }
@@ -62,14 +60,6 @@ public class ActivityBaseDto {
 
     public void setActTime(String actTime) {
         this.actTime = actTime;
-    }
-
-    public int getSortTag() {
-        return sortTag;
-    }
-
-    public void setSortTag(int sortTag) {
-        this.sortTag = sortTag;
     }
 
 }

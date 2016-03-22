@@ -10,191 +10,191 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Activity {
 
-	@Id
-	private String Id;
+    @Id
+    private ObjectId Id;
 
-	@JsonProperty("city_id")
-	private ObjectId cityId;
+    @JsonProperty("city_id")
+    private ObjectId cityId;
 
-	@JsonProperty("cover_image")
-	private String image;
+    @JsonProperty("cover_image")
+    private String image;
 
-	@JsonProperty("type")
-	private String type;
+    @JsonProperty("type")
+    private String type;
 
-	@JsonProperty("title")
-	private String title;
+    @JsonProperty("title")
+    private String title;
 
     @JsonProperty("address")
     private String address;
 
     @JsonProperty("detail_address")
     private String detailAddress;
-    
-	@JsonProperty("start_time")
-	private Date openTime;
 
-	@JsonProperty("end_time")
-	private Date closeTime;
+    @JsonProperty("start_time")
+    private Date openTime;
 
-	@JsonProperty("act_time")
-	private String actTime;
+    @JsonProperty("end_time")
+    private Date closeTime;
 
-	@JsonProperty("coordination")
-	private String coordination;
+    @JsonProperty("act_time")
+    private String actTime;
 
-	@JsonProperty("act_url")
-	private String actUrl;
+    @JsonProperty("coordination")
+    private String coordination;
 
-	@JsonProperty("order_url")
-	private String orderUrl;
+    @JsonProperty("act_url")
+    private String actUrl;
 
-	@JsonProperty("description")
-	private String description;
+    @JsonProperty("order_url")
+    private String orderUrl;
 
-	@JsonProperty("paragraphs")
-	private List<ActivityParagraphs> paragraphs;
+    @JsonProperty("description")
+    private String description;
 
-	@JsonProperty("last_modified_time")
-	private Date lastModifiedTime;
+    @JsonProperty("paragraphs")
+    private List<ActivityParagraphs> paragraphs;
 
-	@JsonProperty("last_modified_person")
-	private String lastModifiedPerson;
+    @JsonProperty("last_modified_time")
+    private Date lastModifiedTime;
 
-	public String getId() {
-		return Id;
-	}
+    @JsonProperty("last_modified_person")
+    private String lastModifiedPerson;
 
-	public void setId(String id) {
-		Id = id;
-	}
+    public ObjectId getId() {
+        return Id;
+    }
 
-	public ObjectId getCityId() {
-		return cityId;
-	}
+    public void setId(ObjectId id) {
+        Id = id;
+    }
 
-	public void setCityId(ObjectId cityId) {
-		this.cityId = cityId;
-	}
+    public ObjectId getCityId() {
+        return cityId;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public void setCityId(ObjectId cityId) {
+        this.cityId = cityId;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getDetailAddress() {
-		return detailAddress;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setDetailAddress(String detailAddress) {
-		this.detailAddress = detailAddress;
-	}
+    public String getDetailAddress() {
+        return detailAddress;
+    }
 
-	public Date getOpenTime() {
-		return openTime;
-	}
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
 
-	public void setOpenTime(Date openTime) {
-		this.openTime = openTime;
-	}
+    public Date getOpenTime() {
+        return openTime;
+    }
 
-	public Date getCloseTime() {
-		return closeTime;
-	}
+    public void setOpenTime(Date openTime) {
+        this.openTime = openTime;
+    }
 
-	public void setCloseTime(Date closeTime) {
-		this.closeTime = closeTime;
-	}
+    public Date getCloseTime() {
+        return closeTime;
+    }
 
-	public String getActTime() {
-		return actTime;
-	}
+    public void setCloseTime(Date closeTime) {
+        this.closeTime = closeTime;
+    }
 
-	public void setActTime(String actTime) {
-		this.actTime = actTime;
-	}
+    public String getActTime() {
+        return actTime;
+    }
 
-	public String getCoordination() {
-		return coordination;
-	}
+    public void setActTime(String actTime) {
+        this.actTime = actTime;
+    }
 
-	public void setCoordination(String coordination) {
-		this.coordination = coordination;
-	}
+    public String getCoordination() {
+        return coordination;
+    }
 
-	public String getActUrl() {
-		return actUrl;
-	}
+    public void setCoordination(String coordination) {
+        this.coordination = coordination;
+    }
 
-	public void setActUrl(String actUrl) {
-		this.actUrl = actUrl;
-	}
+    public String getActUrl() {
+        return actUrl;
+    }
 
-	public String getOrderUrl() {
-		return orderUrl;
-	}
+    public void setActUrl(String actUrl) {
+        this.actUrl = actUrl;
+    }
 
-	public void setOrderUrl(String orderUrl) {
-		this.orderUrl = orderUrl;
-	}
+    public String getOrderUrl() {
+        return orderUrl;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setOrderUrl(String orderUrl) {
+        this.orderUrl = orderUrl;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Date getLastModifiedTime() {
-		return lastModifiedTime;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setLastModifiedTime(Date lastModifiedTime) {
-		this.lastModifiedTime = lastModifiedTime;
-	}
+    public Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
 
-	public String getLastModifiedPerson() {
-		return lastModifiedPerson;
-	}
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
 
-	public void setLastModifiedPerson(String lastModifiedPerson) {
-		this.lastModifiedPerson = lastModifiedPerson;
-	}
+    public String getLastModifiedPerson() {
+        return lastModifiedPerson;
+    }
 
-	public List<ActivityParagraphs> getParagraphs() {
-		return paragraphs;
-	}
+    public void setLastModifiedPerson(String lastModifiedPerson) {
+        this.lastModifiedPerson = lastModifiedPerson;
+    }
 
-	public void setParagraphs(List<ActivityParagraphs> paragraphs) {
-		this.paragraphs = paragraphs;
-	}
+    public List<ActivityParagraphs> getParagraphs() {
+        return paragraphs;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setParagraphs(List<ActivityParagraphs> paragraphs) {
+        this.paragraphs = paragraphs;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
 }
