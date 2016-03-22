@@ -14,6 +14,6 @@ public interface CityService {
 
     List<CityListContinentDto> getOnlineCityList();
 
-    List<CityListContinentDto> getCityList1();
+//    List<CityListContinentDto> getCityList1();
 
 }

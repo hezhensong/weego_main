@@ -12,6 +12,7 @@ import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.POITranslationDto;
 import com.weego.main.service.BasePOIService;
 
 @RestController
@@ -64,5 +65,15 @@ public class BasePOIController {
 			@RequestParam("type") Integer type) {
 
 		return basePOIService.getPOICommentsById(poiId, type);
+	}
+	
+	@RequestMapping(value = "/discovery/translate", method = RequestMethod.GET)
+	@ResponseBody
+	public POITranslationDto getPOITranslation(
+			@RequestParam("content") String content,
+			@RequestParam(value = "from", defaultValue = "en") String from,
+			@RequestParam(value = "to", defaultValue = "zh") String to) {
+
+		return basePOIService.getPOITranslation(content, from, to);
 	}
 }

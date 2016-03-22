@@ -37,6 +37,12 @@ public class DateUtil {
         return format.format(date);
     }
 
+    // Date 转化为 MM/dd
+    public static String formatMM_dd(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantMD);
+        return format.format(date);
+    }
+
     // 时间格式转换为Date
     public static Date yyyyMMddToDate(String date) {
         DateTimeFormatter format = DateTimeFormat.forPattern(yyyyMMdd);
@@ -178,11 +184,27 @@ public class DateUtil {
         return dateStr;
 
     }
+    
+    /**
+     * 将 Date 类型转为字符串: XXXX 年 XX 月 XX 日
+     * 
+     * @param date
+     * @return
+     */
+    public static String getDiscoveryTimeFormatter(Date date) {
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(date);
+    	int year = calendar.get(Calendar.YEAR);
+    	int month = calendar.get(Calendar.MONTH) + 1;
+    	int day = calendar.get(Calendar.DATE);
+    	return year + "年" + month + "月" + day + "日";
+    }
 
     public static void main(String[] args) throws ParseException {
         System.out.println(new Date().getTime());
         System.out.println(longChangeToDateStr(1454803200));
         System.out.println(covertTimeToUTC(new Date()));
+        System.out.println(getDiscoveryTimeFormatter(new Date()));
     }
 
 }

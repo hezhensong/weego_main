@@ -5,6 +5,7 @@ import com.weego.main.dto.CityHomeDto;
 import com.weego.main.dto.CityListContinentDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.CityService;
+import com.weego.main.service.PgcService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CityController {
     @Autowired
     CityService cityService;
 
+    @Autowired
+    PgcService pgcService;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
     public ResponseDto<CityHomeDto> getCityHome(@RequestParam("cityId") String cityId) {
@@ -28,7 +32,14 @@ public class CityController {
         ResponseDto<CityHomeDto> responseDto = new ResponseDto<>();
         CityHomeDto cityHomeDto = cityService.getCityHome(cityId);
 
-        responseDto.setData(cityHomeDto);
+        if (cityHomeDto == null) {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("城市首页数据为空");
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SUCCESS);
+            responseDto.setData(cityHomeDto);
+        }
+
         return responseDto;
     }
 

@@ -22,7 +22,7 @@ public class SearchNearbyController {
 			@RequestParam("cityId") String cityId,
     		@RequestParam("type") Integer type,
     		@RequestParam("coordination") String coordination,
-			@RequestParam("sort") String sort) {
+			@RequestParam(value = "sort", defaultValue = "distance") String sort) {
 		
 		return searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort);
 	}

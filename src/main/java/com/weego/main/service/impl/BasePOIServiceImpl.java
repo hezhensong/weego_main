@@ -10,6 +10,8 @@ import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.POITranslationBaseDto;
+import com.weego.main.dto.POITranslationDto;
 import com.weego.main.service.AttractionService;
 import com.weego.main.service.BasePOIService;
 import com.weego.main.service.BrandService;
@@ -17,6 +19,7 @@ import com.weego.main.service.DishService;
 import com.weego.main.service.RestaurantService;
 import com.weego.main.service.ShoppingService;
 import com.weego.main.service.SpotService;
+import com.weego.main.util.BaiDuTranslateUtil;
 
 @Service("basePOIService")
 public class BasePOIServiceImpl implements BasePOIService {
@@ -105,6 +108,22 @@ public class BasePOIServiceImpl implements BasePOIService {
 			logger.info("type 参数值有误");
 			return null;
 		}
+	}
+
+	@Override
+	public POITranslationDto getPOITranslation(String content, String from, String to) {
+		POITranslationDto poiTranslationDto = new POITranslationDto();
+		POITranslationBaseDto poiTranslationBaseDto = new POITranslationBaseDto();
+		try {
+			String translation = BaiDuTranslateUtil.translate(content, from, to);
+			poiTranslationBaseDto.setOrigin(content);
+			poiTranslationBaseDto.setTranslation(translation);
+		} catch (Exception e) {
+			logger.info("百度翻译出错了!");
+			e.printStackTrace();
+		}
+		poiTranslationDto.setData(poiTranslationBaseDto);
+		return poiTranslationDto;
 	}
 	
 	
