@@ -33,8 +33,8 @@ public class ActivityServiceImpl implements ActivityService {
         ActivityDetailDto activityDetailDto = new ActivityDetailDto();
 
         Activity cityActivity = cityActivityDao.getSpecifiedCity(cityActivityId);
-        
-        if(cityActivity!=null){
+
+        if (cityActivity != null) {
             // 将数据库中的数据赋值给dto
             activityDetailDto.setId(cityActivity.getId());
             activityDetailDto.setActTime(cityActivity.getActTime());
@@ -47,7 +47,17 @@ public class ActivityServiceImpl implements ActivityService {
             activityDetailDto.setOpenTime(openTime);
 
             activityDetailDto.setDescription(cityActivity.getDescription());
-            activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
+            // 详情页的地址需要拼接
+            if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null&&!cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())) {
+                activityDetailDto.setDetailAddress(cityActivity.getDetailAddress() + ", " + cityActivity.getAddress());
+            } else if (cityActivity.getDetailAddress() == null && cityActivity.getAddress() != null) {
+                activityDetailDto.setDetailAddress(cityActivity.getAddress());
+            } else if (cityActivity.getDetailAddress() != null && cityActivity.getAddress() == null) {
+                activityDetailDto.setDetailAddress(cityActivity.getDetailAddress());
+            } else if(cityActivity.getDetailAddress() != null && cityActivity.getAddress() != null&&cityActivity.getDetailAddress().endsWith(cityActivity.getAddress())){
+                activityDetailDto.setDetailAddress(cityActivity.getAddress());
+            }
+
             activityDetailDto.setId(cityActivity.getId());
             activityDetailDto.setImage(cityActivity.getImage());
 
@@ -75,7 +85,6 @@ public class ActivityServiceImpl implements ActivityService {
                     ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
 
                     activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
-                    System.out.println(cityActivityParagraphs.getDetailDown());
                     activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
                     activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
                     activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
@@ -86,7 +95,7 @@ public class ActivityServiceImpl implements ActivityService {
                 }
 
                 activityDetailDto.setParagraphs(activityParagraphsDtoList);
-        }
+            }
         }
 
         logger.info("-------查询城市活动详细信息结束----------");
@@ -109,7 +118,7 @@ public class ActivityServiceImpl implements ActivityService {
 
                 // 开始赋值
                 activityBaseDto.setId(cityActivity.getId());
-                activityBaseDto.setDetailAddress(cityActivity.getDetailAddress());
+                activityBaseDto.setAddress(cityActivity.getAddress());
                 activityBaseDto.setTitle(cityActivity.getTitle());
                 activityBaseDto.setType(cityActivity.getType());
                 activityBaseDto.setImage(cityActivity.getImage());
@@ -119,7 +128,7 @@ public class ActivityServiceImpl implements ActivityService {
                  * 前端acttime字段展示逻辑 1.时间格式：X月X日，需要跨年的显示x年
                  * 2.活动开始日期-今天<=7天，显示“即将开始” 活动开始日期<=今天<=活动结束日期，显示“进行中”
                  * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
-                 *
+                 * 
                  */
                 Date dateNow = new Date();
                 Date openTime = cityActivity.getOpenTime();

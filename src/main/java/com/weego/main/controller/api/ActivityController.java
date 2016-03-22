@@ -30,7 +30,12 @@ public class ActivityController {
 
         logger.info("结束城市活动列表查询");
         ResponseDto<List<ActivityBaseDto>> responseDto = new ResponseDto<>();
-        responseDto.setData(activityBaseList);
+        if (activityBaseList != null && activityBaseList.size() > 0) {
+            responseDto.setCodeMessage(ErrorCode.SUCCESS);
+            responseDto.setData(activityBaseList);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
 
         return responseDto;
     }
