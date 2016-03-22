@@ -125,6 +125,7 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
                     cardDto.setType(elem.getType());
                     cardDto.setFirstTitle(elem.getContent().getContentFirst());
                     cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                    cardDto.setCoverImage(elem.getContent().getCoverImage());
                     cardDto.setDesc(elem.getContent().getContentDesc());
 
                     Activity activity = activityDao.getSpecifiedCity(cardDto.getId());
