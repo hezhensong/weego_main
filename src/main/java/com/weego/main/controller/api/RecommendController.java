@@ -2,6 +2,7 @@ package com.weego.main.controller.api;
 
 import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.*;
+import com.weego.main.service.RecommendHisService;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,20 +22,23 @@ public class RecommendController {
     @Autowired
     private RecommendInfoService recommendInfoService;
 
+    @Autowired
+    private RecommendHisService recommendHisService;
+
     //动态推荐列表
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
     public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
-        logger.info("开始动态推荐列表查询");
-        logger.info("cityId = {}", cityId);
-
+//        logger.info("开始动态推荐列表查询");
+//        logger.info("cityId = {}", cityId);
+//
         ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
-        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
-
-        if(recommendHistoryDto != null) {
-            responseDto.setData(recommendHistoryDto);
-        } else {
-            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
-        }
+//        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
+//
+//        if(recommendHistoryDto != null) {
+//            responseDto.setData(recommendHistoryDto);
+//        } else {
+//            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+//        }
         return responseDto;
     }
 

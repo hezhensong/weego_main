@@ -1,6 +1,5 @@
 package com.weego.main.service.impl;
 
-import com.weego.main.constant.ErrorCode;
 import com.weego.main.constant.RecommendType;
 import com.weego.main.dao.PeopleDao;
 import com.weego.main.dto.*;
@@ -132,7 +131,8 @@ public class PgcServiceImpl implements PgcService {
                         PgcPoiDto pgcPoiDto = new PgcPoiDto();
                         pgcPoiDto.setId(elem.getId());
                         pgcPoiDto.setType(elem.getType());
-                        pgcPoiDto.setPoiDes(elem.getPoiDesc());
+                        pgcPoiDto.setParagraphDes(elem.getParagraphDesc());
+                        pgcPoiDto.setParagraphTitle(elem.getParagraphTitle());
                         pgcPoiDto.setPoiImage(elem.getPoiImage());
                         pgcPoiDto.setName(Strings.nullToEmpty(elem.getName()));
 
@@ -141,7 +141,8 @@ public class PgcServiceImpl implements PgcService {
                         BasePoiDto poiDto = new BasePoiDto();
                         poiDto.setType(elem.getType());
                         poiDto.setId(elem.getId());
-                        poiDto.setPoiDes(elem.getPoiDesc());
+                        poiDto.setParagraphDes(elem.getParagraphDesc());
+                        poiDto.setParagraphTitle(elem.getParagraphTitle());
                         poiDto.setPoiImage(elem.getPoiImage());
 
                         pgcPoiDtos.add(poiDto);

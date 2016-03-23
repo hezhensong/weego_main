@@ -13,14 +13,14 @@ public class PgcPoi {
     @JsonProperty("type")
     private String type;
 
-    @JsonProperty("poi_desc")
-    private String poiDesc;
+    @JsonProperty("paragraph_desc")
+    private String paragraphDesc;
 
     @JsonProperty("poi_image")
     private String poiImage;
 
-    @JsonProperty("poi_image_desc")
-    private String poiImageDesc;
+    @JsonProperty("paragraph_title")
+    private String paragraphTitle;
 
     public String getId() {
         return id;
@@ -46,13 +46,6 @@ public class PgcPoi {
         this.type = type;
     }
 
-    public String getPoiDesc() {
-        return poiDesc;
-    }
-
-    public void setPoiDesc(String poiDesc) {
-        this.poiDesc = poiDesc;
-    }
 
     public String getPoiImage() {
         return poiImage;
@@ -62,11 +55,19 @@ public class PgcPoi {
         this.poiImage = poiImage;
     }
 
-    public String getPoiImageDesc() {
-        return poiImageDesc;
+    public String getParagraphDesc() {
+        return paragraphDesc;
     }
 
-    public void setPoiImageDesc(String poiImageDesc) {
-        this.poiImageDesc = poiImageDesc;
+    public void setParagraphDesc(String paragraphDesc) {
+        this.paragraphDesc = paragraphDesc;
+    }
+
+    public String getParagraphTitle() {
+        return paragraphTitle;
+    }
+
+    public void setParagraphTitle(String paragraphTitle) {
+        this.paragraphTitle = paragraphTitle;
     }
 }
