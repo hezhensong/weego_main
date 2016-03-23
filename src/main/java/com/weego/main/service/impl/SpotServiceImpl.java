@@ -26,7 +26,7 @@ public class SpotServiceImpl implements SpotService {
 			poiSepcialBaseDto.setCoverImage(spot.getCoverImage());
 			poiSepcialBaseDto.setTitle(spot.getTitle());
 			poiSepcialBaseDto.setDesc(spot.getDesc());
-			poiSepcialBaseDto.setDesc(spot.getDesc());
+			poiSepcialBaseDto.setTag(spot.getTag());
 			poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		}
 		return poiSpecialDetailDto;

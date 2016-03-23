@@ -35,6 +35,7 @@ public class ActivityController {
             responseDto.setData(activityBaseList);
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("城市活动列表数据为空");
         }
 
         return responseDto;
@@ -55,6 +56,7 @@ public class ActivityController {
             responseDto.setData(activityDetailDto);
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("城市活动详情数据为空");
         }
         logger.info("结束城市活动详情查询");
         return responseDto;

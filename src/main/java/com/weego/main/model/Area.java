@@ -31,6 +31,9 @@ public class Area {
     @JsonProperty("path")
     private String path;
 
+    @JsonProperty("order")
+    private int order;
+
     public String getId() {
         return id;
     }
@@ -93,5 +96,13 @@ public class Area {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }

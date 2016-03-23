@@ -15,5 +15,6 @@ public interface ShoppingService {
 	
 	POICommentsDto getShoppingCommentsById(String id);
 	
-	SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination, String sort);
+	SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination, String sort,
+			Double range, Integer price, String special);
 }

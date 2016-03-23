@@ -1,15 +1,13 @@
 package com.weego.main.dto;
 
-import java.util.List;
-
 public class SearchNearByDto extends BaseDto {
-	private List<SearchNearByBaseDto> data;
+	private SearchNearByBaseDto data;
 
-	public List<SearchNearByBaseDto> getData() {
+	public SearchNearByBaseDto getData() {
 		return data;
 	}
 
-	public void setData(List<SearchNearByBaseDto> data) {
+	public void setData(SearchNearByBaseDto data) {
 		this.data = data;
 	}
 

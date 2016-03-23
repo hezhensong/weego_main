@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.util.Base64;
 import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.service.SearchNearByService;
 
@@ -22,8 +23,11 @@ public class SearchNearbyController {
 			@RequestParam("cityId") String cityId,
     		@RequestParam("type") Integer type,
     		@RequestParam("coordination") String coordination,
-			@RequestParam(value = "sort", defaultValue = "distance") String sort) {
+			@RequestParam(value = "sort", defaultValue = "distance") String sort,
+			@RequestParam(value = "range", defaultValue = "50000") Double range,
+			@RequestParam(value = "price", defaultValue = "1") Integer price,
+			@RequestParam(value = "special", defaultValue = "sp") String special) {
 		
-		return searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort);
+		return searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort, range, price, special);
 	}
 }

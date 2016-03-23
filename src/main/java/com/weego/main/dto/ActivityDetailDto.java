@@ -14,10 +14,6 @@ public class ActivityDetailDto {
 
     private String detailAddress;
 
-    private String openTime;
-
-    private String closeTime;
-
     private String actTime;
 
     private String longitude;
@@ -70,22 +66,6 @@ public class ActivityDetailDto {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
-    }
-
-    public String getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
-    }
-
-    public String getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
     }
 
     public String getActTime() {
