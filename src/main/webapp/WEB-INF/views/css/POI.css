@@ -9,11 +9,7 @@ body{
 	background:url(../resource/img/poi/poifood.png);
 	background-size: cover;
 }
-header{
-	background-image:url(../resource/img/pgc/4.jpg);
-	background-size: cover;
-	height: 640px;
-}
+
 .float_r{
 	float: right;
 }
@@ -37,7 +33,7 @@ header{
 	margin: 0 32px;
 	height: 30px;
 	width: 42px;
-	background-image:url(../resource/img/pgc_detail/icon.png);
+	background-image:url(../resource/img/pgc/icon.png);
 	background-size: cover;
 }
 .title .center h2{
@@ -49,8 +45,8 @@ header{
 	text-align: center;
 }
 .title .score{
+	text-align: center;
 	margin: 40px auto;
-	width: 300px;
 }
 .title .score img{
 	display: inline-block;
@@ -74,7 +70,7 @@ header{
 	line-height: 50px;
 }
 .tips .special{
-	width:635px;
+	text-align: center;
 	margin: 3% auto 4% auto;
 }
 .tips .special .single{
@@ -133,7 +129,7 @@ header{
 	font-size: 28px;
 	position: relative;
 	top:-150px;
-	background-image:url(../resource/img/pgc_detail/lable.png);
+	background-image:url(../resource/img/pgc/lable.png);
 	background-size: cover;
 	height: 60px;
 	width: 215px;

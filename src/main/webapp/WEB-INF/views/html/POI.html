@@ -4,6 +4,13 @@
 	<meta charset="UTF-8">
 	<title>探索城市</title>
 	<link rel="stylesheet" type="text/css" href="../css/POI.css">
+	<style type="text/css">
+	header{
+		background-image:url(${header});
+		background-size: cover;
+		height: 640px;
+	}
+	</style>
 </head>
 <body>
 	<header></header>
@@ -12,19 +19,19 @@
 			<div class="line"></div>
 			<div class="icon"></div>
 			<div class="line"></div>
-			<h2>马尔代夫天堂岛<br/>EnglishName</h2>
+			<h2>${title}<br/>${english_title}</h2>
 		</div>
 		<div class="score">
 			<img src="../resource/img/poi/reviews.png">
-			<div class="reviews">4.5分</div>
+			<div class="reviews">${reviews}</div>
 		</div>
 	</div>
 	<div class="tips">
-		<h2>米其林米其林米其林米其林米其林米其林米其林米其林米其林米其林米其林米其林</h2>
+		<h2>${foreword}</h2>
 		<div class="special">
-			<div class="single first">本地特色</div>
-			<div class="single">米其林最佳</div>
-			<div class="single">海鲜</div>
+			<div class="single first">${tag}</div><!-- 需要循环遍历 -->
+			<div class="single">${tag}</div>
+			<div class="single">${tag}</div>
 		</div>
 	</div>
 	<div class="tips">
@@ -32,7 +39,7 @@
 			<img src="../resource/img/poi/tips.png">
 			<h3>简介</h3>
 		</div>
-		<p class="margin">这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅这是一家高档的餐厅</p>
+		<p class="margin">${breif}</p>
 	</div>
 	<div class="tips">
 		<div class="breif">
@@ -40,11 +47,11 @@
 			<h3>小贴士</h3>
 		</div>
 		<div class="margin">
-			<p>推荐：老坛酸菜牛肉面 红烧牛肉面 香辣牛肉面</p>
+			<p>推荐：${recommend}</p>
 			<p>注意事项:</p>
-			<p>1.康师傅红烧牛肉面</p>
-			<p>2.兰州牛肉面</p>
-			<p>3.山西刀削面</p>
+			<p>${tips}</p><!-- 循环遍历 -->
+			<p>${tips}</p>
+			<p>${tips}</p>
 		</div>
 	</div>
 	<div class="tips">
