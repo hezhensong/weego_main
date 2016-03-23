@@ -53,14 +53,14 @@
 		<div class="aty">活动详情</div>
 		<div class="drb">${details}</div>
 	</div>
-<c:forEach items="${list}" var="activity">
+<c:forEach items="${paragraphs}" var="ActivityParagraphs">
 	<div class="four">
-		<h5 id="text_title">${activity.text_title}</h5>
-		<div class="drb inner" id="describe">${activity.describe}</div>
-		<img id="pic" src="${activity.pic}">
-		<div class="small" id="pic_describe">${activity.pic_describe}</div>
+		<h5 id="text_title">${ActivityParagraphs.imageTitle}</h5>
+		<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+		<img id="pic" src="${imageUrl}">
+		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 	</div>
-</c:forEach>>
+</c:forEach>
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/newactivity.js"></script>
