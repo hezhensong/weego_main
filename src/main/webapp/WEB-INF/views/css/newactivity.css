@@ -19,7 +19,7 @@ body {
 }
 .control{
     position: relative;
-    top: 45px;
+    top: 0px;
     width: 700px;
     white-space:nowrap;    
     word-break:keep-all;    
@@ -46,7 +46,7 @@ body {
 
 .two .detail img {
     float: left;
-    margin-top: 76px;
+    margin-top: 44px;
 }
 
 .two .detail .text {
