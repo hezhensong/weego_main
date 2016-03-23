@@ -1,5 +1,6 @@
 package com.weego.main.controller.api;
 
+import com.weego.main.constant.ErrorCode;
 import com.weego.main.dao.PgcDao;
 import com.weego.main.dto.PgcDetailDto;
 import com.weego.main.dto.PgcListPgcDto;
@@ -30,8 +31,11 @@ public class PgcController {
         ResponseDto<List<PgcListPgcDto>> responseDto = new ResponseDto<>();
 
         List<PgcListPgcDto> pgcListContinentDtoList = pgcService.getPgcList(cityId);
-        responseDto.setData(pgcListContinentDtoList);
-
+        if(pgcListContinentDtoList != null) {
+            responseDto.setData(pgcListContinentDtoList);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
 
@@ -50,9 +54,12 @@ public class PgcController {
 
         ResponseDto<PgcDetailDto> responseDto = new ResponseDto<PgcDetailDto>();
         PgcDetailDto pgcDetailDto = pgcService.getPgcDetail(pgcId);
-        responseDto.setData(pgcDetailDto);
+
+        if(pgcDetailDto != null) {
+            responseDto.setData(pgcDetailDto);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
-
-
 }

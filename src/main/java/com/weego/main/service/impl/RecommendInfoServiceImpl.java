@@ -44,37 +44,41 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         logger.info("cityId = {}", cityId);
 
         RecommendHistoryDto historyDto = new RecommendHistoryDto();
+        try {
 
-        historyDto.setCityId(cityId);
+            historyDto.setCityId(cityId);
 
-        logger.info("查询城市信息, cityId = {}", cityId);
-        City city = cityDao.getSpecifiedCity(cityId);
-        historyDto.setCityName(city.getName());
+            logger.info("查询城市信息, cityId = {}", cityId);
+            City city = cityDao.getSpecifiedCity(cityId);
+            historyDto.setCityName(city.getName());
 
-        logger.info("----查询当天的推荐记录----");
-        Date today = DateUtil.yyyyMMdd(new Date());
-        logger.info("today = {}", DateUtil.formatyyyyMMdd(today));
-        List<RecommendInfo> todayRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, today);
-        List<RecommendInfoDto> todayDtos = covertToDto(todayRecommends, today);
-        logger.info("----查询当天推荐记录结束----");
+            logger.info("----查询当天的推荐记录----");
+            Date today = DateUtil.yyyyMMdd(new Date());
+            logger.info("today = {}", DateUtil.formatyyyyMMdd(today));
+            List<RecommendInfo> todayRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, today);
+            List<RecommendInfoDto> todayDtos = covertToDto(todayRecommends, today);
+            logger.info("----查询当天推荐记录结束----");
 
-        logger.info("----查询昨天推荐记录----");
-        Date yesterday = DateUtil.afterNDays(today, -1);
-        logger.info("yesterday = {}", DateUtil.formatyyyyMMdd(yesterday));
-        List<RecommendInfo> yesterdayRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, yesterday);
-        List<RecommendInfoDto> yesterdayDtos = covertToDto(yesterdayRecommends, yesterday);
-        logger.info("----查询昨天推荐记录结束----");
+            logger.info("----查询昨天推荐记录----");
+            Date yesterday = DateUtil.afterNDays(today, -1);
+            logger.info("yesterday = {}", DateUtil.formatyyyyMMdd(yesterday));
+            List<RecommendInfo> yesterdayRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, yesterday);
+            List<RecommendInfoDto> yesterdayDtos = covertToDto(yesterdayRecommends, yesterday);
+            logger.info("----查询昨天推荐记录结束----");
 
-        logger.info("----查询前天推荐记录----");
-        Date dayBeforYest = DateUtil.afterNDays(today, -2);
-        logger.info("dayBeforeYest = {}", DateUtil.formatyyyyMMdd(dayBeforYest));
-        List<RecommendInfo> dayBeforeYestRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, dayBeforYest);
-        List<RecommendInfoDto> dayBeforeYestDtos = covertToDto(dayBeforeYestRecommends, dayBeforYest);
-        logger.info("----查询前天推荐记录结束----");
+            logger.info("----查询前天推荐记录----");
+            Date dayBeforYest = DateUtil.afterNDays(today, -2);
+            logger.info("dayBeforeYest = {}", DateUtil.formatyyyyMMdd(dayBeforYest));
+            List<RecommendInfo> dayBeforeYestRecommends = recommendInfoDao.getRecomendsSpecifyDay(cityId, dayBeforYest);
+            List<RecommendInfoDto> dayBeforeYestDtos = covertToDto(dayBeforeYestRecommends, dayBeforYest);
+            logger.info("----查询前天推荐记录结束----");
 
-        historyDto.setToday(todayDtos);
-        historyDto.setYesterday(yesterdayDtos);
-        historyDto.setDayBeforeYest(dayBeforeYestDtos);
+            historyDto.setToday(todayDtos);
+            historyDto.setYesterday(yesterdayDtos);
+            historyDto.setDayBeforeYest(dayBeforeYestDtos);
+        } catch (Exception e) {
+            return null;
+        }
 
         return historyDto;
     }
@@ -84,84 +88,89 @@ public class RecommendInfoServiceImpl implements RecommendInfoService {
         logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
 
         logger.info("----查询指定时间的动态推荐----");
-        Date dateTime = DateUtil.yyyyMMddToDate(time);
-        List<RecommendInfo> recommendInfos = recommendInfoDao.getRecomendsSpecifyDay(cityId, dateTime);
-
         List<BaseCardDto> datas = new ArrayList<BaseCardDto>();
-        if(recommendInfos != null && recommendInfos.size() > 0) {
-            for(RecommendInfo elem : recommendInfos) {
-                if (RecommendType.ATTRACTION.getType().equals(elem.getType())) {
-                    AttractionCardDto cardDto = new AttractionCardDto();
-                    cardDto.setId(elem.getContent().getContentId());
-                    cardDto.setType(elem.getType());
-                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
-                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
-                    cardDto.setCoverImage(elem.getContent().getCoverImage());
-                    cardDto.setDesc(elem.getContent().getContentDesc());
+        try {
 
-                    Attraction attraction = attractionDao.getAttractionById(cardDto.getId());
-                    if(attraction != null) {
-                        cardDto.setAttractionName(attraction.getName());
-                    }
+            Date dateTime = DateUtil.yyyyMMddToDate(time);
+            List<RecommendInfo> recommendInfos = recommendInfoDao.getRecomendsSpecifyDay(cityId, dateTime);
 
-                    datas.add(cardDto);
-                } else if(RecommendType.RESTAURANT.getType().equals(elem.getType())) {
-                    RestaurantCardDto cardDto = new RestaurantCardDto();
-                    cardDto.setId(elem.getContent().getContentId());
-                    cardDto.setType(elem.getType());
-                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
-                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
-                    cardDto.setCoverImage(elem.getContent().getCoverImage());
-                    cardDto.setDesc(elem.getContent().getContentDesc());
+            if (recommendInfos != null && recommendInfos.size() > 0) {
+                for (RecommendInfo elem : recommendInfos) {
+                    if (RecommendType.ATTRACTION.getType().equals(elem.getType())) {
+                        AttractionCardDto cardDto = new AttractionCardDto();
+                        cardDto.setId(elem.getContent().getContentId());
+                        cardDto.setType(elem.getType());
+                        cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                        cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                        cardDto.setCoverImage(elem.getContent().getCoverImage());
+                        cardDto.setDesc(elem.getContent().getContentDesc());
 
-                    Restaurant restaurant = restaurantDao.getRestaurantById(cardDto.getId());
-                    if(restaurant != null) {
-                        cardDto.setRestaurantName(restaurant.getName());
-                    }
-                    datas.add(cardDto);
-                } else if(RecommendType.ACTIVITY.getType().equals(elem.getType())) {
-                    ActivityCardDto cardDto = new ActivityCardDto();
-                    cardDto.setId(elem.getContent().getContentId());
-                    cardDto.setType(elem.getType());
-                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
-                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
-                    cardDto.setCoverImage(elem.getContent().getCoverImage());
-                    cardDto.setDesc(elem.getContent().getContentDesc());
-
-                    Activity activity = activityDao.getSpecifiedCity(cardDto.getId());
-                    if(activity != null) {
-                        Date startDate = activity.getOpenTime();
-                        Date endDate = activity.getCloseTime();
-                        DateTime startDateTime = new DateTime(startDate);
-                        DateTime endDateTime = new DateTime(endDate);
-                        logger.info("判断城市活动的开始结束时间是否为同一年");
-                        logger.info("startDate = {}， endDate = {}",
-                                DateUtil.formatyyyyMMdd(startDate), DateUtil.formatDate(endDate, "yyyy/MM/dd"));
-                        if (endDateTime.getYear() > startDateTime.getYear()) {
-                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
-                                    "-" +
-                                    DateUtil.formatDate(endDate, "yyyy/MM/dd"));
-                        } else {
-                            cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
-                                    "-" +
-                                    DateUtil.formatDate(endDate, "MM/dd"));
+                        Attraction attraction = attractionDao.getAttractionById(cardDto.getId());
+                        if (attraction != null) {
+                            cardDto.setAttractionName(attraction.getName());
                         }
 
-                        logger.info("Activity Time: {}", cardDto.getActivityTime());
-                    }
-                    datas.add(cardDto);
-                } else {
-                    BaseCardDto cardDto = new BaseCardDto();
-                    cardDto.setId(elem.getContent().getContentId());
-                    cardDto.setType(elem.getType());
-                    cardDto.setFirstTitle(elem.getContent().getContentFirst());
-                    cardDto.setSecondTitle(elem.getContent().getContentSecond());
-                    cardDto.setCoverImage(elem.getContent().getCoverImage());
-                    cardDto.setDesc(elem.getContent().getContentDesc());
+                        datas.add(cardDto);
+                    } else if (RecommendType.RESTAURANT.getType().equals(elem.getType())) {
+                        RestaurantCardDto cardDto = new RestaurantCardDto();
+                        cardDto.setId(elem.getContent().getContentId());
+                        cardDto.setType(elem.getType());
+                        cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                        cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                        cardDto.setCoverImage(elem.getContent().getCoverImage());
+                        cardDto.setDesc(elem.getContent().getContentDesc());
 
-                    datas.add(cardDto);
+                        Restaurant restaurant = restaurantDao.getRestaurantById(cardDto.getId());
+                        if (restaurant != null) {
+                            cardDto.setRestaurantName(restaurant.getName());
+                        }
+                        datas.add(cardDto);
+                    } else if (RecommendType.ACTIVITY.getType().equals(elem.getType())) {
+                        ActivityCardDto cardDto = new ActivityCardDto();
+                        cardDto.setId(elem.getContent().getContentId());
+                        cardDto.setType(elem.getType());
+                        cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                        cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                        cardDto.setCoverImage(elem.getContent().getCoverImage());
+                        cardDto.setDesc(elem.getContent().getContentDesc());
+
+                        Activity activity = activityDao.getSpecifiedCity(cardDto.getId());
+                        if (activity != null) {
+                            Date startDate = activity.getOpenTime();
+                            Date endDate = activity.getCloseTime();
+                            DateTime startDateTime = new DateTime(startDate);
+                            DateTime endDateTime = new DateTime(endDate);
+                            logger.info("判断城市活动的开始结束时间是否为同一年");
+                            logger.info("startDate = {}， endDate = {}",
+                                    DateUtil.formatyyyyMMdd(startDate), DateUtil.formatDate(endDate, "yyyy/MM/dd"));
+                            if (endDateTime.getYear() > startDateTime.getYear()) {
+                                cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
+                                        "-" +
+                                        DateUtil.formatDate(endDate, "yyyy/MM/dd"));
+                            } else {
+                                cardDto.setActivityTime(DateUtil.formatDate(startDate, "yyyy/MM/dd") +
+                                        "-" +
+                                        DateUtil.formatDate(endDate, "MM/dd"));
+                            }
+
+                            logger.info("Activity Time: {}", cardDto.getActivityTime());
+                        }
+                        datas.add(cardDto);
+                    } else {
+                        BaseCardDto cardDto = new BaseCardDto();
+                        cardDto.setId(elem.getContent().getContentId());
+                        cardDto.setType(elem.getType());
+                        cardDto.setFirstTitle(elem.getContent().getContentFirst());
+                        cardDto.setSecondTitle(elem.getContent().getContentSecond());
+                        cardDto.setCoverImage(elem.getContent().getCoverImage());
+                        cardDto.setDesc(elem.getContent().getContentDesc());
+
+                        datas.add(cardDto);
+                    }
                 }
             }
+        } catch (Exception e) {
+            return null;
         }
         return datas;
     }

@@ -1,5 +1,6 @@
 package com.weego.main.controller.api;
 
+import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.*;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +30,11 @@ public class RecommendController {
         ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
         RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
 
-        responseDto.setData(recommendHistoryDto);
+        if(recommendHistoryDto != null) {
+            responseDto.setData(recommendHistoryDto);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
 
@@ -42,9 +47,13 @@ public class RecommendController {
         logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
 
         ResponseDto<List<BaseCardDto>> responseDto = new ResponseDto<List<BaseCardDto>>();
+        List<BaseCardDto> dataList = recommendInfoService.getRecommendCards(cityId, coordinate, time);
 
-        List<BaseCardDto> data = recommendInfoService.getRecommendCards(cityId, coordinate, time);
-        responseDto.setData(data);
+        if(dataList != null) {
+            responseDto.setData(dataList);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
 }
