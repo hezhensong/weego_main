@@ -17,6 +17,15 @@ body {
     font-size: 20px;
     color: #fff;
 }
+.control{
+    position: relative;
+    top: 45px;
+    width: 700px;
+    white-space:nowrap;    
+    word-break:keep-all;    
+    overflow:hidden;    
+    text-overflow:ellipsis; 
+}
 
 .two {
     margin: 5% 30px;
@@ -37,7 +46,7 @@ body {
 
 .two .detail img {
     float: left;
-    margin-top: 34px;
+    margin-top: 76px;
 }
 
 .two .detail .text {
