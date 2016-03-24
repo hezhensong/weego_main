@@ -34,6 +34,9 @@ public class City {
     @JsonProperty("is_show")
     private boolean isShow;
 
+    @JsonProperty("timezone")
+    private String timezone;
+
     public ObjectId getId() {
         return id;
     }
