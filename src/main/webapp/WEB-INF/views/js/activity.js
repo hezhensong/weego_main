@@ -36,7 +36,7 @@ var _tag = $(".tag").html();
 		$("#pic_describe").hide();
 	}
 
-	if(_pic == ""){
+	if(_pic == "" _pic == "null"){
 		$("#pic").hide();
 	}
 
