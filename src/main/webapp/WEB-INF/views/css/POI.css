@@ -3,6 +3,7 @@ body, ul, li p div h2 h3{
     margin: 0;
     border: 0;
 }
+html,body{width:100%; position:relative;}
 body{
 	font-family: Helevtical Neue-Light;
 	color: #fff;
@@ -111,14 +112,10 @@ body{
 }
 .tips .menu{
 	margin: 70px 16px 30px 16px;
-	height: 420px;
+	height: 24%;
 }
 .tips .first_menu{
 	background:url(../resource/img/pgc/2.jpg);
-	background-size: cover;
-}
-.tips .second_menu{
-	background:url(../resource/img/pgc/4.jpg);
 	background-size: cover;
 }
 .tips .menu .type{
@@ -181,17 +178,12 @@ body{
 	text-align: center;
 }
 .tips .good_comment{
-	margin:0 3%;
+	margin:6% 3%;
 	font-size: 30px;
 	line-height: 50px;
 }
 .tips .good_comment img{
 	margin-right: 55px;
-}
-.tips .map{
-	margin-top: 100px;
-	height: 420px;
-	border:1px solid red;
 }
 .tips .message .details{
 	font-size: 30px;
@@ -209,7 +201,10 @@ body{
 }
 .tips .message .details h3{
 	display: inline-block;
-	color: #ff4f4e
+	width: 600px;
+	color: #ff4f4e;
+	display: inline-flex;
+	word-wrap: break-word;
 }
 
 .tips .message .details .all{
@@ -233,12 +228,4 @@ body{
 }
 #last_tip{
 	border-bottom: none;
-}
-footer{
-	height: 52px;
-	margin:40px 0 60px 0;
-	background: url(../resource/img/poi/1.png) no-repeat center;
-}
-.footer img{
-	height: 52px;
 }

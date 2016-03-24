@@ -4,7 +4,8 @@
 	border:0;
 	}
 	body{
-		background-color: #364344;
+		background-image: url(../resource/img/pgc/bg.png);
+    	background-size: cover;
 		color:#fff;
 	}
 	.float-r{
@@ -17,31 +18,33 @@
 		margin-top: -204px;
 	}
 	header h1{
-		margin:0 3%;
-		top: 474px;
+		margin:0 7%;
+		top: 55%;
 		position: relative;
 		text-align: center;
-		font-size:54px ;
+		font-size:60px ;
 		font-weight: bold;
 	}
 	.author{
 		text-align: center;
-		margin: -75px 3% 6% 3%;
+		margin: -100px 3% 6% 3%;
 	}
 	.author .head{
 		margin:0 auto;
 		background:url(../resource/img/pgc/pgc_avatar.png);
 		background-size: cover;
-		height:150px;
-		width: 150px;
+		height:200px;
+		width: 200px;
 	}
 	.author .head img{
-		margin: 16px;
-		height: 116px;
-		width: 116px;
+		margin: 20px;
+		height: 81%;
+		width: 81%;
 		border-radius: 50%;
 	}
 	.author h1{
+		padding-top: 3%;
+		margin:0;
 		text-align: center;
 		font-size: 46px;
 		font-family: bold;
