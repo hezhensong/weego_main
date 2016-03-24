@@ -155,11 +155,25 @@ public class CityServiceImpl implements CityService {
             List<WeatherForecastDto> weatherForecastDtoList = new ArrayList<>();
             cityHomeWeatherDto.setForecast(weatherForecastDtoList);
 
+            int order = 1;
             for (WeatherForecast weatherForecast : weatherForecastList) {
                 WeatherForecastDto weatherForecastDto = new WeatherForecastDto();
 
                 String date = DateUtil.formatMM_dd(weatherForecast.getDate());
                 weatherForecastDto.setDate(date);
+
+                // 第一天、第二天 转换为今天、明天
+                String day;
+                if (order == 1) {
+                    day = "今天";
+                    ++order;
+                } else if (order == 2) {
+                    day = "明天";
+                    ++order;
+                } else {
+                    day = DateUtil.formatDay(weatherForecast.getDate());
+                }
+                weatherForecastDto.setDay(day);
 
                 weatherForecastDto.setHigh(String.valueOf(weatherForecast.getHigh()));
                 weatherForecastDto.setLow(String.valueOf(weatherForecast.getLow()));

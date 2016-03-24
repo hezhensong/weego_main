@@ -1,5 +1,6 @@
 package com.weego.main.controller.api;
 
+import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.PersonDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.PersonService;
@@ -26,10 +27,14 @@ public class PersonController {
     public ResponseDto<PersonDto> getPersonDetail(@RequestParam("personId") String personId) {
         logger.info("查询人物详情信息");
         logger.info("personId = {}", personId);
-        ResponseDto<PersonDto> responseDto = new ResponseDto<PersonDto>();
 
+        ResponseDto<PersonDto> responseDto = new ResponseDto<PersonDto>();
         PersonDto personDto = personService.getPersonDetail(personId);
-        responseDto.setData(personDto);
+        if(personDto != null) {
+            responseDto.setData(personDto);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
 }

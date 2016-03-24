@@ -29,29 +29,31 @@ public class PgcServiceImpl implements PgcService {
     @Override
     public List<PgcListPgcDto> getPgcList(String cityId) {
         List<PgcListPgcDto> pgcListPgcDtoList = new ArrayList<>();
+        try {
+            List<Pgc> pgcList = pgcDao.getPgcByCityId(cityId);
+            if(pgcList != null && pgcList.size() > 0) {
 
-        List<Pgc> pgcList = pgcDao.getPgcByCityId(cityId);
-        if(pgcList == null || pgcList.size() == 0){
-            return pgcListPgcDtoList;
-        }
+                for (Pgc pgc : pgcList) {
+                    PgcListPgcDto pgcListPgcDto = new PgcListPgcDto();
 
-        for (Pgc pgc : pgcList) {
-            PgcListPgcDto pgcListPgcDto = new PgcListPgcDto();
+                    if (!Strings.isNullOrEmpty(pgc.getPerson())) {
+                        Person person = peopleDao.getPersonById(pgc.getPerson());
+                        pgcListPgcDto.setUserName(person.getUserName());   //人物名称
+                        pgcListPgcDto.setHeadImage(person.getHeadImage()); //人物头像
+                    } else {
+                        pgcListPgcDto.setUserName("");  //人物名称
+                        pgcListPgcDto.setHeadImage(""); //人物头像
+                    }
 
-            if (!Strings.isNullOrEmpty(pgc.getPerson())) {
-                Person person = peopleDao.getPersonById(pgc.getPerson());
-                pgcListPgcDto.setUserName(person.getUserName());   //人物名称
-                pgcListPgcDto.setHeadImage(person.getHeadImage()); //人物头像
-            } else {
-                pgcListPgcDto.setUserName("");  //人物名称
-                pgcListPgcDto.setHeadImage(""); //人物头像
+                    pgcListPgcDto.setPgcId(pgc.getId());
+                    pgcListPgcDto.setTitle(pgc.getTitle());
+                    pgcListPgcDto.setCoverImage(pgc.getCoverImage());
+
+                    pgcListPgcDtoList.add(pgcListPgcDto);
+                }
             }
-
-            pgcListPgcDto.setPgcId(pgc.getId());
-            pgcListPgcDto.setTitle(pgc.getTitle());
-            pgcListPgcDto.setCoverImage(pgc.getCoverImage());
-
-            pgcListPgcDtoList.add(pgcListPgcDto);
+        } catch (Exception e) {
+            return null;
         }
         return pgcListPgcDtoList;
     }
@@ -94,58 +96,64 @@ public class PgcServiceImpl implements PgcService {
     public PgcDetailDto getPgcDetail(String pgcId) {
         PgcDetailDto pgcDetailDto = new PgcDetailDto();
 
-        Pgc pgc = pgcDao.getSpecifiedPgc(pgcId);
-        pgcDetailDto.setCoverImage(pgc.getCoverImage());
-        pgcDetailDto.setTitle(pgc.getTitle());
+        try {
+            Pgc pgc = pgcDao.getSpecifiedPgc(pgcId);
+            pgcDetailDto.setCoverImage(pgc.getCoverImage());
+            pgcDetailDto.setTitle(pgc.getTitle());
 
-        if (Strings.isNullOrEmpty(pgc.getPerson())) {
-            PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
-            pgcPeopleDto.setId("");
-            pgcPeopleDto.setHeadImage("");
-            pgcPeopleDto.setUserName("");
-            pgcPeopleDto.setJobDesc("");
+            if (Strings.isNullOrEmpty(pgc.getPerson())) {
+                PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
+                pgcPeopleDto.setId("");
+                pgcPeopleDto.setHeadImage("");
+                pgcPeopleDto.setUserName("");
+                pgcPeopleDto.setJobDesc("");
 
-            pgcDetailDto.setPgcPeople(pgcPeopleDto);
-        } else {
-            Person person = peopleDao.getPersonById(pgc.getPerson().trim());
-            PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
-            pgcPeopleDto.setId(person.getPersonId());
-            pgcPeopleDto.setHeadImage(person.getHeadImage());
-            pgcPeopleDto.setUserName(person.getUserName());
-            pgcPeopleDto.setJobDesc(person.getJobDesc());
+                pgcDetailDto.setPgcPeople(pgcPeopleDto);
+            } else {
+                Person person = peopleDao.getPersonById(pgc.getPerson().trim());
+                PgcPeopleDto pgcPeopleDto = new PgcPeopleDto();
+                pgcPeopleDto.setId(person.getPersonId());
+                pgcPeopleDto.setHeadImage(person.getHeadImage());
+                pgcPeopleDto.setUserName(person.getUserName());
+                pgcPeopleDto.setJobDesc(person.getJobDesc());
 
-            pgcDetailDto.setPgcPeople(pgcPeopleDto);
-        }
-
-
-        pgcDetailDto.setIntroduction(pgc.getIntroduction());
-
-        List<PgcPoi> pgcPois = pgc.getPoiList();
-        List<BasePoiDto> pgcPoiDtos = new ArrayList<BasePoiDto>();
-        if (pgcPois != null && pgcPois.size() > 0) {
-            for (PgcPoi elem : pgcPois) {
-                if (isSpecifyType(elem.getType())) {
-                    PgcPoiDto pgcPoiDto = new PgcPoiDto();
-                    pgcPoiDto.setId(elem.getId());
-                    pgcPoiDto.setType(elem.getType());
-                    pgcPoiDto.setPoiDes(elem.getPoiDesc());
-                    pgcPoiDto.setPoiImage(elem.getPoiImage());
-                    pgcPoiDto.setName(Strings.nullToEmpty(elem.getName()));
-
-                    pgcPoiDtos.add(pgcPoiDto);
-                } else {
-                    BasePoiDto poiDto = new BasePoiDto();
-                    poiDto.setType(elem.getType());
-                    poiDto.setId(elem.getId());
-                    poiDto.setPoiDes(elem.getPoiDesc());
-                    poiDto.setPoiImage(elem.getPoiImage());
-
-                    pgcPoiDtos.add(poiDto);
-                }
-
+                pgcDetailDto.setPgcPeople(pgcPeopleDto);
             }
+
+
+            pgcDetailDto.setIntroduction(pgc.getIntroduction());
+
+            List<PgcPoi> pgcPois = pgc.getPoiList();
+            List<BasePoiDto> pgcPoiDtos = new ArrayList<BasePoiDto>();
+            if (pgcPois != null && pgcPois.size() > 0) {
+                for (PgcPoi elem : pgcPois) {
+                    if (isSpecifyType(elem.getType())) {
+                        PgcPoiDto pgcPoiDto = new PgcPoiDto();
+                        pgcPoiDto.setId(elem.getId());
+                        pgcPoiDto.setType(elem.getType());
+                        pgcPoiDto.setParagraphDes(elem.getParagraphDesc());
+                        pgcPoiDto.setParagraphTitle(elem.getParagraphTitle());
+                        pgcPoiDto.setPoiImage(elem.getPoiImage());
+                        pgcPoiDto.setName(Strings.nullToEmpty(elem.getName()));
+
+                        pgcPoiDtos.add(pgcPoiDto);
+                    } else {
+                        BasePoiDto poiDto = new BasePoiDto();
+                        poiDto.setType(elem.getType());
+                        poiDto.setId(elem.getId());
+                        poiDto.setParagraphDes(elem.getParagraphDesc());
+                        poiDto.setParagraphTitle(elem.getParagraphTitle());
+                        poiDto.setPoiImage(elem.getPoiImage());
+
+                        pgcPoiDtos.add(poiDto);
+                    }
+
+                }
+            }
+            pgcDetailDto.setPgcPoi(pgcPoiDtos);
+        } catch (Exception e) {
+            return null;
         }
-        pgcDetailDto.setPgcPoi(pgcPoiDtos);
         return pgcDetailDto;
     }
 
