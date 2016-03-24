@@ -28,11 +28,11 @@ var _pic = $("#pic").attr("src");
 	 	$("#text_title").hide;
 
 	 if(_describe == "" || _describe == "null"){
-		$("#describe").hide;
+		$("#describe").hide();
 	}
 
 	if(_pic_describe == "" || _pic_describe == "null"){
-		$("#pic_describe").hide;
+		$("#pic_describe").hide();
 	}
 
 	if(_pic == ""){
