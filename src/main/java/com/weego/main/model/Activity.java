@@ -14,7 +14,7 @@ public class Activity {
     private ObjectId Id;
 
     @JsonProperty("city_id")
-    private ObjectId cityId;
+    private String cityId;
 
     @JsonProperty("cover_image")
     private String coverImage;
@@ -69,11 +69,11 @@ public class Activity {
         Id = id;
     }
 
-    public ObjectId getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(ObjectId cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 

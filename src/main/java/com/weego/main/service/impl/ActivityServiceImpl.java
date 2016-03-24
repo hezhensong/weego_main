@@ -133,7 +133,7 @@ public class ActivityServiceImpl implements ActivityService {
                      * 前端acttime字段展示逻辑 1.时间格式：X月X日，需要跨年的显示x年
                      * 2.活动开始日期-今天<=7天，显示“即将开始” 活动开始日期<=今天<=活动结束日期，显示“进行中”
                      * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
-                     * 
+                     *
                      */
                     Date dateNow = new Date();
 
@@ -190,22 +190,20 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ModelAndView getSpecifiedActivity(String activityId) {
 
+        ModelAndView mv = new ModelAndView("activity");
         Activity activity = cityActivityDao.getSpecifiedCity(activityId);
-        if (activity == null) {
-            return null;
 
-        } else {
-            ModelAndView mv = new ModelAndView("newactivity");
-            mv.addObject("title",activity.getTitle());
-            mv.addObject("time",activity.getActTime());
-            mv.addObject("ip",activity.getDetailAddress());
-            mv.addObject("bg",activity.getCoverImage());
-            mv.addObject("web",activity.getActUrl());
-            mv.addObject("ticket",activity.getOrderUrl());
-            mv.addObject("details",activity.getDescription());
-            mv.addObject("paragraphs",activity.getParagraphs());
-           
-            return mv;
+        if (activity != null) {
+            mv.addObject("title", activity.getTitle());
+            mv.addObject("time", activity.getActTime());
+            mv.addObject("ip", activity.getDetailAddress());
+            mv.addObject("bg", activity.getCoverImage());
+            mv.addObject("web", activity.getActUrl());
+            mv.addObject("ticket", activity.getOrderUrl());
+            mv.addObject("details", activity.getDescription());
+            mv.addObject("paragraphs", activity.getParagraphs());
         }
+
+        return mv;
     }
 }
