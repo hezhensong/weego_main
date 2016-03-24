@@ -25,7 +25,7 @@ public class SearchNearbyController {
     		@RequestParam("coordination") String coordination,
 			@RequestParam(value = "sort", defaultValue = "distance") String sort,
 			@RequestParam(value = "range", defaultValue = "50000") Double range,
-			@RequestParam(value = "price", defaultValue = "1") Integer price,
+			@RequestParam(value = "price", defaultValue = "0") Integer price,
 			@RequestParam(value = "special", defaultValue = "sp") String special) {
 		
 		return searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort, range, price, special);

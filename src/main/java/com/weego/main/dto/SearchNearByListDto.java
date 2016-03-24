@@ -11,6 +11,8 @@ public class SearchNearByListDto {
 	private String latitude;
 	private String longitude;
 	private Double score;
+	private String priceDesc;
+	private Integer priceLevel;
 	private List<SearchNearByTagDto> tags;
 
 	public String getId() {
@@ -75,6 +77,22 @@ public class SearchNearByListDto {
 
 	public void setScore(Double score) {
 		this.score = score;
+	}
+
+	public String getPriceDesc() {
+		return priceDesc;
+	}
+
+	public void setPriceDesc(String priceDesc) {
+		this.priceDesc = priceDesc;
+	}
+
+	public Integer getPriceLevel() {
+		return priceLevel;
+	}
+
+	public void setPriceLevel(Integer priceLevel) {
+		this.priceLevel = priceLevel;
 	}
 
 	public List<SearchNearByTagDto> getTags() {

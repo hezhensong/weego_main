@@ -75,7 +75,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public POIDetailDto getRestaurantById(String id) {
+	public POIDetailDto getRestaurantById(String id, String coordination) {
 		POIDetailDto poiDetailDto = new POIDetailDto();
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
@@ -94,12 +94,21 @@ public class RestaurantServiceImpl implements RestaurantService {
 			poiDetailSumDto.setCityName(restaurant.getCityName());
 			poiDetailSumDto.setCityId(restaurant.getCityId());
 
-			String coordination = restaurant.getCoordination();
-			if (coordination != null && coordination.split(",").length >= 2) {
-				String latitude = coordination.split(",")[1];
-				String longitude = coordination.split(",")[0];
-				poiDetailSumDto.setLatitude(latitude);
-				poiDetailSumDto.setLongitude(longitude);
+			String newCoordination = restaurant.getCoordination();
+			if (newCoordination != null && newCoordination.split(",").length >= 2) {
+				String newLatitude = newCoordination.split(",")[1];
+				String newLongitude = newCoordination.split(",")[0];
+				poiDetailSumDto.setLatitude(newLatitude);
+				poiDetailSumDto.setLongitude(newLongitude);
+				
+				if(coordination.split(",").length >= 2) {
+					String latitude = coordination.split(",")[1];
+					String longitude = coordination.split(",")[0];
+					Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
+					poiDetailSumDto.setDistance(distance);
+				} else {
+					logger.info("coordination 参数值有误");
+				}
 			}
 
 			poiDetailSumDto.setImage(restaurant.getImage());
@@ -183,8 +192,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 				}
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
-
-			poiDetailSumDto.setDistance(0L);
 
 			String openTimeDesc = "营业中";
 			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
@@ -282,7 +289,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
 		List<SearchNearByListDto> searchNearByListDtos = new ArrayList<SearchNearByListDto>();
-		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityIdAndCoordination(cityId, coordination);
+		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityIdAndCoordination(cityId, coordination, price);
 		
 		if (restaurants != null && restaurants.size() > 0) {
 			for (Restaurant restaurant : restaurants) {
@@ -291,7 +298,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 				searchNearByListDto.setName(restaurant.getName());
 				searchNearByListDto.setAddress(restaurant.getAddress());
 				searchNearByListDto.setCoverImage(restaurant.getCoverImage());
-
+				searchNearByListDto.setPriceDesc(restaurant.getPriceDesc());
+				searchNearByListDto.setPriceLevel(restaurant.getPriceLevel());
+				
 				String newCoordination = restaurant.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];

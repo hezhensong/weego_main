@@ -231,10 +231,20 @@ public class DateUtil {
     }
 
     public static void main(String[] args) throws ParseException {
-        System.out.println(new Date().getTime());
-        System.out.println(longChangeToDateStr(1454803200));
-        System.out.println(covertTimeToUTC(new Date()));
-        System.out.println(getDiscoveryTimeFormatter(new Date()));
+//        System.out.println(new Date().getTime());
+//        System.out.println(longChangeToDateStr(1454803200));
+//        System.out.println(covertTimeToUTC(new Date()));
+//        System.out.println(getDiscoveryTimeFormatter(new Date()));
+    	Date date = DateUtil.yyyyMMddToDate("20150303");
+    	System.out.println(date.toString());
+    	System.out.println(date.getMonth());
+    	System.out.println(date.getTime());
+    	long test = 1425340800000L;
+    	System.out.println(DateUtil.longChangeToDate(1425340800000L));
+    	long test2 = 1425312000000L;
+    	System.out.println((test - test2)/3600/1000);
+    	
+    	
     }
 
 }

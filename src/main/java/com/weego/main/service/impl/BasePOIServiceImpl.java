@@ -55,13 +55,13 @@ public class BasePOIServiceImpl implements BasePOIService {
 	}
 
 	@Override
-	public POIDetailDto getPOIDetailById(String id, Integer type) {
+	public POIDetailDto getPOIDetailById(String id, Integer type, String coordination) {
 		if (type == 0) {
-			return attractionService.getAttractionById(id);
+			return attractionService.getAttractionById(id, coordination);
 		} else if (type == 1) {
-			return restaurantService.getRestaurantById(id);
+			return restaurantService.getRestaurantById(id, coordination);
 		} else if (type == 2) {
-			return shoppingService.getShoppingById(id);
+			return shoppingService.getShoppingById(id, coordination);
 		} else {
 			logger.info("type 参数值有误");
 			return null;

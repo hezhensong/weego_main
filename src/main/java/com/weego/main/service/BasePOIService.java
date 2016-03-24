@@ -11,7 +11,7 @@ public interface BasePOIService {
 	POIListDto getPOIsByCityId(String cityId, Integer type, String labelId, 
 							Integer page, Integer count);
 	
-	POIDetailDto getPOIDetailById(String id, Integer type);
+	POIDetailDto getPOIDetailById(String id, Integer type, String coordination);
 	
 	POISpecialDto getPOISpecialById(String id, Integer type);
 	

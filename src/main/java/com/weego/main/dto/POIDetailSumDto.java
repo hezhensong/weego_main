@@ -28,7 +28,7 @@ public class POIDetailSumDto {
 	private String commentsUrl;
 	private String commentFrom;
 	private List<POIDetailCommentsDto> comments;
-	private Long distance;
+	private Double distance;
 	private String openTimeDesc;
 	private String openTableUrl;
 	private Integer openDay;
@@ -234,11 +234,11 @@ public class POIDetailSumDto {
 		this.comments = comments;
 	}
 
-	public Long getDistance() {
+	public Double getDistance() {
 		return distance;
 	}
 
-	public void setDistance(Long distance) {
+	public void setDistance(Double distance) {
 		this.distance = distance;
 	}
 

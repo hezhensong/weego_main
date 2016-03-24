@@ -57,6 +57,9 @@ public class BasePOI {
 	@JsonProperty("price_desc")
 	private String priceDesc;
 
+	@JsonProperty("price_level")
+	private Integer priceLevel;
+
 	private String tips;
 	private Double rating;
 	private String website;
@@ -218,6 +221,14 @@ public class BasePOI {
 
 	public void setPriceDesc(String priceDesc) {
 		this.priceDesc = priceDesc;
+	}
+
+	public Integer getPriceLevel() {
+		return priceLevel;
+	}
+
+	public void setPriceLevel(Integer priceLevel) {
+		this.priceLevel = priceLevel;
 	}
 
 	public String getTips() {
