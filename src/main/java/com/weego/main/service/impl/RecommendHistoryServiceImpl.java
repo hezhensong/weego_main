@@ -1,7 +1,7 @@
 package com.weego.main.service.impl;
 
 import com.weego.main.dto.RecommendHistoryDto;
-import com.weego.main.service.RecommendHisService;
+import com.weego.main.service.RecommendHistoryService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
  * Created by liuniandxx on 16-3-23.
  */
 @Service("recommendHisService")
-public class RecommendHisServiceImpl implements RecommendHisService {
+public class RecommendHistoryServiceImpl implements RecommendHistoryService {
 
-    private Logger logger = LogManager.getLogger(RecommendHisServiceImpl.class);
+    private Logger logger = LogManager.getLogger(RecommendHistoryServiceImpl.class);
 
     @Override
     public RecommendHistoryDto getRecommendHistory(String cityId, String userId) {
-        logger.info("cityId = {}", cityId);
+        logger.info("cityId = {}, userId = {}", cityId, userId);
 
         RecommendHistoryDto historyDto = new RecommendHistoryDto();
         try {

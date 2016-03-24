@@ -2,13 +2,13 @@ package com.weego.main.controller.api;
 
 import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.*;
-import com.weego.main.service.RecommendHisService;
+import com.weego.main.service.RecommendHistoryService;
 import com.weego.main.service.RecommendInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -23,13 +23,13 @@ public class RecommendController {
     private RecommendInfoService recommendInfoService;
 
     @Autowired
-    private RecommendHisService recommendHisService;
+    private RecommendHistoryService recommendHistoryService;
 
     //动态推荐列表
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
     public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
-//        logger.info("开始动态推荐列表查询");
-//        logger.info("cityId = {}", cityId);
+        logger.info("开始动态推荐列表查询");
+        logger.info("cityId = {}", cityId);
 //
         ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
 //        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
