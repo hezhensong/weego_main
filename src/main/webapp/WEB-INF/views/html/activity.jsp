@@ -35,7 +35,7 @@
 		<div class="detail" id="detail_web">
 			<img src="../resource/img/activity/details_web@3x.png">
 		    	<p>官网：</p>
-		    	<a class="control" id="web" href="blank">${web}</a>
+		    	<a class="control" id="web" href="${web}">${web}</a>
 		</div>
 		<div class="detail" id="detail_ticket">
 			<img src="../resource/img/activity/details_ticket@3x.png">
