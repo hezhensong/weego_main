@@ -6,7 +6,7 @@ body, ul, li p {
 a{
 	text-decoration: none;
 }
-
+html,body{width:100%; position:relative;}
 body {
     font-size: 12px;
     -webkit-user-select: none; /*无法选择文本*/
@@ -17,18 +17,19 @@ body {
     font-size: 20px;
     color: #fff;
 }
-.control{
+.one .tag{
     position: relative;
-    top: 0px;
-    width: 700px;
-    white-space:nowrap;    
-    word-break:keep-all;    
-    overflow:hidden;    
-    text-overflow:ellipsis; 
+    top: 80%;
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 36px;
+    height: 60px;
+    width: 280px;
+    background-image:url(../resource/img/pgc/lable.png);
+    background-size: cover;
 }
-
 .two {
-    margin: 5% 30px;
+    margin: 5%;
 }
 
 .two .title {
@@ -40,58 +41,59 @@ body {
 }
 
 .two .detail {
-    height: 150px;
+    border-bottom: 1px #8a8a8a solid;
     font: 36px helvetica-light;
 }
 
 .two .detail img {
-    float: left;
-    margin-top: 44px;
+    position: relative;
+    top: 15px;
+    margin-right: 5%;
+    width: 5.5%;
+    display: inline-block;
+    
 }
-
-.two .detail .text {
-    margin-left: 80px;
-    border-bottom: 1px #8a8a8a solid;
-}
-
-.two .detail .text p {
+.two .detail p {
+    margin:3.5% 0;
     display: inline-block;
 }
 
-.two .detail .text a {
+.two .detail .control{
+    word-wrap:break-word;
+    width: 628px;
+    display: inline-flex;
+}
+.two .detail a {
     color: #ff4f4e
 }
 .three {
-    margin: 4% 30px 3% 30px;
+    margin: 10% 5%;
     text-align: center;
 }
-
 .three .aty {
     background: url(../resource/img/activity/details_activity_line@3x.png) no-repeat center;
-    font-size: 60px;
+    font-size: 46px;
     margin-bottom: 4%;
 }
-
 .drb {
-    font-size: 42px;
-    line-height: 60px;
+    font-size: 36px;
+    line-height: 216%;
     text-align: left;
 }
-h5 {
-    margin: 4% 0 2% 30px;
-    font-size: 60px
+.four #text_title {
+    text-align: center;
+    margin: 0 5% 5% 5%;
+    font-size: 46px
 }
 
 .four .inner {
-    margin: 0 30px;
+    margin: 0 5%;
 }
-
 .four img {
-   margin: 2% 20px 20px 2%;
+   margin: 3% 2%;
     height: 360px;
     width: 96%;
 }
-
 .four .small {
     color: #ffffff;
     opacity: 0.5;
@@ -99,5 +101,5 @@ h5 {
     font-size: 32px;
 }
 footer{
-	margin-bottom: 60px;
+	margin-bottom: 10%;
 }
