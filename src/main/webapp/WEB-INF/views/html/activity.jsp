@@ -52,7 +52,7 @@
 	<div class="four">
 		<div id="text_title">${ActivityParagraphs.imageTitle}</div>
 		<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
-		<img id="pic" src="${imageUrl}">
+		<img id="pic" src="${ActivityParagraphs.imageUrl}">
 		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 	</div>
 </c:forEach>
