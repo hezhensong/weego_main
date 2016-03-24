@@ -3,7 +3,10 @@ body, ul, li p {
     margin: 0;
     border: 0;
 }
-
+a{
+	text-decoration: none;
+}
+html,body{width:100%; position:relative;}
 body {
     font-size: 12px;
     -webkit-user-select: none; /*无法选择文本*/
@@ -11,39 +14,22 @@ body {
     font-family: helvetica;
     background-image: url(../resource/img/pgc/bg.png);
     background-size: cover;
-}
-
-#wrapper {
-    z-index: 1;
-    top: 0px;
-    bottom: 0px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    overflow: auto;
-}
-
-#scroller {
-    position: relative;
-    width: 100%;
-}
-
-ul {
-    position: relative;
-    width: 100%;
-}
-
-li {
     font-size: 20px;
     color: #fff;
 }
-
-.one {
-    height: 1060px;
+.one .tag{
+    position: relative;
+    top: 80%;
+    padding:20px;
+    letter-spacing: 5px;
+    font-size: 36px;
+    height: 40px;
+    width: 280px;
+    background-image:url(../resource/img/pgc/lable.png);
+    background-size: cover;
 }
-
 .two {
-    margin: 5% 30px;
+    margin: 5%;
 }
 
 .two .title {
@@ -55,78 +41,65 @@ li {
 }
 
 .two .detail {
-    height: 150px;
+    border-bottom: 1px #8a8a8a solid;
     font: 36px helvetica-light;
 }
 
 .two .detail img {
-    float: left;
-    margin-top: 56px;
+    position: relative;
+    top: 15px;
+    margin-right: 5%;
+    width: 5.5%;
+    display: inline-block;
+    
 }
-
-.two .detail .text {
-    margin-left: 80px;
-    border-bottom: 1px #8a8a8a solid;
-    height: 150px;
-    line-height: 150px;
-}
-
-.two .detail .text p {
+.two .detail p {
+    margin:3.5% 0;
     display: inline-block;
 }
 
-.two .detail .text a {
+.two .detail .control{
+    word-wrap:break-word;
+    width: 620px;
+    display: inline-flex;
+}
+.two .detail a {
     color: #ff4f4e
 }
-
 .three {
-    margin: 4% 30px 3% 30px;
+    margin: 10% 5%;
     text-align: center;
 }
-
 .three .aty {
     background: url(../resource/img/activity/details_activity_line@3x.png) no-repeat center;
-    font-size: 60px;
+    font-size: 46px;
     margin-bottom: 4%;
 }
-
 .drb {
-    font-size: 42px;
-    line-height: 60px;
+    font-size: 36px;
+    line-height: 216%;
     text-align: left;
 }
-
-h5 {
-    margin: 4% 0 2% 30px;
-    font-size: 60px
+.four #text_title {
+    text-align: center;
+    margin: 0 5% 5% 5%;
+    font-size: 46px
 }
 
 .four .inner {
-    margin: 0 30px;
+    margin: 0 5%;
 }
-
 .four img {
-   margin: 2% 20px 20px 2%;
+   margin: 3% 2%;
     height: 360px;
     width: 96%;
 }
-
 .four .small {
     color: #ffffff;
     opacity: 0.5;
     text-align: center;
     font-size: 32px;
 }
-
-.five {
-   margin: 30px 30px 60px 30px;
-}
-
-.five .prize {
-    margin: 50px 0 34px 0;
-}
-
-.logo {
-    margin: 3% auto;
-    height: 100px;
+footer{
+	margin-bottom: 10%;
 }

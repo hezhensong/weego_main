@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
 <html>
 
 <head>
@@ -89,39 +89,39 @@
 		<p class="main_comment">${main_comment}</p>
 		<div class="good_comment"><img src="../resource/img/pgc/yin1.png"><br/>&nbsp;${comment}<br/><img class="float_r" src="../resource/img/pgc/yin2.png"></div>
 		<div class="message">
-			<div class="details">
-				<img src="../resource/img/poi/phone.png">
+			<div class="details" id="detail_price">
+				<img src="../resource/img/poi/price.png">
 				<p>价格：</p>
-				<h3>11234566112345661123456611234566112345661123456611234566</h3>
+				<h3 id="price">${price}</h3>
 			</div>
-			<div class="details">
+			<div class="details" id="detail_phone">
 				<img src="../resource/img/poi/phone.png">
 				<p>电话：</p>
-				<h3>11234566</h3>
+				<h3 id="phone">${phone}</h3>
 			</div>
-			<div class="details">
+			<div class="details" id="detail_web">
 				<img src="../resource/img/poi/web.png">
 				<p>网址：</p>
-				<h3>11234566888888888</h3>
+				<h3 id="web">${web}</h3>
 			</div>
-			<div class="details">
+			<div class="details" id="detail_time">
 				<img src="../resource/img/poi/time.png">
 				<p>时间：</p>
-				<h3>11234566</h3>
+				<h3 id="time">${time}</h3>
 			</div>
 			<div class="details" id="last_tip">
-				<img src="../resource/img/poi/time.png">
+				<img src="../resource/img/poi/ticket.png">
 				<p>设施</p>
 				<div class="all">
 				<!-- 循环遍历开始 -->
 					<div class="little">
 						<img class="little" src="${little_icon}">
-						<div class="text">${little}</div>
+						<div class="text" id="little">${little}</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="../js/newactivity.js"></script>
+<script type="text/javascript" src="../js/POI.js"></script>
 </html>
