@@ -11,6 +11,7 @@
 	<style type="text/css">
 		.one {
 			background: url(${bg});
+			background-size: cover;
 			height: 37%;
 		}
 	</style>
@@ -34,7 +35,7 @@
 		<div class="detail" id="detail_web">
 			<img src="../resource/img/activity/details_web@3x.png">
 		    	<p>官网：</p>
-		    	<p class="control" id="web" href="blank">${web}</p>
+		    	<a class="control" id="web" href="blank">${web}</a>
 		</div>
 		<div class="detail" id="detail_ticket">
 			<img src="../resource/img/activity/details_ticket@3x.png">
