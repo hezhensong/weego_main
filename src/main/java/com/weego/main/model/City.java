@@ -100,4 +100,12 @@ public class City {
     public void setArea(CityArea area) {
         this.area = area;
     }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
 }
