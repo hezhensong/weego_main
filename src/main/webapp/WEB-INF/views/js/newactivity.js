@@ -6,6 +6,7 @@ var _text_title = $("text_title").html();
 var _describe = $("#describe").html();
 var _pic_describe = $("#pic_describe").html();
 var _pic = $("#pic").attr("src");
+var _tag = $(".tag").html();
 
 
 	if(_actime == "" || _actime == "null"){
@@ -37,4 +38,8 @@ var _pic = $("#pic").attr("src");
 
 	if(_pic == ""){
 		$("#pic").hide();
+	}
+
+	if(_tag == "" || _tag == "null"){
+		$(".tag").hide();
 	}
