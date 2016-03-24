@@ -108,9 +108,8 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public List<ActivityBaseDto> getActivityList(String cityId) {
-        logger.info("查询城市活动列表, cityId = {}", cityId);
-        logger.info("---------查询城市活动列表开始----------");
 
+        logger.info("查询城市活动列表, cityId = {}", cityId);
         List<ActivityBaseDto> activityBaseDtoList = new ArrayList<>();
 
         try {
@@ -194,6 +193,7 @@ public class ActivityServiceImpl implements ActivityService {
         Activity activity = cityActivityDao.getSpecifiedCity(activityId);
         if (activity == null) {
             return null;
+
         } else {
             ModelAndView mv = new ModelAndView("newactivity");
             mv.addObject("title",activity.getTitle());
@@ -203,11 +203,9 @@ public class ActivityServiceImpl implements ActivityService {
             mv.addObject("web",activity.getActUrl());
             mv.addObject("ticket",activity.getOrderUrl());
             mv.addObject("details",activity.getDescription());
-
             mv.addObject("paragraphs",activity.getParagraphs());
            
             return mv;
         }
-
     }
 }
