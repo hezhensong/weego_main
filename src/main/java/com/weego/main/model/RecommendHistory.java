@@ -25,4 +25,44 @@ public class RecommendHistory {
 
     @JsonProperty("recommend_content")
     private List<RecommendContent> recommendContentList;
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public ObjectId getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(ObjectId cityId) {
+        this.cityId = cityId;
+    }
+
+    public ObjectId getUserId() {
+        return userId;
+    }
+
+    public void setUserId(ObjectId userId) {
+        this.userId = userId;
+    }
+
+    public Date getRecommendTime() {
+        return recommendTime;
+    }
+
+    public void setRecommendTime(Date recommendTime) {
+        this.recommendTime = recommendTime;
+    }
+
+    public List<RecommendContent> getRecommendContentList() {
+        return recommendContentList;
+    }
+
+    public void setRecommendContentList(List<RecommendContent> recommendContentList) {
+        this.recommendContentList = recommendContentList;
+    }
 }

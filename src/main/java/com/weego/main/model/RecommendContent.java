@@ -13,6 +13,12 @@ public class RecommendContent {
     @JsonProperty("content_oid")
     private String contentId;
 
+    @JsonProperty("content_first")
+    private String contentFirst;
+
+    @JsonProperty("content_second")
+    private String contentSecond;
+
     public Integer getType() {
         return type;
     }
@@ -27,5 +33,21 @@ public class RecommendContent {
 
     public void setContentId(String contentId) {
         this.contentId = contentId;
+    }
+
+    public String getContentFirst() {
+        return contentFirst;
+    }
+
+    public void setContentFirst(String contentFirst) {
+        this.contentFirst = contentFirst;
+    }
+
+    public String getContentSecond() {
+        return contentSecond;
+    }
+
+    public void setContentSecond(String contentSecond) {
+        this.contentSecond = contentSecond;
     }
 }

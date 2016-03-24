@@ -4,13 +4,14 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.weego.main.model.News;
-import com.weego.main.model.Person;
 import org.bson.types.ObjectId;
 import org.mongojack.JacksonDBCollection;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by liuniandxx on 16-3-24.
  */
+@Repository
 public class NewsDao {
     private DB database = MongoConnectionFactory.getDatabase();
 
