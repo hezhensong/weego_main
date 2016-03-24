@@ -159,7 +159,7 @@ public class CityServiceImpl implements CityService {
             for (WeatherForecast weatherForecast : weatherForecastList) {
                 WeatherForecastDto weatherForecastDto = new WeatherForecastDto();
 
-                String date = DateUtil.formatMM_dd(weatherForecast.getDate());
+                String date = DateUtil.formatSlantMMdd(weatherForecast.getDate());
                 weatherForecastDto.setDate(date);
 
                 // 第一天、第二天 转换为今天、明天

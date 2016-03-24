@@ -1,5 +1,4 @@
-import com.weego.main.dto.RecommendHistoryDto;
-import com.weego.main.service.RecommendInfoService;
+import com.weego.main.service.RecommendCardService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RecommendServiceTest extends BaseTest {
 
     @Autowired
-    private RecommendInfoService recommendDynamicService;
+    private RecommendCardService recommendDynamicService;
 
     @Test
     public void testgetRecommendHistory() {

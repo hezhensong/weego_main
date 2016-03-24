@@ -3,7 +3,7 @@ package com.weego.main.dto;
 /**
  * Created by liuniandxx on 16-3-19.
  */
-public class BaseCardDto {
+public class RecommendCardDto {
     private String id;
 
     private Integer type;
@@ -11,6 +11,8 @@ public class BaseCardDto {
     private String firstTitle;
 
     private String secondTitle;
+
+    private String title;
 
     private String coverImage;
 
@@ -48,6 +50,14 @@ public class BaseCardDto {
         this.secondTitle = secondTitle;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getCoverImage() {
         return coverImage;
     }
@@ -61,6 +71,19 @@ public class BaseCardDto {
     }
 
     public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public RecommendCardDto() {}
+
+    public RecommendCardDto(String id, int type, String firstTitle, String secondTitle,
+                            String coverImage, String title, String desc) {
+        this.id = id;
+        this.type = type;
+        this.firstTitle = firstTitle;
+        this.secondTitle = secondTitle;
+        this.coverImage = coverImage;
+        this.title = title;
         this.desc = desc;
     }
 }

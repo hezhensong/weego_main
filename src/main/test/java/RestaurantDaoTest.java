@@ -1,5 +1,4 @@
 import com.weego.main.dao.RestaurantDao;
-import com.weego.main.dto.BaseCardDto;
 import com.weego.main.model.Restaurant;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
