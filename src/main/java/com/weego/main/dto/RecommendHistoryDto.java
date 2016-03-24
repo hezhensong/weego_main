@@ -1,34 +1,21 @@
 package com.weego.main.dto;
 
-import com.weego.main.model.RecommendInfo;
-import org.bson.types.ObjectId;
-
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by liuniandxx on 16-3-16.
  */
 public class RecommendHistoryDto {
-//    public Map<String, Object> data;
-//
-//    public Map<String, Object> getData() {
-//        return data;
-//    }
-//
-//    public void setData(Map<String, Object> data) {
-//        this.data = data;
-//    }
 
     private String cityId;
 
     private String cityName;
 
-    private List<RecommendInfoDto> today;
+    private List<RecommendHistoryContentDto> today;
 
-    private List<RecommendInfoDto> yesterday;
+    private List<RecommendHistoryContentDto> yesterday;
 
-    private List<RecommendInfoDto> dayBeforeYest;
+    private List<RecommendHistoryContentDto> dayBeforeYest;
 
 
     public String getCityId() {
@@ -47,27 +34,27 @@ public class RecommendHistoryDto {
         this.cityName = cityName;
     }
 
-    public List<RecommendInfoDto> getToday() {
+    public List<RecommendHistoryContentDto> getToday() {
         return today;
     }
 
-    public void setToday(List<RecommendInfoDto> today) {
+    public void setToday(List<RecommendHistoryContentDto> today) {
         this.today = today;
     }
 
-    public List<RecommendInfoDto> getYesterday() {
+    public List<RecommendHistoryContentDto> getYesterday() {
         return yesterday;
     }
 
-    public void setYesterday(List<RecommendInfoDto> yesterday) {
+    public void setYesterday(List<RecommendHistoryContentDto> yesterday) {
         this.yesterday = yesterday;
     }
 
-    public List<RecommendInfoDto> getDayBeforeYest() {
+    public List<RecommendHistoryContentDto> getDayBeforeYest() {
         return dayBeforeYest;
     }
 
-    public void setDayBeforeYest(List<RecommendInfoDto> dayBeforeYest) {
+    public void setDayBeforeYest(List<RecommendHistoryContentDto> dayBeforeYest) {
         this.dayBeforeYest = dayBeforeYest;
     }
 }

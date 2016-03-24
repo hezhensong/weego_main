@@ -1,13 +1,12 @@
 package com.weego.main.util;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import java.net.URLDecoder;
+import java.util.Random;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.net.URLDecoder;
-import java.util.Random;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 
 public class BaiDuTranslateUtil {
@@ -29,18 +28,18 @@ public class BaiDuTranslateUtil {
 	public static String translate(String content, String from, String to) throws Exception {
 		//用于md5加密
 		int salt = random.nextInt(10000);
-		
+
 		// 对 appId + 源文 + 随机数 + token 计算 md5 值
 		StringBuilder md5String = new StringBuilder();
 		md5String.append(appId).append(content).append(salt).append(token);
 		String md5 = DigestUtils.md5Hex(md5String.toString());
-		String param = "q=" + content + "&from=" + from + "&to=" + to + "&appid=" + appId + 
+		String param = "q=" + content + "&from=" + from + "&to=" + to + "&appid=" + appId +
 					   "&salt=" + String.valueOf(salt) + "&sign=" + md5;
 		String result = HttpUtil.sendGet(url, param);
-		
+
 		//转化为json对象
 		JSONObject resultJson = JSONObject.parseObject(result);
-		
+
 		//开发者自行处理错误，本示例失败返回为null
 		try {
 			String error_code = resultJson.getString("error_code");
@@ -53,7 +52,7 @@ public class BaiDuTranslateUtil {
 			logger.info("百度翻译出错了!");
 			e.printStackTrace();
 		}
-		
+
 		//获取返回翻译结果
 		JSONArray array = (JSONArray) resultJson.get("trans_result");
 		JSONObject dst = (JSONObject) array.get(0);

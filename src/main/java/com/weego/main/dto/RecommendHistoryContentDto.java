@@ -3,7 +3,12 @@ package com.weego.main.dto;
 /**
  * Created by liuniandxx on 16-3-16.
  */
-public class RecommendContentDto {
+public class RecommendHistoryContentDto {
+
+    private Integer type;
+
+    private String time;
+
     private String coverImage;
 
     private String contentTitle;
@@ -12,7 +17,23 @@ public class RecommendContentDto {
 
     private String contentSecond;
 
-    private String contentDesc;
+    private String contentId;
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getCoverImage() {
         return coverImage;
@@ -46,11 +67,12 @@ public class RecommendContentDto {
         this.contentSecond = contentSecond;
     }
 
-    public String getContentDesc() {
-        return contentDesc;
+    public String getContentId() {
+        return contentId;
     }
 
-    public void setContentDesc(String contentDesc) {
-        this.contentDesc = contentDesc;
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
     }
+
 }

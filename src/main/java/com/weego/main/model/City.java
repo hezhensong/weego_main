@@ -34,6 +34,9 @@ public class City {
     @JsonProperty("is_show")
     private boolean isShow;
 
+    @JsonProperty("timezone")
+    private String timezone;
+
     public ObjectId getId() {
         return id;
     }
@@ -96,5 +99,13 @@ public class City {
 
     public void setArea(CityArea area) {
         this.area = area;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 }

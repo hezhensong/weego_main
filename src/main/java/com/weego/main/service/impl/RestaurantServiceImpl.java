@@ -148,7 +148,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 					Activity activity = activityDao.getSpecifiedCity(basePOIActivity.getId());
 					if (activity != null) {
 						poiDetailActivitiesDto.setActTime(activity.getActTime());
-						poiDetailActivitiesDto.setCoverImage(activity.getImage());
+						poiDetailActivitiesDto.setCoverImage(activity.getCoverImage());
 						poiDetailActivitiesDto.setDesc(activity.getDescription());
 						poiDetailActivitiesDto.setTag("");
 					}

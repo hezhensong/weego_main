@@ -1,6 +1,7 @@
 package com.weego.main.service;
 
 import com.weego.main.dto.PersonDto;
+import com.weego.main.dto.ResponseDto;
 
 /**
  * Created by liuniandxx on 16-3-21.

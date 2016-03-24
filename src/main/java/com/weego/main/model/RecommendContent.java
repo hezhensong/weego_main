@@ -3,18 +3,15 @@ package com.weego.main.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Created by liuniandxx on 16-3-16.
+ * Created by liuniandxx on 16-3-23.
  */
 public class RecommendContent {
 
-    @JsonProperty("content_id")
+    @JsonProperty("type")
+    private Integer type;
+
+    @JsonProperty("content_oid")
     private String contentId;
-
-    @JsonProperty("content_url")
-    private String contentUrl;
-
-    @JsonProperty("content_title")
-    private String contentTitle;
 
     @JsonProperty("content_first")
     private String contentFirst;
@@ -22,11 +19,13 @@ public class RecommendContent {
     @JsonProperty("content_second")
     private String contentSecond;
 
-    @JsonProperty("content_desc")
-    private String contentDesc;
+    public Integer getType() {
+        return type;
+    }
 
-    @JsonProperty("cover_image")
-    private String coverImage;
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     public String getContentId() {
         return contentId;
@@ -34,22 +33,6 @@ public class RecommendContent {
 
     public void setContentId(String contentId) {
         this.contentId = contentId;
-    }
-
-    public String getContentUrl() {
-        return contentUrl;
-    }
-
-    public void setContentUrl(String contentUrl) {
-        this.contentUrl = contentUrl;
-    }
-
-    public String getContentTitle() {
-        return contentTitle;
-    }
-
-    public void setContentTitle(String contentTitle) {
-        this.contentTitle = contentTitle;
     }
 
     public String getContentFirst() {
@@ -66,21 +49,5 @@ public class RecommendContent {
 
     public void setContentSecond(String contentSecond) {
         this.contentSecond = contentSecond;
-    }
-
-    public String getContentDesc() {
-        return contentDesc;
-    }
-
-    public void setContentDesc(String contentDesc) {
-        this.contentDesc = contentDesc;
-    }
-
-    public String getCoverImage() {
-        return coverImage;
-    }
-
-    public void setCoverImage(String coverImage) {
-        this.coverImage = coverImage;
     }
 }

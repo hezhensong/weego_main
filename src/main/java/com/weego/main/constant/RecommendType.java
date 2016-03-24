@@ -27,7 +27,7 @@ public enum RecommendType {
         this.type = type;
     }
 
-    private RecommendType(String desc, Integer type) {
+    RecommendType(String desc, Integer type) {
         this.desc = desc;
         this.type = type;
     }

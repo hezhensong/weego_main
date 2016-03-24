@@ -8,7 +8,9 @@ public class BasePoiDto {
 
     private String type;
 
-    private String poiDes;
+    private String paragraphTitle;
+
+    private String paragraphDes;
 
     private String poiImage;
 
@@ -28,12 +30,20 @@ public class BasePoiDto {
         this.type = type;
     }
 
-    public String getPoiDes() {
-        return poiDes;
+    public String getParagraphTitle() {
+        return paragraphTitle;
     }
 
-    public void setPoiDes(String poiDes) {
-        this.poiDes = poiDes;
+    public void setParagraphTitle(String paragraphTitle) {
+        this.paragraphTitle = paragraphTitle;
+    }
+
+    public String getParagraphDes() {
+        return paragraphDes;
+    }
+
+    public void setParagraphDes(String paragraphDes) {
+        this.paragraphDes = paragraphDes;
     }
 
     public String getPoiImage() {

@@ -1,16 +1,14 @@
 package com.weego.main.util;
 
-import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by liuniandxx on 16-3-16. 时间操作通用类
@@ -24,6 +22,7 @@ public class DateUtil {
 
     private static final String slantYMD = "yyyy/MM/dd";
     private static final String slantMD = "MM/dd";
+    private static final String slantEEEE = "EEEE";
 
 
     public static String formatDate(Date date, String format) {
@@ -41,6 +40,47 @@ public class DateUtil {
     public static String formatMM_dd(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(slantMD);
         return format.format(date);
+    }
+
+    // Date 转化为 星期几
+    public static String formatDay(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantEEEE);
+
+        String day = format.format(date);
+        switch (day) {
+            case "Monday":
+                day = "星期一";
+                break;
+
+            case "Tuesday":
+                day = "星期二";
+                break;
+
+            case "Wednesday":
+                day = "星期三";
+                break;
+
+            case "Thursday":
+                day = "星期四";
+                break;
+
+            case "Friday":
+                day = "星期五";
+                break;
+
+            case "Saturday":
+                day = "星期六";
+                break;
+
+            case "Sunday":
+                day = "星期日";
+                break;
+
+            default:
+                break;
+        }
+
+        return day;
     }
 
     // 时间格式转换为Date
@@ -230,21 +270,88 @@ public class DateUtil {
     	return year + "年" + month + "月" + day + "日";
     }
 
-    public static void main(String[] args) throws ParseException {
-//        System.out.println(new Date().getTime());
-//        System.out.println(longChangeToDateStr(1454803200));
-//        System.out.println(covertTimeToUTC(new Date()));
-//        System.out.println(getDiscoveryTimeFormatter(new Date()));
-    	Date date = DateUtil.yyyyMMddToDate("20150303");
-    	System.out.println(date.toString());
-    	System.out.println(date.getMonth());
-    	System.out.println(date.getTime());
-    	long test = 1425340800000L;
-    	System.out.println(DateUtil.longChangeToDate(1425340800000L));
-    	long test2 = 1425312000000L;
-    	System.out.println((test - test2)/3600/1000);
-    	
-    	
+
+    /**
+     * 将字符串时间转化为指定时区的对应时间
+     * @param date   字符串时间
+     * @param format  时间格式， 例如: yyyyMMdd
+     * @param timezone  时区, GMT格式，例如: 东八区对应为 GMT+8:00
+     * @return
+     */
+    public static Date formatDateToDate(String date, String format, String timezone) {
+        TimeZone timeZone = TimeZone.getTimeZone(timezone);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        dateFormat.setTimeZone(timeZone);
+        Date dateTime = null;
+
+        try {
+            dateTime = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateTime;
+    }
+
+
+    /**
+     * 获取指定时区的 yyyyMMdd对应日期
+     * @param  date    yyyyMMdd 格式
+     * @param timezone 时区,如东八区 GMT+8:00
+     * @return
+     */
+    public static Date yyyyMMddToDate(String date, String timezone) {
+        return formatDateToDate(date, yyyyMMdd, timezone);
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMddHHmmss对应日期
+     * @param date   yyyyMMddHHmmss 格式
+     * @param timezone 时区,如东八区 GMT+8:00
+     * @return
+     */
+    public static Date yyyyMMddHHmmssToDate(String date, String timezone) {
+        return formatDateToDate(date, yyyyMMddHHmmss, timezone);
+    }
+
+
+
+    /**
+     * 获取指定时区当前时间
+     * @param format     时间格式
+     * @param timezone   时区
+     * @return
+     */
+    public static String getDateSpecityTimezone(String format, String timezone) {
+        TimeZone timeZone = TimeZone.getTimeZone(timezone);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        sdf.setTimeZone(timeZone);
+        return sdf.format(calendar.getTime());
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMdd时间
+     * @param timezone 时区
+     * @return
+     */
+    public static Date getyyyyMMddSpecifyTimezone(String timezone) {
+        String yyyyMMddDate = getDateSpecityTimezone(yyyyMMdd, timezone);
+        return yyyyMMddToDate(yyyyMMddDate, timezone);
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMddHHmmss时间
+     * @param timezone 时区
+     * @return
+     */
+    public static Date getyyyyMMddHHmmssSpecifyTimezone(String timezone) {
+        String yyyyMMddHHmmssDate = getDateSpecityTimezone(yyyyMMddHHmmss, timezone);
+        return yyyyMMddHHmmssToDate(yyyyMMddHHmmssDate, timezone);
+    }
+
+    public static void main(String[] args) {
+        Date date = getyyyyMMddSpecifyTimezone("GMT-8:00");
+        System.out.println(formatyyyyMMdd(date));
     }
 
 }

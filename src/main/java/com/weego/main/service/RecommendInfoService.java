@@ -9,7 +9,5 @@ import java.util.List;
  * Created by liuniandxx on 16-3-16.
  */
 public interface RecommendInfoService {
-     RecommendHistoryDto getRecommendHistory(String cityId);
-
      List<BaseCardDto> getRecommendCards(String cityId, String coordinate, String time);
 }

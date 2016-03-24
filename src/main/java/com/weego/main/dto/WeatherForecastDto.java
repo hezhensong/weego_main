@@ -3,6 +3,7 @@ package com.weego.main.dto;
 public class WeatherForecastDto {
 
     private String date;
+    private String day;
     private String description;
     private String high;
     private String low;
@@ -13,6 +14,14 @@ public class WeatherForecastDto {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public String getDescription() {
