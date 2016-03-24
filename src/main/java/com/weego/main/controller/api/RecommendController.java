@@ -27,18 +27,19 @@ public class RecommendController {
 
     //动态推荐列表
     @RequestMapping(value="/recommendation/history", method = RequestMethod.GET)
-    public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId) {
+    public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId,
+                                                       @RequestParam("userId") String userId) {
         logger.info("开始动态推荐列表查询");
-        logger.info("cityId = {}", cityId);
-//
+        logger.info("cityId = {}, userId = {}", cityId, userId);
+
         ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
-//        RecommendHistoryDto recommendHistoryDto = recommendInfoService.getRecommendHistory(cityId);
-//
-//        if(recommendHistoryDto != null) {
-//            responseDto.setData(recommendHistoryDto);
-//        } else {
-//            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
-//        }
+        RecommendHistoryDto recommendHistoryDto = recommendHistoryService.getRecommendHistory(cityId, userId);
+
+        if(recommendHistoryDto != null) {
+            responseDto.setData(recommendHistoryDto);
+        } else {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+        }
         return responseDto;
     }
 

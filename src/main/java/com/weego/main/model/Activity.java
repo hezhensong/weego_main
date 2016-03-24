@@ -17,7 +17,7 @@ public class Activity {
     private ObjectId cityId;
 
     @JsonProperty("cover_image")
-    private String image;
+    private String coverImage;
 
     @JsonProperty("type")
     private String type;
@@ -77,12 +77,12 @@ public class Activity {
         this.cityId = cityId;
     }
 
-    public String getImage() {
-        return image;
+    public String getCoverImage() {
+        return coverImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     public String getType() {
@@ -196,5 +196,6 @@ public class Activity {
     public void setAddress(String address) {
         this.address = address;
     }
+
 
 }

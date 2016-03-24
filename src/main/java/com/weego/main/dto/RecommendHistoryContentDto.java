@@ -19,8 +19,6 @@ public class RecommendHistoryContentDto {
 
     private String contentId;
 
-    private String contentUrl;
-
     public Integer getType() {
         return type;
     }
@@ -77,11 +75,4 @@ public class RecommendHistoryContentDto {
         this.contentId = contentId;
     }
 
-    public String getContentUrl() {
-        return contentUrl;
-    }
-
-    public void setContentUrl(String contentUrl) {
-        this.contentUrl = contentUrl;
-    }
 }

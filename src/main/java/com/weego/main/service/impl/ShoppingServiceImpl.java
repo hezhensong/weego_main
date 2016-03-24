@@ -147,7 +147,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 						poiDetailActivitiesDto
 								.setActTime(activity.getActTime());
 						poiDetailActivitiesDto.setCoverImage(activity
-								.getImage());
+								.getCoverImage());
 						poiDetailActivitiesDto.setDesc(activity
 								.getDescription());
 						poiDetailActivitiesDto.setTag("");

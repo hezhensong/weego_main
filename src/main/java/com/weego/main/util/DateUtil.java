@@ -1,16 +1,13 @@
 package com.weego.main.util;
 
-import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -262,6 +259,57 @@ public class DateUtil {
      */
     public static Date yyyyMMddToDate(String date, String timezone) {
         return formatDateToDate(date, yyyyMMdd, timezone);
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMddHHmmss对应日期
+     * @param date   yyyyMMddHHmmss 格式
+     * @param timezone 时区,如东八区 GMT+8:00
+     * @return
+     */
+    public static Date yyyyMMddHHmmssToDate(String date, String timezone) {
+        return formatDateToDate(date, yyyyMMddHHmmss, timezone);
+    }
+
+
+
+    /**
+     * 获取指定时区当前时间
+     * @param format     时间格式
+     * @param timezone   时区
+     * @return
+     */
+    public static String getDateSpecityTimezone(String format, String timezone) {
+        TimeZone timeZone = TimeZone.getTimeZone(timezone);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        sdf.setTimeZone(timeZone);
+        return sdf.format(calendar.getTime());
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMdd时间
+     * @param timezone 时区
+     * @return
+     */
+    public static Date getyyyyMMddSpecifyTimezone(String timezone) {
+        String yyyyMMddDate = getDateSpecityTimezone(yyyyMMdd, timezone);
+        return yyyyMMddToDate(yyyyMMddDate, timezone);
+    }
+
+    /**
+     * 获取指定时区的 yyyyMMddHHmmss时间
+     * @param timezone 时区
+     * @return
+     */
+    public static Date getyyyyMMddHHmmssSpecifyTimezone(String timezone) {
+        String yyyyMMddHHmmssDate = getDateSpecityTimezone(yyyyMMddHHmmss, timezone);
+        return yyyyMMddHHmmssToDate(yyyyMMddHHmmssDate, timezone);
+    }
+
+    public static void main(String[] args) {
+        Date date = getyyyyMMddSpecifyTimezone("GMT-8:00");
+        System.out.println(formatyyyyMMdd(date));
     }
 
 }

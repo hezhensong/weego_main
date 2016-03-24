@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 /**
  * Created by liuniandxx on 16-3-23.
  */
+@Repository
 public class RecommendHistoryDao {
     private Logger logger = LogManager.getLogger(RecommendHistoryDao.class);
 
@@ -46,15 +48,15 @@ public class RecommendHistoryDao {
      * @param time     查询时间（表示是那一天的推荐记录）
      * @return         time当前用户userId在城市cityId的推荐记录
      */
-    public List<RecommendHistory> getRecommendHistoryByTime(String cityId, String userId, String time) {
-        logger.info("cityId = {}, userId = {}, time = {}", cityId, userId, time);
+    public List<RecommendHistory> getRecommendHistoryByTime(String cityId, String userId, Date date) {
+        logger.info("cityId = {}, userId = {}, date = {}", cityId, userId, date.toString());
 
-        City city = cityDao.getSpecifiedCity(cityId);
-        String cityTimeZone = city.getTimezone();
-        logger.info("cityTimeZone = {}", cityTimeZone);
+//        City city = cityDao.getSpecifiedCity(cityId);
+//        String cityTimeZone = city.getTimezone();
+//        logger.info("cityTimeZone = {}", cityTimeZone);
 
-        Date date = DateUtil.yyyyMMddToDate(time, cityTimeZone);
-        logger.info("当前日期 date = {}, 毫秒时间 ms = {}", date, date.getTime());
+//        Date date = DateUtil.yyyyMMddToDate(time, cityTimeZone);
+        logger.info("date = {}, 毫秒时间 ms = {}", date.toString(), date.getTime());
         Date nextDay = DateUtil.afterNDays(date, 1);
         logger.info("下一天 nextDay = {}, 毫秒时间 = {}",nextDay, nextDay.getTime());
 

@@ -58,7 +58,7 @@ public class ActivityServiceImpl implements ActivityService {
                 }
 
                 activityDetailDto.setId(cityActivity.getId().toString());
-                activityDetailDto.setImage(cityActivity.getImage());
+                activityDetailDto.setImage(cityActivity.getCoverImage());
 
                 // 将coordinate拆成longitude和latitude
                 String coordination = cityActivity.getCoordination();
@@ -127,7 +127,7 @@ public class ActivityServiceImpl implements ActivityService {
                     activityBaseDto.setAddress(cityActivity.getAddress());
                     activityBaseDto.setTitle(cityActivity.getTitle().trim());
                     activityBaseDto.setType(cityActivity.getType());
-                    activityBaseDto.setImage(cityActivity.getImage());
+                    activityBaseDto.setImage(cityActivity.getCoverImage());
 
                     // 设置活动具体时间
                     /**
@@ -199,7 +199,7 @@ public class ActivityServiceImpl implements ActivityService {
             mv.addObject("title",activity.getTitle());
             mv.addObject("time",activity.getActTime());
             mv.addObject("ip",activity.getDetailAddress());
-            mv.addObject("bg",activity.getImage());
+            mv.addObject("bg",activity.getCoverImage());
             mv.addObject("web",activity.getActUrl());
             mv.addObject("ticket",activity.getOrderUrl());
             mv.addObject("details",activity.getDescription());
