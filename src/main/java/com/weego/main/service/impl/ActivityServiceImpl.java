@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -185,5 +186,28 @@ public class ActivityServiceImpl implements ActivityService {
         }
 
         return activityBaseDtoList;
+    }
+
+    @Override
+    public ModelAndView getSpecifiedActivity(String activityId) {
+
+        Activity activity = cityActivityDao.getSpecifiedCity(activityId);
+        if (activity == null) {
+            return null;
+        } else {
+            ModelAndView mv = new ModelAndView("newactivity");
+            mv.addObject("title",activity.getTitle());
+            mv.addObject("time",activity.getActTime());
+            mv.addObject("ip",activity.getDetailAddress());
+            mv.addObject("bg",activity.getImage());
+            mv.addObject("web",activity.getActUrl());
+            mv.addObject("ticket",activity.getOrderUrl());
+            mv.addObject("details",activity.getDescription());
+
+            mv.addObject("paragraphs",activity.getParagraphs());
+           
+            return mv;
+        }
+
     }
 }

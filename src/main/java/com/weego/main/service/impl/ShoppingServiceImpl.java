@@ -74,7 +74,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 
 	@Override
-	public POIDetailDto getShoppingById(String id) {
+	public POIDetailDto getShoppingById(String id, String coordination) {
 		POIDetailDto poiDetailDto = new POIDetailDto();
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Shopping shopping = shoppingDao.getShoppingById(id);
@@ -92,14 +92,22 @@ public class ShoppingServiceImpl implements ShoppingService {
 			poiDetailSumDto.setCityName(shopping.getCityName());
 			poiDetailSumDto.setCityId(shopping.getCityId());
 
-			String coordination = shopping.getCoordination();
-			if (coordination != null && coordination.split(",").length >= 2) {
-				String latitude = coordination.split(",")[1];
-				String longitude = coordination.split(",")[0];
-				poiDetailSumDto.setLatitude(latitude);
-				poiDetailSumDto.setLongitude(longitude);
+			String newCoordination = shopping.getCoordination();
+			if (newCoordination != null && newCoordination.split(",").length >= 2) {
+				String newLatitude = newCoordination.split(",")[1];
+				String newLongitude = newCoordination.split(",")[0];
+				poiDetailSumDto.setLatitude(newLatitude);
+				poiDetailSumDto.setLongitude(newLongitude);
+				
+				if(coordination.split(",").length >= 2) {
+					String latitude = coordination.split(",")[1];
+					String longitude = coordination.split(",")[0];
+					Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
+					poiDetailSumDto.setDistance(distance);
+				} else {
+					logger.info("coordination 参数值有误");
+				}
 			}
-
 			poiDetailSumDto.setImage(shopping.getImage());
 			poiDetailSumDto.setCoverImage(shopping.getCoverImage());
 			poiDetailSumDto.setOpenTime(shopping.getOpenTime());
@@ -185,7 +193,6 @@ public class ShoppingServiceImpl implements ShoppingService {
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
 
-			poiDetailSumDto.setDistance(0L);
 			String openTimeDesc = "营业中";
 			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
 			poiDetailSumDto.setOpenTableUrl(shopping.getOpenTableUrl());
@@ -258,7 +265,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
 		List<SearchNearByListDto> searchNearByListDtos = new ArrayList<SearchNearByListDto>();
-		List<Shopping> shoppings = shoppingDao.getShoppingsByCityIdAndCoordination(cityId, coordination);
+		List<Shopping> shoppings = shoppingDao.getShoppingsByCityIdAndCoordination(cityId, coordination, price);
 		
 		if (shoppings != null && shoppings.size() > 0) {
 			for (Shopping shopping : shoppings) {
@@ -267,7 +274,9 @@ public class ShoppingServiceImpl implements ShoppingService {
 				searchNearByListDto.setName(shopping.getName());
 				searchNearByListDto.setAddress(shopping.getAddress());
 				searchNearByListDto.setCoverImage(shopping.getCoverImage());
-
+				searchNearByListDto.setPriceDesc(shopping.getPriceDesc());
+				searchNearByListDto.setPriceLevel(shopping.getPriceLevel());
+				
 				String newCoordination = shopping.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];

@@ -9,7 +9,7 @@ import com.weego.main.dto.SearchNearByDto;
 public interface AttractionService {
 	POIListDto getAttractionsByCityId(String cityId, String labelId, Integer page, Integer count);
 	
-	POIDetailDto getAttractionById(String id);
+	POIDetailDto getAttractionById(String id, String coordination);
 	
 	POISpecialDto getAttractionSpotsById(String id);
 	

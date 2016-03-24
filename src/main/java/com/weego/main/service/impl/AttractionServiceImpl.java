@@ -75,7 +75,7 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public POIDetailDto getAttractionById(String id) {
+	public POIDetailDto getAttractionById(String id, String coordination) {
 		POIDetailDto poiDetailDto = new POIDetailDto();
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Attraction attraction = attractionDao.getAttractionById(id);
@@ -94,12 +94,22 @@ public class AttractionServiceImpl implements AttractionService {
 			poiDetailSumDto.setCityName(attraction.getCityName());
 			poiDetailSumDto.setCityId(attraction.getCityId());
 
-			String coordination = attraction.getCoordination();
-			if (coordination != null && coordination.split(",").length >= 2) {
-				String latitude = coordination.split(",")[1];
-				String longitude = coordination.split(",")[0];
-				poiDetailSumDto.setLatitude(latitude);
-				poiDetailSumDto.setLongitude(longitude);
+			
+			String newCoordination = attraction.getCoordination();
+			if (newCoordination != null && newCoordination.split(",").length >= 2) {
+				String newLatitude = newCoordination.split(",")[1];
+				String newLongitude = newCoordination.split(",")[0];
+				poiDetailSumDto.setLatitude(newLatitude);
+				poiDetailSumDto.setLongitude(newLongitude);
+				
+				if(coordination.split(",").length >= 2) {
+					String latitude = coordination.split(",")[1];
+					String longitude = coordination.split(",")[0];
+					Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
+					poiDetailSumDto.setDistance(distance);
+				} else {
+					logger.info("coordination 参数值有误");
+				}
 			}
 
 			poiDetailSumDto.setImage(attraction.getImage());
@@ -131,19 +141,15 @@ public class AttractionServiceImpl implements AttractionService {
 			if (basePOIActivities != null && basePOIActivities.size() > 0) {
 				for (BasePOIActivities basePOIActivity : basePOIActivities) {
 					POIDetailActivitiesDto poiDetailActivitiesDto = new POIDetailActivitiesDto();
-					poiDetailActivitiesDto.setActivityId(basePOIActivity
-							.getId());
+					poiDetailActivitiesDto.setActivityId(basePOIActivity.getId());
 					poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
 
 					Activity activity = activityDao
 							.getSpecifiedCity(basePOIActivity.getId());
 					if (activity != null) {
-						poiDetailActivitiesDto
-								.setActTime(activity.getActTime());
-						poiDetailActivitiesDto.setCoverImage(activity
-								.getImage());
-						poiDetailActivitiesDto.setDesc(activity
-								.getDescription());
+						poiDetailActivitiesDto.setActTime(activity.getActTime());
+						poiDetailActivitiesDto.setCoverImage(activity.getImage());
+						poiDetailActivitiesDto.setDesc(activity.getDescription());
 						poiDetailActivitiesDto.setTag("");
 					}
 
@@ -187,7 +193,6 @@ public class AttractionServiceImpl implements AttractionService {
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
 
-			poiDetailSumDto.setDistance(0L);
 			// List<String> openTime = attraction.getOpenTime();
 
 			String openTimeDesc = "营业中";
@@ -261,7 +266,7 @@ public class AttractionServiceImpl implements AttractionService {
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
 		List<SearchNearByListDto> searchNearByListDtos = new ArrayList<SearchNearByListDto>();
-		List<Attraction> attractions = attractionDao.getAttractionsByCityIdAndCoordination(cityId, coordination);
+		List<Attraction> attractions = attractionDao.getAttractionsByCityIdAndCoordination(cityId, coordination, price);
 		
 		if (attractions != null && attractions.size() > 0) {
 			for (Attraction attraction : attractions) {
@@ -270,7 +275,9 @@ public class AttractionServiceImpl implements AttractionService {
 				searchNearByListDto.setName(attraction.getName());
 				searchNearByListDto.setAddress(attraction.getAddress());
 				searchNearByListDto.setCoverImage(attraction.getCoverImage());
-
+				searchNearByListDto.setPriceDesc(attraction.getPriceDesc());
+				searchNearByListDto.setPriceLevel(attraction.getPriceLevel());
+				
 				String newCoordination = attraction.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];

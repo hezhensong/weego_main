@@ -9,7 +9,7 @@ import com.weego.main.dto.SearchNearByDto;
 public interface RestaurantService {
 	POIListDto getRestaurantsByCityId(String cityId, String labelId, Integer page, Integer count);
 	
-	POIDetailDto getRestaurantById(String id);
+	POIDetailDto getRestaurantById(String id, String coordination);
 	
 	POISpecialDto getRestaurantDishesById(String id);
 	

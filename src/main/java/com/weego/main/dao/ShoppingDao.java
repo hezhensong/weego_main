@@ -34,12 +34,17 @@ public class ShoppingDao {
 		return jackCollection.findOne(query);
 	}
 	
-	public List<Shopping> getShoppingsByCityIdAndCoordination(String cityId, String coordination) {
+	public List<Shopping> getShoppingsByCityIdAndCoordination(String cityId, String coordination,
+			Integer price) {
 		DBCollection collection = database.getCollection("shopping");
 		JacksonDBCollection<Shopping, String> jackCollection = JacksonDBCollection
 				.wrap(collection, Shopping.class, String.class);
 		BasicDBObject query = new BasicDBObject();
+		BasicDBObject sortCondition = new BasicDBObject("price_level", 1);
 		query.put("city_id", new ObjectId(cityId));
-		return jackCollection.find(query).toArray();
+		if(price != 0) {
+			query.put("price_level", price);
+		}
+		return jackCollection.find(query).sort(sortCondition).toArray();
 	}
 }

@@ -37,9 +37,10 @@ public class BasePOIController {
 	@RequestMapping(value = "/discovery/poi", method = RequestMethod.GET)
 	@ResponseBody
 	public POIDetailDto getPOIDetail(@RequestParam("id") String id,
-			@RequestParam("type") Integer type) {
+			@RequestParam("type") Integer type,
+		    @RequestParam("coordination") String coordination) {
 
-		return basePOIService.getPOIDetailById(id, type);
+		return basePOIService.getPOIDetailById(id, type, coordination);
 	}
 
 	@RequestMapping(value = "/discovery/specialList", method = RequestMethod.GET)
