@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by liuniandxx on 16-3-16. 时间操作通用类
@@ -272,21 +273,37 @@ public class DateUtil {
     	return year + "年" + month + "月" + day + "日";
     }
 
-    public static void main(String[] args) throws ParseException {
-//        System.out.println(new Date().getTime());
-//        System.out.println(longChangeToDateStr(1454803200));
-//        System.out.println(covertTimeToUTC(new Date()));
-//        System.out.println(getDiscoveryTimeFormatter(new Date()));
-    	Date date = DateUtil.yyyyMMddToDate("20150303");
-    	System.out.println(date.toString());
-    	System.out.println(date.getMonth());
-    	System.out.println(date.getTime());
-    	long test = 1425340800000L;
-    	System.out.println(DateUtil.longChangeToDate(1425340800000L));
-    	long test2 = 1425312000000L;
-    	System.out.println((test - test2)/3600/1000);
-    	
-    	
+
+    /**
+     * 将字符串时间转化为指定时区的对应时间
+     * @param date   字符串时间
+     * @param format  时间格式， 例如: yyyyMMdd
+     * @param timezone  时区, GMT格式，例如: 东八区对应为 GMT+8:00
+     * @return
+     */
+    public static Date formatDateToDate(String date, String format, String timezone) {
+        TimeZone timeZone = TimeZone.getTimeZone(timezone);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        dateFormat.setTimeZone(timeZone);
+        Date dateTime = null;
+
+        try {
+            dateTime = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateTime;
+    }
+
+
+    /**
+     * 获取指定时区的 yyyyMMdd对应日期
+     * @param  date    yyyyMMdd 格式
+     * @param timezone 时区,如东八区 GMT+8:00
+     * @return
+     */
+    public static Date yyyyMMddToDate(String date, String timezone) {
+        return formatDateToDate(date, yyyyMMdd, timezone);
     }
 
 }
