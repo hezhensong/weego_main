@@ -40,6 +40,6 @@ var _tag = $(".tag").html();
 		$("#pic").hide();
 	}
 
-	if(_tag == "" || _tag == "null"){
+	if(_tag == "" || _tag == "null" || _tag == "undefined"){
 		$(".tag").hide();
 	}
