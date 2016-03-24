@@ -22,6 +22,7 @@ public class DateUtil {
 
     private static final String slantYMD = "yyyy/MM/dd";
     private static final String slantMD = "MM/dd";
+    private static final String slantEEEE = "EEEE";
 
 
     public static String formatDate(Date date, String format) {
@@ -39,6 +40,47 @@ public class DateUtil {
     public static String formatMM_dd(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(slantMD);
         return format.format(date);
+    }
+
+    // Date 转化为 星期几
+    public static String formatDay(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantEEEE);
+
+        String day = format.format(date);
+        switch (day) {
+            case "Monday":
+                day = "星期一";
+                break;
+
+            case "Tuesday":
+                day = "星期二";
+                break;
+
+            case "Wednesday":
+                day = "星期三";
+                break;
+
+            case "Thursday":
+                day = "星期四";
+                break;
+
+            case "Friday":
+                day = "星期五";
+                break;
+
+            case "Saturday":
+                day = "星期六";
+                break;
+
+            case "Sunday":
+                day = "星期日";
+                break;
+
+            default:
+                break;
+        }
+
+        return day;
     }
 
     // 时间格式转换为Date
