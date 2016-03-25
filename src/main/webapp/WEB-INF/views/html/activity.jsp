@@ -51,31 +51,51 @@
 <c:forEach items="${paragraphs}" var="ActivityParagraphs">
 
 	<div class="four">
-		<div class="text_tittle">${ActivityParagraphs.imageTitle}</div>
-		<div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
-		<img class="pic" src="${ActivityParagraphs.imageUrl}">
-		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
+		<c:choose>
+				<c:when
+					test="${ActivityParagraphs.imageTitle =='' || ActivityParagraphs.imageTitle == 'null'}">
+					<div style="display: none" id="text_title">${ActivityParagraphs.imageTitle}</div>
+				</c:when>
+				<c:otherwise>
+					<div id="text_title">${ActivityParagraphs.imageTitle}</div>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when
+					test="${ActivityParagraphs.detailUp =='' || ActivityParagraphs.detailUp == 'null'}">
+					<div style="display: none" class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+				</c:when>
+				<c:otherwise>
+					<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when
+					test="${ActivityParagraphs.imageUrl == '' || ActivityParagraphs.imageUrl == null || ActivityParagraphs.imageUrl == 'null'}">
+					<img style="display: none" id="pic"
+						src="${ActivityParagraphs.imageUrl}">
+				</c:when>
+				<c:otherwise>
+					<img id="pic" src="${ActivityParagraphs.imageUrl}">
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when
+					test="${ActivityParagraphs.imageBrief =='' || ActivityParagraphs.imageBrief == 'null'}">
+					<div style="display: none" class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
+				</c:when>
+				<c:otherwise>
+					<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
+				</c:otherwise>
+			</c:choose>
 	</div>
 </c:forEach>
 		
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
-<script>
-  var value = [];
-  <c:forEach items="${paragraphs}" var="p">
-     value.push("${p.imageUrl}"); 
-  </c:forEach>
-  for(var i =0;i<value.length;i++){
-	  if(value[i]=='null' || value[i] ==''){
-		  $(".pic").hide();
-		  alert(1);
-	  }else{
-		  $(".pic").show();
-		  alert(0);
-	  }
-	 // alert(value[i]);
-  }
-  
-</script>
+
 </html>

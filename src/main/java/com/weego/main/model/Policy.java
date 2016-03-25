@@ -38,7 +38,7 @@ public class Policy {
     private Date lastModifyTime;
 
     @JsonProperty("last_modify_person")
-    private Date lastModifyPerson;
+    private String lastModifyPerson;
 
     public ObjectId getId() {
         return id;
@@ -112,11 +112,11 @@ public class Policy {
         this.lastModifyTime = lastModifyTime;
     }
 
-    public Date getLastModifyPerson() {
+    public String getLastModifyPerson() {
         return lastModifyPerson;
     }
 
-    public void setLastModifyPerson(Date lastModifyPerson) {
+    public void setLastModifyPerson(String lastModifyPerson) {
         this.lastModifyPerson = lastModifyPerson;
     }
 }

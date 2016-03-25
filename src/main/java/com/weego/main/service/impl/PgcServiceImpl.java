@@ -48,8 +48,9 @@ public class PgcServiceImpl implements PgcService {
                     pgcListPgcDto.setPgcId(pgc.getId());
                     pgcListPgcDto.setTitle(pgc.getTitle());
                     pgcListPgcDto.setCoverImage(pgc.getCoverImage());
-
+                    pgcListPgcDto.setType(pgc.getType());
                     pgcListPgcDtoList.add(pgcListPgcDto);
+
                 }
             }
         } catch (Exception e) {
