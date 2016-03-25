@@ -49,14 +49,33 @@
 		<div class="drb">${details}</div>
 	</div>
 <c:forEach items="${paragraphs}" var="ActivityParagraphs">
+
 	<div class="four">
-		<div id="text_title">${ActivityParagraphs.imageTitle}</div>
-		<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
-		<img id="pic" src=" ">
+		<div class="text_tittle">${ActivityParagraphs.imageTitle}</div>
+		<div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+		<img class="pic" src="${ActivityParagraphs.imageUrl}">
 		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 	</div>
 </c:forEach>
+		
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
+<script>
+  var value = [];
+  <c:forEach items="${paragraphs}" var="p">
+     value.push("${p.imageUrl}"); 
+  </c:forEach>
+  for(var i =0;i<value.length;i++){
+	  if(value[i]=='null' || value[i] ==''){
+		  $(".pic").hide();
+		  alert(1);
+	  }else{
+		  $(".pic").show();
+		  alert(0);
+	  }
+	 // alert(value[i]);
+  }
+  
+</script>
 </html>
