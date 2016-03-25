@@ -79,6 +79,10 @@ public class PgcServiceImpl implements PgcService {
             }
             mv.addObject("breif", pgc.getIntroduction());
             mv.addObject("poilist", pgc.getPoiList());
+            
+            mv.addObject("public_logo", "logo test");
+            mv.addObject("publics", "public test");
+            mv.addObject("public_breif", "public_breif test");
 
             return mv;
         }
