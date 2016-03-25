@@ -25,7 +25,7 @@ public class SearchNearByServiceImpl implements SearchNearByService {
 		} else if (type == 1) {
 			return restaurantService.getRestaurantsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
 		} else if (type == 2) {
-			return shoppingService.getShoppingsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
+			return shoppingService.getShoppingByCityIdAndCoordination(cityId, coordination, sort, range, price, special);
 		} else {
 			System.out.println("type 参数值有误");
 			return null;

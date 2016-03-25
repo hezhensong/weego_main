@@ -4,6 +4,8 @@ import com.google.common.base.Strings;
 import com.weego.main.constant.RecommendType;
 import com.weego.main.dao.*;
 import com.weego.main.dto.RecommendCardDto;
+import com.weego.main.dto.RecommendNewsDetailContentDto;
+import com.weego.main.dto.RecommendNewsDetailDto;
 import com.weego.main.model.*;
 import com.weego.main.service.PolicyService;
 import com.weego.main.service.RecommendCardService;
@@ -66,7 +68,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         List<RecommendCardDto> recommendCardDtoList = new ArrayList<>();
 
         try {
-            List<Policy> matchTimePolicyList = policyService.fiterPolicyByTimeRange(cityId, time);
+            List<Policy> matchTimePolicyList = policyService.filterPolicyByTimeRange(cityId, time);
             List<Policy> policyList = policyService.filterPolicyByDistance(matchTimePolicyList, coordinate);
 
             if (policyList == null || policyList.size() <= 0) {
@@ -77,22 +79,22 @@ public class RecommendCardServiceImpl implements RecommendCardService {
             Set<RecommendType> typeSet = new HashSet<>();
             for (Policy policy : policyList) {
                 List<ObjectId> attractionIdList = policy.getPolicyType().getAttractionList();
-                getRecommenCard(typeSet, RecommendType.ATTRACTION, attractionIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.ATTRACTION, attractionIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> restaurantIdList = policy.getPolicyType().getRestaurantList();
-                getRecommenCard(typeSet, RecommendType.RESTAURANT, restaurantIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.RESTAURANT, restaurantIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> shoppingIdList = policy.getPolicyType().getShoppingList();
-                getRecommenCard(typeSet, RecommendType.SHOPPING, shoppingIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.SHOPPING, shoppingIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> activityIdList = policy.getPolicyType().getActivityList();
-                getRecommenCard(typeSet, RecommendType.ACTIVITY, activityIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.ACTIVITY, activityIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> pgcIdList = policy.getPolicyType().getPgcList();
-                getRecommenCard(typeSet, RecommendType.PGC, pgcIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.PGC, pgcIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> newsIdList = policy.getPolicyType().getNewsList();
-                getRecommenCard(typeSet, RecommendType.NEWS, newsIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.NEWS, newsIdList, policy.getId(), recommendCardDtoList);
             }
         } catch (Exception e) {
             return null;
@@ -102,6 +104,38 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         return recommendCardDtoList;
     }
 
+    @Override
+    public RecommendNewsDetailDto getRecommendNewsById(String newsId) {
+        RecommendNewsDetailDto recommendNewsDetailDto = new RecommendNewsDetailDto();
+
+        try {
+            News news = newsDao.getNewsById(newsId);
+            recommendNewsDetailDto.setLead(news.getLead());
+            recommendNewsDetailDto.setLeadText(news.getLeadText());
+
+            List<RecommendNewsDetailContentDto> contentDtoList = new ArrayList<>();
+            recommendNewsDetailDto.setContents(contentDtoList);
+
+            for (NewsContent content : news.getNewsContentList()) {
+                RecommendNewsDetailContentDto contentDto = new RecommendNewsDetailContentDto();
+                contentDto.setTitle(content.getTitle());
+                contentDto.setText(content.getText());
+                contentDto.setUrl(content.getUrl());
+                contentDto.setImage(content.getImage());
+                contentDto.setImageDesc(content.getImageDesc());
+                contentDto.setSource(content.getSource());
+                contentDto.setDate(content.getDate());
+
+                contentDtoList.add(contentDto);
+            }
+
+        } catch (Exception e) {
+            logger.fatal("新闻详情页获取失败 {}", e.getStackTrace());
+            return null;
+        }
+
+        return recommendNewsDetailDto;
+    }
 
     private void insertRecommendsIntoHistory(List<RecommendCardDto> recommendCardDtoList, String cityid, String userId) {
         if(recommendCardDtoList == null || recommendCardDtoList.size() <= 0) {
@@ -128,7 +162,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         recommendHistoryDao.saveRecommendHistory(recommendHistory);
     }
 
-    private void getRecommenCard(Set<RecommendType> typeSet, RecommendType type, List<ObjectId> idList, ObjectId policyId, List<RecommendCardDto> recommendCardDtoList) {
+    private void getRecommendCard(Set<RecommendType> typeSet, RecommendType type, List<ObjectId> idList, ObjectId policyId, List<RecommendCardDto> recommendCardDtoList) {
         if (!typeSet.contains(type) && idList != null && idList.size() > 0) {
             Response<RecommendCardDto> response = getRecommendCard(idList, type, policyId);
             if (response.isStatus()) {
@@ -145,7 +179,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
             return response;
         }
 
-        if (type.equals(RecommendType.ACTIVITY)) {
+        if (type.equals(RecommendType.ATTRACTION)) {
             for (ObjectId contentId : contentIdList) {
                 Attraction attraction = attractionDao.getAttractionById(contentId.toString());
                 response.setStatus(true);
@@ -200,6 +234,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
                         policyMap.getSecondTitle(), pgc.getCoverImage(),
                         "", pgc.getIntroduction());
                 response.setData(recommendCardDto);
+                return response;
             }
         } else if (type.equals(RecommendType.NEWS)) {
             for (ObjectId contentId : contentIdList) {

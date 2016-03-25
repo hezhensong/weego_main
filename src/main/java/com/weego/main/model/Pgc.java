@@ -28,6 +28,9 @@ public class Pgc {
     @JsonProperty("city_id")
     private String cityId;
 
+    @JsonProperty("type")
+    private Integer type;
+
     public String getId() {
         return id;
     }
@@ -82,5 +85,13 @@ public class Pgc {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

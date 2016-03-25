@@ -10,5 +10,5 @@ import java.util.List;
 public interface PolicyService {
     List<Policy> filterPolicyByDistance(List<Policy> policyList, String coordination);
 
-    List<Policy> fiterPolicyByTimeRange(String cityId, String time);
+    List<Policy> filterPolicyByTimeRange(String cityId, String time);
 }

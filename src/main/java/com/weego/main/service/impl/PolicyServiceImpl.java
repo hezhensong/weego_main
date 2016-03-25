@@ -41,14 +41,14 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
-    public List<Policy> fiterPolicyByTimeRange(String cityId, String time) {
+    public List<Policy> filterPolicyByTimeRange(String cityId, String time) {
         return policyDao.getPolicyByTime(cityId, time);
     }
 
     private boolean isInDistanceRange(String localCoordination, String coordination, Integer radius) {
         if (!Strings.isNullOrEmpty(localCoordination) && !Strings.isNullOrEmpty(coordination)) {
             String[] localLatLon = localCoordination.split("[,，]");
-            String[] latLon = coordination.split("[,，]]");
+            String[] latLon = coordination.split("[,，]");
             double distance = DistanceUtil.getDistance(localLatLon[1], localLatLon[0], latLon[1], latLon[0]) * 1000;
             if (distance <= radius) {
                 return true;

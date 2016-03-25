@@ -83,7 +83,11 @@ public class ActivityServiceImpl implements ActivityService {
 
                         ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
 
+<<<<<<< HEAD
                         activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetail());
+=======
+                        activityParagraphsDto.setDetail(cityActivityParagraphs.getDetail());
+>>>>>>> 97bbe94119c782e17edc7ba87973db24a415ad99
                         activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
                         activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
                         activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());
@@ -132,7 +136,7 @@ public class ActivityServiceImpl implements ActivityService {
                      * 前端acttime字段展示逻辑 1.时间格式：X月X日，需要跨年的显示x年
                      * 2.活动开始日期-今天<=7天，显示“即将开始” 活动开始日期<=今天<=活动结束日期，显示“进行中”
                      * 活动开始日期-今天>7天，显示“开始日期-结束日期”，不需要具体时间点
-                     * 
+                     *
                      */
                     Date dateNow = new Date();
 
@@ -163,13 +167,7 @@ public class ActivityServiceImpl implements ActivityService {
 
                                 if (openYear == openYear) {
                                     // 不是跨年，不显示年份
-                                    // 同时判断开始时间和结束时间是不是一样的
-                                    if (openMMdd.endsWith(closeMMdd)) {
-                                        // 如果是一样的日期，就显示一个就行了
-                                        activityBaseDto.setActTime(openMMdd);
-                                    } else {
-                                        activityBaseDto.setActTime(openMMdd + "-" + closeMMdd);
-                                    }
+                                    activityBaseDto.setActTime(openMMdd + "-" + closeMMdd);
                                 } else {
                                     // 跨年需要显示年月日
                                     activityBaseDto.setActTime(openYear + "年" + openMMdd + "-" + closeYear + "年"
@@ -201,17 +199,14 @@ public class ActivityServiceImpl implements ActivityService {
         if (activity != null) {
             mv.addObject("title", activity.getTitle());
             mv.addObject("time", activity.getActTime());
-            mv.addObject("tag", activity.getType());
             mv.addObject("ip", activity.getDetailAddress());
             mv.addObject("bg", activity.getCoverImage());
             mv.addObject("web", activity.getActUrl());
             mv.addObject("ticket", activity.getOrderUrl());
             mv.addObject("details", activity.getDescription());
             mv.addObject("paragraphs", activity.getParagraphs());
-
-            return mv;
-        } else {
-            return null;
         }
+
+        return mv;
     }
 }
