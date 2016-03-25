@@ -66,7 +66,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         List<RecommendCardDto> recommendCardDtoList = new ArrayList<>();
 
         try {
-            List<Policy> matchTimePolicyList = policyService.fiterPolicyByTimeRange(cityId, time);
+            List<Policy> matchTimePolicyList = policyService.filterPolicyByTimeRange(cityId, time);
             List<Policy> policyList = policyService.filterPolicyByDistance(matchTimePolicyList, coordinate);
 
             if (policyList == null || policyList.size() <= 0) {
@@ -77,22 +77,22 @@ public class RecommendCardServiceImpl implements RecommendCardService {
             Set<RecommendType> typeSet = new HashSet<>();
             for (Policy policy : policyList) {
                 List<ObjectId> attractionIdList = policy.getPolicyType().getAttractionList();
-                getRecommenCard(typeSet, RecommendType.ATTRACTION, attractionIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.ATTRACTION, attractionIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> restaurantIdList = policy.getPolicyType().getRestaurantList();
-                getRecommenCard(typeSet, RecommendType.RESTAURANT, restaurantIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.RESTAURANT, restaurantIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> shoppingIdList = policy.getPolicyType().getShoppingList();
-                getRecommenCard(typeSet, RecommendType.SHOPPING, shoppingIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.SHOPPING, shoppingIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> activityIdList = policy.getPolicyType().getActivityList();
-                getRecommenCard(typeSet, RecommendType.ACTIVITY, activityIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.ACTIVITY, activityIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> pgcIdList = policy.getPolicyType().getPgcList();
-                getRecommenCard(typeSet, RecommendType.PGC, pgcIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.PGC, pgcIdList, policy.getId(), recommendCardDtoList);
 
                 List<ObjectId> newsIdList = policy.getPolicyType().getNewsList();
-                getRecommenCard(typeSet, RecommendType.NEWS, newsIdList, policy.getId(), recommendCardDtoList);
+                getRecommendCard(typeSet, RecommendType.NEWS, newsIdList, policy.getId(), recommendCardDtoList);
             }
         } catch (Exception e) {
             return null;
@@ -128,7 +128,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         recommendHistoryDao.saveRecommendHistory(recommendHistory);
     }
 
-    private void getRecommenCard(Set<RecommendType> typeSet, RecommendType type, List<ObjectId> idList, ObjectId policyId, List<RecommendCardDto> recommendCardDtoList) {
+    private void getRecommendCard(Set<RecommendType> typeSet, RecommendType type, List<ObjectId> idList, ObjectId policyId, List<RecommendCardDto> recommendCardDtoList) {
         if (!typeSet.contains(type) && idList != null && idList.size() > 0) {
             Response<RecommendCardDto> response = getRecommendCard(idList, type, policyId);
             if (response.isStatus()) {
