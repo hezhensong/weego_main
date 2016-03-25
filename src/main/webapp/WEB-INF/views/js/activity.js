@@ -7,6 +7,7 @@ var _describe = $(".describe").html();
 var _pic_describe = $(".pic_describe").html();
 var _pic = $(".pic").attr("src");
 var _tag = $(".tag").html();
+alert(_pic);
 
 
 
@@ -37,19 +38,16 @@ var _tag = $(".tag").html();
 		$(".pic_describe").hide();
 	}
 
-<<<<<<< HEAD
-	if(_pic == "" || _pic == "null"){
-		$(".pic").hide();
-=======
-<<<<<<< HEAD
-	if(_pic == "" || _pic == "null"){
-=======
 	if(_pic == "" || _pic == "null" || _pic == "undefined"){
->>>>>>> 7377ef9c63467f8d9e785db8fdfb2f636c81f256
-		$("#pic").hide();
->>>>>>> 10ad2068e42a83eada4fc1c1e86e5341695add96
+		$(".pic").hide();
 	}
 
 	if(_tag == "" || _tag == "null" ){
 		$(".tag").hide();
 	}
+var _pa = ${paragraphs};
+for(var i = 0; i < _pa.length ; i++){
+	var img = _pa[i];
+		alert(img);
+}
+
