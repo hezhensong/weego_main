@@ -7,6 +7,7 @@ var _describe = $("#describe").html();
 var _pic_describe = $("#pic_describe").html();
 var _pic = $("#pic").attr("src");
 var _tag = $(".tag").html();
+alert(_pic);
 
 
 	if(_actime == "" || _actime == "null"){
@@ -36,10 +37,10 @@ var _tag = $(".tag").html();
 		$("#pic_describe").hide();
 	}
 
-	if(_pic == "" _pic == "null"){
+	if(_pic == "" || _pic == "null"){
 		$("#pic").hide();
 	}
 
-	if(_tag == "" || _tag == "null" || _tag == "undefined"){
+	if(_tag == "" || _tag == "null" ){
 		$(".tag").hide();
 	}
