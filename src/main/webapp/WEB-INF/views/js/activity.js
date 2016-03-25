@@ -2,12 +2,13 @@ var _actime = $("#actime").html();
 var _acip = $("#ip").html();
 var _acweb = $("#web").html();
 var _acticket = $("#ticket").html();
-var _text_title = $("text_title").html();
-var _describe = $("#describe").html();
-var _pic_describe = $("#pic_describe").html();
-var _pic = $("#pic").attr("src");
+var _text_title = $(".text_title").html();
+var _describe = $(".describe").html();
+var _pic_describe = $(".pic_describe").html();
+var _pic = $(".pic").attr("src");
 var _tag = $(".tag").html();
-alert(_pic);
+//alert(_pic);
+
 
 
 	if(_actime == "" || _actime == "null"){
@@ -27,20 +28,27 @@ alert(_pic);
 	}
 
 	 if(_text_title =="" || _text_title =="null")
-	 	$("#text_title").hide;
+	 	$(".text_title").hide;
 
 	 if(_describe == "" || _describe == "null"){
-		$("#describe").hide();
+		$(".describe").hide();
 	}
 
 	if(_pic_describe == "" || _pic_describe == "null"){
-		$("#pic_describe").hide();
+		$(".pic_describe").hide();
 	}
 
+
 	if(_pic == "" || _pic == "null" || _pic == "undefined"){
-		$("#pic").hide();
+		$(".pic").hide();
 	}
 
 	if(_tag == "" || _tag == "null" ){
 		$(".tag").hide();
 	}
+//var _pa = ${paragraphs};
+//for(var i = 0; i < _pa.length ; i++){
+	//var img = _pa[i].imageUrl;
+//		alert(img);
+//}
+
