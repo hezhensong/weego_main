@@ -63,11 +63,11 @@
 
 			<c:choose>
 				<c:when
-					test="${ActivityParagraphs.detailUp =='' || ActivityParagraphs.detailUp == 'null'}">
-					<div style="display: none" class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+					test="${ActivityParagraphs.detail =='' || ActivityParagraphs.detail == 'null'}">
+					<div style="display: none" class="drb inner" id="describe">${ActivityParagraphs.detail}</div>
 				</c:when>
 				<c:otherwise>
-					<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+					<div class="drb inner" id="describe">${ActivityParagraphs.detail}</div>
 				</c:otherwise>
 			</c:choose>
 
