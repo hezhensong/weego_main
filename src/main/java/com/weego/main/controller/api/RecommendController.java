@@ -3,6 +3,7 @@ package com.weego.main.controller.api;
 import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.RecommendCardDto;
 import com.weego.main.dto.RecommendHistoryDto;
+import com.weego.main.dto.RecommendNewsDetailDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.RecommendCardService;
 import com.weego.main.service.RecommendHistoryService;
@@ -30,14 +31,14 @@ public class RecommendController {
     @Autowired
     private RecommendHistoryService recommendHistoryService;
 
-    //动态推荐列表
+    // 动态推荐列表
     @RequestMapping(value = "/recommendation/history", method = RequestMethod.GET)
     public ResponseDto<RecommendHistoryDto> getHistory(@RequestParam("cityId") String cityId,
                                                        @RequestParam("userId") String userId) {
         logger.info("开始动态推荐列表查询");
         logger.info("cityId = {}, userId = {}", cityId, userId);
 
-        ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<RecommendHistoryDto>();
+        ResponseDto<RecommendHistoryDto> responseDto = new ResponseDto<>();
         RecommendHistoryDto recommendHistoryDto = recommendHistoryService.getRecommendHistory(cityId, userId);
 
         if (recommendHistoryDto != null) {
@@ -48,7 +49,7 @@ public class RecommendController {
         return responseDto;
     }
 
-    //动态推荐卡片
+    // 动态推荐卡片
     @RequestMapping(value = "/recommendation/card", method = RequestMethod.GET)
     public ResponseDto<List<RecommendCardDto>> getCard(@RequestParam("cityId") String cityId,
                                                        @RequestParam("userId") String userId,
@@ -57,7 +58,7 @@ public class RecommendController {
         logger.info("开始动态推荐卡片查询");
         logger.info("cityId = {}, userId = {}, coordinate = {}, time = {}", cityId, userId, coordinate, time);
 
-        ResponseDto<List<RecommendCardDto>> responseDto = new ResponseDto<List<RecommendCardDto>>();
+        ResponseDto<List<RecommendCardDto>> responseDto = new ResponseDto<>();
         List<RecommendCardDto> dataList = recommendInfoService.getRecommendCards(cityId, userId, coordinate, time);
 
         if (dataList != null) {
@@ -65,6 +66,25 @@ public class RecommendController {
         } else {
             responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
         }
+        return responseDto;
+    }
+
+    // 新闻详情页
+    @RequestMapping(value = "/recommendation/news", method = RequestMethod.GET)
+    public ResponseDto<RecommendNewsDetailDto> getNews(@RequestParam("newsId") String newsId) {
+        logger.info("newsId = {}", newsId);
+
+        ResponseDto<RecommendNewsDetailDto> responseDto = new ResponseDto<>();
+
+        RecommendNewsDetailDto recommendNewsDetailDto = recommendInfoService.getRecommendNewsById(newsId);
+        if (recommendNewsDetailDto == null) {
+            responseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
+            logger.fatal("新闻不存在 newsId=[{}]", newsId);
+
+        } else {
+            responseDto.setData(recommendNewsDetailDto);
+        }
+
         return responseDto;
     }
 }
