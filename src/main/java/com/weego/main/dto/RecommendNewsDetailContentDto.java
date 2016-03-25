@@ -1,33 +1,18 @@
-package com.weego.main.model;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.weego.main.dto;
 
 import java.util.Date;
 
 /**
- * Created by liuniandxx on 16-3-24.
+ * Created  by Eric He on 2016-03-25 下午 04:06.
  */
-public class NewsContent {
+public class RecommendNewsDetailContentDto {
 
-    @JsonProperty("title")
     private String title;
-
-    @JsonProperty("date")
     private Date date;
-
-    @JsonProperty("source")
     private String source;
-
-    @JsonProperty("image")
     private String image;
-
-    @JsonProperty("image_desc")
     private String imageDesc;
-
-    @JsonProperty("text")
     private String text;
-
-    @JsonProperty("url")
     private String url;
 
     public String getTitle() {

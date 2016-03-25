@@ -47,7 +47,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 		} else if (type == 1) {
 			return restaurantService.getRestaurantsByCityId(cityId, labelId, page, count);
 		} else if (type == 2) {
-			return shoppingService.getShoppingsByCityId(cityId, labelId, page, count);
+			return shoppingService.getShoppingByCityId(cityId, labelId, page, count);
 		} else {
 			logger.info("type 参数值有误");
 			return null;
