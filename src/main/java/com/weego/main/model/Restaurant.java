@@ -11,6 +11,9 @@ public class Restaurant extends BasePOI {
 	@JsonProperty("facilities")
 	private RestaurantFacilities restaurantFacilities;
 
+	@JsonProperty("master_label")
+	private List<BasePOILabel> masterLabel;
+
 	public List<RestaurantDish> getRestaurantDishs() {
 		return restaurantDishs;
 	}
@@ -26,6 +29,14 @@ public class Restaurant extends BasePOI {
 	public void setRestaurantFacilities(
 			RestaurantFacilities restaurantFacilities) {
 		this.restaurantFacilities = restaurantFacilities;
+	}
+
+	public List<BasePOILabel> getMasterLabel() {
+		return masterLabel;
+	}
+
+	public void setMasterLabel(List<BasePOILabel> masterLabel) {
+		this.masterLabel = masterLabel;
 	}
 
 }

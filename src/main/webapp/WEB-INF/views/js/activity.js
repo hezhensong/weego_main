@@ -7,6 +7,7 @@ var _describe = $(".describe").html();
 var _pic_describe = $(".pic_describe").html();
 var _pic = $(".pic").attr("src");
 var _tag = $(".tag").html();
+//alert(_pic);
 
 
 
@@ -37,10 +38,17 @@ var _tag = $(".tag").html();
 		$(".pic_describe").hide();
 	}
 
-	//if(_pic == "" || _pic == "null" || _pic == "undefined"){
-	//	$("#pic").hide();
-	//}
+
+	if(_pic == "" || _pic == "null" || _pic == "undefined"){
+		$(".pic").hide();
+	}
 
 	if(_tag == "" || _tag == "null" ){
 		$(".tag").hide();
 	}
+//var _pa = ${paragraphs};
+//for(var i = 0; i < _pa.length ; i++){
+	//var img = _pa[i].imageUrl;
+//		alert(img);
+//}
+
