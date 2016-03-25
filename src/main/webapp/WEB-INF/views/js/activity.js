@@ -37,11 +37,9 @@ alert(_pic);
 		$("#pic_describe").hide();
 	}
 
-<<<<<<< HEAD
-	if(_pic == "" || _pic == "null"){
-=======
+
 	if(_pic == "" || _pic == "null" || _pic == "undefined"){
->>>>>>> 7377ef9c63467f8d9e785db8fdfb2f636c81f256
+
 		$("#pic").hide();
 	}
 

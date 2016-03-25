@@ -209,8 +209,10 @@ public class ActivityServiceImpl implements ActivityService {
             mv.addObject("ticket", activity.getOrderUrl());
             mv.addObject("details", activity.getDescription());
             mv.addObject("paragraphs", activity.getParagraphs());
-        }
 
-        return mv;
+            return mv;
+        } else {
+            return null;
+        }
     }
 }
