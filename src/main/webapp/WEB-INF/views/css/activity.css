@@ -20,8 +20,9 @@ body {
 .one .tag{
     position: relative;
     top: 80%;
-    padding:20px;
-    letter-spacing: 5px;
+    padding:15px;
+    padding-left:30px;
+    letter-spacing: 6px;
     font-size: 36px;
     height: 40px;
     width: 280px;
@@ -95,6 +96,7 @@ body {
     width: 96%;
 }
 .four .small {
+	margin:3% 0;
     color: #ffffff;
     opacity: 0.5;
     text-align: center;
