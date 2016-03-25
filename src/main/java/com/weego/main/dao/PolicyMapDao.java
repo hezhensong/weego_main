@@ -16,7 +16,7 @@ public class PolicyMapDao {
     private DB database = MongoConnectionFactory.getDatabase();
 
     public  PolicyMap getPolicyMap(String policyId, int type, String contentId) {
-        DBCollection collection = database.getCollection("recommend_history");
+        DBCollection collection = database.getCollection("policy_map");
 
         JacksonDBCollection<PolicyMap, String> jacksonDBCollection = JacksonDBCollection.wrap(collection,
                                                                                                 PolicyMap.class,

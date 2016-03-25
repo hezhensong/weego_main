@@ -24,6 +24,7 @@ public class DateUtil {
     private static final String slantMD = "MM/dd";
     private static final String slantEEEE = "EEEE";
 
+    private static final String colonHM = "HH:mm";
 
     public static String formatDate(Date date, String format) {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
@@ -46,6 +47,17 @@ public class DateUtil {
         SimpleDateFormat format = new SimpleDateFormat(slantMD);
         return format.format(date);
     }
+
+    /**
+     * date 转 HH:mm
+     * @param date
+     * @return
+     */
+    public static String formatColonHM(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(colonHM);
+        return format.format(date);
+    }
+
 
     /**
      * date 转化为 yyyy/MM/dd
@@ -329,29 +341,14 @@ public class DateUtil {
     }
 
 
-
-    /**
-     * 获取指定时区当前时间
-     * @param format     时间格式
-     * @param timezone   时区
-     * @return
-     */
-    public static String getDateSpecityTimezone(String format, String timezone) {
-        TimeZone timeZone = TimeZone.getTimeZone(timezone);
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        sdf.setTimeZone(timeZone);
-        return sdf.format(calendar.getTime());
-    }
-
     /**
      * 获取指定时区的 yyyyMMdd时间
      * @param timezone 时区
      * @return
      */
     public static Date getyyyyMMddSpecifyTimezone(String timezone) {
-        String yyyyMMddDate = getDateSpecityTimezone(yyyyMMdd, timezone);
-        return yyyyMMddToDate(yyyyMMddDate, timezone);
+        Date date = getyyyyMMddHHmmssSpecifyTimezone(timezone);
+        return yyyyMMddToDate(DateUtil.formatyyyyMMdd(date), timezone);
     }
 
     /**
@@ -360,13 +357,24 @@ public class DateUtil {
      * @return
      */
     public static Date getyyyyMMddHHmmssSpecifyTimezone(String timezone) {
-        String yyyyMMddHHmmssDate = getDateSpecityTimezone(yyyyMMddHHmmss, timezone);
-        return yyyyMMddHHmmssToDate(yyyyMMddHHmmssDate, timezone);
+        TimeZone.setDefault(TimeZone.getTimeZone(timezone));
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        return date;
     }
 
     public static void main(String[] args) {
-        Date date = getyyyyMMddSpecifyTimezone("GMT-8:00");
-        System.out.println(formatyyyyMMdd(date));
-    }
+//        TimeZone.setDefault(TimeZone.getTimeZone("GMT-5:00"));
+//        Calendar cal = Calendar.getInstance();
+//        Date date = cal.getTime();
+//        System.out.println(DateUtil.formatyyyyMMddHHmmss(date));
+//        System.out.println(date);
+
+        Date date1 = DateUtil.yyyyMMddToDate("20160314", "GMT-5:00");
+        System.out.println(date1);
+        System.out.println(date1.getTime());
+//        Date dongjing = getyyyyMMddSpecifyTimezone("GMT+9:00");
+//        System.out.println(dongjing);
+     }
 
 }
