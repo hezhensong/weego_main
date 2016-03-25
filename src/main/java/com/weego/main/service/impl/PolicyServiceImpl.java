@@ -41,7 +41,7 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
-    public List<Policy> fiterPolicyByTimeRange(String cityId, String time) {
+    public List<Policy> filterPolicyByTimeRange(String cityId, String time) {
         return policyDao.getPolicyByTime(cityId, time);
     }
 

@@ -68,7 +68,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         List<RecommendCardDto> recommendCardDtoList = new ArrayList<>();
 
         try {
-            List<Policy> matchTimePolicyList = policyService.fiterPolicyByTimeRange(cityId, time);
+            List<Policy> matchTimePolicyList = policyService.filterPolicyByTimeRange(cityId, time);
             List<Policy> policyList = policyService.filterPolicyByDistance(matchTimePolicyList, coordinate);
 
             if (policyList == null || policyList.size() <= 0) {
