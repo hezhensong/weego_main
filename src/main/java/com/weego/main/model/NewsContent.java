@@ -21,7 +21,7 @@ public class NewsContent {
     @JsonProperty("image")
     private String image;
 
-    @JsonProperty("imageDesc")
+    @JsonProperty("image_desc")
     private String imageDesc;
 
     @JsonProperty("text")
