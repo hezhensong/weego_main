@@ -50,10 +50,42 @@
 	</div>
 <c:forEach items="${paragraphs}" var="ActivityParagraphs">
 	<div class="four">
+	<c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+		<div style="display: none" id="text_title">${ActivityParagraphs.imageTitle}</div>
+	</c:if>
+	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
 		<div id="text_title">${ActivityParagraphs.imageTitle}</div>
+<<<<<<< HEAD
+	</c:if>
+
+    <c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+		<div style="display: none" id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+	</c:if>
+	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
+		<div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+	</c:if>
+
+	<c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+		<img style="display: none" id="pic" src="${ActivityParagraphs.imageUrl}">
+	</c:if>
+	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
+		<img id="pic" src="${ActivityParagraphs.imageUrl}">
+	</c:if>
+
+	<c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+		<div style="display: none"  class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
+	</c:if>
+	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
+=======
 		<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
 		<img id="pic" src="${ActivityParagraphs.imageUrl}">
+>>>>>>> 10ad2068e42a83eada4fc1c1e86e5341695add96
 		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
+	</c:if>
+
+		<!-- <div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+		<img id="pic" src="${ActivityParagraphs.imageUrl}">
+		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div> -->
 	</div>
 </c:forEach>
 	<footer></footer>
