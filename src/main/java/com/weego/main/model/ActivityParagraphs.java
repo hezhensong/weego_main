@@ -10,16 +10,11 @@ public class ActivityParagraphs {
 	@JsonProperty("image_title")
 	private String imageTitle;
 
-<<<<<<< HEAD
-	@JsonProperty("detail")
-	private String detail;
-
 	@JsonProperty("image_brief")
 	private String imageBrief;
-=======
-    @JsonProperty("detail")
-    private String detail;
->>>>>>> 97bbe94119c782e17edc7ba87973db24a415ad99
+
+	@JsonProperty("detail")
+	private String detail;
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -41,7 +36,6 @@ public class ActivityParagraphs {
 		return detail;
 	}
 
-<<<<<<< HEAD
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
@@ -53,22 +47,5 @@ public class ActivityParagraphs {
 	public void setImageBrief(String imageBrief) {
 		this.imageBrief = imageBrief;
 	}
-=======
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getImageBrief() {
-        return imageBrief;
-    }
-
-    public void setImageBrief(String imageBrief) {
-        this.imageBrief = imageBrief;
-    }
->>>>>>> 97bbe94119c782e17edc7ba87973db24a415ad99
 
 }
