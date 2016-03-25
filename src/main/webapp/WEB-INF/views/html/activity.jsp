@@ -55,35 +55,31 @@
 	</c:if>
 	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
 		<div id="text_title">${ActivityParagraphs.imageTitle}</div>
-<<<<<<< HEAD
 	</c:if>
 
-    <c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+    <c:if test="{ActivityParagraphs.detailUp =="" ||ActivityParagraphs.detailUp == "null"}">
 		<div style="display: none" id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
 	</c:if>
-	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
+	<c:if test="{ActivityParagraphs.detailUp !="" && ActivityParagraphs.detailUp != "null"}">
 		<div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
 	</c:if>
 
-	<c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+	<c:if test="{ActivityParagraphs.imageUrl =="" ||ActivityParagraphs.imageUrl == "null"}">
 		<img style="display: none" id="pic" src="${ActivityParagraphs.imageUrl}">
 	</c:if>
-	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
+	<c:if test="{ActivityParagraphs.imageUrl !="" && ActivityParagraphs.imageUrl != "null"}">
 		<img id="pic" src="${ActivityParagraphs.imageUrl}">
 	</c:if>
 
-	<c:if test="{ActivityParagraphs.imageTitle =="" ||ActivityParagraphs.imageTitle == "null"}">
+	<c:if test="{ActivityParagraphs.imageBrief =="" ||ActivityParagraphs.imageBrief == "null"}">
 		<div style="display: none"  class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 	</c:if>
-	<c:if test="{ActivityParagraphs.imageTitle !="" && ActivityParagraphs.imageTitle != "null"}">
-=======
-		<div class="drb inner" id="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
-		<img id="pic" src="${ActivityParagraphs.imageUrl}">
->>>>>>> 10ad2068e42a83eada4fc1c1e86e5341695add96
+	<c:if test="{ActivityParagraphs.imageBrief !="" && ActivityParagraphs.imageBrief != "null"}">
 		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 	</c:if>
 
 		<!-- <div id="drb inner" class="describe">${ActivityParagraphs.detailUp}${ActivityParagraphs.detailDown}</div>
+
 		<img id="pic" src="${ActivityParagraphs.imageUrl}">
 		<div class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div> -->
 	</div>
