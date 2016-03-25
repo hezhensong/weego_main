@@ -13,7 +13,7 @@ public class RestaurantDaoTest extends BaseTest{
 
     @Test
     public void testGetRestaurantById() {
-        String id = "5322c08d2fab6f0c1d000010";
+        String id = "5322c08d2fab6f0c1d000009";
         Restaurant restaurant = dao.getRestaurantById(id);
         System.out.println(restaurant.toString());
     }

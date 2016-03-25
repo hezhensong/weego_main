@@ -14,7 +14,7 @@ public class CityDaoTest extends BaseTest {
 
     @Test
     public void testGetSpecifiedCity() {
-        String cityId = "516a35218902ca1936000003";
+        String cityId = "516a34f958e3511036000001";
         City city = dao.getSpecifiedCity(cityId);
         System.out.println(city.toString());
     }

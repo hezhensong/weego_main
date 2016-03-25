@@ -10,7 +10,7 @@ public class RecommendContent {
     @JsonProperty("type")
     private Integer type;
 
-    @JsonProperty("content_oid")
+    @JsonProperty("content_id")
     private String contentId;
 
     @JsonProperty("content_first")

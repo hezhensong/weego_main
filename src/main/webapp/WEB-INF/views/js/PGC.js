@@ -7,7 +7,21 @@ var _poi_tag = $("#poi_tag").html();
 var _pic = $("#pic").attr("src");
 var _pic_resource = $("#pic_resource").html();
 var _public = $(".public").html();
-//alert(_public);
+var _icon = $(".icon").attr("alt");
+alert(_icon);
+
+
+if(_icon =="0"){
+	$(".icon").attr("src","../resource/img/pgc/icon.png")
+}
+else if(_icon =="1"){
+	$(".icon").attr("src","../resource/img/pgc/icon1.png")
+}
+else if(_icon =="2"){
+	$(".icon").attr("src","../resource/img/pgc/icon2.png")
+}else{
+	$(".icon").attr("src","../resource/img/pgc/icon.png")
+}
 
 
 
