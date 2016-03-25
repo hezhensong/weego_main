@@ -9,7 +9,7 @@ import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by liuniandxx on 16-3-24.
+ * Created  by liuniandxx on 16-3-24 下午 04:35.
  */
 @Repository
 public class NewsDao {
@@ -20,6 +20,7 @@ public class NewsDao {
         JacksonDBCollection<News, String> jackCollection = JacksonDBCollection.wrap(collection, News.class, String.class);
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(newsId));
+
         return jackCollection.findOne(query);
     }
 }

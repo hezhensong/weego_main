@@ -6,9 +6,7 @@ public class ActivityParagraphsDto {
 
     private String imageTitle;
 
-    private String detailUp;
-
-    private String detailDown;
+    private String detail;
 
     private String imageBrief;
 
@@ -28,20 +26,12 @@ public class ActivityParagraphsDto {
         this.imageTitle = imageTitle;
     }
 
-    public String getDetailUp() {
-        return detailUp;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDetailUp(String detailUp) {
-        this.detailUp = detailUp;
-    }
-
-    public String getDetailDown() {
-        return detailDown;
-    }
-
-    public void setDetailDown(String detailDown) {
-        this.detailDown = detailDown;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getImageBrief() {

@@ -49,8 +49,8 @@ public class ShoppingServiceImpl implements ShoppingService {
 	ActivityDao activityDao;
 
 	@Override
-	public POIListDto getShoppingsByCityId(String cityId, String labelId,
-			Integer page, Integer count) {
+	public POIListDto getShoppingByCityId(String cityId, String labelId,
+										  Integer page, Integer count) {
 		POIListDto poiListDto = new POIListDto();
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
 		List<Shopping> shoppings = shoppingDao.getShoppingsByCityId(cityId,
@@ -257,8 +257,8 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 
 	@Override
-	public SearchNearByDto getShoppingsByCityIdAndCoordination(String cityId, String coordination, String sort,
-			Double range, Integer price, String special) {
+	public SearchNearByDto getShoppingByCityIdAndCoordination(String cityId, String coordination, String sort,
+															  Double range, Integer price, String special) {
 		
 		SearchNearByDto searchNearByDto = new SearchNearByDto();		
 		SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
