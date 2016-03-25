@@ -26,10 +26,13 @@ public class Policy {
     private Integer radius;
 
     @JsonProperty("type")
-    private PolicyType policyTypeList;
+    private PolicyType policyType;
 
     @JsonProperty("status")
     private boolean status;
+
+    @JsonProperty("coordination")
+    private String coordination;
 
     @JsonProperty("last_modify_time")
     private Date lastModifyTime;
@@ -77,12 +80,20 @@ public class Policy {
         this.radius = radius;
     }
 
-    public PolicyType getPolicyTypeList() {
-        return policyTypeList;
+    public PolicyType getPolicyType() {
+        return policyType;
     }
 
-    public void setPolicyTypeList(PolicyType policyTypeList) {
-        this.policyTypeList = policyTypeList;
+    public void setPolicyType(PolicyType policyType) {
+        this.policyType = policyType;
+    }
+
+    public String getCoordination() {
+        return coordination;
+    }
+
+    public void setCoordination(String coordination) {
+        this.coordination = coordination;
     }
 
     public boolean isStatus() {

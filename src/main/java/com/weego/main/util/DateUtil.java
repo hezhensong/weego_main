@@ -36,9 +36,24 @@ public class DateUtil {
         return format.format(date);
     }
 
-    // Date 转化为 MM/dd
-    public static String formatMM_dd(Date date) {
+
+    /**
+     * date 转化MM/dd
+     * @param date
+     * @return
+     */
+    public static String formatSlantMMdd(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(slantMD);
+        return format.format(date);
+    }
+
+    /**
+     * date 转化为 yyyy/MM/dd
+     * @param date
+     * @return
+     */
+    public static String formatSlantyyyyMMdd(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat(slantYMD);
         return format.format(date);
     }
 

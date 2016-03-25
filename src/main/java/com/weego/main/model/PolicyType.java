@@ -19,9 +19,6 @@ public class PolicyType {
     @JsonProperty("shopping")
     List<ObjectId> shoppingList;
 
-    @JsonProperty("shopping_cirlcle")
-    List<ObjectId> shoppingCircleList;
-
     @JsonProperty("activity")
     List<ObjectId> activityList;
 
@@ -53,14 +50,6 @@ public class PolicyType {
 
     public void setShoppingList(List<ObjectId> shoppingList) {
         this.shoppingList = shoppingList;
-    }
-
-    public List<ObjectId> getShoppingCircleList() {
-        return shoppingCircleList;
-    }
-
-    public void setShoppingCircleList(List<ObjectId> shoppingCircleList) {
-        this.shoppingCircleList = shoppingCircleList;
     }
 
     public List<ObjectId> getActivityList() {
