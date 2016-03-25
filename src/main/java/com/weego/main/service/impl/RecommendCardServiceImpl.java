@@ -4,6 +4,8 @@ import com.google.common.base.Strings;
 import com.weego.main.constant.RecommendType;
 import com.weego.main.dao.*;
 import com.weego.main.dto.RecommendCardDto;
+import com.weego.main.dto.RecommendNewsDetailContentDto;
+import com.weego.main.dto.RecommendNewsDetailDto;
 import com.weego.main.model.*;
 import com.weego.main.service.PolicyService;
 import com.weego.main.service.RecommendCardService;
@@ -102,6 +104,38 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         return recommendCardDtoList;
     }
 
+    @Override
+    public RecommendNewsDetailDto getRecommendNewsById(String newsId) {
+        RecommendNewsDetailDto recommendNewsDetailDto = new RecommendNewsDetailDto();
+
+        try {
+            News news = newsDao.getNewsById(newsId);
+            recommendNewsDetailDto.setLead(news.getLead());
+            recommendNewsDetailDto.setLeadText(news.getLeadText());
+
+            List<RecommendNewsDetailContentDto> contentDtoList = new ArrayList<>();
+            recommendNewsDetailDto.setContents(contentDtoList);
+
+            for (NewsContent content : news.getNewsContentList()) {
+                RecommendNewsDetailContentDto contentDto = new RecommendNewsDetailContentDto();
+                contentDto.setTitle(content.getTitle());
+                contentDto.setText(content.getText());
+                contentDto.setUrl(content.getUrl());
+                contentDto.setImage(content.getImage());
+                contentDto.setImageDesc(content.getImageDesc());
+                contentDto.setSource(content.getSource());
+                contentDto.setDate(content.getDate());
+
+                contentDtoList.add(contentDto);
+            }
+
+        } catch (Exception e) {
+            logger.fatal("新闻详情页获取失败 {}", e.getStackTrace());
+            return null;
+        }
+
+        return recommendNewsDetailDto;
+    }
 
     private void insertRecommendsIntoHistory(List<RecommendCardDto> recommendCardDtoList, String cityid, String userId) {
         if(recommendCardDtoList == null || recommendCardDtoList.size() <= 0) {
