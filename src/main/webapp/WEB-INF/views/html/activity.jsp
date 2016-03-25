@@ -61,21 +61,7 @@
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
-<script>
-  var value = [];
-  <c:forEach items="${paragraphs}" var="p">
-     value.push("${p.imageUrl}"); 
-  </c:forEach>
-  for(var i =0;i<value.length;i++){
-	  if(value[i]=='null' || value[i] ==''){
-		  $(".pic").hide();
-		  alert(1);
-	  }else{
-		  $(".pic").show();
-		  alert(0);
-	  }
-	 // alert(value[i]);
-  }
-  
-</script>
 </html>
+
+
+ 	
