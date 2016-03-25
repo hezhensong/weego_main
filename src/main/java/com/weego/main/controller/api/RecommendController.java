@@ -46,13 +46,14 @@ public class RecommendController {
     //动态推荐卡片
     @RequestMapping(value="/recommendation/card", method = RequestMethod.GET)
     public ResponseDto<List<RecommendCardDto>> getCard(@RequestParam("cityId") String cityId,
+                                                       @RequestParam("userId") String userId,
                                                        @RequestParam("coordinate") String coordinate,
                                                        @RequestParam("time") String time) {
         logger.info("开始动态推荐卡片查询");
-        logger.info("cityId = {}, coordinate = {}, time = {}", cityId, coordinate, time);
+        logger.info("cityId = {}, userId = {}, coordinate = {}, time = {}", cityId, userId, coordinate, time);
 
         ResponseDto<List<RecommendCardDto>> responseDto = new ResponseDto<List<RecommendCardDto>>();
-        List<RecommendCardDto> dataList = recommendInfoService.getRecommendCards(cityId, coordinate, time);
+        List<RecommendCardDto> dataList = recommendInfoService.getRecommendCards(cityId, userId, coordinate, time);
 
         if(dataList != null) {
             responseDto.setData(dataList);
