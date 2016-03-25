@@ -37,9 +37,9 @@ var _tag = $(".tag").html();
 		$(".pic_describe").hide();
 	}
 
-	if(_pic == "" || _pic == "null" || _pic == "undefined"){
-		$("#pic").hide();
-	}
+	//if(_pic == "" || _pic == "null" || _pic == "undefined"){
+	//	$("#pic").hide();
+	//}
 
 	if(_tag == "" || _tag == "null" ){
 		$(".tag").hide();
