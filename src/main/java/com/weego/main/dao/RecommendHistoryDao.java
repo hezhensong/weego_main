@@ -1,9 +1,9 @@
 package com.weego.main.dao;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.weego.main.model.City;
 import com.weego.main.model.RecommendHistory;
 import com.weego.main.util.DateUtil;
 import org.apache.logging.log4j.LogManager;
@@ -69,5 +69,16 @@ public class RecommendHistoryDao {
                 DBQuery.greaterThanEquals("recommend_time", date),
                 DBQuery.lessThan("recommend_time", nextDay)
                 )).sort(orderBy).toArray();
+    }
+
+
+    public  void saveRecommendHistory(RecommendHistory recommendHistory) {
+        DBCollection collection = database.getCollection("recommend_history");
+
+        JacksonDBCollection<RecommendHistory, String> jacksonDBCollection =
+                JacksonDBCollection.wrap(collection,
+                        RecommendHistory.class,
+                        String.class);
+        jacksonDBCollection.save(recommendHistory);
     }
 }

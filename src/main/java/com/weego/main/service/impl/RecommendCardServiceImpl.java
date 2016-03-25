@@ -52,8 +52,14 @@ public class RecommendCardServiceImpl implements RecommendCardService {
     @Autowired
     private NewsDao newsDao;
 
+    @Autowired
+    private CityDao cityDao;
+
+    @Autowired
+    private RecommendHistoryDao recommendHistoryDao;
+
     @Override
-    public List<RecommendCardDto> getRecommendCards(String cityId, String coordinate, String time) {
+    public List<RecommendCardDto> getRecommendCards(String cityId, String userId, String coordinate, String time) {
         logger.info("动态推荐卡片查询");
         logger.info("cityId = {}, coordination = {}, time = {}", cityId, coordinate, time);
 
@@ -91,7 +97,35 @@ public class RecommendCardServiceImpl implements RecommendCardService {
         } catch (Exception e) {
             return null;
         }
+
+        insertRecommendsIntoHistory(recommendCardDtoList, cityId, userId);
         return recommendCardDtoList;
+    }
+
+
+    private void insertRecommendsIntoHistory(List<RecommendCardDto> recommendCardDtoList, String cityid, String userId) {
+        if(recommendCardDtoList == null || recommendCardDtoList.size() <= 0) {
+            return;
+        }
+
+        City city = cityDao.getSpecifiedCity(cityid);
+
+        RecommendHistory recommendHistory = new RecommendHistory();
+        recommendHistory.setCityId(new ObjectId(cityid));
+        recommendHistory.setUserId(new ObjectId(userId));
+        recommendHistory.setRecommendTime(DateUtil.getyyyyMMddHHmmssSpecifyTimezone(city.getTimezone()));
+
+        List<RecommendContent> recommendContentList = new ArrayList<>();
+        for(RecommendCardDto cardDto : recommendCardDtoList) {
+            RecommendContent recommendContent = new RecommendContent();
+            recommendContent.setType(cardDto.getType());
+            recommendContent.setContentId(cardDto.getId());
+            recommendContent.setContentFirst(cardDto.getFirstTitle());
+            recommendContent.setContentSecond(cardDto.getSecondTitle());
+            recommendContentList.add(recommendContent);
+        }
+        recommendHistory.setRecommendContentList(recommendContentList);
+        recommendHistoryDao.saveRecommendHistory(recommendHistory);
     }
 
     private void getRecommenCard(Set<RecommendType> typeSet, RecommendType type, List<ObjectId> idList, ObjectId policyId, List<RecommendCardDto> recommendCardDtoList) {
