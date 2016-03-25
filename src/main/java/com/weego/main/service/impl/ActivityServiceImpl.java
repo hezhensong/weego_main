@@ -83,8 +83,7 @@ public class ActivityServiceImpl implements ActivityService {
 
                         ActivityParagraphsDto activityParagraphsDto = new ActivityParagraphsDto();
 
-                        activityParagraphsDto.setDetailDown(cityActivityParagraphs.getDetailDown());
-                        activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetailUp());
+                        activityParagraphsDto.setDetailUp(cityActivityParagraphs.getDetail());
                         activityParagraphsDto.setImageBrief(cityActivityParagraphs.getImageBrief());
                         activityParagraphsDto.setImageTitle(cityActivityParagraphs.getImageTitle());
                         activityParagraphsDto.setImageUrl(cityActivityParagraphs.getImageUrl());

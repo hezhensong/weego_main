@@ -24,8 +24,8 @@ public class RestaurantDao {
 		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-//		BasicDBObject label = new BasicDBObject().append("id", labelId);
-//		query.put("master_label", new BasicDBObject("$elemMatch",label));
+		BasicDBObject label = new BasicDBObject().append("_id", new ObjectId(labelId));
+		query.put("master_label", new BasicDBObject("$elemMatch",label));
 		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 	

@@ -3,6 +3,8 @@ package com.weego.main.dao;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.mongojack.DBQuery;
+import org.mongojack.DBQuery.Query;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +24,8 @@ public class AttractionDao {
 		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-		query.put("master_label._id",new ObjectId(labelId));
+		BasicDBObject label = new BasicDBObject().append("_id", new ObjectId(labelId));
+		query.put("master_label", new BasicDBObject("$elemMatch",label));
 		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 	

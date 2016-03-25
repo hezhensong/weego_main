@@ -15,6 +15,9 @@ public class BasePOI {
 	@JsonProperty("activities")
 	private List<BasePOIActivities> activities;
 
+	@JsonProperty("master_label")
+	private List<BasePOILabel> masterLabel;
+
 	@JsonProperty("sub_tag")
 	private List<BasePOITag> subTag;
 
@@ -90,6 +93,14 @@ public class BasePOI {
 
 	public void setActivities(List<BasePOIActivities> activities) {
 		this.activities = activities;
+	}
+
+	public List<BasePOILabel> getMasterLabel() {
+		return masterLabel;
+	}
+
+	public void setMasterLabel(List<BasePOILabel> masterLabel) {
+		this.masterLabel = masterLabel;
 	}
 
 	public List<BasePOITag> getSubTag() {
