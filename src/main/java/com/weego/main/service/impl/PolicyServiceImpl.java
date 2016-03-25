@@ -48,7 +48,7 @@ public class PolicyServiceImpl implements PolicyService {
     private boolean isInDistanceRange(String localCoordination, String coordination, Integer radius) {
         if (!Strings.isNullOrEmpty(localCoordination) && !Strings.isNullOrEmpty(coordination)) {
             String[] localLatLon = localCoordination.split("[,，]");
-            String[] latLon = coordination.split("[,，]]");
+            String[] latLon = coordination.split("[,，]");
             double distance = DistanceUtil.getDistance(localLatLon[1], localLatLon[0], latLon[1], latLon[0]) * 1000;
             if (distance <= radius) {
                 return true;

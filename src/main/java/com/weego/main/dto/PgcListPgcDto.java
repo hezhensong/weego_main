@@ -8,6 +8,7 @@ public class PgcListPgcDto {
     private String coverImage;
     private String userName;
     private String headImage;
+    private Integer type;
 
     public String getUserName() {
         return userName;
@@ -49,5 +50,11 @@ public class PgcListPgcDto {
         this.title = title;
     }
 
+    public Integer getType() {
+        return type;
+    }
 
+    public void setType(Integer type) {
+        this.type = type;
+    }
 }

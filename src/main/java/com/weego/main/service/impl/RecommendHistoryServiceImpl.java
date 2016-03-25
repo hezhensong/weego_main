@@ -75,7 +75,7 @@ public class RecommendHistoryServiceImpl implements RecommendHistoryService {
             List<RecommendHistory> yesterdayRecommendList = recommendHistoryDao.getRecommendHistoryByTime(cityId, userId, yesterday);
             List<RecommendHistory> dayBefroeYestRecommendList = recommendHistoryDao.getRecommendHistoryByTime(cityId, userId, dayBefroeYest);
 
-            List<RecommendHistoryContentDto> todayRecommendDtoList = convertToRecommendHistoryDto(todayRecommendList, cityName);
+            List<RecommendHistoryContentDto> todayRecommendDtoList = convertToRecommendHistoryDto(todayRecommendList, cityTimeZone);
             List<RecommendHistoryContentDto> yesterdayRecommendDtoList = convertToRecommendHistoryDto(yesterdayRecommendList, cityTimeZone);
             List<RecommendHistoryContentDto> dayBeforeYestDtoList = convertToRecommendHistoryDto(dayBefroeYestRecommendList, cityTimeZone);
 
@@ -93,7 +93,7 @@ public class RecommendHistoryServiceImpl implements RecommendHistoryService {
             convertToRecommendHistoryDto(List<RecommendHistory> recommendHistoryList, String timezone) throws ParseException {
         List<RecommendHistoryContentDto> dtoList = new ArrayList<>();
 
-        if(recommendHistoryList == null || recommendHistoryList.size() > 0) {
+        if(recommendHistoryList == null || recommendHistoryList.size() <= 0) {
             return dtoList;
         }
 
@@ -117,13 +117,13 @@ public class RecommendHistoryServiceImpl implements RecommendHistoryService {
     }
 
     private String parseRecomendTime(Date time, String cityTimeZone) throws ParseException {
-        Date currentTime = DateUtil.yyyyMMddHHmmssToDate(cityTimeZone);
+        Date currentTime = DateUtil.getyyyyMMddHHmmssSpecifyTimezone(cityTimeZone);
         logger.info("currentTime = {}", currentTime);
 
         long timedelta = (currentTime.getTime() - time.getTime()) / 1000;
 
         if(timedelta > Timedelta.FiveHour.getTimedelta()) {
-            return DateUtil.formatMMdd(time);
+            return DateUtil.formatColonHM(time);
         } else if(timedelta > Timedelta.OneHour.getTimedelta()) {
             long cntHour = timedelta / Timedelta.OneHour.getTimedelta();
             return "" + cntHour + "小时前";

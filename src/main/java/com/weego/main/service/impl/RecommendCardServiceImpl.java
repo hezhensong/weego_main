@@ -145,7 +145,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
             return response;
         }
 
-        if (type.equals(RecommendType.ACTIVITY)) {
+        if (type.equals(RecommendType.ATTRACTION)) {
             for (ObjectId contentId : contentIdList) {
                 Attraction attraction = attractionDao.getAttractionById(contentId.toString());
                 response.setStatus(true);
@@ -200,6 +200,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
                         policyMap.getSecondTitle(), pgc.getCoverImage(),
                         "", pgc.getIntroduction());
                 response.setData(recommendCardDto);
+                return response;
             }
         } else if (type.equals(RecommendType.NEWS)) {
             for (ObjectId contentId : contentIdList) {
