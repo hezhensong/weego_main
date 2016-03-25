@@ -10,11 +10,8 @@ public class ActivityParagraphs {
     @JsonProperty("image_title")
     private String imageTitle;
 
-    @JsonProperty("detail_up")
-    private String detailUp;
-
-    @JsonProperty("detail_down")
-    private String detailDown;
+    @JsonProperty("detail")
+    private String detail;
 
     @JsonProperty("image_brief")
     private String imageBrief;
@@ -35,20 +32,12 @@ public class ActivityParagraphs {
         this.imageTitle = imageTitle;
     }
 
-    public String getDetailUp() {
-        return detailUp;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDetailUp(String detailUp) {
-        this.detailUp = detailUp;
-    }
-
-    public String getDetailDown() {
-        return detailDown;
-    }
-
-    public void setDetailDown(String detailDown) {
-        this.detailDown = detailDown;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getImageBrief() {
