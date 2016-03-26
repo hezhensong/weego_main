@@ -47,7 +47,7 @@
 			<img src="../resource/img/activity/details_web@3x.png">
 			<div class="border_bottom">
 		    	<p>官网：</p>
-		    	<a class="control" id="web" href="${web}">${web}</a>
+		    	<a class="control" id="web" href="${web}"><p class="ignore">${web}</p></a>
 		    </div>
 		    	
 		</div>

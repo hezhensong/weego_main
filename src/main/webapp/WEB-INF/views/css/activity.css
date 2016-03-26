@@ -49,7 +49,6 @@ body {
     overflow:hidden;    
     text-overflow:ellipsis; 
 }
-
 .two .detail img {
     position: relative;
     top: 2px;
