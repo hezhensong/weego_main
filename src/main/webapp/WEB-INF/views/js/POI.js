@@ -3,8 +3,14 @@ var _detail_phone = $("#phone").html();
 var _detail_price = $("#price").html();
 var _detail_ticket = $("#ticket").html();
 var _tag = $(".type").html();
+var _comment_from = $("#comment_from")
 
 
+
+
+
+
+var _reviews =$(".reviews").html();
 
 
 if(_detail_time == ""){
