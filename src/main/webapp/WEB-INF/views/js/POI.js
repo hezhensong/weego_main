@@ -26,3 +26,9 @@ if(_detail_ticket == ""){
 if(_tag == ""){
 	$(".type").hide();
 }
+
+if(_comment_from == "来自google"){
+	$("#comment_pic").attr("src","../resource/img/poi/google.png");
+}else{
+	$("#comment_pic").attr("src","../resource/img/poi/tripadvisor.png");
+}
