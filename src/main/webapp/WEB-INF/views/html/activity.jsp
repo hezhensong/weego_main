@@ -12,7 +12,14 @@
 		.one {
 			background: url(${bg});
 			background-size: cover;
-			height: 39%;
+			height: 41%;
+		}
+		.four img {
+			background-size: cover;
+			background: url(${ActivityParagraphs.imageUrl});
+		    margin: 3% 2% 0 2%;
+		    height: 38%;
+		    width: 96%;
 		}
 	</style>
 </head>
@@ -84,8 +91,7 @@
 			<c:choose>
 				<c:when
 					test="${ActivityParagraphs.imageUrl == '' || ActivityParagraphs.imageUrl == null || ActivityParagraphs.imageUrl == 'null'}">
-					<img style="display: none" id="pic"
-						src="${ActivityParagraphs.imageUrl}">
+					<div style="display: none" id="pic"></div>
 				</c:when>
 				<c:otherwise>
 					<img id="pic" src="${ActivityParagraphs.imageUrl}">

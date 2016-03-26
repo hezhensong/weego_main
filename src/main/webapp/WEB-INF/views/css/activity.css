@@ -20,7 +20,7 @@ body {
 .one .tag{
     position: relative;
     top: 82%;
-    padding:10px;
+    padding:13px;
     padding-left:30px;
     letter-spacing: 3px;
     font-size: 45px;
@@ -93,8 +93,8 @@ body {
     margin: 0 5%;
 }
 .four img {
-   margin: 3% 2% 0 2%;
-    height: 40%;
+    margin: 3% 2% 0 2%;
+    height: 30%;
     width: 96%;
 }
 .four .small {
