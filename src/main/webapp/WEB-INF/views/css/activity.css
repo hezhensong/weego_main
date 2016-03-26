@@ -19,13 +19,13 @@ body {
 }
 .one .tag{
     position: relative;
-    top: 80%;
-    padding:15px;
+    top: 84%;
     padding-left:30px;
     letter-spacing: 6px;
     font-size: 36px;
-    height: 40px;
-    width: 280px;
+    height: 90px;
+    line-height: 90px;
+    width: 250px;
     background-image:url(../resource/img/pgc/lable.png);
     background-size: cover;
 }
@@ -42,21 +42,24 @@ body {
 }
 
 .two .detail {
-    border-bottom: 1px #8a8a8a solid;
     font: 36px helvetica-light;
 }
 
 .two .detail img {
     position: relative;
-    top: 15px;
-    margin-right: 5%;
-    width: 5.5%;
+    top: 4px;
+    margin-right: 4%;
+    width: 30px;
     display: inline-block;
     
 }
 .two .detail p {
     margin:3.5% 0;
     display: inline-block;
+}
+.two .detail .border_bottom{
+    display: inline-block;
+    border-bottom: 1px #8a8a8a solid;
 }
 
 .two .detail .control{
@@ -78,7 +81,7 @@ body {
 }
 .drb {
     font-size: 36px;
-    line-height: 216%;
+    line-height: 200%;
     text-align: left;
 }
 .four #text_title {
