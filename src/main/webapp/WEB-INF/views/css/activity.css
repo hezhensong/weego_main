@@ -23,9 +23,9 @@ body {
     padding:13px;
     padding-left:30px;
     letter-spacing: 3px;
-    font-size: 45px;
+    font-size: 35px;
     height: 60px;
-    width: 240px;
+    width: 221px;
     background-image:url(../resource/img/pgc/lable.png);
     background-size: cover;
 }
@@ -43,12 +43,18 @@ body {
 .two .detail {
     font: 36px helvetica-light;
 }
+.two .detail .ignore{
+    white-space:nowrap;    
+    word-break:keep-all;    
+    overflow:hidden;    
+    text-overflow:ellipsis; 
+}
 
 .two .detail img {
     position: relative;
-    top: 10px;
+    top: 2px;
     margin-right: 4%;
-    width: 5%;
+    width: 3.5%;
     display: inline-block;
     
 }
@@ -62,6 +68,7 @@ body {
 }
 
 .two .detail .control{
+    margin-bottom: 16px;
     word-wrap:break-word;
     width: 620px;
     display: inline-flex;
@@ -70,7 +77,7 @@ body {
     color: #ff4f4e
 }
 .three {
-    margin: 10% 5%;
+    margin: 10% 5% 7% 5%;
     text-align: center;
 }
 .three .aty {
@@ -92,11 +99,7 @@ body {
 .four .inner {
     margin: 0 5%;
 }
-.four img {
-    margin: 3% 2% 0 2%;
-    height: 30%;
-    width: 96%;
-}
+
 .four .small {
 	margin:3% 0;
     color: #ffffff;

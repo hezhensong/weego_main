@@ -12,7 +12,13 @@
 		.one {
 			background: url(${bg});
 			background-size: cover;
-			height: 39%;
+			height: 41%;
+		}
+		.four #pic {
+			background-size: cover;
+		    margin: 3% 2% 0 2%;
+		    height: 38%;
+		    width: 96%;
 		}
 	</style>
 </head>
@@ -27,8 +33,7 @@
 			<div class="border_bottom">
 				<p>时间：</p>
 		    	<p class="control" id="actime">${time}</p>
-			</div>
-		    	
+			</div>  	
 		</div>
 		<div class="detail" id="detail_ip">
 			<img src="../resource/img/activity/details_ip@3x.png">
@@ -41,9 +46,8 @@
 			<img src="../resource/img/activity/details_web@3x.png">
 			<div class="border_bottom">
 		    	<p>官网：</p>
-		    	<a class="control" id="web" href="${web}">${web}</a>
-		    </div>
-		    	
+		    	<a class="control" id="web" href="${web}"><p class="ignore">${web}</p></a>
+		    </div>    	
 		</div>
 		<div class="detail" id="detail_ticket">
 			<img src="../resource/img/activity/details_ticket@3x.png">
@@ -80,15 +84,14 @@
 					<div class="drb inner" id="describe">${ActivityParagraphs.detail}</div>
 				</c:otherwise>
 			</c:choose>
-
 			<c:choose>
 				<c:when
 					test="${ActivityParagraphs.imageUrl == '' || ActivityParagraphs.imageUrl == null || ActivityParagraphs.imageUrl == 'null'}">
-					<img style="display: none" id="pic"
-						src="${ActivityParagraphs.imageUrl}">
+					<div style="display: none" id="pic"></div>
 				</c:when>
 				<c:otherwise>
-					<img id="pic" src="${ActivityParagraphs.imageUrl}">
+					<div id="pic" style="background-image: url(${ActivityParagraphs.imageUrl});"></div>
+	
 				</c:otherwise>
 			</c:choose>
 
@@ -103,7 +106,7 @@
 			</c:choose>
 	</div>
 </c:forEach>
-		
+
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
