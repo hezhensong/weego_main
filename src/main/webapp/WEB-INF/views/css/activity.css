@@ -32,7 +32,6 @@ body {
 .two {
     margin: 5%;
 }
-
 .two .title {
     font-size: 60px;
     font-weight: bold;
@@ -47,9 +46,9 @@ body {
 
 .two .detail img {
     position: relative;
-    top: 4px;
+    top: 10px;
     margin-right: 4%;
-    width: 30px;
+    width: 5%;
     display: inline-block;
     
 }
@@ -85,8 +84,8 @@ body {
     text-align: left;
 }
 .four #text_title {
-    text-align: center;
-    margin: 0 5% 5% 5%;
+    text-align: left;
+    margin: 0 5% 3.4% 5%;
     font-size: 46px
 }
 
@@ -94,8 +93,8 @@ body {
     margin: 0 5%;
 }
 .four img {
-   margin: 3% 2%;
-    height: 360px;
+   margin: 3% 2% 0 2%;
+    height: 40%;
     width: 96%;
 }
 .four .small {

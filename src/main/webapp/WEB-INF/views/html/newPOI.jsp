@@ -124,4 +124,5 @@
 	</div>
 </body>
 <script type="text/javascript" src="../js/POI.js"></script>
+<script type="text/javascript"></script>
 </html>

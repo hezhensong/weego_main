@@ -79,7 +79,7 @@
 					<div class="type" id="poi_tag">${PgcPoi.type}</div>
 					<div class="center">
 						<div class="line"></div>
-						<div class="icon"></div>
+						<img class="icon" alt="1" src="">
 						<div class="line"></div>
 						<h2 id="poi_title">${PgcPoi.name}</h2>
 					</div>
@@ -87,7 +87,9 @@
 			</c:when>
 			<c:otherwise>
 				<div class="poi" id="poi">
+				<a href="${http://192.168.8.104:8080/share/v1/poi?poiId=${}&type=${}}">
 					<img class="overlay" id="poi_pic" src="../resource/img/pgc/overlay.png">
+				</a>
 				<c:when>
 				test="${PgcPoi.type =='' || PgcPoi.type == 'null'}">
 					<div style="display: none" class="type" id="poi_tag">${PgcPoi.type}</div>
@@ -95,10 +97,9 @@
 				<c:otherwise>
 					<div class="type" id="poi_tag">${PgcPoi.type}</div>
 				</c:otherwise>
-
 					<div class="center">
 						<div class="line"></div>
-						<div class="icon"></div>
+						<img class="icon" alt="${type}" src=""> 
 						<div class="line"></div>
 						<h2 id="poi_title">${PgcPoi.name}</h2>
 					</div>
@@ -132,4 +133,6 @@
 	</footer>
 </body>
 <script type="text/javascript" src="../js/PGC.js"></script>
+
+
 </html>
