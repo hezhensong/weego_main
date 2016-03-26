@@ -1,5 +1,5 @@
-<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
@@ -26,8 +26,8 @@
 			<h2>${title}<br/>${english_title}</h2>
 		</div>
 		<div class="score">
-			<img src="../resource/img/poi/reviews.png">
-			<div class="reviews">${reviews}</div>
+			<img src="../resource/img/poi/reviews.png"><!-- 判断 -->
+			<div class="reviews">${reviews}分</div>
 		</div>
 	</div>
 	<div class="tips">

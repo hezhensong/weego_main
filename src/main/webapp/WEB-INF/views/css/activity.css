@@ -23,9 +23,9 @@ body {
     padding:13px;
     padding-left:30px;
     letter-spacing: 3px;
-    font-size: 35px;
+    font-size: 38px;
     height: 60px;
-    width: 221px;
+    width: 185px;
     background-image:url(../resource/img/pgc/lable.png);
     background-size: cover;
 }
@@ -51,9 +51,9 @@ body {
 }
 .two .detail img {
     position: relative;
-    top: 2px;
+    top: 7px;
     margin-right: 4%;
-    width: 3.5%;
+    width: 4.5%;
     display: inline-block;
     
 }
