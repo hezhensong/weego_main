@@ -130,7 +130,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     @Override
     public ModelAndView getPOIDetail(String id, Integer type) {
 
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("POI");
         POIDetailDto detailDto = new POIDetailDto();
         if (type == 0) {
             detailDto = attractionService.getAttractionById(id, "-73.9991637,40.7536854");
@@ -145,35 +145,45 @@ public class BasePOIServiceImpl implements BasePOIService {
 
         if (detailDto != null) {
             POIDetailSumDto detailSum = detailDto.getData();
-            mv.addObject("header",detailSum.getCoverImage());
-            mv.addObject("title",detailSum.getName());
-            mv.addObject("english_title",detailSum.getNameEn());
-            mv.addObject("reviews",detailSum.getRating());
-            mv.addObject("foreword",detailSum.getBriefIntroduction());
-            //需要循环的tag
-            mv.addObject("tags",detailSum.getTag());
-            
-            mv.addObject("breif",detailSum.getIntroduction());
-            mv.addObject("tips",detailSum.getTips());
+            if(detailSum!=null){
+                mv.addObject("coverimage",detailSum.getCoverImage());
+                mv.addObject("title",detailSum.getName());
+                mv.addObject("english_title",detailSum.getNameEn());
+                mv.addObject("reviews",detailSum.getRating());
+                mv.addObject("foreword",detailSum.getBriefIntroduction());
+                //需要循环的tag
+                mv.addObject("tags",detailSum.getTag());
+                
+                mv.addObject("breif",detailSum.getIntroduction());
+                mv.addObject("tips",detailSum.getTips());
 
-            //菜品推荐循环遍历
-            mv.addObject("recommends",detailSum.getSpecial());
-            
-            mv.addObject("commentFrom",detailSum.getCommentFrom());
-            //评论
-            mv.addObject("comments",detailSum.getComments().get(0));
-            
-            //后面一段
-            mv.addObject("price",detailSum.getPriceDesc());
-            mv.addObject("phone",detailSum.getTel());
-            mv.addObject("web",detailSum.getWebsite());
-            //营业时间是列表形式的
-            mv.addObject("times",detailSum.getOpenTime());
-            //设施，需要循环遍历，传的是一个对象，里面的值是true or false
-            mv.addObject("facilities",detailSum.getFacilities());
-            
-            
-            return mv;
+                //菜品推荐循环遍历
+                mv.addObject("recommends",detailSum.getSpecial());
+                
+                mv.addObject("commentFrom",detailSum.getCommentFrom());
+                //评论
+                if(detailSum.getComments().size()>0){
+                    mv.addObject("comments",detailSum.getComments().get(0));
+                }else{
+                    mv.addObject("comments","null");
+                }
+               
+                
+                //后面一段
+                mv.addObject("price",detailSum.getPriceDesc());
+                mv.addObject("phone",detailSum.getTel());
+                mv.addObject("web",detailSum.getWebsite());
+                //营业时间是列表形式的
+                mv.addObject("times",detailSum.getOpenTime());
+                //设施，需要循环遍历，传的是一个对象，里面的值是true or false
+                mv.addObject("facilities",detailSum.getFacilities());
+                
+                
+                return mv;
+            }else{
+                return null;
+            }
+
         } else {
             logger.info("通过id找不到相应的POI");
             return null;

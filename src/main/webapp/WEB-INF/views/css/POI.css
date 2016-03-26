@@ -7,8 +7,8 @@ html,body{width:100%; position:relative;}
 body{
 	font-family: Helevtical Neue-Light;
 	color: #fff;
-	background:url(${type}../resource/img/poi/poifood.png);
 	background-size: cover;
+	background-color: #000;
 }
 
 .float_r{
