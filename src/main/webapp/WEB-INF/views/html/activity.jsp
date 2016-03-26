@@ -94,7 +94,8 @@
 					<div style="display: none" id="pic"></div>
 				</c:when>
 				<c:otherwise>
-					<img id="pic" src="${ActivityParagraphs.imageUrl}">
+					<div id="pic"></div>
+	
 				</c:otherwise>
 			</c:choose>
 
@@ -109,7 +110,7 @@
 			</c:choose>
 	</div>
 </c:forEach>
-		
+
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
