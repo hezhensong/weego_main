@@ -20,12 +20,12 @@ body {
 .one .tag{
     position: relative;
     top: 82%;
+    padding:10px;
     padding-left:30px;
-    letter-spacing: 6px;
-    font-size: 36px;
-    height: 90px;
-    line-height: 90px;
-    width: 250px;
+    letter-spacing: 3px;
+    font-size: 45px;
+    height: 60px;
+    width: 240px;
     background-image:url(../resource/img/pgc/lable.png);
     background-size: cover;
 }
