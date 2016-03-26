@@ -145,6 +145,34 @@ public class BasePOIServiceImpl implements BasePOIService {
 
         if (detailDto != null) {
             POIDetailSumDto detailSum = detailDto.getData();
+            mv.addObject("header",detailSum.getCoverImage());
+            mv.addObject("title",detailSum.getName());
+            mv.addObject("english_title",detailSum.getNameEn());
+            mv.addObject("reviews",detailSum.getRating());
+            mv.addObject("foreword",detailSum.getBriefIntroduction());
+            //需要循环的tag
+            mv.addObject("tags",detailSum.getTag());
+            
+            mv.addObject("breif",detailSum.getIntroduction());
+            mv.addObject("tips",detailSum.getTips());
+
+            //菜品推荐循环遍历
+            mv.addObject("recommend",detailSum.getSpecial());
+            
+            mv.addObject("commentFrom",detailSum.getCommentFrom());
+            //评论
+            mv.addObject("comments",detailSum.getComments());
+            
+            //后面一段
+            mv.addObject("price",detailSum.getPriceDesc());
+            mv.addObject("phone",detailSum.getTel());
+            mv.addObject("web",detailSum.getWebsite());
+            //营业时间是列表形式的
+            mv.addObject("time",detailSum.getOpenTime());
+            //设施，需要循环遍历，传的是一个对象，里面的值是true or false
+            mv.addObject("facilities",detailSum.getFacilities());
+            
+            
             return mv;
         } else {
             logger.info("通过id找不到相应的POI");

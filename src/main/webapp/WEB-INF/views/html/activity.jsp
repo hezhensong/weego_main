@@ -14,9 +14,8 @@
 			background-size: cover;
 			height: 41%;
 		}
-		.four img {
+		.four #pic {
 			background-size: cover;
-			background: url(${ActivityParagraphs.imageUrl});
 		    margin: 3% 2% 0 2%;
 		    height: 38%;
 		    width: 96%;
@@ -94,7 +93,7 @@
 					<div style="display: none" id="pic"></div>
 				</c:when>
 				<c:otherwise>
-					<div id="pic"></div>
+					<div id="pic" style="background-image: url(${ActivityParagraphs.imageUrl});"></div>
 	
 				</c:otherwise>
 			</c:choose>

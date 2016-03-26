@@ -51,7 +51,7 @@
 			<h3>小贴士</h3>
 		</div>
 		<div class="margin">
-			<p>推荐：${recommend}</p>
+			<p>${tips}</p>
 			<p>注意事项:</p>
 			<p>${tips}</p><!-- 循环遍历 -->
 			<p>${tips}</p>
@@ -79,7 +79,7 @@
 		<div class="comment">
 			<div class="left">
 				<img src="../resource/img/poi/google.png">
-				<p>来自${from}</p>
+				<p>来自${commentFrom}</p>
 			</div>
 			<div class="right">
 				<p>${reviews}</p>
