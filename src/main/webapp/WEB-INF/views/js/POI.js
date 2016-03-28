@@ -38,7 +38,7 @@ if(_comment_from == "来自google"){
 }
 
 if(_comments_rating == "2.5分"){
-	$(".rating_pic").attr("src","../resource/img/poi/review2_5.png")；
+	$(".rating_pic").attr("src","../resource/img/poi/review2_5.png");
 }
 
 if(_breif_desc == ""){

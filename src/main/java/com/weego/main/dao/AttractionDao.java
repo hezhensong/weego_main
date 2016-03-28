@@ -3,8 +3,6 @@ package com.weego.main.dao;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.mongojack.DBQuery;
-import org.mongojack.DBQuery.Query;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 

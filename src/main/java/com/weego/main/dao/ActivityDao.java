@@ -50,7 +50,7 @@ public class ActivityDao {
        // 获取已经开始30天之内的活动
         Date dateThirty = DateUtil.afterNDays(date, -30);
         DBObject orderBy = new BasicDBObject();
-        orderBy.put("start_time", -1);
+        orderBy.put("start_time", 1);
 
         // 按照活动开始日期由近到远.
         return coll.find(DBQuery.and(

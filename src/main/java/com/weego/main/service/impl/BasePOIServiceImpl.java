@@ -140,7 +140,7 @@ public class BasePOIServiceImpl implements BasePOIService {
             detailDto = shoppingService.getShoppingById(id, "-73.9991637,40.7536854");
         } else {
             logger.info("type 参数值有误");
-            return null;
+            detailDto= null;
         }
 
         if (detailDto != null) {

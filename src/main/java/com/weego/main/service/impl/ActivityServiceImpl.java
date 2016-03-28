@@ -186,8 +186,13 @@ public class ActivityServiceImpl implements ActivityService {
 
 								if (openYear == openYear) {
 									// 不是跨年，不显示年份
-									activityBaseDto.setActTime(openMMdd + "-"
-											+ closeMMdd);
+								    //判断开始时间和结束时间是否一致
+								    if(openMMdd.endsWith(closeMMdd)){
+								        activityBaseDto.setActTime(openMMdd);
+								    }else{
+								        activityBaseDto.setActTime(openMMdd + "-"
+	                                            + closeMMdd);
+								    }
 								} else {
 									// 跨年需要显示年月日
 									activityBaseDto.setActTime(openYear + "年"
