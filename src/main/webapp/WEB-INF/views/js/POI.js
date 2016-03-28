@@ -5,6 +5,8 @@ var _detail_ticket = $("#ticket").html();
 var _tag = $(".type").html();
 var _comment_from = $("#comment_from")
 var _comments_rating =$(".comments_rating").html();
+var _breif_desc = $("#breif_desc").html();
+
 alert(_comments_rating);
 
 
@@ -37,4 +39,8 @@ if(_comment_from == "来自google"){
 
 if(_comments_rating == "2.5分"){
 	$(".rating_pic").attr("src","../resource/img/poi/review2_5.png")；
+}
+
+if(_breif_desc == ""){
+	$("#breif").hide();
 }

@@ -5,9 +5,10 @@ body, ul, li p div h2 h3{
 }
 html,body{width:100%; position:relative;}
 body{
+	background-color: #000;
 	font-family: Helevtical Neue-Light;
 	color: #fff;
-	background:url(${type}../resource/img/poi/poifood.png);
+	/* background:url(${type}../resource/img/poi/poifood.png) */;
 	background-size: cover;
 }
 
