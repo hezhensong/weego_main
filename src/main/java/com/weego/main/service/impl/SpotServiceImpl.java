@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.weego.main.dao.SpotDao;
 import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POISpecialDetailDto;
-import com.weego.main.model.Dish;
 import com.weego.main.model.Spot;
 import com.weego.main.service.SpotService;
 

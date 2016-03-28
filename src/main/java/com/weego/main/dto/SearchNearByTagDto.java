@@ -1,6 +1,5 @@
 package com.weego.main.dto;
 
-import java.util.List;
 
 public class SearchNearByTagDto {
 	private String id;

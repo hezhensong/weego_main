@@ -3,14 +3,12 @@ package com.weego.main.dao;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.weego.main.model.Restaurant;
 
 @Repository
