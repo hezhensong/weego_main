@@ -33,6 +33,8 @@ public class Pgc {
 
 	private PgcOriginal original;
 
+	private String tag;
+
 	public String getId() {
 		return id;
 	}
@@ -103,6 +105,14 @@ public class Pgc {
 
 	public void setOriginal(PgcOriginal original) {
 		this.original = original;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 }
