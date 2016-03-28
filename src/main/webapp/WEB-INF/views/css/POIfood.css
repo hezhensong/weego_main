@@ -28,12 +28,12 @@ body{
 }
 .title .center{
 	margin:0 auto;
-	width: 422px;
+	width: 550px;
 	border-bottom: 1px solid #fff;
 }
 .title .center .line{
 	border-bottom: 1px solid #fff;
-	width: 150px;
+	width: 200px;
 	display: inline-block;
 }
 .title .center .icon{
@@ -42,11 +42,12 @@ body{
 	top:15px;
 	display: inline-block;
 	margin: 0 32px;
-	height: 30px;
-	width: 42px;
+	height: 40px;
+	width: 52px;
+	background-size: cover;
 }
 .title .center h2{
-	font-size: 54px;
+	font-size: 58px;
 	text-align: center;
 }
 .title .center h3{
@@ -70,7 +71,7 @@ body{
 }
 .tips{
 	padding-bottom: 30px;
-	border-bottom: 1px solid #8a8a8a;
+	border-bottom: 1px solid #4b4e4e;
 	margin: 0 3% 6% 3%;
 }
 .tips h2{
@@ -96,19 +97,19 @@ body{
 	background-color: #ff514e;
 }
 .tips .breif{
-	width: 300px;
+	width: 336px;
 	margin: 0 auto;
 }
 .tips .breif img{
-	margin: 0 20px -6px 0;
-	width: 50px;
-	height: 44px;
+	margin: 0 40px -6px 0;
+	width: 54px;
+	height: 54px;
 	display: inline-block;
 }
 .tips .breif h3{
 	margin:0;
 	display: inline-block;
-	font-size: 46px;
+	font-size: 54px;
 }
 .tips .margin{
 	margin-top:30px;
@@ -116,16 +117,16 @@ body{
 .tips p{
 	margin: 0;
 	font-size: 30px;
-	line-height: 50px;
+	line-height: 60px;
 }
 .tips .menu{
-	margin: 70px 16px 30px 16px;
-	height: 24%;
+	margin: 70px 16px 60px 16px;
+	height: 33%;
 }
-.tips .first_menu{
-	background:url(../resource/img/pgc/2.jpg);
-	background-size: cover;
+.tips .menu p{
+	margin-left:20px;
 }
+
 .tips .menu .type{
 	letter-spacing: 5px;
 	float: left;
@@ -141,31 +142,31 @@ body{
 }
 .tips .menu .menu_name{
 	position: relative;
-	top: 150px;
-	left: -223px;
+	top: 215px;
+	left: -200px;
 	float: left;
 	font-size: 36px;
 
 }
 .tips .menu .overlay{
 	position: relative;
-	top: 238px;
+	top: 65%;
 	width: 100%;
 }
 .tips .comment{
 	height: 115px;
 	text-align: center;
 	margin:60px auto;
-	width: 600px;
+	width: 560px;
 }
 .tips .comment .left{
-	border-right: 1px solid #8a8a8a;
+	border-right: 1px solid #4c4f4f;
 	padding-right: 40px;
 	float: left;
 }
 .tips .comment .left img{
-	width: 60px;
-	height: 60px;
+	width: 70px;
+	height: 70px;
 	margin-bottom: 20px;
 }
 .tips .comment .left p{
@@ -193,13 +194,16 @@ body{
 .tips .good_comment img{
 	margin-right: 55px;
 }
+.tips .good_comment .desc{
+	margin:0 30px;
+}
 .tips .message .details{
+	padding-top:5px;
 	font-size: 30px;
-	border-bottom: 1px solid #8a8a8a;
+	border-bottom: 1px solid #4c4f4f;
 }
 .tips .message .details img{
-	height: 30px;
-	width: 30px;
+	width: 4.5%;
 	margin-right:20px;
 	display: inline-block;
 }
@@ -211,12 +215,25 @@ body{
 	display: inline-block;
 	width: 600px;
 	color: #ff4f4e;
-	display: inline-flex;
-	word-wrap: break-word;
+	text-align:right;
+}
+.tips .message .details .h3 a{
+	color: #ff4f4e;
+	text-decoration: none;
 }
 .tips .message .details .time{
 	float: right;
 	width: 658px;
+	margin: 10px 0;
+	text-align: left;
+}
+
+.tips .message .details #web{
+	text-align: left;
+    white-space:nowrap;    
+    word-break:keep-all;    
+    overflow:hidden;    
+    text-overflow:ellipsis;
 }
 
 .tips .message .details .all{
@@ -224,16 +241,19 @@ body{
 }
 .tips .message .details .all .little{
 	display: inline-block;
-
-	margin:0 5% 40px 5%;
+	width: 150px;
+	margin:0 2% 40px 3%;
 }
 .tips .message .details .all .little img{
-	height: 40px;
-	width: 88px;
+	height: 50px;
+	width: 98px;
 	margin:0;
 }
 .tips .message .details .all .little .text{
 	margin-top: 16px;
+}
+.tips .recommends{
+	width:260px;
 }
 .last_tip{
 	border-bottom: none;

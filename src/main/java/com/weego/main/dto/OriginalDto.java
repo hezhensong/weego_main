@@ -1,9 +1,9 @@
-package com.weego.main.model;
+package com.weego.main.dto;
 
 /**
  * Created by liuniandxx on 16-3-28.
  */
-public class PgcOriginal {
+public class OriginalDto {
     private String author;
 
     private String source;

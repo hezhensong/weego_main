@@ -3,15 +3,15 @@ package com.weego.main.dto;
 /**
  * Created by liuniandxx on 16-3-21.
  */
-public class PgcPeopleDto {
+public class PgcPersonDto {
 
     private String id;
 
     private String headImage;
 
-    private String userName;
+    private String name;
 
-    private String jobDesc;
+    private String desc;
 
     public String getId() {
         return id;
@@ -29,19 +29,19 @@ public class PgcPeopleDto {
         this.headImage = headImage;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getJobDesc() {
-        return jobDesc;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setJobDesc(String jobDesc) {
-        this.jobDesc = jobDesc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
