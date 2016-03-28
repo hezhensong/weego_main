@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="apple-touch-fullscreen" content="YES" /> 
-	<title>探索城市</title>
+	<title>${title}</title>
 	<link rel="stylesheet" type="text/css" href="../css/POIfood.css">
 	<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 	<style type="text/css">
@@ -75,7 +75,7 @@
 </c:forEach>
 	</div>
 	<div class="tips last_tip">
-		<div class="breif">
+		<div class="breif recommends">
 			<img src="../resource/img/poi/comment.png">
 			<h3>评论</h3>
 		</div>
@@ -165,16 +165,16 @@
 		</c:choose>
 		<c:choose>
 				<c:when
-					test="${facilitie.wifi =='false'}">
+					test="${facilitie.waiter =='false'}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_4.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">有服务</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_4.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">有服务</div>
 					</div>
 				</c:otherwise>
 		</c:choose>
@@ -210,31 +210,16 @@
 		</c:choose>
 		<c:choose>
 				<c:when
-					test="${facilitie.wifi =='false'}">
+					test="${facilitie.card =='false'}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_7.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">可刷卡</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_7.png">
-						<div class="text" id="little">着装要求</div>
-					</div>
-				</c:otherwise>
-		</c:choose>
-		<c:choose>
-				<c:when
-					test="${facilitie.wifi =='false'}">
-					<div style="display: none" class="little">
-						<img class="little" src="../resource/img/poi/poi_facilities_8.png">
-						<div class="text" id="little">着装要求</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="little">
-						<img class="little" src="../resource/img/poi/poi_facilities_8.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">可刷卡</div>
 					</div>
 				</c:otherwise>
 		</c:choose>
@@ -242,20 +227,35 @@
 				<c:when
 					test="${facilitie.takeout =='false'}">
 					<div style="display: none" class="little">
-						<img class="little" src="../resource/img/poi/poi_facilities_9.png">
-						<div class="text" id="little">着装要求</div>
+						<img class="little" src="../resource/img/poi/poi_facilities_8.png">
+						<div class="text" id="little">可外带</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="little">
-						<img class="little" src="../resource/img/poi/poi_facilities_9.png">
-						<div class="text" id="little">着装要求</div>
+						<img class="little" src="../resource/img/poi/poi_facilities_8.png">
+						<div class="text" id="little">可外带</div>
 					</div>
 				</c:otherwise>
 		</c:choose>
 		<c:choose>
 				<c:when
-					test="${facilitie.wifi =='false'}">
+					test="${facilitie.delivery =='false'}">
+					<div style="display: none" class="little">
+						<img class="little" src="../resource/img/poi/poi_facilities_9.png">
+						<div class="text" id="little">可送餐</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="little">
+						<img class="little" src="../resource/img/poi/poi_facilities_9.png">
+						<div class="text" id="little">可送餐</div>
+					</div>
+				</c:otherwise>
+		</c:choose>
+		<c:choose>
+				<c:when
+					test="${facilitie.tv =='false'}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_10.png">
 						<div class="text" id="little">有电视</div>
@@ -273,28 +273,28 @@
 					test="${facilitie.outseat =='false'}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-						<div class="text" id="little">有座位</div>
+						<div class="text" id="little">外面有椅子</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-						<div class="text" id="little">有座位</div>
+						<div class="text" id="little">外面有椅子</div>
 					</div>
 				</c:otherwise>
 		</c:choose>
 		<c:choose>
 				<c:when
-					test="${facilitie.wifi =='false'}">
+					test="${facilitie.group =='false'}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_12.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">适合聚餐</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="little">
 						<img class="little" src="../resource/img/poi/poi_facilities_12.png">
-						<div class="text" id="little">着装要求</div>
+						<div class="text" id="little">适合聚餐</div>
 					</div>
 				</c:otherwise>
 		</c:choose>

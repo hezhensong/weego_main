@@ -130,16 +130,20 @@ public class BasePOIServiceImpl implements BasePOIService {
     @Override
     public ModelAndView getPOIDetail(String id, Integer type) {
 
-        ModelAndView mv = new ModelAndView("POIfood");
+        ModelAndView mv = null;
         POIDetailDto detailDto = new POIDetailDto();
         if (type == 0) {
+             mv = new ModelAndView("POIspot");
             detailDto = attractionService.getAttractionById(id, "-73.9991637,40.7536854");
         } else if (type == 1) {
+            mv = new ModelAndView("POIfood");
             detailDto = restaurantService.getRestaurantById(id, "-73.9991637,40.7536854");
         } else if (type == 2) {
+            mv = new ModelAndView("POIshop");
             detailDto = shoppingService.getShoppingById(id, "-73.9991637,40.7536854");
         } else {
             logger.info("type 参数值有误");
+            mv=null;
             detailDto= null;
         }
 
