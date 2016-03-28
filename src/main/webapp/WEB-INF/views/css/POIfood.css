@@ -157,7 +157,7 @@ body{
 	height: 115px;
 	text-align: center;
 	margin:60px auto;
-	width: 630px;
+	width: 560px;
 }
 .tips .comment .left{
 	border-right: 1px solid #4c4f4f;
@@ -193,6 +193,9 @@ body{
 }
 .tips .good_comment img{
 	margin-right: 55px;
+}
+.tips .good_comment .desc{
+	margin:0 30px;
 }
 .tips .message .details{
 	padding-top:5px;
