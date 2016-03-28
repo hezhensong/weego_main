@@ -1,6 +1,5 @@
 package com.weego.main.dto;
 
-import java.util.Date;
 
 public class POIDetailCommentsDto {
 	private String nickname;

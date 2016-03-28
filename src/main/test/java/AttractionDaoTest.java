@@ -1,12 +1,11 @@
 import java.util.List;
 
-import com.weego.main.dao.AttractionDao;
-import com.weego.main.dao.RestaurantDao;
-import com.weego.main.model.Attraction;
-import com.weego.main.model.Restaurant;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.weego.main.dao.AttractionDao;
+import com.weego.main.dao.RestaurantDao;
+import com.weego.main.model.Restaurant;
 
 /**
  * Created by liuniandxx on 16-3-20.

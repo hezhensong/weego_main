@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.util.Base64;
 import com.weego.main.constant.ErrorCode;
-import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.service.SearchNearByService;

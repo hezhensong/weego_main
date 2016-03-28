@@ -82,7 +82,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 		if (restaurant != null) {
 			poiDetailSumDto.setId(restaurant.getId());
-			poiDetailSumDto.setType(1);
+			poiDetailSumDto.setType(restaurant.getType());
 			poiDetailSumDto.setName(restaurant.getName());
 			poiDetailSumDto.setNameEn(restaurant.getNameEn());
 			poiDetailSumDto.setAddress(restaurant.getAddress());
