@@ -3,12 +3,10 @@ var _detail_phone = $("#phone").html();
 var _detail_price = $("#price").html();
 var _detail_ticket = $("#ticket").html();
 var _tag = $(".type").html();
-var _comment_from = $("#comment_from")
+var _comment_from = $("#comment_from").html();
 var _comments_rating =$(".comments_rating").html();
 var _breif_desc = $("#breif_desc").html();
-
-alert(_comments_rating);
-
+var _little_tip = $("#little_tip").html();
 
 
 if(_detail_time == ""){
@@ -38,9 +36,24 @@ if(_comment_from == "来自google"){
 }
 
 if(_comments_rating == "2.5分"){
-	$(".rating_pic").attr("src","../resource/img/poi/review2_5.png");
+	$(".rating_pic").attr("src","../resource/img/poi/reviews2_5.png");
+}else if(_comments_rating == "3分"){
+	$(".rating_pic").attr("src","../resource/img/poi/reviews3.png");
+}else if(_comments_rating == "3.5分"){
+	$(".rating_pic").attr("src","../resource/img/poi/reviews3_5.png");
+}else if(_comments_rating == "4分"){
+	$(".rating_pic").attr("src","../resource/img/poi/reviews4.png");
+}else if(_comments_rating == "4.5分"){
+	$(".rating_pic").attr("src","../resource/img/poi/reviews4_5.png");
+}else{
+	$(".rating_pic").attr("src","../resource/img/poi/reviews5.png");
 }
+
 
 if(_breif_desc == ""){
 	$("#breif").hide();
+}
+
+if(_little_tip == ""){
+	$("#tip").hide();
 }
