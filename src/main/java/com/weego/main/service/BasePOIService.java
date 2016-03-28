@@ -1,27 +1,26 @@
 package com.weego.main.service;
 
-import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDetailDto;
-import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.POITranslationDto;
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.POITranslationBaseDto;
 
 public interface BasePOIService {
-	POIListDto getPOIsByCityId(String cityId, Integer type, String labelId, 
+	List<POIBaseDto> getPOIsByCityId(String cityId, Integer type, String labelId, 
 							Integer page, Integer count);
 	
-	POIDetailDto getPOIDetailById(String id, Integer type, String coordination);
+	POIDetailSumDto getPOIDetailById(String id, Integer type, String coordination);
 	
-	POISpecialDto getPOISpecialById(String id, Integer type);
+	List<POISepcialBaseDto> getPOISpecialById(String id, Integer type);
 	
-	POISpecialDetailDto getPOISpecialDetailById(String specialId, Integer type);
+	POISepcialBaseDto getPOISpecialDetailById(String specialId, Integer type);
 	
-	POICommentsDto getPOICommentsById(String id, Integer type);
+	List<POIDetailCommentsDto> getPOICommentsById(String id, Integer type);
 	
-	POITranslationDto getPOITranslation(String content, String from, String to);
+	POITranslationBaseDto getPOITranslation(String content, String from, String to);
 	
-	ModelAndView getPOIDetail(String id, Integer type);
+//	ModelAndView getPOIDetail(String id, Integer type);
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.SpotDao;
 import com.weego.main.dto.POISepcialBaseDto;
-import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.model.Spot;
 import com.weego.main.service.SpotService;
 
@@ -16,8 +15,7 @@ public class SpotServiceImpl implements SpotService {
 	SpotDao spotDao;
 
 	@Override
-	public POISpecialDetailDto getSpotById(String id) {
-		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
+	public POISepcialBaseDto getSpotById(String id) {
 		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
 		Spot spot =  spotDao.getSpotById(id);
 		if(spot != null) {
@@ -26,9 +24,8 @@ public class SpotServiceImpl implements SpotService {
 			poiSepcialBaseDto.setTitle(spot.getTitle());
 			poiSepcialBaseDto.setDesc(spot.getDesc());
 			poiSepcialBaseDto.setTag(spot.getTag());
-			poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		}
-		return poiSpecialDetailDto;
+		return poiSepcialBaseDto;
 	}
 	
 } 

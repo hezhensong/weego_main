@@ -1,20 +1,22 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.SearchNearByDto;
+import java.util.List;
+
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 
 public interface RestaurantService {
-	POIListDto getRestaurantsByCityId(String cityId, String labelId, Integer page, Integer count);
+	List<POIBaseDto> getRestaurantsByCityId(String cityId, String labelId, Integer page, Integer count);
 	
-	POIDetailDto getRestaurantById(String id, String coordination);
+	POIDetailSumDto getRestaurantById(String id, String coordination);
 	
-	POISpecialDto getRestaurantDishesById(String id);
+	List<POISepcialBaseDto> getRestaurantDishesById(String id);
 	
-	POICommentsDto getRestaurantCommentsById(String id);
+	List<POIDetailCommentsDto> getRestaurantCommentsById(String id);
 	
-	SearchNearByDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort,
+	SearchNearByBaseDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort,
 			Double range, Integer price, String special);
 }

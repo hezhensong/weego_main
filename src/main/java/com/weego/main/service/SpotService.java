@@ -1,7 +1,7 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISepcialBaseDto;
 
 public interface SpotService {
-	POISpecialDetailDto getSpotById(String id);
+	POISepcialBaseDto getSpotById(String id);
 }

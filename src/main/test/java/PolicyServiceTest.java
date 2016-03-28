@@ -25,7 +25,7 @@ public class PolicyServiceTest extends BaseTest{
     public void testPolicyServiceFilter() {
         String cityId = "516a34f958e3511036000001";
         String time = "1457932600000";
-        List<Policy> policyList = policyService.fiterPolicyByTimeRange(cityId, time);
-        List<Policy> policyList1 = policyService.filterPolicyByDistance(policyList, "-72.963124,40.81184");
+//        List<Policy> policyList = policyService.fiterPolicyByTimeRange(cityId, time);
+//        List<Policy> policyList1 = policyService.filterPolicyByDistance(policyList, "-72.963124,40.81184");
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.weego.main.constant.ErrorCode;
 import com.weego.main.dto.ResponseDto;
-import com.weego.main.dto.SearchNearByDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 import com.weego.main.service.SearchNearByService;
 
 @RestController
@@ -24,7 +24,7 @@ public class SearchNearbyController {
 	
 	@ResponseBody
 	@RequestMapping("/searchNearby")
-	public ResponseDto<SearchNearByDto> getSearchNearByInfos(
+	public ResponseDto<SearchNearByBaseDto> getSearchNearByInfos(
 			@RequestParam("cityId") String cityId,
     		@RequestParam("type") Integer type,
     		@RequestParam("coordination") String coordination,
@@ -33,15 +33,15 @@ public class SearchNearbyController {
 			@RequestParam(value = "price", defaultValue = "0") Integer price,
 			@RequestParam(value = "special", defaultValue = "sp") String special) {
 		
-		SearchNearByDto searchNearByDto = searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort, range, price, special);
-		ResponseDto<SearchNearByDto> pResponseDto = new ResponseDto<SearchNearByDto>();
+		SearchNearByBaseDto searchNearByBaseDto = searchNearByService.getSearchNearByInfos(cityId, type, coordination, sort, range, price, special);
+		ResponseDto<SearchNearByBaseDto> pResponseDto = new ResponseDto<SearchNearByBaseDto>();
 		
-		if(searchNearByDto == null) {
+		if(searchNearByBaseDto == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("搜索周边信息为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(searchNearByDto);
+			pResponseDto.setData(searchNearByBaseDto);
 		}
 		return pResponseDto;
 	}

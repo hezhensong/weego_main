@@ -1,19 +1,17 @@
 package com.weego.main.service.impl;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
 import com.weego.main.dto.POIDetailSumDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDetailDto;
-import com.weego.main.dto.POISpecialDto;
+import com.weego.main.dto.POISepcialBaseDto;
 import com.weego.main.dto.POITranslationBaseDto;
-import com.weego.main.dto.POITranslationDto;
 import com.weego.main.service.AttractionService;
 import com.weego.main.service.BasePOIService;
 import com.weego.main.service.BrandService;
@@ -42,7 +40,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     BrandService brandService;
 
     @Override
-    public POIListDto getPOIsByCityId(String cityId, Integer type, String labelId, Integer page, Integer count) {
+    public List<POIBaseDto> getPOIsByCityId(String cityId, Integer type, String labelId, Integer page, Integer count) {
         if (type == 0) {
             return attractionService.getAttractionsByCityId(cityId, labelId, page, count);
         } else if (type == 1) {
@@ -56,7 +54,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     }
 
     @Override
-    public POIDetailDto getPOIDetailById(String id, Integer type, String coordination) {
+    public POIDetailSumDto getPOIDetailById(String id, Integer type, String coordination) {
         if (type == 0) {
             return attractionService.getAttractionById(id, coordination);
         } else if (type == 1) {
@@ -70,7 +68,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     }
 
     @Override
-    public POISpecialDto getPOISpecialById(String id, Integer type) {
+    public List<POISepcialBaseDto> getPOISpecialById(String id, Integer type) {
         if (type == 0) {
             return attractionService.getAttractionSpotsById(id);
         } else if (type == 1) {
@@ -84,7 +82,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     }
 
     @Override
-    public POISpecialDetailDto getPOISpecialDetailById(String specialId, Integer type) {
+    public POISepcialBaseDto getPOISpecialDetailById(String specialId, Integer type) {
         if (type == 0) {
             return spotService.getSpotById(specialId);
         } else if (type == 1) {
@@ -98,7 +96,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     }
 
     @Override
-    public POICommentsDto getPOICommentsById(String id, Integer type) {
+    public List<POIDetailCommentsDto> getPOICommentsById(String id, Integer type) {
         if (type == 0) {
             return attractionService.getAttractionCommentsById(id);
         } else if (type == 1) {
@@ -112,8 +110,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     }
 
     @Override
-    public POITranslationDto getPOITranslation(String content, String from, String to) {
-        POITranslationDto poiTranslationDto = new POITranslationDto();
+    public POITranslationBaseDto getPOITranslation(String content, String from, String to) {
         POITranslationBaseDto poiTranslationBaseDto = new POITranslationBaseDto();
         try {
             String translation = BaiDuTranslateUtil.translate(content, from, to);
@@ -123,11 +120,10 @@ public class BasePOIServiceImpl implements BasePOIService {
             logger.info("百度翻译出错了!");
             e.printStackTrace();
         }
-        poiTranslationDto.setData(poiTranslationBaseDto);
-        return poiTranslationDto;
+        return poiTranslationBaseDto;
     }
 
-    @Override
+   /* @Override
     public ModelAndView getPOIDetail(String id, Integer type) {
 
         ModelAndView mv = new ModelAndView("POI");
@@ -189,6 +185,6 @@ public class BasePOIServiceImpl implements BasePOIService {
             return null;
         }
 
-    }
+    }*/
 
 }
