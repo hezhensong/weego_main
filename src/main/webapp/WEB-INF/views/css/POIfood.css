@@ -119,8 +119,11 @@ body{
 	line-height: 50px;
 }
 .tips .menu{
-	margin: 70px 16px 30px 16px;
+	margin: 70px 16px 60px 16px;
 	height: 24%;
+}
+.tips .menu p{
+	margin-left:20px;
 }
 
 .tips .menu .type{
@@ -139,7 +142,7 @@ body{
 .tips .menu .menu_name{
 	position: relative;
 	top: 150px;
-	left: 28px;
+	left: -200px;
 	float: left;
 	font-size: 36px;
 
@@ -209,12 +212,25 @@ body{
 	display: inline-block;
 	width: 600px;
 	color: #ff4f4e;
-	display: inline-flex;
-	word-wrap: break-word;
+	text-align:right;
+}
+.tips .message .details .h3 a{
+	color: #ff4f4e;
+	text-decoration: none;
 }
 .tips .message .details .time{
 	float: right;
 	width: 658px;
+	margin: 10px 0;
+	text-align: left;
+}
+
+.tips .message .details #web{
+	text-align: left;
+    white-space:nowrap;    
+    word-break:keep-all;    
+    overflow:hidden;    
+    text-overflow:ellipsis;
 }
 
 .tips .message .details .all{

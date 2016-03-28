@@ -29,8 +29,8 @@
 			<h2>${title}<br/>${english_title}</h2>
 		</div>
 		<div class="score">
-			<img class="rating_pic" src=""><!-- 判断 -->
-			<div class="reviews comments_rating">${reviews}分</div>
+			<img class="reviews_pic" src=""><!-- 判断 -->
+			<div class="reviews">${reviews}分</div>
 		</div>
 	</div>
 	<div class="tips">
@@ -66,7 +66,7 @@
 			<h3>菜品推荐</h3>
 		</div>
 <c:forEach items="${recommends}" var="recommend">
-		<div class="menu first_menu" style="background-image: url($(recommend.coverImage));">
+		<div class="menu first_menu" style="background-image: url(${recommend.coverImage});">
 			<img class="overlay" src="../resource/img/poi/overlay.png">
 			<div class="type">${recommend.tag}</div>
 			<div class="menu_name">${recommend.title}</div>
@@ -85,7 +85,7 @@
 				<p id="comment_from">来自${commentFrom}</p> 
 			</div><!-- finish js -->
 			<div class="right">
-				<p class="comments_rating">${comments.rating}</p>
+				<p class="comments_rating">${comments.rating}分</p>
 				<img class="rating_pic" src="">
 			</div><!-- finish js -->
 		</div>
@@ -105,7 +105,7 @@
 			<div class="details" id="detail_web">
 				<img src="../resource/img/poi/web.png">
 				<p>网址：</p>
-				<h3 class="h3" id="web">${web}</h3>
+				<h3 class="h3" id="web"><a href="${web}">${web}</a></h3>
 			</div>
 			<div class="details clearfix" id="detail_time">
 				<img src="../resource/img/poi/time.png">
