@@ -130,7 +130,7 @@ public class BasePOIServiceImpl implements BasePOIService {
     @Override
     public ModelAndView getPOIDetail(String id, Integer type) {
 
-        ModelAndView mv = new ModelAndView("POI");
+        ModelAndView mv = new ModelAndView("POIfood");
         POIDetailDto detailDto = new POIDetailDto();
         if (type == 0) {
             detailDto = attractionService.getAttractionById(id, "-73.9991637,40.7536854");
@@ -146,6 +146,7 @@ public class BasePOIServiceImpl implements BasePOIService {
         if (detailDto != null) {
             POIDetailSumDto detailSum = detailDto.getData();
             if(detailSum!=null){
+                mv.addObject("type",detailSum.getType());
                 mv.addObject("coverimage",detailSum.getCoverImage());
                 mv.addObject("title",detailSum.getName());
                 mv.addObject("english_title",detailSum.getNameEn());
@@ -176,7 +177,7 @@ public class BasePOIServiceImpl implements BasePOIService {
                 //营业时间是列表形式的
                 mv.addObject("times",detailSum.getOpenTime());
                 //设施，需要循环遍历，传的是一个对象，里面的值是true or false
-                mv.addObject("facilities",detailSum.getFacilities());
+                mv.addObject("facilitie",detailSum.getFacilities());
                 
                 
                 return mv;

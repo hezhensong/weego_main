@@ -33,7 +33,7 @@ body{
 }
 .title .center .line{
 	border-bottom: 1px solid #fff;
-	width: 150px;
+	width: 147px;
 	display: inline-block;
 }
 .title .center .icon{
@@ -122,10 +122,7 @@ body{
 	margin: 70px 16px 30px 16px;
 	height: 24%;
 }
-.tips .first_menu{
-	background:url(../resource/img/pgc/2.jpg);
-	background-size: cover;
-}
+
 .tips .menu .type{
 	letter-spacing: 5px;
 	float: left;
@@ -142,7 +139,7 @@ body{
 .tips .menu .menu_name{
 	position: relative;
 	top: 150px;
-	left: -223px;
+	left: 28px;
 	float: left;
 	font-size: 36px;
 
@@ -194,6 +191,7 @@ body{
 	margin-right: 55px;
 }
 .tips .message .details{
+	padding-top:5px;
 	font-size: 30px;
 	border-bottom: 1px solid #8a8a8a;
 }

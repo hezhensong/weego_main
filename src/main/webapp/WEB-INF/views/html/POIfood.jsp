@@ -12,8 +12,11 @@
 	header{
 		background-image:url(${coverimage});
 		background-size: cover;
-		height: 37%;
+		height: 41%;
 	}
+	.tips .first_menu{
+	background-size: cover;
+}
 	</style>
 </head>
 <body>
@@ -82,7 +85,7 @@
 				<p id="comment_from">来自${commentFrom}</p> 
 			</div><!-- finish js -->
 			<div class="right">
-				<p class="comments_rating">${rating}</p>
+				<p class="comments_rating">${comments.rating}</p>
 				<img class="rating_pic" src="">
 			</div><!-- finish js -->
 		</div>
@@ -109,17 +112,12 @@
 				<p>时间：</p>
 	<c:forEach items="${times}" var="time">
 				<h3 class="h3 time">${time}</h3>
-				<h3 class="h3 time ">${time}</h3>
-				<h3 class="h3 time">${time}</h3>
-				<h3 class="h3 time">${time}</h3>
-				<h3 class="h3 time">${time}</h3>
 	</c:forEach>
 			</div>
 			<div class="details" id="last_tip">
 				<img src="../resource/img/poi/ticket.png">
 				<p>设施</p>
 				<div class="all">
-	<c:forEach items="${facilities}" var="facilitie">
 		<c:choose>
 				<c:when
 					test="${facilitie.wifi =='false'}">
@@ -301,7 +299,6 @@
 				</c:otherwise>
 		</c:choose>
 			
-	</c:forEach>
 				</div>
 			</div>
 		</div>
