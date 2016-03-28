@@ -85,7 +85,7 @@
 				<p id="comment_from">来自${commentFrom}</p> 
 			</div><!-- finish js -->
 			<div class="right">
-				<p class="comments_rating">${comments.rating}</p>
+				<p class="comments_rating">${comments.rating}分</p>
 				<img class="rating_pic" src="">
 			</div><!-- finish js -->
 		</div>
