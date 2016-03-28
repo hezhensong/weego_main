@@ -1,5 +1,5 @@
-<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
@@ -26,16 +26,18 @@
 			<h2>${title}<br/>${english_title}</h2>
 		</div>
 		<div class="score">
-			<img src="../resource/img/poi/reviews.png">
-			<div class="reviews">${reviews}</div>
+			<img src="../resource/img/poi/reviews.png"><!-- 判断 -->
+			<div class="reviews">${reviews}分</div>
 		</div>
 	</div>
 	<div class="tips">
 		<h2>${foreword}</h2>
 		<div class="special">
-			<div class="single first">${tag}</div><!-- 需要循环遍历 -->
-			<div class="single">${tag}</div>
-			<div class="single">${tag}</div>
+
+<c:forEach items="${tags}" var="tag">
+			<div class="single first">${tag.name}</div><!-- 需要循环遍历 -->
+</c:forEach>
+
 		</div>
 	</div>
 	<div class="tips">
@@ -51,10 +53,6 @@
 			<h3>小贴士</h3>
 		</div>
 		<div class="margin">
-			<p>推荐：${recommend}</p>
-			<p>注意事项:</p>
-			<p>${tips}</p><!-- 循环遍历 -->
-			<p>${tips}</p>
 			<p>${tips}</p>
 		</div>
 	</div>
@@ -64,12 +62,14 @@
 			<img src="../resource/img/poi/menu.png">
 			<h3>菜品推荐</h3>
 		</div>
-		<div class="menu first_menu">
+<c:forEach items="${recommends}" var="recommend">
+		<div class="menu first_menu" style="background-image: url($(recommend.coverImage));">
 			<img class="overlay" src="../resource/img/poi/overlay.png">
-			<div class="type">${tag}</div>
-			<div class="menu_name">${poi_name}</div>
+			<div class="type">${recommend.tag}</div>
+			<div class="menu_name">${recommend.title}</div>
 		</div>
-		<p>${describe}</p>
+		<p>${recommend.desc}</p>
+</c:forEach>
 	</div>
 	<div class="tips last_tip">
 		<div class="breif">
@@ -78,16 +78,16 @@
 		</div>
 		<div class="comment">
 			<div class="left">
-				<img src="../resource/img/poi/google.png">
-				<p>来自${from}</p>
+				<img src="../resource/img/poi/google.png"><!-- tripadvisor// google -->
+				<p id="comment_from">来自${commentFrom}</p> 
 			</div>
 			<div class="right">
-				<p>${reviews}</p>
+				<p>${comments.rating}分</p>
 				<img src="../resource/img/poi/reviews.png">
 			</div>
 		</div>
-		<p class="main_comment">${main_comment}</p>
-		<div class="good_comment"><img src="../resource/img/pgc/yin1.png"><br/>&nbsp;${comment}<br/><img class="float_r" src="../resource/img/pgc/yin2.png"></div>
+		<p class="main_comment">${comments.title}</p>
+		<div class="good_comment"><img src="../resource/img/pgc/yin1.png"><br/>&nbsp;${comments.text}<br/><img class="float_r" src="../resource/img/pgc/yin2.png"></div>
 		<div class="message">
 			<div class="details" id="detail_price">
 				<img src="../resource/img/poi/price.png">
@@ -107,21 +107,39 @@
 			<div class="details" id="detail_time">
 				<img src="../resource/img/poi/time.png">
 				<p>时间：</p>
+	<c:forEach items="${times}" var="time">
 				<h3 id="time">${time}</h3>
+	</c:forEach>
 			</div>
 			<div class="details" id="last_tip">
 				<img src="../resource/img/poi/ticket.png">
 				<p>设施</p>
 				<div class="all">
-				<!-- 循环遍历开始 -->
-					<div class="little">
-						<img class="little" src="${little_icon}">
-						<div class="text" id="little">${little}</div>
+	<c:forEach items="${facilities}" var="facilitie">
+		<c:choose>
+				<c:when
+					test="${facilitie.wifi =='false'}">
+					<div style="display: none" class="little">
+						<img class="little" src="../resource/img/poi/wifi.png">
+						<div class="text" id="little">提供wifi</div>
 					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="little">
+						<img class="little" src="../resource/img/poi/wifi.png">
+						<div class="text" id="little">提供wifi</div>
+					</div>
+				</c:otherwise>
+		</c:choose>
+
+
+					
+	</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script type="text/javascript" src="../js/POI.js"></script>
+<script type="text/javascript"></script>
 </html>

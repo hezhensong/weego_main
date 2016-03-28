@@ -1,6 +1,7 @@
 package com.weego.main.controller.touch;
 
 import com.weego.main.service.ActivityService;
+import com.weego.main.service.BasePOIService;
 import com.weego.main.service.PgcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class ShareController {
     
     @Autowired
     ActivityService activityService;
+    
+    @Autowired
+    BasePOIService basePOIService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
@@ -43,4 +47,20 @@ public class ShareController {
 
         return activityService.getSpecifiedActivity(activityId);
     }
+    
+//    @RequestMapping(value = "/poi", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ModelAndView getPOI(@RequestParam("poiId") String poiId,
+//                               @RequestParam("type") Integer type) {
+//
+//        return basePOIService.getPOIDetail(poiId, type);
+//    }
+    
+    @RequestMapping(value = "/poi", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getPOI(@RequestParam("poiId") String poiId,@RequestParam("type") Integer type) {
+
+        return basePOIService.getPOIDetail(poiId, type);
+    }
+
 }

@@ -17,8 +17,13 @@ public class PolicyServiceTest extends BaseTest{
     public void testPolicyService() {
         String cityId = "516a34f958e3511036000001";
         String time = "1457932600000";
+<<<<<<< HEAD
         List<Policy> policyList = policyService.filterPolicyByTimeRange(cityId, time);
         System.out.println(policyList);
+=======
+//        List<Policy> policyList = policyService.fiterPolicyByTimeRange(cityId, time);
+//        System.out.println(policyList);
+>>>>>>> a63d4d227ea8f2e32268cc9d9a5cdde86dc653b6
     }
 
     @Test

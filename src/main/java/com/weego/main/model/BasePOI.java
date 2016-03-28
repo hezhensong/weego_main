@@ -15,6 +15,9 @@ public class BasePOI {
 	@JsonProperty("activities")
 	private List<BasePOIActivities> activities;
 
+	@JsonProperty("master_label")
+	private List<BasePOILabel> masterLabel;
+
 	@JsonProperty("sub_tag")
 	private List<BasePOITag> subTag;
 
@@ -76,6 +79,8 @@ public class BasePOI {
 	@JsonProperty("last_modified_person")
 	private String lastModifiedPerson;
 
+	private Integer type;
+
 	public String getId() {
 		return id;
 	}
@@ -90,6 +95,14 @@ public class BasePOI {
 
 	public void setActivities(List<BasePOIActivities> activities) {
 		this.activities = activities;
+	}
+
+	public List<BasePOILabel> getMasterLabel() {
+		return masterLabel;
+	}
+
+	public void setMasterLabel(List<BasePOILabel> masterLabel) {
+		this.masterLabel = masterLabel;
 	}
 
 	public List<BasePOITag> getSubTag() {
@@ -290,6 +303,14 @@ public class BasePOI {
 
 	public void setLastModifiedPerson(String lastModifiedPerson) {
 		this.lastModifiedPerson = lastModifiedPerson;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 }

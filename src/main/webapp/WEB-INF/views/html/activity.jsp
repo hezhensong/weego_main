@@ -12,7 +12,13 @@
 		.one {
 			background: url(${bg});
 			background-size: cover;
-			height: 37%;
+			height: 41%;
+		}
+		.four #pic {
+			background-size: cover;
+		    margin: 3% 2% 0 2%;
+		    height: 38%;
+		    width: 96%;
 		}
 	</style>
 </head>
@@ -24,29 +30,39 @@
 		<p class="title">【&nbsp;${title}&nbsp;】</p>
 		<div class="detail" id="detail_time">
 			<img src="../resource/img/activity/details_time@3x.png">
-		    	<p>时间：</p>
+			<div class="border_bottom">
+				<p>时间：</p>
 		    	<p class="control" id="actime">${time}</p>
+			</div>
+		    	
 		</div>
 		<div class="detail" id="detail_ip">
 			<img src="../resource/img/activity/details_ip@3x.png">
+			<div class="border_bottom">
 		    	<p>地点：</p>
 		    	<p class="control" id="ip">${ip}</p>
+		    </div>
 		</div>
 		<div class="detail" id="detail_web">
 			<img src="../resource/img/activity/details_web@3x.png">
+			<div class="border_bottom">
 		    	<p>官网：</p>
-		    	<a class="control" id="web" href="${web}">${web}</a>
+		    	<a class="control" id="web" href="${web}"><p class="ignore">${web}</p></a>
+		    </div>
+		    	
 		</div>
 		<div class="detail" id="detail_ticket">
 			<img src="../resource/img/activity/details_ticket@3x.png">
+			<div class="border_bottom">
 		    	<p>订票：</p>
 		    	<a class="control" id="ticket" href="${ticket}">${ticket}</a>
+		    </div>
 		</div>
 	</div>
 
 	<div class="three">
 		<div class="aty">活动详情</div>
-		<div class="drb">${details}</div>
+		<div class="drb">活动详情活动详情活动详情活动详情活动详情活动详情${details}</div>
 	</div>
 <c:forEach items="${paragraphs}" var="ActivityParagraphs">
 
@@ -74,11 +90,11 @@
 			<c:choose>
 				<c:when
 					test="${ActivityParagraphs.imageUrl == '' || ActivityParagraphs.imageUrl == null || ActivityParagraphs.imageUrl == 'null'}">
-					<img style="display: none" id="pic"
-						src="${ActivityParagraphs.imageUrl}">
+					<div style="display: none" id="pic"></div>
 				</c:when>
 				<c:otherwise>
-					<img id="pic" src="${ActivityParagraphs.imageUrl}">
+					<div id="pic" style="background-image: url(${ActivityParagraphs.imageUrl});"></div>
+	
 				</c:otherwise>
 			</c:choose>
 
@@ -93,9 +109,10 @@
 			</c:choose>
 	</div>
 </c:forEach>
-		
+
 	<footer></footer>
 </body>
 <script type="text/javascript" src="../js/activity.js"></script>
-
 </html>
+
+

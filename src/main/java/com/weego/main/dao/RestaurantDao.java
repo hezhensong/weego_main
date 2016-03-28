@@ -3,14 +3,12 @@ package com.weego.main.dao;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.weego.main.model.Restaurant;
 
 @Repository
@@ -24,8 +22,8 @@ public class RestaurantDao {
 		Integer skipNum = (page - 1) * count;
 		BasicDBObject query = new BasicDBObject();
 		query.put("city_id", new ObjectId(cityId));
-//		BasicDBObject label = new BasicDBObject().append("id", labelId);
-//		query.put("master_label", new BasicDBObject("$elemMatch",label));
+		BasicDBObject label = new BasicDBObject().append("_id", new ObjectId(labelId));
+		query.put("master_label", new BasicDBObject("$elemMatch",label));
 		return jackCollection.find(query).skip(skipNum).limit(count).toArray();
 	}
 	

@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Attraction extends BasePOI {
 	
-	@JsonProperty("master_label")
-	private BasePOILabel masterLabel;
-	
 	@JsonProperty("spot")
 	private List<AttractionSpot> attractionSpots;
 

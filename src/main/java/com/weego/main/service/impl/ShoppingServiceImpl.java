@@ -80,7 +80,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 		Shopping shopping = shoppingDao.getShoppingById(id);
 		if (shopping != null) {
 			poiDetailSumDto.setId(shopping.getId());
-			poiDetailSumDto.setType(2);
+			poiDetailSumDto.setType(shopping.getType());
 			poiDetailSumDto.setName(shopping.getName());
 			poiDetailSumDto.setNameEn(shopping.getNameEn());
 			poiDetailSumDto.setAddress(shopping.getAddress());

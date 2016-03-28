@@ -82,7 +82,7 @@ public class AttractionServiceImpl implements AttractionService {
 
 		if (attraction != null) {
 			poiDetailSumDto.setId(attraction.getId());
-			poiDetailSumDto.setType(0);
+			poiDetailSumDto.setType(attraction.getType());
 			poiDetailSumDto.setName(attraction.getName());
 			poiDetailSumDto.setNameEn(attraction.getNameEn());
 			poiDetailSumDto.setAddress(attraction.getAddress());
