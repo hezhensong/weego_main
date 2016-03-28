@@ -7,91 +7,102 @@ import java.util.List;
 
 public class Pgc {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @JsonProperty("title")
-    private String title;
+	@JsonProperty("title")
+	private String title;
 
-    @JsonProperty("cover_image")
-    private String coverImage;
+	@JsonProperty("cover_image")
+	private String coverImage;
 
-    @JsonProperty("person")
-    private String person;
+	@JsonProperty("person")
+	private String person;
 
-    @JsonProperty("poi_list")
-    private List<PgcPoi> poiList;
+	@JsonProperty("poi_list")
+	private List<PgcPoi> poiList;
 
-    @JsonProperty("introduction")
-    private String introduction;
+	@JsonProperty("introduction")
+	private String introduction;
 
-    @JsonProperty("city_id")
-    private String cityId;
+	@JsonProperty("city_id")
+	private String cityId;
 
-    @JsonProperty("type")
-    private Integer type;
+	@JsonProperty("type")
+	private Integer type;
 
-    public String getId() {
-        return id;
-    }
+	private PgcOriginal original;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getCoverImage() {
-        return coverImage;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setCoverImage(String coverImage) {
-        this.coverImage = coverImage;
-    }
+	public String getCoverImage() {
+		return coverImage;
+	}
 
-    public String getPerson() {
-        return person;
-    }
+	public void setCoverImage(String coverImage) {
+		this.coverImage = coverImage;
+	}
 
-    public void setPerson(String person) {
-        this.person = person;
-    }
+	public String getPerson() {
+		return person;
+	}
 
-    public List<PgcPoi> getPoiList() {
-        return poiList;
-    }
+	public void setPerson(String person) {
+		this.person = person;
+	}
 
-    public void setPoiList(List<PgcPoi> poiList) {
-        this.poiList = poiList;
-    }
+	public List<PgcPoi> getPoiList() {
+		return poiList;
+	}
 
-    public String getIntroduction() {
-        return introduction;
-    }
+	public void setPoiList(List<PgcPoi> poiList) {
+		this.poiList = poiList;
+	}
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
+	public String getIntroduction() {
+		return introduction;
+	}
 
-    public String getCityId() {
-        return cityId;
-    }
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public Integer getType() {
-        return type;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public PgcOriginal getOriginal() {
+		return original;
+	}
+
+	public void setOriginal(PgcOriginal original) {
+		this.original = original;
+	}
+
 }
