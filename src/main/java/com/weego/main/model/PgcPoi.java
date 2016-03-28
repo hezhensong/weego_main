@@ -22,6 +22,12 @@ public class PgcPoi {
     @JsonProperty("paragraph_title")
     private String paragraphTitle;
 
+    @JsonProperty("image_url")
+    private String imageUrl;
+
+    @JsonProperty("image_source")
+    private String imageSource;
+
     public String getId() {
         return id;
     }
@@ -69,5 +75,21 @@ public class PgcPoi {
 
     public void setParagraphTitle(String paragraphTitle) {
         this.paragraphTitle = paragraphTitle;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageSource() {
+        return imageSource;
+    }
+
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
     }
 }

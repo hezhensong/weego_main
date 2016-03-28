@@ -31,6 +31,12 @@ public class Pgc {
     @JsonProperty("type")
     private Integer type;
 
+    @JsonProperty("original")
+    private PgcOriginal original;
+
+    @JsonProperty("tag")
+    private String tag;
+
     public String getId() {
         return id;
     }
@@ -93,5 +99,21 @@ public class Pgc {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public PgcOriginal getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(PgcOriginal original) {
+        this.original = original;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }
