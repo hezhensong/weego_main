@@ -31,13 +31,15 @@ public class Pgc {
 	@JsonProperty("type")
 	private Integer type;
 
-	private PgcOriginal original;
+    @JsonProperty("original")
+    private PgcOriginal original;
 
-	private String tag;
+    @JsonProperty("tag")
+    private String tag;
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
 	public void setId(String id) {
 		this.id = id;

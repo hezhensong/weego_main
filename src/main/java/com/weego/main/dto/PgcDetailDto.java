@@ -7,22 +7,26 @@ import java.util.List;
  */
 public class PgcDetailDto {
 
+    private Integer type;
+
     private String coverImage;
 
     private String title;
 
-    private PgcPeopleDto pgcPeople;
+    private OriginalDto original;
+
+    private PgcPersonDto person;
 
     private String introduction;
 
-    List<BasePoiDto> pgcPoi;
+    private List<PgcContentDto> content;
 
-    public List<BasePoiDto> getPgcPoi() {
-        return pgcPoi;
+    public Integer getType() {
+        return type;
     }
 
-    public void setPgcPoi(List<BasePoiDto> pgcPoi) {
-        this.pgcPoi = pgcPoi;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getCoverImage() {
@@ -41,12 +45,20 @@ public class PgcDetailDto {
         this.title = title;
     }
 
-    public PgcPeopleDto getPgcPeople() {
-        return pgcPeople;
+    public OriginalDto getOriginal() {
+        return original;
     }
 
-    public void setPgcPeople(PgcPeopleDto pgcPeople) {
-        this.pgcPeople = pgcPeople;
+    public void setOriginal(OriginalDto original) {
+        this.original = original;
+    }
+
+    public PgcPersonDto getPerson() {
+        return person;
+    }
+
+    public void setPerson(PgcPersonDto person) {
+        this.person = person;
     }
 
     public String getIntroduction() {
@@ -55,5 +67,13 @@ public class PgcDetailDto {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
+    }
+
+    public List<PgcContentDto> getContent() {
+        return content;
+    }
+
+    public void setContent(List<PgcContentDto> content) {
+        this.content = content;
     }
 }

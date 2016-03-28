@@ -207,9 +207,9 @@ public class CityServiceImpl implements CityService {
 
             // 获取城市PGC
             CityHomePgcDto cityHomePgcDto = new CityHomePgcDto();
-            List<PgcListPgcDto> pgcListPgcDtoList = pgcService.getPgcList(cityId);
+            List<PgcListDto> pgcListPgcDtoList = pgcService.getPgcList(cityId);
             if (pgcListPgcDtoList.size() > 0) {
-                PgcListPgcDto pgcListPgcDto = pgcListPgcDtoList.get(0);
+                PgcListContentDto pgcListPgcDto = pgcListPgcDtoList.get(0).getContent().get(0);
                 cityHomePgcDto.setTitle(pgcListPgcDto.getTitle());
                 cityHomePgcDto.setCoverImage(pgcListPgcDto.getCoverImage());
                 cityHomeDto.setPgc(cityHomePgcDto);
