@@ -82,35 +82,6 @@ public class PgcServiceImpl implements PgcService {
         return pgcListPgcDtoList;
     }
 
-    @Override
-    public ModelAndView getSpecifiedPgc(String pgcId) {
-
-        Pgc pgc = pgcDao.getSpecifiedPgc(pgcId);
-        if (pgc == null) {
-            return null;
-        } else {
-
-            ModelAndView mv = new ModelAndView("PGC");
-            mv.addObject("author", pgc.getPerson());
-            mv.addObject("poi_bg", pgc.getCoverImage());
-            mv.addObject("title", pgc.getTitle());
-            Person person = peopleDao.getPersonById(pgc.getPerson());
-            if(person!=null){
-                mv.addObject("author", person.getUserName());
-                mv.addObject("author_pic", person.getHeadImage());
-                mv.addObject("author_breif", person.getJobDesc());
-            }
-            mv.addObject("breif", pgc.getIntroduction());
-            mv.addObject("poilist", pgc.getPoiList());
-            
-            mv.addObject("public_logo", "logo test");
-            mv.addObject("publics", "public test");
-            mv.addObject("public_breif", "public_breif test");
-
-            return mv;
-        }
-
-    }
 
     @Override
     public PgcDetailDto getPgcDetail(String pgcId) {
@@ -224,5 +195,71 @@ public class PgcServiceImpl implements PgcService {
             originalDto.setUrl("");
         }
         return originalDto;
+    }
+    
+    @Override
+    public ModelAndView getSpecifiedPgc(String pgcId) {
+
+        Pgc pgc = pgcDao.getSpecifiedPgc(pgcId);
+        if (pgc == null) {
+            return null;
+        } else {
+
+            ModelAndView mv = new ModelAndView("PGC");
+            mv.addObject("author", pgc.getPerson());
+            mv.addObject("poi_bg", pgc.getCoverImage());
+            mv.addObject("title", pgc.getTitle());
+            
+            if (Strings.isNullOrEmpty(pgc.getPerson())) {
+                mv.addObject("person", null);
+            } else {
+                Person person = peopleDao.getPersonById(pgc.getPerson().trim());
+                if(person!=null){
+                    mv.addObject("person", person);
+                }else{
+                    mv.addObject("person", null);
+                }
+            }
+            PgcOriginal original = pgc.getOriginal();
+            if(original != null) {
+                mv.addObject("original", original);
+            } else {
+                mv.addObject("original", null);
+            }
+            List<PgcPoi> pgcPoiList = pgc.getPoiList();
+            List<PgcContentDto> pgcPoiDtoList = new ArrayList<PgcContentDto>();
+            if (pgcPoiList != null && pgcPoiList.size() > 0) {
+                for (PgcPoi pgcPoi : pgcPoiList) {
+                    PgcContentDto pgcContentDto = new PgcContentDto();
+                    ParagraphDto paragraphDto = new ParagraphDto();
+                    paragraphDto.setTitle(Strings.nullToEmpty(pgcPoi.getParagraphTitle()));
+                    paragraphDto.setDesc(Strings.nullToEmpty(pgcPoi.getParagraphDesc()));
+                    pgcContentDto.setParagraph(paragraphDto);
+
+                    PgcPoiDto pgcPoiDto = new PgcPoiDto();
+                    pgcPoiDto.setId(Strings.nullToEmpty(pgcPoi.getId()));
+                    pgcPoiDto.setImage(Strings.nullToEmpty(pgcPoi.getPoiImage()));
+                    pgcPoiDto.setType(Strings.nullToEmpty(pgcPoi.getType()));
+                    pgcPoiDto.setTitle(Strings.nullToEmpty(pgcPoi.getName()));
+                    String tag = getPoiTagbyType(pgcPoi.getId(), pgcPoi.getType());
+                    if(tag==null || tag.endsWith("")){
+                        pgcPoiDto.setTag(tag);
+                    }
+                    pgcContentDto.setPoi(pgcPoiDto);
+
+                    PgcImageDto pgcImageDto = new PgcImageDto();
+                    pgcImageDto.setUrl(Strings.nullToEmpty(pgcPoi.getImageUrl()));
+                    pgcImageDto.setSource(Strings.nullToEmpty(pgcPoi.getImageSource()));
+                    pgcContentDto.setImage(pgcImageDto);
+
+                    pgcPoiDtoList.add(pgcContentDto);
+                }
+            }
+            mv.addObject("poilist", pgcPoiDtoList);
+            mv.addObject("breif", pgc.getIntroduction());
+
+            return mv;
+        }
+
     }
 }

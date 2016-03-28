@@ -1,135 +1,165 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>PGC活动</title>
-	<link rel="stylesheet" type="text/css" href="../css/PGC.css">
-	<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
-	<style type="text/css">
-	header{
-		background-image: url(${cover_img});
-		background-size: cover;
-		height: 41%;
-		width: 100%;
+<meta charset="UTF-8">
+<title>PGC活动</title>
+<link rel="stylesheet" type="text/css" href="../css/PGC.css">
+<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
+<style type="text/css">
+header {
+	background-image: url(${cover_img});
+	background-size: cover;
+	height: 41%;
+	width: 100%;
+}
 
-	}
-	.page .poi{
-		height: 420px;
-		background-image: url(${poi_bg});
-		background-size: cover;
-		margin: 30px 0;
-	}
-	</style>
+.page .poi {
+	height: 420px;
+	background-image: url(${poi_bg});
+	background-size: cover;
+	margin: 30px 0;
+}
+</style>
 </head>
 <body>
 	<header>
 		<h1>${title}</h1>
 	</header>
 
-	<div class="author">
-		<div class="head">
-			<img id="author_pic" src="${author_pic}">
-		</div>
-		<h1 id="author_name">${author_name}</h1>>
-		<p>${author_breif}</p>
-		<div class="line"></div>
+	<c:choose>
+		<c:when>
+				test="${person =='' || person == 'null'}">
+				<div style="display: none" class="author">
+				<div class="head">
+					<img id="author_pic" src="${person.headImage}">
+				</div>
+				<h1 id="author_name">${person.userName}</h1>
+				<p>${person.jobDesc}</p>
+				<div class="line"></div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="author">
+				<div class="head">
+					<img id="author_pic" src="${person.headImage}">
+				</div>
+				<h1 id="author_name">${person.userName}</h1>
+				<p>${person.jobDesc}</p>
+				<div class="line"></div>
+			</div>
+		</c:otherwise>
+	</c:choose>
+
+	<div class="from">
+		作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
 	</div>
 
-	<div class="from">作者：<span id="author">${author}</span>,来源：<span id="from">${from}</span>
+	<div class="drb">
+		<img class="float-l" src="../resource/img/pgc/yin1.png"><br /> <span
+			style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${original.desc}</br>
+		<img class="float-r" src="../resource/img/pgc/yin2.png">
 	</div>
+	<c:forEach items="${poilist}" var="PgcPoi">
+		<div class="page">
 
-	<div class="drb"><img class="float-l" src="../resource/img/pgc/yin1.png"><br/>
-	<span style="font-size:20px;">&nbsp;&nbsp;&nbsp;</span>${breif}</br><img class="float-r" src="../resource/img/pgc/yin2.png"></div>
-<c:forEach items="${poilist}" var="PgcPoi">
-	<div class="page">
-
-		<c:choose>
-			<c:when>
-				test="${PgcPoi.paragraphTitle =='' || PgcPoi.paragraphTitle == 'null'}">
-				<div style="display: none" class="page_title">
-					<div class="small"></div>
-					<h2 id="text_title">${PgcPoi.paragraphTitle}</h2>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="page_title">
-					<div class="small"></div>
-					<h2 id="text_title">${PgcPoi.paragraphTitle}</h2>
-				</div>
-			</c:otherwise>
-		</c:choose>
-
-		<c:choose>
-			<c:when>
-				test="${PgcPoi.paragraphDesc =='' || PgcPoi.paragraphDesc == 'null'}">
-				<div style="display: none" id="text" class="drb">${PgcPoi.paragraphDesc}</div>
-			</c:when>
-			<c:otherwise>
-				<div id="text" class="drb">${PgcPoi.paragraphDesc}</div>
-			</c:otherwise>
-		</c:choose>
-
-		<c:choose>
-			<c:when>
-				test="${PgcPoi.name =='' || PgcPoi.name == 'null'}">
-				<div style="display: none" class="poi" id="poi">
-					<img class="overlay" id="poi_pic" src="../resource/img/pgc/overlay.png">
-					<div class="type" id="poi_tag">${PgcPoi.type}</div>
-					<div class="center">
-						<div class="line"></div>
-						<img class="icon" alt="1" src="">
-						<div class="line"></div>
-						<h2 id="poi_title">${PgcPoi.name}</h2>
-					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="poi" id="poi">
-				<a href="${http://192.168.8.104:8080/share/v1/poi?poiId=${}&type=${}}">
-					<img class="overlay" id="poi_pic" src="../resource/img/pgc/overlay.png">
-				</a>
+			<c:choose>
 				<c:when>
-				test="${PgcPoi.type =='' || PgcPoi.type == 'null'}">
-					<div style="display: none" class="type" id="poi_tag">${PgcPoi.type}</div>
+				test="${PgcPoi.ParagraphDto.title =='' || PgcPoi.ParagraphDto.title == 'null'}">
+				<div style="display: none" class="page_title">
+						<div class="small"></div>
+						<h2 id="text_title">${PgcPoi.ParagraphDto.title}</h2>
+					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="type" id="poi_tag">${PgcPoi.type}</div>
-				</c:otherwise>
-					<div class="center">
-						<div class="line"></div>
-						<img class="icon" alt="${type}" src=""> 
-						<div class="line"></div>
-						<h2 id="poi_title">${PgcPoi.name}</h2>
+					<div class="page_title">
+						<div class="small"></div>
+						<h2 id="text_title">${PgcPoi.ParagraphDto.title}</h2>
 					</div>
-				</div>
-			</c:otherwise>
-		</c:choose>
+				</c:otherwise>
+			</c:choose>
 
-		<c:choose>
-			<c:when>
-				test="${PgcPoi.poiImage =='' || PgcPoi.poiImage == 'null'}">
+			<c:choose>
+				<c:when>
+				test="${PgcPoi.ParagraphDto.desc =='' || PgcPoi.ParagraphDto.desc == 'null'}">
+				<div style="display: none" id="text" class="drb">${PgcPoi.ParagraphDto.desc}</div>
+				</c:when>
+				<c:otherwise>
+					<div id="text" class="drb">${PgcPoi.ParagraphDto.desc}</div>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when>
+				test="${PgcPoi.PgcPoiDto.title =='' || PgcPoi.PgcPoiDto.title == 'null'}">
+				<div style="display: none" class="poi" id="poi">
+						<img class="overlay" id="poi_pic"
+							src="../resource/img/pgc/overlay.png">
+						<div class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
+						<div class="center">
+							<div class="line"></div>
+							<img class="icon" alt="1" src="">
+							<div class="line"></div>
+							<h2 id="poi_title">${PgcPoi.PgcPoiDto.title}</h2>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="poi" id="poi">
+						<a
+							href="http://192.168.8.104:8080/share/v1/poi?poiId=${PgcPoi.PgcPoiDto.id}&type=${PgcPoi.PgcPoiDto.type}">
+							<img class="overlay" id="poi_pic"
+							src="../resource/img/pgc/overlay.png">
+						</a>
+						<c:when>
+				test="${PgcPoi.PgcPoiDto.tag =='' || PgcPoi.PgcPoiDto.type == 'tag'}">
+					<div style="display: none" class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
+						</c:otherwise>
+						<div class="center">
+							<div class="line"></div>
+							<img class="icon" alt="${PgcPoi.PgcPoiDto.type}" src="">
+							<div class="line"></div>
+							<h2 id="poi_title">${PgcPoi.PgcPoiDto.title}</h2>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when>
+				test="${PgcPoi.PgcImageDto.url =='' || PgcPoi.PgcImageDto.url == 'null'}">
 				<div style="display: none" class="page_pic">
-					<img id="pic" src="${PgcPoi.poiImage}">
-					<h3 class="resource">(图片来源：<span id="pic_resource">pic_resource</span>)</h3>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="page_pic">
-					<img id="pic" src="${PgcPoi.poiImage}">
-					<h3 class="resource">(图片来源：<span id="pic_resource">pic_resource</span>)</h3>
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
-</c:forEach>
+						<img id="pic" src="${PgcPoi.PgcImageDto.url}">
+						<h3 class="resource">
+							(图片来源：<span id="pic_resource">PgcPoi.PgcImageDto.source</span>)
+						</h3>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="page_pic">
+						<img id="pic" src="${PgcPoi.PgcImageDto.url}">
+						<h3 class="resource">
+							(图片来源：<span id="pic_resource">PgcPoi.PgcImageDto.source</span>)
+						</h3>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</c:forEach>
 
 	<footer>
-		<h5>由weego重新排版&nbsp;<a>阅读原文</a></h5>
-		<div class="logo"><img src="${public_logo}"></div>
-		<p class="accounts">${accounts}</p>
-		<div class="accounts_breif">${accounts_breif}</div>
+		<h5>
+			由weego重新排版&nbsp;<a>阅读原文</a>
+		</h5>
+		<div class="logo">
+			<img src="${original.image}">
+		</div>
+		<p class="accounts">${original.source}</p>
+		<div class="accounts_breif">${original.desc}</div>
 	</footer>
 </body>
 <script type="text/javascript" src="../js/PGC.js"></script>
