@@ -10,14 +10,15 @@
 	<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 	<style type="text/css">
 	header{
-		background-image:url(${header});
+		background-image:url(${coverimage});
 		background-size: cover;
 		height: 37%;
 	}
 	</style>
 </head>
 <body>
-	<header></header>
+	<header>
+	</header>
 	<div class="title">
 		<div class="center">
 			<div class="line"></div>
@@ -81,6 +82,7 @@
 				<img id="comment_pic"src="">
 				<p id="comment_from">来自${commentFrom}</p> 
 			</div>
+			
 			<div class="right">
 				<p>${comments.rating}分</p>
 				<img src="../resource/img/poi/reviews.png">
@@ -115,10 +117,9 @@
 				<img src="../resource/img/poi/ticket.png">
 				<p>设施</p>
 				<div class="all">
-	<c:forEach items="${facilities}" var="facilitie">
 		<c:choose>
 				<c:when
-					test="${facilitie.wifi =='false'}">
+					test="${facilities.wifi ==false}">
 					<div style="display: none" class="little">
 						<img class="little" src="../resource/img/poi/wifi.png">
 						<div class="text" id="little">提供wifi</div>
@@ -132,7 +133,6 @@
 				</c:otherwise>
 		</c:choose>
 			
-	</c:forEach>
 				</div>
 			</div>
 		</div>
