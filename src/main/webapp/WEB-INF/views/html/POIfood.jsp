@@ -12,7 +12,7 @@
 	header{
 		background-image:url(${coverimage});
 		background-size: cover;
-		height: 41%;
+		height: 60%;
 	}
 	.tips .first_menu{
 	background-size: cover;
@@ -26,7 +26,8 @@
 			<div class="line"></div>
 			<div class="icon"></div>
 			<div class="line"></div>
-			<h2>${title}<br/>${english_title}</h2>
+			<h2 class="ch_name">${title}</h2>
+			<h2 class="en_name">${english_title}</h2>
 		</div>
 		<div class="score">
 			<img class="reviews_pic" src=""><!-- 判断 -->
@@ -53,7 +54,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<div class="tips" id="breif">
+			<div class="tips" id="breif" style="ba">
 				<div class="breif">
 					<img src="../resource/img/poi/introd.png">
 					<h3>简介</h3>
@@ -93,7 +94,7 @@
 	<div class="tips">
 		<div class="breif">
 			<img src="../resource/img/poi/menu.png">
-			<h3>菜品推荐</h3>
+			<h3>菜品</h3>
 		</div>
 		<c:forEach items="${recommends}" var="recommend">
 			<div class="menu first_menu" style="background-image: url(${recommend.coverImage});">
@@ -338,13 +339,13 @@
 						test="${facilitie.outseat =='false'}">
 						<div style="display: none" class="little">
 							<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-							<div class="text" id="little">外面有椅子</div>
+							<div class="text" id="little">有椅子</div>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="little">
 							<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-							<div class="text" id="little">外面有椅子</div>
+							<div class="text" id="little">有椅子</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
