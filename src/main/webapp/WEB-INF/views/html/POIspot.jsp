@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="apple-touch-fullscreen" content="YES" />
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="../css/POIshop.css">
+<link rel="stylesheet" type="text/css" href="../css/POIspot.css">
 <script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 <style type="text/css">
 header {
@@ -109,8 +109,8 @@ header {
 		<c:otherwise>
 			<div class="tips">
 				<div class="breif">
-					<img src="../resource/img/poi/shop.png">
-					<div class="h3">菜品推荐</div>
+					<img src="../resource/img/poi/spot.png">
+					<div class="h3">景点</div>
 				</div>
 				<c:forEach items="${recommends}" var="recommend">
 					<div class="menu first_menu"
