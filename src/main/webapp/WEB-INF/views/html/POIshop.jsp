@@ -61,7 +61,7 @@
 	<div class="tips">
 		<div class="breif">
 			<img src="../resource/img/poi/menu.png">
-			<h3>菜品推荐</h3>
+			<h3>购物</h3>
 		</div>
 <c:forEach items="${recommends}" var="recommend">
 		<div class="menu first_menu" style="background-image: url($(recommend.coverImage));">

@@ -115,7 +115,7 @@
 	}
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;
-		width: 150px;
+		width: 200px;
 		display: inline-block;
 	}
 	.page .poi .center .icon{
@@ -123,8 +123,8 @@
 		top:15px;
 		display: inline-block;
 		margin: 0 32px;
-		height: 30px;
-		width: 42px;
+		height: 40px;
+		width: 52px;
 		
 		background-size: cover;
 	}
