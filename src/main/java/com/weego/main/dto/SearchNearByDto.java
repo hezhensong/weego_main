@@ -1,6 +1,6 @@
 package com.weego.main.dto;
 
-public class SearchNearByDto extends BaseDto {
+public class SearchNearByDto {
 	private SearchNearByBaseDto data;
 
 	public SearchNearByBaseDto getData() {

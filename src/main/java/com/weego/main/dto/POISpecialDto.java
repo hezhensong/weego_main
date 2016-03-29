@@ -2,7 +2,7 @@ package com.weego.main.dto;
 
 import java.util.List;
 
-public class POISpecialDto extends BaseDto {
+public class POISpecialDto {
 	private List<POISepcialBaseDto> data;
 
 	public List<POISepcialBaseDto> getData() {

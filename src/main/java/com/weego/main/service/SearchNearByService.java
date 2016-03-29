@@ -1,8 +1,8 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.SearchNearByDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 
 public interface SearchNearByService {
-	SearchNearByDto getSearchNearByInfos(String cityId, Integer type,
+	SearchNearByBaseDto getSearchNearByInfos(String cityId, Integer type,
 			String coordination, String sort, Double range, Integer price, String special);
 }

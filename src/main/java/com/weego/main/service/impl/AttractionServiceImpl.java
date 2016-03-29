@@ -13,18 +13,13 @@ import org.springframework.stereotype.Service;
 import com.weego.main.dao.ActivityDao;
 import com.weego.main.dao.AttractionDao;
 import com.weego.main.dto.POIBaseDto;
-import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
-import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
-import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
-import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.SearchNearByBaseDto;
-import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.dto.SearchNearByListDto;
 import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
@@ -40,8 +35,7 @@ import com.weego.main.util.DistanceUtil;
 @Service("attractionService")
 public class AttractionServiceImpl implements AttractionService {
 
-	private static Logger logger = LogManager
-			.getLogger(AttractionServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(AttractionServiceImpl.class);
 
 	@Autowired
 	AttractionDao attractionDao;
@@ -50,9 +44,9 @@ public class AttractionServiceImpl implements AttractionService {
 	ActivityDao activityDao;
 
 	@Override
-	public POIListDto getAttractionsByCityId(String cityId, String labelId,
+	public List<POIBaseDto> getAttractionsByCityId(String cityId, String labelId,
 			Integer page, Integer count) {
-		POIListDto poiListDto = new POIListDto();
+
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
 		List<Attraction> attractions = attractionDao.getAttractionsByCityId(
 				cityId, labelId, page, count);
@@ -70,13 +64,11 @@ public class AttractionServiceImpl implements AttractionService {
 				poiBaseDtos.add(poiBaseDto);
 			}
 		}
-		poiListDto.setData(poiBaseDtos);
-		return poiListDto;
+		return poiBaseDtos;
 	}
 
 	@Override
-	public POIDetailDto getAttractionById(String id, String coordination) {
-		POIDetailDto poiDetailDto = new POIDetailDto();
+	public POIDetailSumDto getAttractionById(String id, String coordination) {
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Attraction attraction = attractionDao.getAttractionById(id);
 
@@ -88,8 +80,7 @@ public class AttractionServiceImpl implements AttractionService {
 			poiDetailSumDto.setAddress(attraction.getAddress());
 			poiDetailSumDto.setTel(attraction.getTel());
 			poiDetailSumDto.setWebsite(attraction.getWebsite());
-			poiDetailSumDto.setBriefIntroduction(attraction
-					.getBriefIntroduction());
+			poiDetailSumDto.setBriefIntroduction(attraction.getBriefIntroduction());
 			poiDetailSumDto.setIntroduction(attraction.getIntroduction());
 			poiDetailSumDto.setCityName(attraction.getCityName());
 			poiDetailSumDto.setCityId(attraction.getCityId());
@@ -200,14 +191,12 @@ public class AttractionServiceImpl implements AttractionService {
 			poiDetailSumDto.setOpenTableUrl(attraction.getOpenTableUrl());
 			poiDetailSumDto.setOpenDay(0);
 			poiDetailSumDto.setFacilities(null);
-			poiDetailDto.setData(poiDetailSumDto);
 		}
-		return poiDetailDto;
+		return poiDetailSumDto;
 	}
 
 	@Override
-	public POISpecialDto getAttractionSpotsById(String id) {
-		POISpecialDto poiSpecialDto = new POISpecialDto();
+	public List<POISepcialBaseDto> getAttractionSpotsById(String id) {
 		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
 		Attraction attraction = attractionDao.getAttractionById(id);
 		List<AttractionSpot> attractionSpots = new ArrayList<AttractionSpot>();
@@ -225,14 +214,12 @@ public class AttractionServiceImpl implements AttractionService {
 					poiSepcialBaseDtos.add(poiSepcialBaseDto);
 				}
 			}
-			poiSpecialDto.setData(poiSepcialBaseDtos);
 		}
-		return poiSpecialDto;
+		return poiSepcialBaseDtos;
 	}
 
 	@Override
-	public POICommentsDto getAttractionCommentsById(String id) {
-		POICommentsDto poiCommentsDto = new POICommentsDto();
+	public List<POIDetailCommentsDto> getAttractionCommentsById(String id) {
 		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
 		Attraction attraction = attractionDao.getAttractionById(id);
 		if (attraction != null) {
@@ -252,16 +239,14 @@ public class AttractionServiceImpl implements AttractionService {
 					poiDetailCommentsDtos.add(poiDetailCommentsDto);
 				}
 			}
-			poiCommentsDto.setData(poiDetailCommentsDtos);
 		}
-		return poiCommentsDto;
+		return poiDetailCommentsDtos;
 	}
 
 	@Override
-	public SearchNearByDto getAttractionsByCityIdAndCoordination(String cityId, String coordination, String sort,
+	public SearchNearByBaseDto getAttractionsByCityIdAndCoordination(String cityId, String coordination, String sort,
 			Double range, Integer price, String special) {
 		
-		SearchNearByDto searchNearByDto = new SearchNearByDto();		
 		SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
@@ -401,7 +386,6 @@ public class AttractionServiceImpl implements AttractionService {
 		
 		searchNearByBaseDto.setTagList(tagList);
 		searchNearByBaseDto.setSearches(searchNearByListDtos);
-		searchNearByDto.setData(searchNearByBaseDto);
-		return searchNearByDto;
+		return searchNearByBaseDto;
 	}
 }

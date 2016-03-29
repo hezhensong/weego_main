@@ -2,14 +2,10 @@ package com.weego.main.model;
 
 import org.mongojack.Id;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Label {
 	@Id
 	private String id;
 	private String name;
-	@JsonProperty("name_en")
-	private String nameEn;
 	private Integer type;
 
 	public String getId() {
@@ -26,14 +22,6 @@ public class Label {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getNameEn() {
-		return nameEn;
-	}
-
-	public void setNameEn(String nameEn) {
-		this.nameEn = nameEn;
 	}
 
 	public Integer getType() {

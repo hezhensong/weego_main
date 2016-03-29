@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.weego.main.dao.DishDao;
 import com.weego.main.dto.POISepcialBaseDto;
-import com.weego.main.dto.POISpecialDetailDto;
 import com.weego.main.model.Dish;
 import com.weego.main.service.DishService;
 
@@ -16,8 +15,7 @@ public class DishServiceImpl implements DishService {
 	DishDao dishDao;
 
 	@Override
-	public POISpecialDetailDto getDishById(String id) {
-		POISpecialDetailDto poiSpecialDetailDto = new POISpecialDetailDto();
+	public POISepcialBaseDto getDishById(String id) {
 		POISepcialBaseDto poiSepcialBaseDto = new POISepcialBaseDto();
 		Dish dish =  dishDao.getDishById(id);
 		if(dish != null) {
@@ -26,9 +24,8 @@ public class DishServiceImpl implements DishService {
 			poiSepcialBaseDto.setTitle(dish.getTitle());
 			poiSepcialBaseDto.setDesc(dish.getDesc());
 			poiSepcialBaseDto.setTag(dish.getTag());
-			poiSpecialDetailDto.setData(poiSepcialBaseDto);
 		}
-		return poiSpecialDetailDto;
+		return poiSepcialBaseDto;
 	}
 	
 }

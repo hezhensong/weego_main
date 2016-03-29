@@ -13,18 +13,13 @@ import org.springframework.stereotype.Service;
 import com.weego.main.dao.ActivityDao;
 import com.weego.main.dao.ShoppingDao;
 import com.weego.main.dto.POIBaseDto;
-import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
-import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
-import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
-import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.SearchNearByBaseDto;
-import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.dto.SearchNearByListDto;
 import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
@@ -49,9 +44,9 @@ public class ShoppingServiceImpl implements ShoppingService {
 	ActivityDao activityDao;
 
 	@Override
-	public POIListDto getShoppingByCityId(String cityId, String labelId,
+	public List<POIBaseDto> getShoppingByCityId(String cityId, String labelId,
 										  Integer page, Integer count) {
-		POIListDto poiListDto = new POIListDto();
+		
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
 		List<Shopping> shoppings = shoppingDao.getShoppingsByCityId(cityId,
 				labelId, page, count);
@@ -69,13 +64,11 @@ public class ShoppingServiceImpl implements ShoppingService {
 				poiBaseDtos.add(poiBaseDto);
 			}
 		}
-		poiListDto.setData(poiBaseDtos);
-		return poiListDto;
+		return poiBaseDtos;
 	}
 
 	@Override
-	public POIDetailDto getShoppingById(String id, String coordination) {
-		POIDetailDto poiDetailDto = new POIDetailDto();
+	public POIDetailSumDto getShoppingById(String id, String coordination) {
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Shopping shopping = shoppingDao.getShoppingById(id);
 		if (shopping != null) {
@@ -199,14 +192,12 @@ public class ShoppingServiceImpl implements ShoppingService {
 			poiDetailSumDto.setOpenDay(0);
 
 			poiDetailSumDto.setFacilities(null);
-			poiDetailDto.setData(poiDetailSumDto);
 		}
-		return poiDetailDto;
+		return poiDetailSumDto;
 	}
 
 	@Override
-	public POISpecialDto getShoppingBrandsById(String id) {
-		POISpecialDto poiSpecialDto = new POISpecialDto();
+	public List<POISepcialBaseDto> getShoppingBrandsById(String id) {
 		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
 		Shopping shopping = shoppingDao.getShoppingById(id);
 		List<ShoppingBrand> shoppingBrands = new ArrayList<ShoppingBrand>();
@@ -224,14 +215,12 @@ public class ShoppingServiceImpl implements ShoppingService {
 					poiSepcialBaseDtos.add(poiSepcialBaseDto);
 				}
 			}
-			poiSpecialDto.setData(poiSepcialBaseDtos);
 		}
-		return poiSpecialDto;
+		return poiSepcialBaseDtos;
 	}
 
 	@Override
-	public POICommentsDto getShoppingCommentsById(String id) {
-		POICommentsDto poiCommentsDto = new POICommentsDto();
+	public List<POIDetailCommentsDto> getShoppingCommentsById(String id) {
 		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
 		Shopping shopping = shoppingDao.getShoppingById(id);
 		if (shopping != null) {
@@ -251,16 +240,13 @@ public class ShoppingServiceImpl implements ShoppingService {
 					poiDetailCommentsDtos.add(poiDetailCommentsDto);
 				}
 			}
-			poiCommentsDto.setData(poiDetailCommentsDtos);
 		}
-		return poiCommentsDto;
+		return poiDetailCommentsDtos;
 	}
 
 	@Override
-	public SearchNearByDto getShoppingByCityIdAndCoordination(String cityId, String coordination, String sort,
+	public SearchNearByBaseDto getShoppingByCityIdAndCoordination(String cityId, String coordination, String sort,
 															  Double range, Integer price, String special) {
-		
-		SearchNearByDto searchNearByDto = new SearchNearByDto();		
 		SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
@@ -400,7 +386,6 @@ public class ShoppingServiceImpl implements ShoppingService {
 		
 		searchNearByBaseDto.setTagList(tagList);
 		searchNearByBaseDto.setSearches(searchNearByListDtos);
-		searchNearByDto.setData(searchNearByBaseDto);
-		return searchNearByDto;
+		return searchNearByBaseDto;
 	}
 }

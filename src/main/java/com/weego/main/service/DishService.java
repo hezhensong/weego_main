@@ -1,7 +1,7 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.POISpecialDetailDto;
+import com.weego.main.dto.POISepcialBaseDto;
 
 public interface DishService {
-	POISpecialDetailDto getDishById(String id);
+	POISepcialBaseDto getDishById(String id);
 }
