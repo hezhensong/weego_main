@@ -5,8 +5,6 @@ var _detail_ticket = $("#ticket").html();
 var _tag = $(".type").html();
 var _comment_from = $("#comment_from").html();
 var _comments_rating =$(".comments_rating").html();
-var _breif_desc = $("#breif_desc").html();
-var _little_tip = $("#little_tip").html();
 var _reviews =$(".reviews").html();
 
 if(_detail_time == ""){
@@ -64,11 +62,3 @@ if(_comments_rating == "2.5分"){
 	$(".rating_pic").attr("src","../resource/img/poi/reviews5.png");
 }
 
-
-if(_breif_desc == ""){
-	$("#breif").hide();
-}
-
-if(_little_tip == ""){
-	$("#tip").hide();
-}
