@@ -206,25 +206,24 @@ public class PgcServiceImpl implements PgcService {
         } else {
 
             ModelAndView mv = new ModelAndView("PGC");
-            mv.addObject("author", pgc.getPerson());
-            mv.addObject("poi_bg", pgc.getCoverImage());
+            mv.addObject("cover_img", pgc.getCoverImage());
             mv.addObject("title", pgc.getTitle());
             
             if (Strings.isNullOrEmpty(pgc.getPerson())) {
-                mv.addObject("person", null);
+                mv.addObject("person", "null");
             } else {
                 Person person = peopleDao.getPersonById(pgc.getPerson().trim());
                 if(person!=null){
                     mv.addObject("person", person);
                 }else{
-                    mv.addObject("person", null);
+                    mv.addObject("person", "null");
                 }
             }
             PgcOriginal original = pgc.getOriginal();
             if(original != null) {
                 mv.addObject("original", original);
             } else {
-                mv.addObject("original", null);
+                mv.addObject("original", "null");
             }
             List<PgcPoi> pgcPoiList = pgc.getPoiList();
             List<PgcContentDto> pgcPoiDtoList = new ArrayList<PgcContentDto>();
