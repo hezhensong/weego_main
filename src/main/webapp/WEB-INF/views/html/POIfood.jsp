@@ -27,9 +27,8 @@ header {
 			<div class="line"></div>
 			<div class="icon"></div>
 			<div class="line"></div>
-			<h2>
-				${title}<br />${english_title}
-			</h2>
+			<h2 class="ch_name">${title}</h2>
+			<h2 class="en_name">${english_title}</h2>
 		</div>
 		<div class="score">
 			<img class="reviews_pic" src="">
@@ -229,9 +228,14 @@ header {
 				<div class="details clearfix" id="detail_time">
 					<img src="../resource/img/poi/time.png">
 					<p>时间：</p>
-					<c:forEach items="${times}" var="time">
-						<h3 class="h3 time">${time}</h3>
-					</c:forEach>
+					<div class="aaa">
+						<c:forEach items="${times}" var="time">
+							<div class="bbb">${time}</div>
+						</c:forEach>
+					</div>
+						
+					
+					
 				</div>
 			</c:otherwise>
 		</c:choose>
