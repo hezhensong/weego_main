@@ -35,7 +35,7 @@ public class ActivityServiceImpl implements ActivityService {
 
 		try {
 			Activity cityActivity = cityActivityDao
-					.getSpecifiedCity(cityActivityId);
+					.getSpecifiedActivity(cityActivityId);
 
 			if (cityActivity != null) {
 				// 将数据库中的数据赋值给dto
@@ -220,7 +220,7 @@ public class ActivityServiceImpl implements ActivityService {
 	public ModelAndView getSpecifiedActivity(String activityId) {
 
 		ModelAndView mv = new ModelAndView("activity");
-		Activity activity = cityActivityDao.getSpecifiedCity(activityId);
+		Activity activity = cityActivityDao.getSpecifiedActivity(activityId);
 
 		if (activity != null) {
 			mv.addObject("title", activity.getTitle());

@@ -16,7 +16,7 @@ public class ActivityDaoTest extends BaseTest {
     @Test
     public void testGetActivityById() {
         String id = "566671487924fafc1d00017b";
-        Activity activity = activityDao.getSpecifiedCity(id);
+        Activity activity = activityDao.getSpecifiedActivity(id);
 
         System.out.println(activity.toString());
     }
@@ -26,6 +26,6 @@ public class ActivityDaoTest extends BaseTest {
         String cityId = "516a34f958e3511036000001";
         List<Activity> list = activityDao.getAllActivity(cityId);
 
-        System.out.println(list.get(0));
+        System.out.println(list);
     }
 }

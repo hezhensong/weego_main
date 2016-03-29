@@ -1,19 +1,20 @@
 package com.weego.main.service.impl;
 
+import com.google.common.base.Strings;
 import com.weego.main.constant.PgcType;
 import com.weego.main.constant.RecommendType;
 import com.weego.main.dao.*;
 import com.weego.main.dto.*;
 import com.weego.main.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.parsing.ParseState;
-import org.springframework.stereotype.Service;
-
 import com.weego.main.service.PgcService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-import com.google.common.base.Strings;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service("pgcService")
 public class PgcServiceImpl implements PgcService {

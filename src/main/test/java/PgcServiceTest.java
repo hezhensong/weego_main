@@ -13,7 +13,7 @@ public class PgcServiceTest extends BaseTest {
 
     @Test
     public void testGetPgcPoiDetai() {
-        String pgcId = "56e64d8960f7fef1690003c2";
+        String pgcId = "56ceefa8186cd64045000034";
 
         PgcDetailDto pgcDetailDto = pgcService.getPgcDetail(pgcId);
 
