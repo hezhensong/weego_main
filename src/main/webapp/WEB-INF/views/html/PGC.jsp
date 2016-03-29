@@ -16,7 +16,7 @@ header {
 }
 
 .page .poi {
-	height: 420px;
+	height: 35%;
 	background-size: cover;
 	margin: 30px 0;
 }
@@ -110,6 +110,8 @@ header {
 				<c:otherwise>
 					<div style="background-image:url(${PgcPoi.poi.image})" class="poi"
 						id="poi">
+						<img class="overlay" id="poi_pic"
+							src="../resource/img/pgc/overlay.png">
 						<div class="type" id="poi_tag">${PgcPoi.poi.tag}</div>
 						<div class="center">
 							<div class="line"></div>
