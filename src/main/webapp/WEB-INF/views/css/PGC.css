@@ -20,7 +20,7 @@
 	}
 	header h1{
 		margin:0 7%;
-		top: 55%;
+		top: 67%;
 		position: relative;
 		text-align: center;
 		font-size:60px ;
@@ -80,8 +80,10 @@
 		text-align: center;
 	}
 	.page .page_title .small{
+	    margin-bottom:-8px;
 		margin-right: 25px;
-		height: 38px;width: 8px;
+		height: 60px;
+		width: 8px;
 		background-color: #ff4f4e;
 		display: inline-block;
 	}
@@ -94,8 +96,8 @@
 	}
 	.page .poi .type{
 		padding-left: 28px;
-		padding-top: 15px;
-		font-size: 32px;
+		padding-top: 12px;
+		font-size: 38px;
 		position: relative;
 		top: -500px;
 		background-image:url(../resource/img/pgc/lable.png);
@@ -135,7 +137,7 @@
 	}
 	.page .page_pic img{
 		width: 100%;
-		height: 420px;
+		height: 549px;
 	}
 	.page .page_pic h3{
 		margin:2% 0 6% 0;
