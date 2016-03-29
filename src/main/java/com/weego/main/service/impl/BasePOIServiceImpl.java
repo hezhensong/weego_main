@@ -44,77 +44,99 @@ public class BasePOIServiceImpl implements BasePOIService {
 	@Override
 	public List<POIBaseDto> getPOIsByCityId(String cityId, Integer type,
 			String labelId, Integer page, Integer count) {
-		if (type == 0) {
-			return attractionService.getAttractionsByCityId(cityId, labelId,
-					page, count);
-		} else if (type == 1) {
-			return restaurantService.getRestaurantsByCityId(cityId, labelId,
-					page, count);
-		} else if (type == 2) {
-			return shoppingService.getShoppingByCityId(cityId, labelId, page,
-					count);
-		} else {
-			logger.info("type 参数值有误");
+		
+		try {
+			if (type == 0) {
+				return attractionService.getAttractionsByCityId(cityId, labelId,
+						page, count);
+			} else if (type == 1) {
+				return restaurantService.getRestaurantsByCityId(cityId, labelId,
+						page, count);
+			} else if (type == 2) {
+				return shoppingService.getShoppingByCityId(cityId, labelId, page,
+						count);
+			}
+		} catch (Exception e) {
+			logger.info("POI 列表接口有误!");
+			e.printStackTrace();
 			return null;
-		}
+		} 
+		
+		return null;
 	}
 
 	@Override
 	public POIDetailSumDto getPOIDetailById(String id, Integer type,
 			String coordination) {
-		if (type == 0) {
-			return attractionService.getAttractionById(id, coordination);
-		} else if (type == 1) {
-			return restaurantService.getRestaurantById(id, coordination);
-		} else if (type == 2) {
-			return shoppingService.getShoppingById(id, coordination);
-		} else {
-			logger.info("type 参数值有误");
+		try {
+			if (type == 0) {
+				return attractionService.getAttractionById(id, coordination);
+			} else if (type == 1) {
+				return restaurantService.getRestaurantById(id, coordination);
+			} else if (type == 2) {
+				return shoppingService.getShoppingById(id, coordination);
+			}
+		} catch (Exception e) {
+			logger.info("POI 详情页接口有误!");
+			e.printStackTrace();
 			return null;
-		}
+		} 
+		return null;
 	}
 
 	@Override
 	public List<POISepcialBaseDto> getPOISpecialById(String id, Integer type) {
-		if (type == 0) {
-			return attractionService.getAttractionSpotsById(id);
-		} else if (type == 1) {
-			return restaurantService.getRestaurantDishesById(id);
-		} else if (type == 2) {
-			return shoppingService.getShoppingBrandsById(id);
-		} else {
-			logger.info("type 参数值有误");
+		try {
+			if (type == 0) {
+				return attractionService.getAttractionSpotsById(id);
+			} else if (type == 1) {
+				return restaurantService.getRestaurantDishesById(id);
+			} else if (type == 2) {
+				return shoppingService.getShoppingBrandsById(id);
+			}
+		} catch (Exception e) {
+			logger.info("POI 特色列表接口有误!");
+			e.printStackTrace();
 			return null;
-		}
+		} 
+		return null;
 	}
 
 	@Override
 	public POISepcialBaseDto getPOISpecialDetailById(String specialId,
 			Integer type) {
-		if (type == 0) {
-			return spotService.getSpotById(specialId);
-		} else if (type == 1) {
-			return dishService.getDishById(specialId);
-		} else if (type == 2) {
-			return brandService.getBrandById(specialId);
-		} else {
-			logger.info("type 参数值有误");
+		try {
+			if (type == 0) {
+				return spotService.getSpotById(specialId);
+			} else if (type == 1) {
+				return dishService.getDishById(specialId);
+			} else if (type == 2) {
+				return brandService.getBrandById(specialId);
+			}
+		} catch (Exception e) {
+			logger.info("POI 特色详情接口有误!");
+			e.printStackTrace();
 			return null;
 		}
+		return null;
 	}
 
 	@Override
 	public List<POIDetailCommentsDto> getPOICommentsById(String id, Integer type) {
-		if (type == 0) {
-			return attractionService.getAttractionCommentsById(id);
-		} else if (type == 1) {
-			return restaurantService.getRestaurantCommentsById(id);
-		} else if (type == 2) {
-			return shoppingService.getShoppingCommentsById(id);
-		} else {
-			logger.info("type 参数值有误");
+		try {
+			if (type == 0) {
+				return attractionService.getAttractionCommentsById(id);
+			} else if (type == 1) {
+				return restaurantService.getRestaurantCommentsById(id);
+			} else if (type == 2) {
+				return shoppingService.getShoppingCommentsById(id);
+			}
+		} catch (Exception e) {
+			logger.info("POI 评论列表接口有误!");
+			e.printStackTrace();
 			return null;
-		}
+		} 
+		return null;
 	}
 
 	@Override
@@ -122,13 +144,13 @@ public class BasePOIServiceImpl implements BasePOIService {
 			String to) {
 		POITranslationBaseDto poiTranslationBaseDto = new POITranslationBaseDto();
 		try {
-			String translation = BaiDuTranslateUtil
-					.translate(content, from, to);
+			String translation = BaiDuTranslateUtil.translate(content, from, to);
 			poiTranslationBaseDto.setOrigin(content);
 			poiTranslationBaseDto.setTranslation(translation);
 		} catch (Exception e) {
-			logger.info("百度翻译出错了!");
+			logger.info("百度翻译接口有误!");
 			e.printStackTrace();
+			return null;
 		}
 		return poiTranslationBaseDto;
 	}
