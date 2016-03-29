@@ -11,7 +11,7 @@
 header {
 	background-image: url(${cover_img});
 	background-size: cover;
-	height: 41%;
+	height: 60%;
 	width: 100%;
 }
 

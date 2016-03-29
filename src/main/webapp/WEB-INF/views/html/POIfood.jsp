@@ -27,9 +27,8 @@ header {
 			<div class="line"></div>
 			<div class="icon"></div>
 			<div class="line"></div>
-			<h2>
-				${title}<br />${english_title}
-			</h2>
+			<h2 class="ch_name">${title}</h2>
+			<h2 class="en_name">${english_title}</h2>
 		</div>
 		<div class="score">
 			<img class="reviews_pic" src="">
@@ -60,7 +59,7 @@ header {
 			<div style="display: none" class="tips" id="breif">
 				<div class="breif">
 					<img src="../resource/img/poi/tips.png">
-					<h3>简介</h3>
+					<div class="h3">简介</div>
 				</div>
 				<p class="margin" id="breif_desc">${breif}</p>
 			</div>
@@ -69,7 +68,7 @@ header {
 			<div class="tips" id="breif">
 				<div class="breif">
 					<img src="../resource/img/poi/introd.png">
-					<h3>简介</h3>
+					<div class="h3">简介</div>
 				</div>
 				<p class="margin" id="breif_desc">${breif}</p>
 			</div>
@@ -81,7 +80,7 @@ header {
 			<div style="display: none" class="tips" id="tip">
 				<div class="breif">
 					<img src="../resource/img/poi/tips.png">
-					<h3>小贴士</h3>
+					<div class="h3">小贴士</div>
 				</div>
 				<div class="margin">
 					<p id="little_tip">${tips}</p>
@@ -92,7 +91,7 @@ header {
 			<div class="tips" id="tip">
 				<div class="breif">
 					<img src="../resource/img/poi/tips.png">
-					<h3>小贴士</h3>
+					<div class="h3">小贴士</div>
 				</div>
 				<div class="margin">
 					<p id="little_tip">${tips}</p>
@@ -111,7 +110,7 @@ header {
 			<div class="tips">
 				<div class="breif">
 					<img src="../resource/img/poi/menu.png">
-					<h3>菜品推荐</h3>
+					<div class="h3">菜品推荐</div>
 				</div>
 				<c:forEach items="${recommends}" var="recommend">
 					<div class="menu first_menu"
@@ -120,7 +119,7 @@ header {
 						<div class="type">${recommend.tag}</div>
 						<div class="menu_name">${recommend.title}</div>
 					</div>
-					<p>${recommend.desc}</p>
+					<p class="recommenddesc">${recommend.desc}</p>
 				</c:forEach>
 			</div>
 		</c:otherwise>
@@ -131,7 +130,7 @@ header {
 			<div style="display: none" class="tips last_tip">
 				<div class="breif recommends">
 					<img src="../resource/img/poi/comment.png">
-					<h3>评论</h3>
+					<div class="h3">评论</div>
 				</div>
 				<div class="comment">
 					<div class="left">
@@ -147,9 +146,9 @@ header {
 				</div>
 				<p class="main_comment">${comments.title}</p>
 				<div class="good_comment">
-					<img src="../resource/img/pgc/yin1.png"><br />
+					<img class="float_l" src="../resource/img/poi/yin1.png"><br />
 					<p class="desc">${comments.text}</p>
-					<img class="float_r" src="../resource/img/pgc/yin2.png">
+					<img class="float_r" src="../resource/img/poi/yin2.png">
 				</div>
 			</div>
 		</c:when>
@@ -157,7 +156,7 @@ header {
 			<div class="tips last_tip">
 				<div class="breif recommends">
 					<img src="../resource/img/poi/comment.png">
-					<h3>评论</h3>
+					<div class="h3">评论</div>
 				</div>
 				<div class="comment">
 					<div class="left">
