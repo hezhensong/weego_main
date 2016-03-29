@@ -126,6 +126,7 @@ header {
 		</c:otherwise>
 	</c:choose>
 
+	<c:if test="${comments != null}">
 	<c:choose>
 		<c:when test="${comments.text =='' || comments.text =='null' || comments.text ==null}">
 			<div style="display: none" class="tips last_tip">
@@ -145,7 +146,7 @@ header {
 					</div>
 					<!-- finish js -->
 				</div>
-				<p class="main_comment">${comments.title}</p>
+				<p class="main_comment">test</p>
 				<div class="good_comment">
 					<img class="float_l" src="../resource/img/poi/yin1.png"><br />
 					<p class="desc">${comments.text}</p>
@@ -154,6 +155,7 @@ header {
 			</div>
 		</c:when>
 		<c:otherwise>
+		</c:if>
 			<div class="tips last_tip">
 				<div class="breif recommends">
 					<img src="../resource/img/poi/comment.png">
@@ -171,7 +173,7 @@ header {
 					</div>
 					<!-- finish js -->
 				</div>
-				<p class="main_comment">${comments.title}</p>
+				<p class="main_comment">test</p>
 				<div class="good_comment">
 					<img src="../resource/img/pgc/yin1.png"><br />
 					<p class="desc">${comments.text}</p>
