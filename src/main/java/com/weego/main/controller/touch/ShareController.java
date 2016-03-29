@@ -48,13 +48,6 @@ public class ShareController {
         return activityService.getSpecifiedActivity(activityId);
     }
     
-//    @RequestMapping(value = "/poi", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ModelAndView getPOI(@RequestParam("poiId") String poiId,
-//                               @RequestParam("type") Integer type) {
-//
-//        return basePOIService.getPOIDetail(poiId, type);
-//    }
     
     @RequestMapping(value = "/poi", method = RequestMethod.GET)
     @ResponseBody
