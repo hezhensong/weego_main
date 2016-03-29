@@ -12,7 +12,7 @@
 header {
 	background-image: url(${coverimage});
 	background-size: cover;
-	height: 41%;
+	height: 60%;
 }
 
 .tips .first_menu {

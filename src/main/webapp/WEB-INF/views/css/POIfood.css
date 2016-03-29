@@ -50,6 +50,13 @@ body{
 	font-size: 58px;
 	text-align: center;
 }
+.title .center .ch_name{
+	margin-bottom:0;
+}
+.title .center .en_name{
+	margin-top:20px;
+	font-size: 50px;
+}
 .title .center h3{
 	font-size: 30px;
 	text-align: center;
@@ -75,7 +82,7 @@ body{
 	margin: 0 3% 6% 3%;
 }
 .tips h2{
-	font-size: 30px;
+	font-size: 40px;
 	text-align: center;
 	line-height: 50px;
 }
@@ -85,13 +92,13 @@ body{
 }
 .tips .special .single{
 	font-size: 30px;
-	width: 180px;
+	width: 200px;
 	text-align: center;
 	border:3px solid #ff514e;
 	display: inline-block;
 	margin:0 7.5px;
 	border-radius: 50px;
-	padding: 7px 0;
+	padding: 15px 0;
 }
 .tips .special .first{
 	background-color: #ff514e;
@@ -116,12 +123,12 @@ body{
 }
 .tips p{
 	margin: 0;
-	font-size: 30px;
+	font-size: 32px;
 	line-height: 60px;
 }
 .tips .menu{
 	margin: 70px 16px 60px 16px;
-	height: 33%;
+	height: 41%;
 }
 .tips .menu p{
 	margin-left:20px;
@@ -142,15 +149,15 @@ body{
 }
 .tips .menu .menu_name{
 	position: relative;
-	top: 215px;
-	left: -200px;
+	top: 53%;
+	left: 28px;
 	float: left;
 	font-size: 36px;
 
 }
 .tips .menu .overlay{
 	position: relative;
-	top: 65%;
+	top: 71%;
 	width: 100%;
 }
 .tips .comment{
@@ -196,6 +203,9 @@ body{
 }
 .tips .good_comment .desc{
 	margin:0 30px;
+}
+.message{
+	margin:-60px 20px 100px 20px;
 }
 .message .details{
 	padding-top:5px;
