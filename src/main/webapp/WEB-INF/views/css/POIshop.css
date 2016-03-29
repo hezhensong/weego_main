@@ -41,7 +41,7 @@ body{
 	display: inline-block;
 }
 .title .center .icon{
-	background-image: url(../resource/img/poi/foodname.png);
+	background-image: url(../resource/img/poi/shopname.png);
 	position: relative;
 	top:15px;
 	display: inline-block;
