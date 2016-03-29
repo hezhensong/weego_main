@@ -17,7 +17,6 @@ header {
 
 .page .poi {
 	height: 420px;
-	background-image: url(${poi_bg});
 	background-size: cover;
 	margin: 30px 0;
 }
@@ -29,16 +28,8 @@ header {
 	</header>
 
 	<c:choose>
-		<c:when>
-				test="${person =='' || person == 'null'}">
-				<div style="display: none" class="author">
-				<div class="head">
-					<img id="author_pic" src="${person.headImage}">
-				</div>
-				<h1 id="author_name">${person.userName}</h1>
-				<p>${person.jobDesc}</p>
-				<div class="line"></div>
-			</div>
+		<c:when test="${person =='' || person == 'null' || person == null}">
+			<div style="display: none" class="author"></div>
 		</c:when>
 		<c:otherwise>
 			<div class="author">
@@ -52,98 +43,82 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<div class="from">
-		作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
-	</div>
+	<c:choose>
+		<c:when
+			test="${original.author =='' || original.author =='null' || original.author == null}">
+			<div style="display: none" class="from"></div>
+		</c:when>
+		<c:otherwise>
+			<div class="from">
+				作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
+			</div>
+		</c:otherwise>
+	</c:choose>
 
 	<div class="drb">
-		<img class="float-l" src="../resource/img/pgc/yin1.png"><br /> <span
-			style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${original.desc}</br>
-		<img class="float-r" src="../resource/img/pgc/yin2.png">
+		<img class="float-l" src="../resource/img/pgc/yin1.png"><br />
+		<span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${breif}</br> <img
+			class="float-r" src="../resource/img/pgc/yin2.png">
 	</div>
 	<c:forEach items="${poilist}" var="PgcPoi">
 		<div class="page">
-
 			<c:choose>
-				<c:when>
-				test="${PgcPoi.ParagraphDto.title =='' || PgcPoi.ParagraphDto.title == 'null'}">
-				<div style="display: none" class="page_title">
+				<c:when
+					test="${PgcPoi.paragraph.title =='' || PgcPoi.paragraph.title == 'null'}">
+					<div style="display: none" class="page_title">
 						<div class="small"></div>
-						<h2 id="text_title">${PgcPoi.ParagraphDto.title}</h2>
+						<h2 id="text_title">${PgcPoi.paragraph.title}</h2>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="page_title">
 						<div class="small"></div>
-						<h2 id="text_title">${PgcPoi.ParagraphDto.title}</h2>
+						<h2 id="text_title">${PgcPoi.paragraph.title}</h2>
 					</div>
 				</c:otherwise>
 			</c:choose>
 
 			<c:choose>
-				<c:when>
-				test="${PgcPoi.ParagraphDto.desc =='' || PgcPoi.ParagraphDto.desc == 'null'}">
-				<div style="display: none" id="text" class="drb">${PgcPoi.ParagraphDto.desc}</div>
+				<c:when
+					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == 'null' || PgcPoi.paragraph.desc == null}">
+					<div style="display: none" id="text" class="drb">${PgcPoi.paragraph.desc}</div>
 				</c:when>
 				<c:otherwise>
-					<div id="text" class="drb">${PgcPoi.ParagraphDto.desc}</div>
+					<div id="text" class="drb">${PgcPoi.paragraph.desc}</div>
 				</c:otherwise>
 			</c:choose>
 
 			<c:choose>
-				<c:when>
-				test="${PgcPoi.PgcPoiDto.title =='' || PgcPoi.PgcPoiDto.title == 'null'}">
-				<div style="display: none" class="poi" id="poi">
-						<img class="overlay" id="poi_pic"
-							src="../resource/img/pgc/overlay.png">
-						<div class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
-						<div class="center">
-							<div class="line"></div>
-							<img class="icon" alt="1" src="">
-							<div class="line"></div>
-							<h2 id="poi_title">${PgcPoi.PgcPoiDto.title}</h2>
-						</div>
+				<c:when
+					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null' || PgcPoi.poi.image == null}">
+					<div style="display: none" class="poi" id="poi">
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="poi" id="poi">
-						<a
-							href="http://192.168.8.104:8080/share/v1/poi?poiId=${PgcPoi.PgcPoiDto.id}&type=${PgcPoi.PgcPoiDto.type}">
-							<img class="overlay" id="poi_pic"
-							src="../resource/img/pgc/overlay.png">
-						</a>
-						<c:when>
-				test="${PgcPoi.PgcPoiDto.tag =='' || PgcPoi.PgcPoiDto.type == 'tag'}">
-					<div style="display: none" class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
-						</c:when>
-						<c:otherwise>
-							<div class="type" id="poi_tag">${PgcPoi.PgcPoiDto.tag}</div>
-						</c:otherwise>
+					<div style="background-image:url(${PgcPoi.poi.image})" class="poi"
+						id="poi">
+						<div class="type" id="poi_tag">${PgcPoi.poi.tag}</div>
 						<div class="center">
 							<div class="line"></div>
-							<img class="icon" alt="${PgcPoi.PgcPoiDto.type}" src="">
+							<img class="icon" alt="${PgcPoi.poi.type}" src="">
 							<div class="line"></div>
-							<h2 id="poi_title">${PgcPoi.PgcPoiDto.title}</h2>
+							<h2 id="poi_title">${PgcPoi.poi.title}</h2>
 						</div>
 					</div>
 				</c:otherwise>
 			</c:choose>
 
 			<c:choose>
-				<c:when>
-				test="${PgcPoi.PgcImageDto.url =='' || PgcPoi.PgcImageDto.url == 'null'}">
-				<div style="display: none" class="page_pic">
-						<img id="pic" src="${PgcPoi.PgcImageDto.url}">
-						<h3 class="resource">
-							(图片来源：<span id="pic_resource">PgcPoi.PgcImageDto.source</span>)
-						</h3>
+				<c:when
+					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null' || PgcPoi.image.url == null}">
+					<div style="display: none" class="page_pic">
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="page_pic">
-						<img id="pic" src="${PgcPoi.PgcImageDto.url}">
+						<img id="pic" src="${PgcPoi.image.url}">
 						<h3 class="resource">
-							(图片来源：<span id="pic_resource">PgcPoi.PgcImageDto.source</span>)
+							(图片来源：<span id="pic_resource">${PgcPoi.image.source}</span>)
 						</h3>
 					</div>
 				</c:otherwise>
@@ -151,16 +126,20 @@ header {
 		</div>
 	</c:forEach>
 
-	<footer>
-		<h5>
-			由weego重新排版&nbsp;<a>阅读原文</a>
-		</h5>
-		<div class="logo">
-			<img src="${original.image}">
-		</div>
-		<p class="accounts">${original.source}</p>
-		<div class="accounts_breif">${original.desc}</div>
-	</footer>
+	<c:choose>
+		<c:when
+			test="${original.author =='' || original.author =='null' || original.author == null}">
+			<footer> <div style="display: none" class="from">
+				</div></footer>
+		</c:when>
+		<c:otherwise>
+			<footer>
+				<div class="from">
+					作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
+				</div>
+			</footer>
+		</c:otherwise>
+	</c:choose>
 </body>
 <script type="text/javascript" src="../js/PGC.js"></script>
 

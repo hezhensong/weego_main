@@ -6,9 +6,7 @@ var _poi_title = $("#poi_title").html();
 var _poi_tag = $("#poi_tag").html();
 var _pic = $("#pic").attr("src");
 var _pic_resource = $("#pic_resource").html();
-var _public = $(".public").html();
 var _icon = $(".icon").attr("alt");
-alert(_icon);
 
 
 if(_icon =="0"){
@@ -57,6 +55,3 @@ if(_pic_resource == ""){
 	$(".resource").hide();
 }
 
-if(_public == ""){
-	$("footer").hide();
-}
