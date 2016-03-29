@@ -46,7 +46,7 @@ public class BasePOI {
 	private String coordination;
 
 	@JsonProperty("open_time")
-	private List<String> openTime;
+	private List<BasePOIOpenTime> openTime;
 
 	@JsonProperty("open_table_url")
 	private String openTableUrl;
@@ -193,11 +193,11 @@ public class BasePOI {
 		this.coordination = coordination;
 	}
 
-	public List<String> getOpenTime() {
+	public List<BasePOIOpenTime> getOpenTime() {
 		return openTime;
 	}
 
-	public void setOpenTime(List<String> openTime) {
+	public void setOpenTime(List<BasePOIOpenTime> openTime) {
 		this.openTime = openTime;
 	}
 

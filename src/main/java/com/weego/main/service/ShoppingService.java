@@ -1,21 +1,23 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.SearchNearByDto;
+import java.util.List;
+
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 
 public interface ShoppingService {
 
-    POIListDto getShoppingByCityId(String cityId, String labelId, Integer page, Integer count);
+	List<POIBaseDto> getShoppingByCityId(String cityId, String labelId, Integer page, Integer count);
 
-    POIDetailDto getShoppingById(String id, String coordination);
+	POIDetailSumDto getShoppingById(String id, String coordination);
 
-    POISpecialDto getShoppingBrandsById(String id);
+	List<POISepcialBaseDto> getShoppingBrandsById(String id);
 
-    POICommentsDto getShoppingCommentsById(String id);
+	List<POIDetailCommentsDto> getShoppingCommentsById(String id);
 
-    SearchNearByDto getShoppingByCityIdAndCoordination(String cityId, String coordination, String sort,
+	SearchNearByBaseDto getShoppingByCityIdAndCoordination(String cityId, String coordination, String sort,
                                                        Double range, Integer price, String special);
 }

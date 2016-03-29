@@ -1,5 +1,7 @@
 package com.weego.main.controller.api;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.weego.main.constant.ErrorCode;
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDetailDto;
-import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.POITranslationDto;
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.POITranslationBaseDto;
 import com.weego.main.dto.ResponseDto;
 import com.weego.main.service.BasePOIService;
 
@@ -30,21 +31,21 @@ public class BasePOIController {
 
 	@RequestMapping(value = "/discovery", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POIListDto> getPOIList(@RequestParam("cityId") String cityId,
+	public ResponseDto<List<POIBaseDto>> getPOIList(@RequestParam("cityId") String cityId,
 			@RequestParam("type") Integer type,
 			@RequestParam("labelId") String labelId,
 			@RequestParam(value = "page" ,defaultValue = "1") Integer page,
 			@RequestParam(value = "count" ,defaultValue = "5") Integer count) {
 
-		POIListDto poiListDto = basePOIService.getPOIsByCityId(cityId, type, labelId, page, count);
-		ResponseDto<POIListDto> pResponseDto = new ResponseDto<POIListDto>();
+		List<POIBaseDto> poiBaseDtos = basePOIService.getPOIsByCityId(cityId, type, labelId, page, count);
+		ResponseDto<List<POIBaseDto>> pResponseDto = new ResponseDto<List<POIBaseDto>>();
 		
-		if(poiListDto == null) {
+		if(poiBaseDtos == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市列表为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiListDto);
+			pResponseDto.setData(poiBaseDtos);
 		}
 		
 		return pResponseDto;
@@ -52,56 +53,56 @@ public class BasePOIController {
 
 	@RequestMapping(value = "/discovery/poi", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POIDetailDto> getPOIDetail(@RequestParam("id") String id,
+	public ResponseDto<POIDetailSumDto> getPOIDetail(@RequestParam("id") String id,
 			@RequestParam("type") Integer type,
 		    @RequestParam("coordination") String coordination) {
 		
-		POIDetailDto poiDetailDto = basePOIService.getPOIDetailById(id, type, coordination);
-		ResponseDto<POIDetailDto> pResponseDto = new ResponseDto<POIDetailDto>();
+		POIDetailSumDto poiDetailSumDto = basePOIService.getPOIDetailById(id, type, coordination);
+		ResponseDto<POIDetailSumDto> pResponseDto = new ResponseDto<POIDetailSumDto>();
 		
-		if(poiDetailDto == null) {
+		if(poiDetailSumDto == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市详情页为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiDetailDto);
+			pResponseDto.setData(poiDetailSumDto);
 		}
 		return pResponseDto;
 	}
 
 	@RequestMapping(value = "/discovery/specialList", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POISpecialDto> getPOISpecialList(@RequestParam("poiId") String poiId,
+	public ResponseDto<List<POISepcialBaseDto>> getPOISpecialList(@RequestParam("poiId") String poiId,
 			@RequestParam("type") Integer type) {
 
-		POISpecialDto poiSpecialDto = basePOIService.getPOISpecialById(poiId, type);
-		ResponseDto<POISpecialDto> pResponseDto = new ResponseDto<POISpecialDto>();
+		List<POISepcialBaseDto> poiSepcialBaseDtos = basePOIService.getPOISpecialById(poiId, type);
+		ResponseDto<List<POISepcialBaseDto>> pResponseDto = new ResponseDto<List<POISepcialBaseDto>>();
 		
-		if(poiSpecialDto == null) {
+		if(poiSepcialBaseDtos == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市特色列表为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiSpecialDto);
+			pResponseDto.setData(poiSepcialBaseDtos);
 		}
 		return pResponseDto;
 	}
 
 	@RequestMapping(value = "/discovery/specialDetail", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POISpecialDetailDto> getPOISpecialDetail(
+	public ResponseDto<POISepcialBaseDto> getPOISpecialDetail(
 			@RequestParam("specialId") String specialId,
 			@RequestParam("type") Integer type) {
 
-		POISpecialDetailDto poiSpecialDetailDto = basePOIService.getPOISpecialDetailById(specialId, type);
-		ResponseDto<POISpecialDetailDto> pResponseDto = new ResponseDto<POISpecialDetailDto>();
+		POISepcialBaseDto poiSepcialBaseDto = basePOIService.getPOISpecialDetailById(specialId, type);
+		ResponseDto<POISepcialBaseDto> pResponseDto = new ResponseDto<POISepcialBaseDto>();
 		
-		if(poiSpecialDetailDto == null) {
+		if(poiSepcialBaseDto == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市特色详情页为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiSpecialDetailDto);
+			pResponseDto.setData(poiSepcialBaseDto);
 		}
 		
 		return pResponseDto;
@@ -109,38 +110,38 @@ public class BasePOIController {
 
 	@RequestMapping(value = "/discovery/comment", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POICommentsDto> getPOIComments(@RequestParam("poiId") String poiId,
+	public ResponseDto<List<POIDetailCommentsDto>> getPOIComments(@RequestParam("poiId") String poiId,
 			@RequestParam("type") Integer type) {
 
-		POICommentsDto poiCommentsDto = basePOIService.getPOICommentsById(poiId, type);
-		ResponseDto<POICommentsDto> pResponseDto = new ResponseDto<POICommentsDto>();
+		List<POIDetailCommentsDto> poiDetailCommentsDtos = basePOIService.getPOICommentsById(poiId, type);
+		ResponseDto<List<POIDetailCommentsDto>> pResponseDto = new ResponseDto<List<POIDetailCommentsDto>>();
 		
-		if(poiCommentsDto == null) {
+		if(poiDetailCommentsDtos == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市评论列表为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiCommentsDto);
+			pResponseDto.setData(poiDetailCommentsDtos);
 		}
 		return pResponseDto;
 	}
 	
 	@RequestMapping(value = "/discovery/translate", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDto<POITranslationDto> getPOITranslation(
+	public ResponseDto<POITranslationBaseDto> getPOITranslation(
 			@RequestParam("content") String content,
 			@RequestParam(value = "from", defaultValue = "en") String from,
 			@RequestParam(value = "to", defaultValue = "zh") String to) {
 
-		POITranslationDto poiTranslationDto = basePOIService.getPOITranslation(content, from, to);
-		ResponseDto<POITranslationDto> pResponseDto = new ResponseDto<POITranslationDto>();
+		POITranslationBaseDto poiTranslationBaseDto = basePOIService.getPOITranslation(content, from, to);
+		ResponseDto<POITranslationBaseDto> pResponseDto = new ResponseDto<POITranslationBaseDto>();
 		
-		if(poiTranslationDto == null) {
+		if(poiTranslationBaseDto == null) {
 			pResponseDto.setCodeMessage(ErrorCode.SERVICE_BLANK);
 			logger.info("探索城市评论列表为空");
 		} else {
 			pResponseDto.setCodeMessage(ErrorCode.SUCCESS);
-			pResponseDto.setData(poiTranslationDto);
+			pResponseDto.setData(poiTranslationBaseDto);
 		}
 		
 		return pResponseDto;

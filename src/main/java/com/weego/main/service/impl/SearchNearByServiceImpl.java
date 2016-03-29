@@ -3,7 +3,7 @@ package com.weego.main.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.weego.main.dto.SearchNearByDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 import com.weego.main.service.AttractionService;
 import com.weego.main.service.RestaurantService;
 import com.weego.main.service.SearchNearByService;
@@ -18,7 +18,7 @@ public class SearchNearByServiceImpl implements SearchNearByService {
 	@Autowired
 	ShoppingService shoppingService;
 	@Override
-	public SearchNearByDto getSearchNearByInfos(String cityId, Integer type, String coordination, String sort,
+	public SearchNearByBaseDto getSearchNearByInfos(String cityId, Integer type, String coordination, String sort,
 			Double range, Integer price, String special) {
 		if (type == 0) {
 			return attractionService.getAttractionsByCityIdAndCoordination(cityId, coordination, sort, range, price, special);

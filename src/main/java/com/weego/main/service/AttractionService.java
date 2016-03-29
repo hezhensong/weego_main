@@ -1,20 +1,22 @@
 package com.weego.main.service;
 
-import com.weego.main.dto.POICommentsDto;
-import com.weego.main.dto.POIDetailDto;
-import com.weego.main.dto.POIListDto;
-import com.weego.main.dto.POISpecialDto;
-import com.weego.main.dto.SearchNearByDto;
+import java.util.List;
+
+import com.weego.main.dto.POIBaseDto;
+import com.weego.main.dto.POIDetailCommentsDto;
+import com.weego.main.dto.POIDetailSumDto;
+import com.weego.main.dto.POISepcialBaseDto;
+import com.weego.main.dto.SearchNearByBaseDto;
 
 public interface AttractionService {
-	POIListDto getAttractionsByCityId(String cityId, String labelId, Integer page, Integer count);
+	List<POIBaseDto> getAttractionsByCityId(String cityId, String labelId, Integer page, Integer count);
 	
-	POIDetailDto getAttractionById(String id, String coordination);
+	POIDetailSumDto getAttractionById(String id, String coordination);
 	
-	POISpecialDto getAttractionSpotsById(String id);
+	List<POISepcialBaseDto> getAttractionSpotsById(String id);
 	
-	POICommentsDto getAttractionCommentsById(String id);
+	List<POIDetailCommentsDto> getAttractionCommentsById(String id);
 	
-	SearchNearByDto getAttractionsByCityIdAndCoordination(String  cityId, String coordination, String sort,
+	SearchNearByBaseDto getAttractionsByCityIdAndCoordination(String  cityId, String coordination, String sort,
 			Double range, Integer price, String special);
 }

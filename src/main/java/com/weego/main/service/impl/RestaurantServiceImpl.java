@@ -13,24 +13,20 @@ import org.springframework.stereotype.Service;
 import com.weego.main.dao.ActivityDao;
 import com.weego.main.dao.RestaurantDao;
 import com.weego.main.dto.POIBaseDto;
-import com.weego.main.dto.POICommentsDto;
 import com.weego.main.dto.POIDetailActivitiesDto;
 import com.weego.main.dto.POIDetailCommentsDto;
-import com.weego.main.dto.POIDetailDto;
 import com.weego.main.dto.POIDetailFacilitiesDto;
 import com.weego.main.dto.POIDetailSpecialDto;
 import com.weego.main.dto.POIDetailSumDto;
 import com.weego.main.dto.POIDetailTagDto;
-import com.weego.main.dto.POIListDto;
 import com.weego.main.dto.POISepcialBaseDto;
-import com.weego.main.dto.POISpecialDto;
 import com.weego.main.dto.SearchNearByBaseDto;
-import com.weego.main.dto.SearchNearByDto;
 import com.weego.main.dto.SearchNearByListDto;
 import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
+import com.weego.main.model.BasePOIOpenTime;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Restaurant;
 import com.weego.main.model.RestaurantDish;
@@ -42,17 +38,16 @@ import com.weego.main.util.DistanceUtil;
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
 
-	private static Logger logger = LogManager
-			.getLogger(RestaurantServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(RestaurantServiceImpl.class);
 
 	@Autowired
 	RestaurantDao restaurantDao;
 	@Autowired
 	ActivityDao activityDao;
 
-	public POIListDto getRestaurantsByCityId(String cityId, String labelId,
+	public List<POIBaseDto> getRestaurantsByCityId(String cityId, String labelId,
 			Integer page, Integer count) {
-		POIListDto poiListDto = new POIListDto();
+		
 		List<POIBaseDto> poiBaseDtos = new ArrayList<POIBaseDto>();
 		List<Restaurant> restaurants = restaurantDao.getRestaurantsByCityId(
 				cityId, labelId, page, count);
@@ -70,13 +65,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 				poiBaseDtos.add(poiBaseDto);
 			}
 		}
-		poiListDto.setData(poiBaseDtos);
-		return poiListDto;
+		return poiBaseDtos;
 	}
 
 	@Override
-	public POIDetailDto getRestaurantById(String id, String coordination) {
-		POIDetailDto poiDetailDto = new POIDetailDto();
+	public POIDetailSumDto getRestaurantById(String id, String coordination) {
 		POIDetailSumDto poiDetailSumDto = new POIDetailSumDto();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
 
@@ -113,7 +106,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 			poiDetailSumDto.setImage(restaurant.getImage());
 			poiDetailSumDto.setCoverImage(restaurant.getCoverImage());
-			poiDetailSumDto.setOpenTime(restaurant.getOpenTime());
+			
+			List<BasePOIOpenTime> openTimes = restaurant.getOpenTime();
+			List<String> openTimeDesc = new ArrayList<String>();
+			if(openTimes != null && openTimes.size() > 0) {
+				for(BasePOIOpenTime openTime : openTimes) {
+					openTimeDesc.add(openTime.getDesc());
+				}
+				poiDetailSumDto.setOpenTime(openTimeDesc);
+			}
+			
 			poiDetailSumDto.setPriceDesc(restaurant.getPriceDesc());
 			poiDetailSumDto.setRating(restaurant.getRating());
 
@@ -193,8 +195,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
 
-			String openTimeDesc = "营业中";
-			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
+			String openDesc = "营业中";
+			poiDetailSumDto.setOpenTimeDesc(openDesc);
 			poiDetailSumDto.setOpenTableUrl(restaurant.getOpenTableUrl());
 			poiDetailSumDto.setOpenDay(0);
 
@@ -223,14 +225,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 
 			poiDetailSumDto.setFacilities(poiDetailFacilitiesDto);
-			poiDetailDto.setData(poiDetailSumDto);
 		}
-		return poiDetailDto;
+		return poiDetailSumDto;
 	}
 
 	@Override
-	public POISpecialDto getRestaurantDishesById(String id) {
-		POISpecialDto poiSpecialDto = new POISpecialDto();
+	public List<POISepcialBaseDto> getRestaurantDishesById(String id) {
 		List<POISepcialBaseDto> poiSepcialBaseDtos = new ArrayList<POISepcialBaseDto>();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
 		List<RestaurantDish> restaurantDishs = new ArrayList<RestaurantDish>();
@@ -248,14 +248,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 					poiSepcialBaseDtos.add(poiSepcialBaseDto);
 				}
 			}
-			poiSpecialDto.setData(poiSepcialBaseDtos);
 		}
-		return poiSpecialDto;
+		return poiSepcialBaseDtos;
 	}
 
 	@Override
-	public POICommentsDto getRestaurantCommentsById(String id) {
-		POICommentsDto poiCommentsDto = new POICommentsDto();
+	public List<POIDetailCommentsDto> getRestaurantCommentsById(String id) {
 		List<POIDetailCommentsDto> poiDetailCommentsDtos = new ArrayList<POIDetailCommentsDto>();
 		Restaurant restaurant = restaurantDao.getRestaurantById(id);
 		if (restaurant != null) {
@@ -276,15 +274,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 					poiDetailCommentsDtos.add(poiDetailCommentsDto);
 				}
 			}
-			poiCommentsDto.setData(poiDetailCommentsDtos);
 		}
-		return poiCommentsDto;
+		return poiDetailCommentsDtos;
 	}
 
 	@Override
-	public SearchNearByDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort,
+	public SearchNearByBaseDto getRestaurantsByCityIdAndCoordination(String cityId, String coordination, String sort,
 			Double range, Integer price, String special) {
-		SearchNearByDto searchNearByDto = new SearchNearByDto();		
 		SearchNearByBaseDto searchNearByBaseDto = new SearchNearByBaseDto();
 		List<SearchNearByTagDto> tagList = new ArrayList<SearchNearByTagDto>();
 		
@@ -424,8 +420,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		searchNearByBaseDto.setTagList(tagList);
 		searchNearByBaseDto.setSearches(searchNearByListDtos);
-		searchNearByDto.setData(searchNearByBaseDto);
-		return searchNearByDto;
+		return searchNearByBaseDto;
 	}
 
 }
