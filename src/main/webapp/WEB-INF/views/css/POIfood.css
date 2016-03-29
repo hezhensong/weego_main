@@ -24,7 +24,7 @@ body{
 	float: right;
 }
 .title{
-	margin:3% auto;
+	margin:6% auto;
 }
 .title .center{
 	margin:0 auto;
@@ -77,18 +77,19 @@ body{
 	opacity: 0.5;
 }
 .tips{
-	padding-bottom: 30px;
+	padding-bottom: 60px;
 	border-bottom: 1px solid #4b4e4e;
 	margin: 0 3% 6% 3%;
 }
-.tips h2{
+.tips .h2{
 	font-size: 40px;
 	text-align: center;
 	line-height: 50px;
+	font-weight: 100;
 }
 .tips .special{
 	text-align: center;
-	margin: 3% auto 4% auto;
+	margin: 4% auto;
 }
 .tips .special .single{
 	font-size: 30px;
@@ -108,27 +109,29 @@ body{
 	margin: 0 auto;
 }
 .tips .breif img{
-	margin: 0 40px -6px 0;
-	width: 54px;
+	margin: 0 40px -11px 0;
+	width: 60px;
 	height: 54px;
 	display: inline-block;
 }
 .tips .breif h3{
 	margin:0;
 	display: inline-block;
-	font-size: 54px;
+	font-size: 52px;
+	font-weight: bold;
+	
 }
 .tips .margin{
 	margin-top:30px;
 }
 .tips p{
 	margin: 0;
-	font-size: 32px;
+	font-size: 31px;
 	line-height: 60px;
 }
 .tips .menu{
 	margin: 70px 16px 60px 16px;
-	height: 41%;
+	height: 35%;
 }
 .tips .menu p{
 	margin-left:20px;
@@ -157,7 +160,7 @@ body{
 }
 .tips .menu .overlay{
 	position: relative;
-	top: 71%;
+	top: 70%;
 	width: 100%;
 }
 .tips .comment{
@@ -227,6 +230,11 @@ body{
 	color: #ff4f4e;
 	text-align:right;
 }
+
+.message .details #price{
+	color: #fff;
+}
+
 .message .details .h3 a{
 	color: #ff4f4e;
 	text-decoration: none;
@@ -236,6 +244,16 @@ body{
 	width: 658px;
 	margin: 10px 0;
 	text-align: left;
+}
+
+.message .details .aaa{
+	float: right;
+  	width: 650px;
+  	padding: 28px 0;
+}
+
+.message .details .bbb{
+	margin:10px 0;
 }
 
 .message .details #web{

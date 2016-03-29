@@ -220,11 +220,8 @@ public class PgcServiceImpl implements PgcService {
                 }
             }
             PgcOriginal original = pgc.getOriginal();
-            if(original != null) {
-                mv.addObject("original", original);
-            } else {
-                mv.addObject("original", "null");
-            }
+            mv.addObject("original", original);
+
             List<PgcPoi> pgcPoiList = pgc.getPoiList();
             List<PgcContentDto> pgcPoiDtoList = new ArrayList<PgcContentDto>();
             if (pgcPoiList != null && pgcPoiList.size() > 0) {
