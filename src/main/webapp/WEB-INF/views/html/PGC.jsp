@@ -11,12 +11,12 @@
 header {
 	background-image: url(${cover_img});
 	background-size: cover;
-	height: 60%;
+	height: 50%;
 	width: 100%;
 }
 
 .page .poi {
-	height: 35%;
+	height: 549px;
 	background-size: cover;
 	margin: 30px 0;
 }
@@ -56,9 +56,11 @@ header {
 	</c:choose>
 
 	<div class="drb">
-		<img class="float-l" src="../resource/img/pgc/yin1.png"><br />
-		<span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${breif}</br> <img
-			class="float-r" src="../resource/img/pgc/yin2.png">
+		<img class="float-l" src="../resource/img/pgc/yin1.png">
+		<div>
+			<span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${breif}
+		</div>
+		<img class="float-r" src="../resource/img/pgc/yin2.png">
 	</div>
 	<c:forEach items="${poilist}" var="PgcPoi">
 		<div class="page">
@@ -91,8 +93,7 @@ header {
 			<c:choose>
 				<c:when
 					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null' || PgcPoi.poi.image == null}">
-					<div style="display: none" class="poi" id="poi">
-					</div>
+					<div style="display: none" class="poi" id="poi"></div>
 				</c:when>
 				<c:otherwise>
 					<div style="background-image:url(${PgcPoi.poi.image})" class="poi"
@@ -113,8 +114,7 @@ header {
 			<c:choose>
 				<c:when
 					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null' || PgcPoi.image.url == null}">
-					<div style="display: none" class="page_pic">
-					</div>
+					<div style="display: none" class="page_pic"></div>
 				</c:when>
 				<c:otherwise>
 					<div class="page_pic">
@@ -131,8 +131,9 @@ header {
 	<c:choose>
 		<c:when
 			test="${original.author =='' || original.author =='null' || original.author == null}">
-			<footer> <div style="display: none" class="from">
-				</div></footer>
+			<footer>
+				<div style="display: none" class="from"></div>
+			</footer>
 		</c:when>
 		<c:otherwise>
 			<footer>

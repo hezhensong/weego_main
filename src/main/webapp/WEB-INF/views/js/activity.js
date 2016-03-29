@@ -1,6 +1,6 @@
 var _actime = $("#actime").html();
 var _acip = $("#ip").html();
-var _acweb = $("#web").html();
+var _acweb = $(".ignore").html();
 var _acticket = $("#ticket").html();
 var _text_title = $(".text_title").html();
 var _describe = $(".describe").html();
