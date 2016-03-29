@@ -1,6 +1,5 @@
 package com.weego.main.util;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +8,12 @@ import com.weego.main.model.BasePOIOpenTime;
 
 public class OpenTimeUtil {
 	
+	public static String OPEN = "营业中";
+	public static String CLOSE = "歇业中";
+
 	public static String getOpenDesc(List<BasePOIOpenTime> openTimes) {
 		if(openTimes == null || openTimes.size() == 0) {
-			return "歇业中";
+			return OpenTimeUtil.CLOSE;
 		}
 		
 		Calendar calendar = Calendar.getInstance();
@@ -24,41 +26,42 @@ public class OpenTimeUtil {
 		
 		int maxSize = openTimes.size();
 		if(index > maxSize) {
-			return "歇业中";
+			return OpenTimeUtil.CLOSE;
 		}
 		
 		String openTimeValue = openTimes.get(index).getValue();
-		int span = openTimeValue.split(",").length;
 		
-		int hour = calendar.get(Calendar.HOUR);
-		if(span == 1) {
-			if(splitTime(openTimeValue, hour)) {
-				return "营业中";
-			}
-			return "歇业中";
-		} else if(span == 2) {
-			if(splitTime(openTimeValue.split(",")[0], hour) || 
-			   splitTime(openTimeValue.split(",")[1], hour)) {
-				return "营业中";
-			}
-			return "歇业中";
+		if(openTimeValue.startsWith(index+1 + "-")) {
 			
-		} else if(span == 3) {
-			if(splitTime(openTimeValue.split(",")[0], hour) || 
-			   splitTime(openTimeValue.split(",")[1], hour) || 
-			   splitTime(openTimeValue.split(",")[2], hour)) {
-					return "营业中";
+			int span = openTimeValue.split(",").length;
+			int hour = calendar.get(Calendar.HOUR);
+			if(span == 1) {
+				if(splitTime(openTimeValue, hour)) {
+					return OpenTimeUtil.OPEN;
+				}
+			} else if(span == 2) {
+				if(splitTime(openTimeValue.split(",")[0], hour) || 
+				   splitTime(openTimeValue.split(",")[1], hour)) {
+				   return OpenTimeUtil.OPEN;
+				}
+				
+			} else if(span == 3) {
+				if(splitTime(openTimeValue.split(",")[0], hour) || 
+				   splitTime(openTimeValue.split(",")[1], hour) || 
+				   splitTime(openTimeValue.split(",")[2], hour)) {
+						return OpenTimeUtil.OPEN;
+				}
 			}
-			return "歇业中";
 		}
 	
-		return "歇业中";
+		return OpenTimeUtil.CLOSE;
 	}
 	
 	public static boolean splitTime(String openTime,int hour) {
-		Integer[] time = new Integer[2];
-		time[0] = Integer.parseInt(openTime.split("-")[1]);
-		time[1] = Integer.parseInt(openTime.split("-")[2]);
+		System.out.println(openTime);
+		Double[] time = new Double[2];
+		time[0] = Double.parseDouble(openTime.split("-")[1]);
+		time[1] = Double.parseDouble(openTime.split("-")[2]);
 		if(hour >= time[0] && hour <= time[1]) {
 			return true;
 		}
@@ -66,12 +69,7 @@ public class OpenTimeUtil {
 	}
 	
 	public static void main(String[] args) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());
-		System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-		System.out.println(Calendar.SATURDAY);
-		System.out.println(calendar);
-		System.out.println(calendar.get(Calendar.HOUR));
+		System.out.println(splitTime("2-10-12", 10));
 		
 	}
 }
