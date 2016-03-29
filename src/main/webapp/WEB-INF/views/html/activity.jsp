@@ -62,14 +62,14 @@
 
 	<div class="three">
 		<div class="aty">活动详情</div>
-		<div class="drb">活动详情活动详情活动详情活动详情活动详情活动详情${details}</div>
+		<div class="drb">${details}</div>
 	</div>
 <c:forEach items="${paragraphs}" var="ActivityParagraphs">
 
 	<div class="four">
 		<c:choose>
 				<c:when
-					test="${ActivityParagraphs.imageTitle =='' || ActivityParagraphs.imageTitle == 'null'}">
+					test="${ActivityParagraphs.imageTitle =='' || ActivityParagraphs.imageTitle == 'null' || ActivityParagraphs.imageTitle == null}">
 					<div style="display: none" id="text_title">${ActivityParagraphs.imageTitle}</div>
 				</c:when>
 				<c:otherwise>
@@ -79,7 +79,7 @@
 
 			<c:choose>
 				<c:when
-					test="${ActivityParagraphs.detail =='' || ActivityParagraphs.detail == 'null'}">
+					test="${ActivityParagraphs.detail =='' || ActivityParagraphs.detail == 'null' || ActivityParagraphs.detail == null}">
 					<div style="display: none" class="drb inner" id="describe">${ActivityParagraphs.detail}</div>
 				</c:when>
 				<c:otherwise>
@@ -100,7 +100,7 @@
 
 			<c:choose>
 				<c:when
-					test="${ActivityParagraphs.imageBrief =='' || ActivityParagraphs.imageBrief == 'null'}">
+					test="${ActivityParagraphs.imageBrief =='' || ActivityParagraphs.imageBrief == 'null' || ActivityParagraphs.imageBrief == null}">
 					<div style="display: none" class="small" id="pic_describe">${ActivityParagraphs.imageBrief}</div>
 				</c:when>
 				<c:otherwise>

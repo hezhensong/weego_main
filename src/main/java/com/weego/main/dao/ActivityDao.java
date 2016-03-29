@@ -20,14 +20,14 @@ public class ActivityDao {
 
     private DB database = MongoConnectionFactory.getDatabase();
 
-    public Activity getSpecifiedCity(String cityActivityId) {
+    public Activity getSpecifiedActivity(String activityId) {
         DBCollection collection = database.getCollection("activity");
 
         JacksonDBCollection<Activity, String> coll;
         coll = JacksonDBCollection.wrap(collection, Activity.class, String.class);
 
         BasicDBObject query = new BasicDBObject();
-        query.put("_id", new ObjectId(cityActivityId));
+        query.put("_id", new ObjectId(activityId));
         List<Activity> CityActivityList = coll.find(query).toArray();
 
         if (CityActivityList.size() > 0) {
@@ -54,7 +54,7 @@ public class ActivityDao {
 
         // 按照活动开始日期由近到远.
         return coll.find(DBQuery.and(
-                DBQuery.is("city_id", new ObjectId(cityId)),
+                DBQuery.is("city_id", cityId),
                 DBQuery.greaterThanEquals("end_time", dateNow),
                 DBQuery.greaterThanEquals("start_time", dateThirty)
         )).sort(orderBy).toArray();

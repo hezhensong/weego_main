@@ -154,7 +154,7 @@ public class RecommendHistoryServiceImpl implements RecommendHistoryService {
             contentDto.setContentTitle(shopping.getName());
             contentDto.setCoverImage(shopping.getCoverImage());
         } else if(RecommendType.ACTIVITY.getType().equals(type)) {
-            Activity activity = activityDao.getSpecifiedCity(contentId);
+            Activity activity = activityDao.getSpecifiedActivity(contentId);
             contentDto.setContentTitle(activity.getTitle());
             contentDto.setCoverImage(activity.getCoverImage());
         } else if(RecommendType.PGC.getType().equals(type)) {

@@ -23,8 +23,12 @@ body{
 .float_r{
 	float: right;
 }
+
+.float_l{
+	float: left;
+}
 .title{
-	margin:3% auto;
+	margin:6% auto;
 }
 .title .center{
 	margin:0 auto;
@@ -49,13 +53,17 @@ body{
 .title .center h2{
 	font-size: 58px;
 	text-align: center;
+	width:880px;
+    margin-left:-167px;
 }
 .title .center .ch_name{
 	margin-bottom:0;
+	 font-weight:100;
 }
 .title .center .en_name{
 	margin-top:20px;
-	font-size: 50px;
+	font-size: 45px;
+	 font-weight:100;
 }
 .title .center h3{
 	font-size: 30px;
@@ -77,21 +85,22 @@ body{
 	opacity: 0.5;
 }
 .tips{
-	padding-bottom: 30px;
+	padding-bottom: 60px;
 	border-bottom: 1px solid #4b4e4e;
-	margin: 0 3% 6% 3%;
+	margin: 0 16px 6% 16px;
 }
-.tips h2{
+.tips .h2{
 	font-size: 40px;
 	text-align: center;
 	line-height: 50px;
+	font-weight: 100;
 }
 .tips .special{
 	text-align: center;
-	margin: 3% auto 4% auto;
+	margin: 4% auto;
 }
 .tips .special .single{
-	font-size: 30px;
+	font-size: 34px;
 	width: 200px;
 	text-align: center;
 	border:3px solid #ff514e;
@@ -101,34 +110,42 @@ body{
 	padding: 15px 0;
 }
 .tips .special .first{
-	background-color: #ff514e;
+	background-color: #ff4f4e;
 }
 .tips .breif{
 	width: 336px;
 	margin: 0 auto;
 }
+
+.tips .breif .recommenddesc{
+	margin-left:12px;
+}
+
 .tips .breif img{
-	margin: 0 40px -6px 0;
-	width: 54px;
+	margin: 0 40px -5px 0;
+	width: 60px;
 	height: 54px;
 	display: inline-block;
+	
 }
-.tips .breif h3{
+.tips .breif .h3{
 	margin:0;
 	display: inline-block;
-	font-size: 54px;
+	font-size: 56px;
+	font-weight: bold;
+	
 }
 .tips .margin{
-	margin-top:30px;
+	margin:30px 12px 0 12px;
 }
 .tips p{
 	margin: 0;
-	font-size: 32px;
+	font-size: 33px;
 	line-height: 60px;
 }
 .tips .menu{
-	margin: 70px 16px 60px 16px;
-	height: 41%;
+	margin: 70px 0px 60px 0px;
+	height: 35%;
 }
 .tips .menu p{
 	margin-left:20px;
@@ -155,16 +172,17 @@ body{
 	font-size: 36px;
 
 }
+
 .tips .menu .overlay{
 	position: relative;
-	top: 71%;
+	top: 66%;
 	width: 100%;
 }
 .tips .comment{
 	height: 115px;
 	text-align: center;
 	margin:60px auto;
-	width: 560px;
+	width: 510px;
 }
 .tips .comment .left{
 	border-right: 1px solid #4c4f4f;
@@ -177,8 +195,7 @@ body{
 	margin-bottom: 20px;
 }
 .tips .comment .left p{
-	letter-spacing: 5px;
-	font-size: 24px;
+	font-size: 28px;
 }
 .tips .comment .right{
 	display: inline-block;
@@ -186,25 +203,27 @@ body{
 	padding-left: 40px;
 }
 .tips .comment .right p{
-	font-size: 46px;
-	margin-bottom: 30px;
+	font-size: 48px;
+	margin-bottom: 41px;
 }
 .tips .main_comment{
-	font-size: 36px;
+	font-size: 48px;
 	text-align: center;
+	margin-top:90px;
 }
 .tips .good_comment{
-	margin:6% 3%;
+	margin:6% 12px;
 	font-size: 30px;
 	line-height: 50px;
 }
 .tips .good_comment .desc{
-	margin:0 30px;
+	margin:0 58px;
 }
 .message{
 	margin:-60px 20px 100px 20px;
 }
 .message .details{
+	margin-left:12px;
 	padding-top:5px;
 	font-size: 34px;
 	border-bottom: 1px solid #4c4f4f;
@@ -213,6 +232,7 @@ body{
 	width: 4%;
 	margin-right:20px;
 	display: inline-block;
+	margin-bottom:-5px;
 }
 .message .details p{
 	display: inline-block;
@@ -220,7 +240,7 @@ body{
 }
 .message .details .h3{
 	display: inline-block;
-	width: 600px;
+	width: 633px;
 	color: #ff4f4e;
 	text-align:right;
 }
@@ -253,6 +273,17 @@ body{
 	margin: 10px 0;
 	text-align: left;
 }
+
+.message .details .aaa{
+	float: right;
+  	width: 405px;
+  	padding: 28px 0;
+}
+
+.message .details .bbb{
+	margin:10px 0;
+}
+
 .message .details #web{
 	text-align: left;
     white-space:nowrap;    

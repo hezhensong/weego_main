@@ -208,7 +208,6 @@ public class BasePOIServiceImpl implements BasePOIService {
 				mv.addObject("web", poiDetailSumDto.getWebsite());
 				// 营业时间是列表形式的
 				mv.addObject("times", poiDetailSumDto.getOpenTime());
-				System.out.println("看看times是否为空"+poiDetailSumDto.getOpenTime());
 				// 设施，需要循环遍历，传的是一个对象，里面的值是true or false
 				mv.addObject("facilitie", poiDetailSumDto.getFacilities());
 

@@ -11,7 +11,7 @@
 header {
 	background-image: url(${cover_img});
 	background-size: cover;
-	height: 41%;
+	height: 60%;
 	width: 100%;
 }
 
@@ -28,7 +28,7 @@ header {
 	</header>
 
 	<c:choose>
-		<c:when test="${person =='' || person == 'null'}">
+		<c:when test="${person =='' || person == 'null' || person == null}">
 			<div style="display: none" class="author"></div>
 		</c:when>
 		<c:otherwise>
@@ -45,10 +45,8 @@ header {
 
 	<c:choose>
 		<c:when
-			test="${original =='' || original =='null' || original == null}">
-			<div style="display: none" class="from">
-				作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
-			</div>
+			test="${original.author =='' || original.author =='null' || original.author == null}">
+			<div style="display: none" class="from"></div>
 		</c:when>
 		<c:otherwise>
 			<div class="from">
@@ -82,7 +80,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == 'null'}">
+					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == 'null' || PgcPoi.paragraph.desc == null}">
 					<div style="display: none" id="text" class="drb">${PgcPoi.paragraph.desc}</div>
 				</c:when>
 				<c:otherwise>
@@ -92,19 +90,8 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null'}">
-					<div style="display: none"
-						style="background-image:url(${PgcPoi.poi.image})" class="poi"
-						id="poi">
-						<img class="overlay" id="poi_pic"
-							src="../resource/img/pgc/overlay.png">
-						<div class="type" id="poi_tag">${PgcPoi.poi.tag}</div>
-						<div class="center">
-							<div class="line"></div>
-							<img class="icon" alt="1" src="">
-							<div class="line"></div>
-							<h2 id="poi_title">${PgcPoi.poi.title}</h2>
-						</div>
+					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null' || PgcPoi.poi.image == null}">
+					<div style="display: none" class="poi" id="poi">
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -125,12 +112,8 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null'}">
+					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null' || PgcPoi.image.url == null}">
 					<div style="display: none" class="page_pic">
-						<img id="pic" src="${PgcPoi.image.url}">
-						<h3 class="resource">
-							(图片来源：<span id="pic_resource">${PgcPoi.image.source}</span>)
-						</h3>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -147,13 +130,16 @@ header {
 
 	<c:choose>
 		<c:when
-			test="${original =='' || original =='null' || original == null}">
-			<footer> </footer>
+			test="${original.author =='' || original.author =='null' || original.author == null}">
+			<footer> <div style="display: none" class="from">
+				</div></footer>
 		</c:when>
 		<c:otherwise>
-			<div class="from">
-				作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
-			</div>
+			<footer>
+				<div class="from">
+					作者：<span id="author">${original.author}</span>,来源：<span id="from">${original.source}</span>
+				</div>
+			</footer>
 		</c:otherwise>
 	</c:choose>
 </body>

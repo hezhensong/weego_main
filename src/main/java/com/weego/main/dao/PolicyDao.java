@@ -26,7 +26,7 @@ public class PolicyDao {
                 Policy.class,
                 String.class);
 
-        long timedelta = Long.parseLong(time);
+        long timedelta = Long.parseLong(time) * 1000;
         Date userDate = new Date(timedelta);
         List<Policy> policyList = jacksonDBCollection.find(DBQuery.and(
                                                         DBQuery.is("city_id", cityId),
