@@ -196,7 +196,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 
 				mv.addObject("commentFrom", poiDetailSumDto.getCommentFrom());
 				// 评论
-				if (poiDetailSumDto.getComments().size() > 0) {
+				if (poiDetailSumDto.getComments() != null && poiDetailSumDto.getComments().size() > 0) {
 					mv.addObject("comments", poiDetailSumDto.getComments().get(0));
 				} else {
 					mv.addObject("comments", "null");
