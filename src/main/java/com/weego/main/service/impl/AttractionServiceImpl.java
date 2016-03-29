@@ -27,6 +27,7 @@ import com.weego.main.model.Attraction;
 import com.weego.main.model.AttractionSpot;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
+import com.weego.main.model.BasePOIOpenTime;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.service.AttractionService;
 import com.weego.main.util.DateUtil;
@@ -105,7 +106,16 @@ public class AttractionServiceImpl implements AttractionService {
 
 			poiDetailSumDto.setImage(attraction.getImage());
 			poiDetailSumDto.setCoverImage(attraction.getCoverImage());
-			poiDetailSumDto.setOpenTime(attraction.getOpenTime());
+			
+			List<BasePOIOpenTime> openTimes = attraction.getOpenTime();
+			List<String> openTimeDesc = new ArrayList<String>();
+			if(openTimes != null && openTimes.size() > 0) {
+				for(BasePOIOpenTime openTime : openTimes) {
+					openTimeDesc.add(openTime.getDesc());
+				}
+				poiDetailSumDto.setOpenTime(openTimeDesc);
+			}
+			
 			poiDetailSumDto.setPriceDesc(attraction.getPriceDesc());
 			poiDetailSumDto.setRating(attraction.getRating());
 
@@ -186,8 +196,8 @@ public class AttractionServiceImpl implements AttractionService {
 
 			// List<String> openTime = attraction.getOpenTime();
 
-			String openTimeDesc = "营业中";
-			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
+			String openDesc = "营业中";
+			poiDetailSumDto.setOpenTimeDesc(openDesc);
 			poiDetailSumDto.setOpenTableUrl(attraction.getOpenTableUrl());
 			poiDetailSumDto.setOpenDay(0);
 			poiDetailSumDto.setFacilities(null);
