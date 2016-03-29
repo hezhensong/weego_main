@@ -25,6 +25,7 @@ import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
+import com.weego.main.model.BasePOIOpenTime;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Shopping;
 import com.weego.main.model.ShoppingBrand;
@@ -103,7 +104,16 @@ public class ShoppingServiceImpl implements ShoppingService {
 			}
 			poiDetailSumDto.setImage(shopping.getImage());
 			poiDetailSumDto.setCoverImage(shopping.getCoverImage());
-			poiDetailSumDto.setOpenTime(shopping.getOpenTime());
+			
+			List<BasePOIOpenTime> openTimes = shopping.getOpenTime();
+			List<String> openTimeDesc = new ArrayList<String>();
+			if(openTimes != null && openTimes.size() > 0) {
+				for(BasePOIOpenTime openTime : openTimes) {
+					openTimeDesc.add(openTime.getDesc());
+				}
+				poiDetailSumDto.setOpenTime(openTimeDesc);
+			}
+			
 			poiDetailSumDto.setPriceDesc(shopping.getPriceDesc());
 			poiDetailSumDto.setRating(shopping.getRating());
 
@@ -186,8 +196,8 @@ public class ShoppingServiceImpl implements ShoppingService {
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
 
-			String openTimeDesc = "营业中";
-			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
+			String openDesc = "营业中";
+			poiDetailSumDto.setOpenTimeDesc(openDesc);
 			poiDetailSumDto.setOpenTableUrl(shopping.getOpenTableUrl());
 			poiDetailSumDto.setOpenDay(0);
 

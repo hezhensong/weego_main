@@ -2,6 +2,8 @@ package com.weego.main.service;
 
 import java.util.List;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.weego.main.dto.POIBaseDto;
 import com.weego.main.dto.POIDetailCommentsDto;
 import com.weego.main.dto.POIDetailSumDto;
@@ -22,5 +24,5 @@ public interface BasePOIService {
 	
 	POITranslationBaseDto getPOITranslation(String content, String from, String to);
 	
-//	ModelAndView getPOIDetail(String id, Integer type);
+	ModelAndView getPOIDetail(String id, Integer type);
 }

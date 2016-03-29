@@ -26,6 +26,7 @@ import com.weego.main.dto.SearchNearByTagDto;
 import com.weego.main.model.Activity;
 import com.weego.main.model.BasePOIActivities;
 import com.weego.main.model.BasePOIComments;
+import com.weego.main.model.BasePOIOpenTime;
 import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Restaurant;
 import com.weego.main.model.RestaurantDish;
@@ -105,7 +106,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 			poiDetailSumDto.setImage(restaurant.getImage());
 			poiDetailSumDto.setCoverImage(restaurant.getCoverImage());
-			poiDetailSumDto.setOpenTime(restaurant.getOpenTime());
+			
+			List<BasePOIOpenTime> openTimes = restaurant.getOpenTime();
+			List<String> openTimeDesc = new ArrayList<String>();
+			if(openTimes != null && openTimes.size() > 0) {
+				for(BasePOIOpenTime openTime : openTimes) {
+					openTimeDesc.add(openTime.getDesc());
+				}
+				poiDetailSumDto.setOpenTime(openTimeDesc);
+			}
+			
 			poiDetailSumDto.setPriceDesc(restaurant.getPriceDesc());
 			poiDetailSumDto.setRating(restaurant.getRating());
 
@@ -185,8 +195,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 			}
 			poiDetailSumDto.setComments(poiDetailCommentsDtos);
 
-			String openTimeDesc = "营业中";
-			poiDetailSumDto.setOpenTimeDesc(openTimeDesc);
+			String openDesc = "营业中";
+			poiDetailSumDto.setOpenTimeDesc(openDesc);
 			poiDetailSumDto.setOpenTableUrl(restaurant.getOpenTableUrl());
 			poiDetailSumDto.setOpenDay(0);
 
