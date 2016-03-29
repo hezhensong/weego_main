@@ -142,7 +142,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 					poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
 
 					Activity activity = activityDao
-							.getSpecifiedCity(basePOIActivity.getId());
+							.getSpecifiedActivity(basePOIActivity.getId());
 					if (activity != null) {
 						poiDetailActivitiesDto
 								.setActTime(activity.getActTime());

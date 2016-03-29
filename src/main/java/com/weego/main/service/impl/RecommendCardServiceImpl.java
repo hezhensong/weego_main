@@ -215,7 +215,7 @@ public class RecommendCardServiceImpl implements RecommendCardService {
             }
         } else if (type.equals(RecommendType.ACTIVITY)) {
             for (ObjectId contentId : contentIdList) {
-                Activity activity = activityDao.getSpecifiedCity(contentId.toString());
+                Activity activity = activityDao.getSpecifiedActivity(contentId.toString());
                 response.setStatus(true);
 
                 PolicyMap policyMap = policyMapDao.getPolicyMap(policyId.toString(), type.getType(), contentId.toString());

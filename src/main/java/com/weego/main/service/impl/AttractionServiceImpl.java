@@ -145,7 +145,7 @@ public class AttractionServiceImpl implements AttractionService {
 					poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
 
 					Activity activity = activityDao
-							.getSpecifiedCity(basePOIActivity.getId());
+							.getSpecifiedActivity(basePOIActivity.getId());
 					if (activity != null) {
 						poiDetailActivitiesDto.setActTime(activity.getActTime());
 						poiDetailActivitiesDto.setCoverImage(activity.getCoverImage());
