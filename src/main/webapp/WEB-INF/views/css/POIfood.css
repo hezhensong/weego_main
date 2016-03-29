@@ -216,7 +216,6 @@ body{
 	font-size: 30px;
 	line-height: 50px;
 }
-
 .tips .good_comment .desc{
 	margin:0 58px;
 }
@@ -245,7 +244,6 @@ body{
 	color: #ff4f4e;
 	text-align:right;
 }
-
 .message .details #price{
 	color: #fff;
 }
@@ -254,9 +252,24 @@ body{
 	color: #ff4f4e;
 	text-decoration: none;
 }
-.message .details .time{
+
+
+
+.message .details .aaa{
 	float: right;
-	width: 658px;
+  	width: 650px;
+  	padding: 28px 0;
+}
+.message .details .bbb{
+	margin:10px 0;
+	color: #ff4f4e;
+}
+
+
+.message .details .time{
+	display: inline-flex;
+	float: right;
+	width: 620px;
 	margin: 10px 0;
 	text-align: left;
 }
