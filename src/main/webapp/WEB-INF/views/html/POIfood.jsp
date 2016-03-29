@@ -1,23 +1,24 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="apple-touch-fullscreen" content="YES" /> 
-	<title>${title}</title>
-	<link rel="stylesheet" type="text/css" href="../css/POIfood.css">
-	<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
-	<style type="text/css">
-	header{
-		background-image:url(${coverimage});
-		background-size: cover;
-		height: 41%;
-	}
-	.tips .first_menu{
+<meta charset="UTF-8">
+<meta name="apple-touch-fullscreen" content="YES" />
+<title>${title}</title>
+<link rel="stylesheet" type="text/css" href="../css/POIfood.css">
+<script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
+<style type="text/css">
+header {
+	background-image: url(${coverimage});
+	background-size: cover;
+	height: 41%;
+}
+
+.tips .first_menu {
 	background-size: cover;
 }
-	</style>
+</style>
 </head>
 <body>
 	<header></header>
@@ -26,10 +27,13 @@
 			<div class="line"></div>
 			<div class="icon"></div>
 			<div class="line"></div>
-			<h2>${title}<br/>${english_title}</h2>
+			<h2>
+				${title}<br />${english_title}
+			</h2>
 		</div>
 		<div class="score">
-			<img class="reviews_pic" src=""><!-- 判断 -->
+			<img class="reviews_pic" src="">
+			<!-- 判断 -->
 			<div class="reviews">${reviews}分</div>
 		</div>
 	</div>
@@ -37,13 +41,13 @@
 		<h2>${foreword}</h2>
 		<div class="special">
 			<c:forEach items="${tags}" var="tag">
-				<div class="single first">${tag.name}</div><!-- 需要循环遍历 -->
+				<div class="single first">${tag.name}</div>
+				<!-- 需要循环遍历 -->
 			</c:forEach>
 		</div>
 	</div>
 	<c:choose>
-		<c:when
-			test="${breif =='' || breif =='null'}">
+		<c:when test="${breif =='' || breif =='null'}">
 			<div style="display: none" class="tips" id="breif">
 				<div class="breif">
 					<img src="../resource/img/poi/tips.png">
@@ -64,8 +68,7 @@
 	</c:choose>
 
 	<c:choose>
-		<c:when
-			test="${tips =='' || tips =='null'}">
+		<c:when test="${tips =='' || tips =='null'}">
 			<div style="display: none" class="tips" id="tip">
 				<div class="breif">
 					<img src="../resource/img/poi/tips.png">
@@ -88,7 +91,7 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
-	
+
 	<!-- 循环遍历开始 -->
 	<div class="tips">
 		<div class="breif">
@@ -96,7 +99,8 @@
 			<h3>菜品推荐</h3>
 		</div>
 		<c:forEach items="${recommends}" var="recommend">
-			<div class="menu first_menu" style="background-image: url(${recommend.coverImage});">
+			<div class="menu first_menu"
+				style="background-image: url(${recommend.coverImage});">
 				<img class="overlay" src="../resource/img/poi/overlay.png">
 				<div class="type">${recommend.tag}</div>
 				<div class="menu_name">${recommend.title}</div>
@@ -105,26 +109,27 @@
 		</c:forEach>
 	</div>
 	<c:choose>
-		<c:when
-			test="${comments.text =='' || comments.text =='null'}">
-			<div style="display:none" class="tips last_tip">
+		<c:when test="${comments.text =='' || comments.text =='null'}">
+			<div style="display: none" class="tips last_tip">
 				<div class="breif recommends">
 					<img src="../resource/img/poi/comment.png">
 					<h3>评论</h3>
 				</div>
 				<div class="comment">
 					<div class="left">
-						<img id="comment_pic"src="">
-						<p id="comment_from">来自${commentFrom}</p> 
-					</div><!-- finish js -->
+						<img id="comment_pic" src="">
+						<p id="comment_from">来自${commentFrom}</p>
+					</div>
+					<!-- finish js -->
 					<div class="right">
 						<p class="comments_rating">${comments.rating}分</p>
 						<img class="rating_pic" src="">
-					</div><!-- finish js -->
+					</div>
+					<!-- finish js -->
 				</div>
 				<p class="main_comment">${comments.title}</p>
 				<div class="good_comment">
-					<img src="../resource/img/pgc/yin1.png"><br/>
+					<img src="../resource/img/pgc/yin1.png"><br />
 					<p class="desc">${comments.text}</p>
 					<img class="float_r" src="../resource/img/pgc/yin2.png">
 				</div>
@@ -138,17 +143,19 @@
 				</div>
 				<div class="comment">
 					<div class="left">
-						<img id="comment_pic"src="">
-						<p id="comment_from">来自${commentFrom}</p> 
-					</div><!-- finish js -->
+						<img id="comment_pic" src="">
+						<p id="comment_from">来自${commentFrom}</p>
+					</div>
+					<!-- finish js -->
 					<div class="right">
 						<p class="comments_rating">${comments.rating}分</p>
 						<img class="rating_pic" src="">
-					</div><!-- finish js -->
+					</div>
+					<!-- finish js -->
 				</div>
 				<p class="main_comment">${comments.title}</p>
 				<div class="good_comment">
-					<img src="../resource/img/pgc/yin1.png"><br/>
+					<img src="../resource/img/pgc/yin1.png"><br />
 					<p class="desc">${comments.text}</p>
 					<img class="float_r" src="../resource/img/pgc/yin2.png">
 				</div>
@@ -157,214 +164,272 @@
 	</c:choose>
 
 	<div class="message">
-		<div class="details" id="detail_price">
-			<img src="../resource/img/poi/price.png">
-			<p>价格：</p>
-			<h3 class="h3" id="price">${price}</h3>
-		</div>
-		<div class="details" id="detail_phone">
-			<img src="../resource/img/poi/phone.png">
-			<p>电话：</p>
-			<h3 class="h3" id="phone">${phone}</h3>
-		</div>
-		<div class="details" id="detail_web">
-			<img src="../resource/img/poi/web.png">
-			<p>网址：</p>
-			<h3 class="h3" id="web"><a href="${web}">${web}</a></h3>
-		</div>
-		<div class="details clearfix" id="detail_time">
-			<img src="../resource/img/poi/time.png">
-			<p>时间：</p>
-			<c:forEach items="${times}" var="time">
-				<h3 class="h3 time">${time}</h3>
-			</c:forEach>
-		</div>
-		<div class="details" id="last_tip">
-			<img src="../resource/img/poi/ticket.png">
-			<p>设施</p>
-			<div class="all">
-				<c:choose>
-					<c:when
-						test="${facilitie.wifi =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/wifi.png">
-							<div class="text" id="little">提供wifi</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/wifi.png">
-							<div class="text" id="little">提供wifi</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.reserve =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_2.png">
-							<div class="text" id="little">需要预定</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="..resource/img/poi/poi_facilities_.png">
-							<div class="text" id="little">需要预定</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.wifi =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_3.png">
-							<div class="text" id="little">有停车位</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_3.png">
-							<div class="text" id="little">有停车位</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.waiter =='false'}">
-						<div style="display: none" class="little">
-						<img class="little" src="../resource/img/poi/poi_facilities_4.png">
-							<div class="text" id="little">有服务</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_4.png">
-							<div class="text" id="little">有服务</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.kid =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_5.png">
-							<div class="text" id="little">适合孩子</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_5.png">
-							<div class="text" id="little">适合孩子</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.wifi =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_6.png">
-							<div class="text" id="little">有音乐</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_6.png">
-							<div class="text" id="little">有音乐</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.card =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_7.png">
-							<div class="text" id="little">可刷卡</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_7.png">
-							<div class="text" id="little">可刷卡</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.takeout =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_8.png">
-							<div class="text" id="little">可外带</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_8.png">
-							<div class="text" id="little">可外带</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.delivery =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_9.png">
-							<div class="text" id="little">可送餐</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_9.png">
-							<div class="text" id="little">可送餐</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.tv =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_10.png">
-							<div class="text" id="little">有电视</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_10.png">
-							<div class="text" id="little">有电视</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.outseat =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-							<div class="text" id="little">外面有椅子</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_11.png">
-							<div class="text" id="little">外面有椅子</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when
-						test="${facilitie.group =='false'}">
-						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_12.png">
-							<div class="text" id="little">适合聚餐</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="little">
-							<img class="little" src="../resource/img/poi/poi_facilities_12.png">
-							<div class="text" id="little">适合聚餐</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
+
+		<c:choose>
+			<c:when test="${price =='' || price =='null'}">
+				<div style="display: none" class="details" id="detail_price">
+					<img src="../resource/img/poi/price.png">
+					<p>价格：</p>
+					<h3 class="h3" id="price">${price}</h3>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="details" id="detail_price">
+					<img src="../resource/img/poi/price.png">
+					<p>价格：</p>
+					<h3 class="h3" id="price">${price}</h3>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="${phone =='' || phone =='null'}">
+				<div style="display: none" class="details" id="detail_phone">
+					<img src="../resource/img/poi/phone.png">
+					<p>电话：</p>
+					<h3 class="h3" id="phone">${phone}</h3>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="details" id="detail_phone">
+					<img src="../resource/img/poi/phone.png">
+					<p>电话：</p>
+					<h3 class="h3" id="phone">${phone}</h3>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="${web =='' || web =='null'}">
+				<div style="display: none" class="details" id="detail_web">
+					<img src="../resource/img/poi/web.png">
+					<p>网址：</p>
+					<h3 class="h3" id="web">
+						<a href="${web}">${web}</a>
+					</h3>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="details" id="detail_web">
+					<img src="../resource/img/poi/web.png">
+					<p>网址：</p>
+					<h3 class="h3" id="web">
+						<a href="${web}">${web}</a>
+					</h3>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="${times =='' || times =='null' || times ==null}">
+				<div style="display: none" class="details clearfix" id="detail_time">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="details clearfix" id="detail_time">
+					<img src="../resource/img/poi/time.png">
+					<p>时间：</p>
+					<c:forEach items="${times}" var="time">
+						<h3 class="h3 time">${time}</h3>
+					</c:forEach>
+				</div>
+			</c:otherwise>
+			</c:choose>
+			<div class="details" id="last_tip">
+				<img src="../resource/img/poi/ticket.png">
+				<p>设施</p>
+				<div class="all">
+					<c:choose>
+						<c:when test="${facilitie.wifi =='false'}">
+							<div style="display: none" class="little">
+								<img class="little" src="../resource/img/poi/wifi.png">
+								<div class="text" id="little">提供wifi</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little" src="../resource/img/poi/wifi.png">
+								<div class="text" id="little">提供wifi</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.reserve =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_2.png">
+								<div class="text" id="little">需要预定</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little" src="..resource/img/poi/poi_facilities_.png">
+								<div class="text" id="little">需要预定</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.wifi =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_3.png">
+								<div class="text" id="little">有停车位</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_3.png">
+								<div class="text" id="little">有停车位</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.waiter =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_4.png">
+								<div class="text" id="little">有服务</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_4.png">
+								<div class="text" id="little">有服务</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.kid =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_5.png">
+								<div class="text" id="little">适合孩子</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_5.png">
+								<div class="text" id="little">适合孩子</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.wifi =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_6.png">
+								<div class="text" id="little">有音乐</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_6.png">
+								<div class="text" id="little">有音乐</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.card =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_7.png">
+								<div class="text" id="little">可刷卡</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_7.png">
+								<div class="text" id="little">可刷卡</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.takeout =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_8.png">
+								<div class="text" id="little">可外带</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_8.png">
+								<div class="text" id="little">可外带</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.delivery =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_9.png">
+								<div class="text" id="little">可送餐</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_9.png">
+								<div class="text" id="little">可送餐</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.tv =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_10.png">
+								<div class="text" id="little">有电视</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_10.png">
+								<div class="text" id="little">有电视</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.outseat =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_11.png">
+								<div class="text" id="little">外面有椅子</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_11.png">
+								<div class="text" id="little">外面有椅子</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${facilitie.group =='false'}">
+							<div style="display: none" class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_12.png">
+								<div class="text" id="little">适合聚餐</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="little">
+								<img class="little"
+									src="../resource/img/poi/poi_facilities_12.png">
+								<div class="text" id="little">适合聚餐</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
-		</div>
 	</div>
 </body>
 <script type="text/javascript" src="../js/POIfood.js"></script>
