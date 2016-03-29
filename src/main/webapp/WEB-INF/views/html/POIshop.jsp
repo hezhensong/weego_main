@@ -111,7 +111,7 @@ header {
 			<div class="tips">
 				<div class="breif">
 					<img src="../resource/img/poi/shop.png">
-					<div class="h3">菜品推荐</div>
+					<div class="h3">品牌推荐</div>
 				</div>
 				<c:forEach items="${recommends}" var="recommend">
 					<div class="menu first_menu"
@@ -236,6 +236,8 @@ header {
 				</div>
 			</c:otherwise>
 		</c:choose>
+		
+	<c:if test="${facilitie != null} ">
 		<div class="details" id="last_tip">
 			<img src="../resource/img/poi/ticket.png">
 			<p>设施</p>
@@ -407,6 +409,7 @@ header {
 				</c:choose>
 			</div>
 		</div>
+	</c:if>
 	</div>
 </body>
 <script type="text/javascript" src="../js/POIfood.js"></script>

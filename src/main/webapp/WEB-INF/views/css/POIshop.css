@@ -140,7 +140,7 @@ body{
 }
 .tips p{
 	margin: 0;
-	font-size: 33px;
+	font-size: 38px;
 	line-height: 60px;
 }
 .tips .menu{
@@ -190,8 +190,8 @@ body{
 	float: left;
 }
 .tips .comment .left img{
-	width: 70px;
-	height: 70px;
+	width: 80px;
+	height: 80px;
 	margin-bottom: 20px;
 }
 .tips .comment .left p{
@@ -204,7 +204,7 @@ body{
 }
 .tips .comment .right p{
 	font-size: 48px;
-	margin-bottom: 41px;
+	margin-bottom: 55px;
 }
 .tips .main_comment{
 	font-size: 48px;
@@ -217,7 +217,7 @@ body{
 	line-height: 50px;
 }
 .tips .good_comment .desc{
-	margin:0 58px;
+	margin:0 36px;
 }
 .message{
 	margin:-60px 20px 100px 20px;
@@ -240,7 +240,7 @@ body{
 }
 .message .details .h3{
 	display: inline-block;
-	width: 633px;
+	width: 605px;
 	color: #ff4f4e;
 	text-align:right;
 }
@@ -262,7 +262,6 @@ body{
 }
 .message .details .bbb{
 	margin:10px 0;
-	color: #ff4f4e;
 }
 
 
@@ -276,7 +275,7 @@ body{
 
 .message .details .aaa{
 	float: right;
-  	width: 405px;
+  	width: 370px;
   	padding: 28px 0;
 }
 
