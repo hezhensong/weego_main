@@ -251,7 +251,6 @@ header {
 			</c:otherwise>
 		</c:choose>
 		
-	<c:if test="${facilitie != null} ">
 		<div class="details" id="last_tip">
 			<img src="../resource/img/poi/ticket.png">
 			<p>设施</p>
@@ -423,7 +422,6 @@ header {
 				</c:choose>
 			</div>
 		</div>
-	</c:if>
 	</div>
 </body>
 <script type="text/javascript" src="../js/POI.js"></script>

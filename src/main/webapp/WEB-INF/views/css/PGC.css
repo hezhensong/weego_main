@@ -40,7 +40,7 @@
 	}
 	.author .head img{
 		margin: 20px;
-		width: 86%;
+		width: 84%;
 		border-radius: 50%;
 	}
 	.author h1{
@@ -56,13 +56,13 @@
 		text-align: center;
 		margin-top:40px;
 	}
-	.author .line{
-		margin:60px 0;
+	.line1{
+		margin:60px 0 85px 0;
 		height: 30px;
 		background-repeat:no-repeat;
 	}
-	.author .line img{
-		height: 20px;
+	.line1 img{
+		width:100%;
 	}
 	.from{
 		margin: 6% 3%;
@@ -79,7 +79,7 @@
 	width: 4%;
     }
 	.page{
-		margin:5% 0;
+		margin:80px 0 5% 0;
 	}
 	.page .page_title{
 		margin:70px 30px 36px 30px;
@@ -106,10 +106,10 @@
 		padding-top: 6px;
 		font-size: 37px;
 		position: relative;
-		top: -500px;
+		top: -89%;
 		background-image:url(../resource/img/pgc/lable@2x.png);
 		background-size: cover;
-		height: 66px;
+		height: 68px;
 		width: 223px;
 	}
 	.page .poi .type .type_text{
@@ -121,7 +121,7 @@
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
 		position: relative;
-		top: -490px;
+		top: -86%;
 	}
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;

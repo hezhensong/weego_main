@@ -210,6 +210,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 				mv.addObject("times", poiDetailSumDto.getOpenTime());
 				// 设施，需要循环遍历，传的是一个对象，里面的值是true or false
 				mv.addObject("facilitie", poiDetailSumDto.getFacilities());
+				//System.out.println("facilitie"+poiDetailSumDto.getFacilities().isOutseat());
 
 				return mv;
 			} else {

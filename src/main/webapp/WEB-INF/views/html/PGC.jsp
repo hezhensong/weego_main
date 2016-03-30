@@ -38,8 +38,8 @@ header {
 				</div>
 				<h1 id="author_name">${person.userName}</h1>
 				<p>${person.jobDesc}</p>
-				<div class="line"><img src="../resource/img/pgc/line3x.png"/></div>
 			</div>
+			<div class="line1"><img src="../resource/img/pgc/line3x.png"/></div>
 		</c:otherwise>
 	</c:choose>
 
@@ -58,7 +58,7 @@ header {
 	<div class="drb">
 		<img class="float-l" src="../resource/img/pgc/yin1.png">
 		<div>
-			<span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${breif}
+			<span style="font-size: 38px;">&nbsp;&nbsp;&nbsp;</span>${breif}
 		</div>
 		<img class="float-r" src="../resource/img/pgc/yin2.png">
 	</div>

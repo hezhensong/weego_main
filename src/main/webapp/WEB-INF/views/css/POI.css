@@ -25,7 +25,7 @@ html,body{width:100%; position:relative;}
 	margin-top:-28px;
 }
 .title{
-	margin:6% auto;
+	margin:6% auto 40px 0;
 }
 .title .center{
 	margin:0 auto;
@@ -45,11 +45,11 @@ html,body{width:100%; position:relative;}
 }
 .title .center .ch_name{
 	margin-bottom:0;
-	margin-top:34px;
+	margin-top:30px;
 	 font-weight:normal;
 }
 .title .center .en_name{
-	margin-top:10px;
+	margin-top:0;
 	font-size: 42px;
 	 font-weight:normal;
 }
@@ -64,7 +64,8 @@ html,body{width:100%; position:relative;}
 .title .score img{
 	display: inline-block;
 	margin-right: 12px;
-	margin-bottom: -5px;
+	margin-bottom: -3px;
+	width:19%;
 }
 .title .score .reviews{
 	display: inline-block;
@@ -73,9 +74,9 @@ html,body{width:100%; position:relative;}
 	opacity: 0.5;
 }
 .tips{
-	padding-bottom: 60px;
+	padding-bottom: 62px;
 	border-bottom: 1px solid rgba(138,138,138,0.4);
-	margin: 0 16px 6% 16px;
+	margin: 0 16px 60px 16px;
 }
 .tips .h2{
 	font-size: 40px;
@@ -128,7 +129,7 @@ html,body{width:100%; position:relative;}
 	
 }
 .tips .margin{
-	margin:30px 12px 0 12px;
+	margin:70px 12px 0 12px;
 }
 .tips p{
 	margin: 0;
@@ -136,7 +137,7 @@ html,body{width:100%; position:relative;}
 	line-height: 68px;
 }
 .tips .menu{
-	margin: 70px 0px 60px 0px;
+	margin: 75px 0px 30px 0px;
 	height: 35%;
 }
 .tips .menu p{
@@ -158,7 +159,7 @@ html,body{width:100%; position:relative;}
 }
 .tips .menu .menu_name{
 	position: relative;
-	top: 51%;
+	top: 49%;
 	left: 28px;
 	float: left;
 	font-size: 45px;
@@ -176,13 +177,16 @@ html,body{width:100%; position:relative;}
 	margin:60px auto;
 	width: 568px;
 }
+.rating_pic{
+	width: 75%;
+}
 .tips .comment .left{
 	border-right: 1px solid rgba(138,138,138,0.4);
 	padding-right: 40px;
 	float: left;
 }
 .tips .comment .left img{
-	width: 90px;
+	width: 85px;
 	margin-bottom: 20px;
 }
 .tips .comment .left p{
@@ -194,8 +198,8 @@ html,body{width:100%; position:relative;}
 	padding-left: 40px;
 }
 .tips .comment .right p{
-	font-size: 58px;
-	margin-bottom: 63px;
+	font-size: 59px;
+	margin-bottom: 60px;
 }
 .tips .main_comment{
 	font-size: 47px;
@@ -278,12 +282,12 @@ html,body{width:100%; position:relative;}
 }
 
 .message .details .all{
-	margin:38px 32px;
+	margin:38px 60px;
 }
 .message .details .all .little{
 	display: inline-block;
 	width: 155px;
-	margin:0 3% 40px 3%;
+	margin:0 2.2% 60px 2.2%;
 }
 .message .details .all .little img{
 	height: 50px;
