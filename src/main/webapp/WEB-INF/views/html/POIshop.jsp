@@ -31,14 +31,19 @@ header {
 			<h2 class="ch_name">${title}</h2>
 			<h2 class="en_name">${english_title}</h2>
 		</div>
+		<c:if test="${reviews != 'null' && reviews != 0 && reviews != '' && reviews != '0' && reviews != null}">
 		<div class="score">
 			<img class="reviews_pic" src="">
 			<!-- 判断 -->
 			<div class="reviews">${reviews}分</div>
 		</div>
+		</c:if>
 	</div>
+	<c:if test="${foreword != null && foreword != 'null' && foreword != '' && tags !='' && tags !='null' && tags != null}">
 	<div class="tips">
+	<c:if test="${foreword != null && foreword != 'null' && foreword != '' }">
 		<div class="h2">${foreword}</div>
+		</c:if>
 		<c:choose>
 			<c:when test="${tags =='' || tags =='null' || tags == null}">
 
@@ -55,6 +60,7 @@ header {
 		</c:choose>
 
 	</div>
+	</c:if>
 	<c:choose>
 		<c:when test="${breif =='' || breif =='null' || breif ==null}">
 			<div style="display: none" class="tips" id="breif">
@@ -126,7 +132,7 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="${comments != 'null' }">
+	<c:if test="${comments != 'null' && comments != null && comments != '' }">
 		<div class="tips last_tip">
 			<div class="breif recommends">
 				<img src="../resource/img/poi/comment.png">
@@ -413,7 +419,5 @@ header {
 	</div>
 </body>
 <script type="text/javascript" src="../js/POIfood.js"></script>
-<script type="text/javascript">
-	alert(comments);
-</script>
+
 </html>
