@@ -56,28 +56,19 @@ header {
 		</div>
 		</c:if>
 	</div>
-	<c:if test="${foreword != null && foreword != 'null' && foreword != '' && tags !='' && tags !='null' && tags != null}">
 	<div class="tips">
 	<c:if test="${foreword != null && foreword != 'null' && foreword != '' }">
 		<div class="h2">${foreword}</div>
 		</c:if>
-		<c:choose>
-			<c:when test="${tags =='' || tags =='null' || tags == null}">
-
-				<div style="display: none" class="special"></div>
-			</c:when>
-			<c:otherwise>
+			<c:if test="${tags !='' && tags !='null' && tags != null}">
 				<div class="special">
 					<c:forEach items="${tags}" var="tag">
 						<div class="single first">${tag.name}</div>
 						<!-- 需要循环遍历 -->
 					</c:forEach>
 				</div>
-			</c:otherwise>
-		</c:choose>
-
+			</c:if>
 	</div>
-	</c:if>
 	<c:choose>
 		<c:when test="${breif =='' || breif =='null' || breif ==null}">
 			<div style="display: none" class="tips" id="breif">
@@ -435,6 +426,6 @@ header {
 	</c:if>
 	</div>
 </body>
-<script type="text/javascript" src="../js/POIfood.js"></script>
+<script type="text/javascript" src="../js/POI.js"></script>
 
 </html>

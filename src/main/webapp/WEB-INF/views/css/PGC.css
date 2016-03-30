@@ -20,10 +20,10 @@
 	}
 	header h1{
 		margin:0 7%;
-		top: 67%;
+		top: 63%;
 		position: relative;
 		text-align: center;
-		font-size:60px ;
+		font-size:68px ;
 		font-weight: bold;
 	}
 	.author{
@@ -31,26 +31,25 @@
 		margin: -105px 3% 6% 3%;
 	}
 	.author .head{
-		margin:0 auto;
+		margin:3px auto;
 		background:url(../resource/img/pgc/pgc_avatar.png);
 		background-size: cover;
-		height:200px;
 		width: 200px;
 	}
 	.author .head img{
 		margin: 20px;
-		width: 84%;
+		width: 86%;
 		border-radius: 50%;
 	}
 	.author h1{
 		padding-top: 3%;
 		margin:0;
 		text-align: center;
-		font-size: 46px;
+		font-size: 58px;
 		font-family: bold;
 	}
 	.author p{
-		font-size: 34px;
+		font-size: 38px;
 		line-height: 50px;
 		text-align: center;
 	}
@@ -75,12 +74,12 @@
 		margin:5% 0;
 	}
 	.page .page_title{
-		margin:80px 0 40px 0;
-		font:40px HelveticaNeue-Bold;
+		margin:80px 30px 40px 30px;
+		font:50px HelveticaNeue-Bold;
 		text-align: center;
 	}
 	.page .page_title .small{
-	    margin-bottom:-8px;
+	    margin-bottom:-3px;
 		margin-right: 25px;
 		height: 60px;
 		width: 8px;
@@ -93,10 +92,11 @@
 	
 	.page .poi .overlay{
 		width: 100%;
+		height:100%;
 	}
 	.page .poi .type{
 		padding-left: 28px;
-		padding-top: 12px;
+		padding-top: 10px;
 		font-size: 38px;
 		position: relative;
 		top: -500px;

@@ -36,19 +36,19 @@ html,body{width:100%; position:relative;}
 	display: inline-block;
 }
 .title .center h2{
-	font-size: 58px;
+	font-size: 68px;
 	text-align: center;
 	width:880px;
     margin-left:-167px;
 }
 .title .center .ch_name{
 	margin-bottom:0;
-	 font-weight:100;
+	 font-weight:normal;
 }
 .title .center .en_name{
 	margin-top:20px;
-	font-size: 45px;
-	 font-weight:100;
+	font-size: 38px;
+	 font-weight:normal;
 }
 .title .center h3{
 	font-size: 30px;
@@ -61,17 +61,17 @@ html,body{width:100%; position:relative;}
 .title .score img{
 	display: inline-block;
 	margin-right: 12px;
-	margin-bottom: -10px;
+	margin-bottom: -5px;
 }
 .title .score .reviews{
 	display: inline-block;
-	font-size: 26px;
+	font-size: 32px;
 	color: #fff;
 	opacity: 0.5;
 }
 .tips{
 	padding-bottom: 60px;
-	border-bottom: 1px solid #4b4e4e;
+	border-bottom: 1px solid rgba(138,138,138,0.4);
 	margin: 0 16px 6% 16px;
 }
 .tips .h2{
@@ -95,14 +95,19 @@ html,body{width:100%; position:relative;}
 	padding: 15px 0;
 }
 .tips .special .first{
-	background-color: #ff4f4e;
+	background-color: rgb(255,79,78);
 }
+
 .tips .breif{
-	width: 336px;
+	width: 290px;
 	margin: 0 auto;
 }
 
-.tips .breif .recommenddesc{
+.tips .brand{
+	width: 346px;
+}
+
+.tips .recommenddesc{
 	margin-left:12px;
 }
 
@@ -116,8 +121,7 @@ html,body{width:100%; position:relative;}
 .tips .breif .h3{
 	margin:0;
 	display: inline-block;
-	font-size: 56px;
-	font-weight: bold;
+	font-size: 58px;
 	
 }
 .tips .margin{
@@ -126,7 +130,7 @@ html,body{width:100%; position:relative;}
 .tips p{
 	margin: 0;
 	font-size: 38px;
-	line-height: 60px;
+	line-height: 68px;
 }
 .tips .menu{
 	margin: 70px 0px 60px 0px;
@@ -151,10 +155,10 @@ html,body{width:100%; position:relative;}
 }
 .tips .menu .menu_name{
 	position: relative;
-	top: 53%;
+	top: 51%;
 	left: 28px;
 	float: left;
-	font-size: 36px;
+	font-size: 45px;
 
 }
 
@@ -170,7 +174,7 @@ html,body{width:100%; position:relative;}
 	width: 510px;
 }
 .tips .comment .left{
-	border-right: 1px solid #4c4f4f;
+	border-right: 1px solid rgba(138,138,138,0.4);
 	padding-right: 40px;
 	float: left;
 }
@@ -188,11 +192,11 @@ html,body{width:100%; position:relative;}
 	padding-left: 40px;
 }
 .tips .comment .right p{
-	font-size: 48px;
+	font-size: 58px;
 	margin-bottom: 55px;
 }
 .tips .main_comment{
-	font-size: 48px;
+	font-size: 45px;
 	text-align: center;
 	margin-top:90px;
 }
@@ -225,7 +229,7 @@ html,body{width:100%; position:relative;}
 }
 .message .details .h3{
 	display: inline-block;
-	width: 605px;
+	width: 615px;
 	color: #ff4f4e;
 	text-align:right;
 }
@@ -256,16 +260,6 @@ html,body{width:100%; position:relative;}
 	width: 620px;
 	margin: 10px 0;
 	text-align: left;
-}
-
-.message .details .aaa{
-	float: right;
-  	width: 370px;
-  	padding: 28px 0;
-}
-
-.message .details .bbb{
-	margin:10px 0;
 }
 
 .message .details #web{

@@ -48,29 +48,26 @@ header {
 			<h2 class="ch_name">${title}</h2>
 			<h2 class="en_name">${english_title}</h2>
 		</div>
+		<c:if test="${reviews != 'null' && reviews != 0 && reviews != '' && reviews != '0' && reviews != null}">
 		<div class="score">
 			<img class="reviews_pic" src="">
 			<!-- 判断 -->
 			<div class="reviews">${reviews}分</div>
 		</div>
+		</c:if>
 	</div>
 	<div class="tips">
+	<c:if test="${foreword != null && foreword != 'null' && foreword != '' }">
 		<div class="h2">${foreword}</div>
-		<c:choose>
-			<c:when test="${tags =='' || tags =='null' || tags == null}">
-
-				<div style="display: none" class="special"></div>
-			</c:when>
-			<c:otherwise>
+		</c:if>
+			<c:if test="${tags !='' && tags !='null' && tags != null}">
 				<div class="special">
 					<c:forEach items="${tags}" var="tag">
 						<div class="single first">${tag.name}</div>
 						<!-- 需要循环遍历 -->
 					</c:forEach>
 				</div>
-			</c:otherwise>
-		</c:choose>
-
+			</c:if>
 	</div>
 	<c:choose>
 		<c:when test="${breif =='' || breif =='null' || breif ==null}">
@@ -126,7 +123,7 @@ header {
 		</c:when>
 		<c:otherwise>
 			<div class="tips">
-				<div class="breif">
+				<div class="breif brand">
 					<img src="../resource/img/poi/menu.png">
 					<div class="h3">菜品推荐</div>
 				</div>
@@ -143,60 +140,42 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<c:choose>
-		<c:when test="${comments.text =='' || comments.text =='null' || comments.text ==null}">
-			<div style="display: none" class="tips last_tip">
-				<div class="breif recommends">
-					<img src="../resource/img/poi/comment.png">
-					<div class="h3">评论</div>
-				</div>
-				<div class="comment">
-					<div class="left">
-						<img id="comment_pic" src="">
-						<p id="comment_from">来自${commentFrom}</p>
-					</div>
-					<!-- finish js -->
-					<div class="right">
-						<p class="comments_rating">${comments.rating}分</p>
-						<img class="rating_pic" src="">
-					</div>
-					<!-- finish js -->
-				</div>
-				<p class="main_comment">${comments.title}</p>
-				<div class="good_comment">
-					<img class="float_l" src="../resource/img/poi/yin1.png"><br />
-					<p class="desc">${comments.text}</p>
-					<img class="float_r" src="../resource/img/poi/yin2.png">
-				</div>
+	<c:if test="${comments != 'null' && comments != null && comments != '' }">
+		<div class="tips last_tip">
+			<div class="breif recommends">
+				<img src="../resource/img/poi/comment.png">
+				<div class="h3">评论</div>
 			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="tips last_tip">
-				<div class="breif recommends">
-					<img src="../resource/img/poi/comment.png">
-					<div class="h3">评论</div>
-				</div>
-				<div class="comment">
-					<div class="left">
-						<img id="comment_pic" src="">
+
+			<div class="comment">
+				<div class="left">
+					<img id="comment_pic" src="">
+					<c:if test="${ commentFrom != '' }">
 						<p id="comment_from">来自${commentFrom}</p>
-					</div>
-					<!-- finish js -->
-					<div class="right">
+					</c:if>
+				</div>
+				<!-- finish js -->
+				<div class="right">
+					<c:if test="${comments.rating != 0 }">
 						<p class="comments_rating">${comments.rating}分</p>
-						<img class="rating_pic" src="">
-					</div>
-					<!-- finish js -->
+					</c:if>
+					<img class="rating_pic" src="">
 				</div>
-				<p class="main_comment">${comments.title}</p>
-				<div class="good_comment">
-					<img src="../resource/img/pgc/yin1.png"><br />
-					<p class="desc">${comments.text}</p>
-					<img class="float_r" src="../resource/img/pgc/yin2.png">
-				</div>
+				<!-- finish js -->
 			</div>
-		</c:otherwise>
-	</c:choose>
+			<c:if test="${comments.title !=''  }">
+				<p class="main_comment">${comments.title}</p>
+			</c:if>
+			<div class="good_comment">
+				<img class="float_l" src="../resource/img/poi/yin1.png"><br />
+				<c:if test="${comments.text != '' }">
+					<p class="desc">${comments.text}</p>
+				</c:if>
+				<img class="float_r" src="../resource/img/poi/yin2.png">
+			</div>
+
+		</div>
+	</c:if>
 
 	<div class="message">
 		<c:choose>
@@ -271,12 +250,15 @@ header {
 				</div>
 			</c:otherwise>
 		</c:choose>
+		
+	<c:if test="${facilitie != null} ">
 		<div class="details" id="last_tip">
 			<img src="../resource/img/poi/ticket.png">
 			<p>设施</p>
 			<div class="all">
 				<c:choose>
-					<c:when test="${facilitie.wifi =='false' || facilitie.wifi == null}">
+					<c:when
+						test="${facilitie.wifi =='false' || facilitie.wifi == null}">
 						<div style="display: none" class="little">
 							<img class="little" src="../resource/img/poi/wifi.png">
 							<div class="text" id="little">提供wifi</div>
@@ -290,7 +272,8 @@ header {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${facilitie.reserve =='false' || facilitie.reserve == null}">
+					<c:when
+						test="${facilitie.reserve =='false' || facilitie.reserve == null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_2.png">
@@ -304,9 +287,10 @@ header {
 						</div>
 					</c:otherwise>
 				</c:choose>
-				
+
 				<c:choose>
-					<c:when test="${facilitie.waiter =='false' || facilitie.waiter ==null}">
+					<c:when
+						test="${facilitie.waiter =='false' || facilitie.waiter ==null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_4.png">
@@ -354,7 +338,8 @@ header {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${facilitie.takeout =='false' || facilitie.takeout ==null}">
+					<c:when
+						test="${facilitie.takeout =='false' || facilitie.takeout ==null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_8.png">
@@ -370,7 +355,8 @@ header {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${facilitie.delivery =='false' || facilitie.delivery == null}">
+					<c:when
+						test="${facilitie.delivery =='false' || facilitie.delivery == null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_9.png">
@@ -402,7 +388,8 @@ header {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${facilitie.outseat =='false' || facilitie.outseat == null}">
+					<c:when
+						test="${facilitie.outseat =='false' || facilitie.outseat == null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_11.png">
@@ -418,7 +405,8 @@ header {
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
-					<c:when test="${facilitie.group =='false' || facilitie.group == null}">
+					<c:when
+						test="${facilitie.group =='false' || facilitie.group == null}">
 						<div style="display: none" class="little">
 							<img class="little"
 								src="../resource/img/poi/poi_facilities_12.png">
@@ -435,7 +423,8 @@ header {
 				</c:choose>
 			</div>
 		</div>
+	</c:if>
 	</div>
 </body>
-<script type="text/javascript" src="../js/POIfood.js"></script>
+<script type="text/javascript" src="../js/POI.js"></script>
 </html>

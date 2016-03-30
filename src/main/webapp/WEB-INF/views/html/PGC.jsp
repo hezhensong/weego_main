@@ -16,7 +16,7 @@ header {
 }
 
 .page .poi {
-	height: 549px;
+	height: 40%;
 	background-size: cover;
 	margin: 30px 0;
 }
