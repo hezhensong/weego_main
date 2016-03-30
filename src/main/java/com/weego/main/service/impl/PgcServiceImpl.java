@@ -238,10 +238,7 @@ public class PgcServiceImpl implements PgcService {
                     pgcPoiDto.setImage(Strings.nullToEmpty(pgcPoi.getPoiImage()));
                     pgcPoiDto.setType(Strings.nullToEmpty(pgcPoi.getType()));
                     pgcPoiDto.setTitle(Strings.nullToEmpty(pgcPoi.getName()));
-                    String tag = getPoiTagbyType(pgcPoi.getId(), pgcPoi.getType());
-                    if(tag==null || tag.endsWith("")){
-                        pgcPoiDto.setTag(tag);
-                    }
+                    pgcPoiDto.setTag(getPoiTagbyType(pgcPoi.getId(), pgcPoi.getType()));
                     pgcContentDto.setPoi(pgcPoiDto);
 
                     PgcImageDto pgcImageDto = new PgcImageDto();
