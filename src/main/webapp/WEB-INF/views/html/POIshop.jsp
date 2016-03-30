@@ -7,15 +7,30 @@
 <meta charset="UTF-8">
 <meta name="apple-touch-fullscreen" content="YES" />
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="../css/POIshop.css">
+<link rel="stylesheet" type="text/css" href="../css/POI.css">
 <script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 <style type="text/css">
+body{
+	color: #fff;
+	font-family: Helevtical Neue-Light;
+	background:url(../resource/img/poi/poishop.png);
+	background-size: cover;
+}
 header {
 	background-image: url(${coverimage});
 	background-size: cover;
 	height: 52%;
 }
-
+.title .center .icon{
+	background-image: url(../resource/img/poi/shopname.png);
+	position: relative;
+	top:15px;
+	display: inline-block;
+	margin: 0 32px;
+	height: 40px;
+	width: 52px;
+	background-size: cover;
+}
 .tips .first_menu {
 	background-size: cover;
 }
@@ -31,14 +46,19 @@ header {
 			<h2 class="ch_name">${title}</h2>
 			<h2 class="en_name">${english_title}</h2>
 		</div>
+		<c:if test="${reviews != 'null' && reviews != 0 && reviews != '' && reviews != '0' && reviews != null}">
 		<div class="score">
 			<img class="reviews_pic" src="">
 			<!-- 判断 -->
 			<div class="reviews">${reviews}分</div>
 		</div>
+		</c:if>
 	</div>
+	<c:if test="${foreword != null && foreword != 'null' && foreword != '' && tags !='' && tags !='null' && tags != null}">
 	<div class="tips">
+	<c:if test="${foreword != null && foreword != 'null' && foreword != '' }">
 		<div class="h2">${foreword}</div>
+		</c:if>
 		<c:choose>
 			<c:when test="${tags =='' || tags =='null' || tags == null}">
 
@@ -55,6 +75,7 @@ header {
 		</c:choose>
 
 	</div>
+	</c:if>
 	<c:choose>
 		<c:when test="${breif =='' || breif =='null' || breif ==null}">
 			<div style="display: none" class="tips" id="breif">
@@ -126,7 +147,7 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="${comments != 'null' }">
+	<c:if test="${comments != 'null' && comments != null && comments != '' }">
 		<div class="tips last_tip">
 			<div class="breif recommends">
 				<img src="../resource/img/poi/comment.png">
@@ -413,7 +434,4 @@ header {
 	</div>
 </body>
 <script type="text/javascript" src="../js/POIfood.js"></script>
-<script type="text/javascript">
-	alert(comments);
-</script>
 </html>

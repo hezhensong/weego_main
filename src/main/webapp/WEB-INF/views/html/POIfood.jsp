@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -6,9 +7,15 @@
 <meta charset="UTF-8">
 <meta name="apple-touch-fullscreen" content="YES" />
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="../css/POIfood.css">
+<link rel="stylesheet" type="text/css" href="../css/POI.css">
 <script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 <style type="text/css">
+body{
+	color: #fff;
+	font-family: Helevtical Neue-Light;
+	background:url(../resource/img/poi/poifood.png);
+	background-size: cover;
+}
 header {
 	background-image: url(${coverimage});
 	background-size: cover;
@@ -16,6 +23,17 @@ header {
 }
 
 .tips .first_menu {
+	background-size: cover;
+}
+
+.title .center .icon{
+	background-image: url(../resource/img/poi/foodname.png);
+	position: relative;
+	top:15px;
+	display: inline-block;
+	margin: 0 32px;
+	height: 40px;
+	width: 52px;
 	background-size: cover;
 }
 </style>
