@@ -60,6 +60,16 @@ public class OpenTimeUtil {
 	public static boolean splitTime(String openTime,int hour) {
 		System.out.println(openTime);
 		Double[] time = new Double[2];
+		String temp_time = openTime.split("-")[1];
+		
+		// 2-close-close 这种特殊情况
+		if(temp_time.equals("close")) {
+			return false;
+		} 
+		// 3-allday-0.5 这种特殊情况
+		if(temp_time.equals("allday")) {
+			return true;
+		}
 		time[0] = Double.parseDouble(openTime.split("-")[1]);
 		time[1] = Double.parseDouble(openTime.split("-")[2]);
 		if(hour >= time[0] && hour <= time[1]) {
@@ -69,7 +79,7 @@ public class OpenTimeUtil {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(splitTime("2-10-12", 10));
+		System.out.println(splitTime("2-allday-12", 10));
 		
 	}
 }
