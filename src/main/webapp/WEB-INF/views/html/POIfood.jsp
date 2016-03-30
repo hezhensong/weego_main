@@ -259,13 +259,13 @@ header {
 					<c:when
 						test="${facilitie.wifi =='false' || facilitie.wifi == null}">
 						<div style="display: none" class="little">
-							<img class="little" src="../resource/img/poi/wifi.png">
+							<img class="little wifi" src="../resource/img/poi/wifi.png">
 							<div class="text" id="little">提供wifi</div>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="little">
-							<img class="little" src="../resource/img/poi/wifi.png">
+							<img class="little wifi" src="../resource/img/poi/wifi.png">
 							<div class="text" id="little">提供wifi</div>
 						</div>
 					</c:otherwise>

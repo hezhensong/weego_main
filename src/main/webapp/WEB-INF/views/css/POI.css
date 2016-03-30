@@ -86,7 +86,7 @@ html,body{width:100%; position:relative;}
 }
 .tips .special{
 	text-align: center;
-	margin: 4% auto;
+	margin: 40px auto;
 }
 .tips .special .single{
 	font-size: 35px;
@@ -274,7 +274,6 @@ html,body{width:100%; position:relative;}
 }
 
 .message .details #web{
-	text-align: left;
     white-space:nowrap;    
     word-break:keep-all;    
     overflow:hidden;    
@@ -282,17 +281,20 @@ html,body{width:100%; position:relative;}
 }
 
 .message .details .all{
-	margin:38px 60px;
+	margin:0;
 }
 .message .details .all .little{
 	display: inline-block;
 	width: 155px;
-	margin:0 2.2% 60px 2.2%;
+	margin:0 0 60px 6%;
 }
 .message .details .all .little img{
 	height: 50px;
 	width: 98px;
 	margin:0;
+}
+.wifi{
+	margin-left: 18px;
 }
 .message .details .all .little .text{
 	margin-top: 16px;

@@ -26,7 +26,7 @@
 		text-align: center;
 		font-size:68px ;
 		font-weight: bold;
-		text-shadow:1px 1px 1px rgba(0,0,48,0.6);
+		text-shadow:2px 2px 1px rgba(0,0,48,0.6);
 	}
 	.author{
 		text-align: center;
@@ -40,7 +40,7 @@
 	}
 	.author .head img{
 		margin: 20px;
-		width: 84%;
+		width: 81%;
 		border-radius: 50%;
 	}
 	.author h1{
@@ -74,12 +74,15 @@
 		font-size: 38px;
 		line-height: 65px;
 	}
-	
+
 	.drb img{
 	width: 4%;
     }
 	.page{
 		margin:80px 0 5% 0;
+	}
+	.ccc{
+	margin-bottom:105px;
 	}
 	.page .page_title{
 		margin:70px 30px 36px 30px;
@@ -142,7 +145,7 @@
 		text-align: center;
 		color: #fff;
 		z-index: 200;
-		text-shadow:1px 1px 1px rgba(0,0,48,0.6);
+		text-shadow:2px 2px 1px rgba(0,0,48,0.6);
 		margin:56px 0;
 	}
 	.page .page_pic{

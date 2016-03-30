@@ -55,7 +55,7 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<div class="drb">
+	<div class="drb ccc">
 		<img class="float-l" src="../resource/img/pgc/yin1.png">
 		<div>
 			<span style="font-size: 38px;">&nbsp;&nbsp;&nbsp;</span>${breif}
