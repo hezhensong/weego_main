@@ -7,15 +7,30 @@
 <meta charset="UTF-8">
 <meta name="apple-touch-fullscreen" content="YES" />
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="../css/POIshop.css">
+<link rel="stylesheet" type="text/css" href="../css/POI.css">
 <script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 <style type="text/css">
+body{
+	color: #fff;
+	font-family: Helevtical Neue-Light;
+	background:url(../resource/img/poi/poishop.png);
+	background-size: cover;
+}
 header {
 	background-image: url(${coverimage});
 	background-size: cover;
 	height: 52%;
 }
-
+.title .center .icon{
+	background-image: url(../resource/img/poi/shopname.png);
+	position: relative;
+	top:15px;
+	display: inline-block;
+	margin: 0 32px;
+	height: 40px;
+	width: 52px;
+	background-size: cover;
+}
 .tips .first_menu {
 	background-size: cover;
 }
@@ -413,7 +428,4 @@ header {
 	</div>
 </body>
 <script type="text/javascript" src="../js/POIfood.js"></script>
-<script type="text/javascript">
-	alert(comments);
-</script>
 </html>

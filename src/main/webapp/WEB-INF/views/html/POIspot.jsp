@@ -6,13 +6,30 @@
 <meta charset="UTF-8">
 <meta name="apple-touch-fullscreen" content="YES" />
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="../css/POIspot.css">
+<link rel="stylesheet" type="text/css" href="../css/POI.css">
 <script type="text/javascript" src="../resource/jquery-1.3.2.min.js"></script>
 <style type="text/css">
+body{
+	color: #fff;
+	font-family: Helevtical Neue-Light;
+	background:url(../resource/img/poi/poispot.png);
+	background-size: cover;
+}
 header {
 	background-image: url(${coverimage});
 	background-size: cover;
 	height: 52%;
+}
+
+.title .center .icon{
+	background-image: url(../resource/img/poi/spotname.png);
+	position: relative;
+	top:15px;
+	display: inline-block;
+	margin: 0 32px;
+	height: 40px;
+	width: 52px;
+	background-size: cover;
 }
 
 .tips .first_menu {
