@@ -58,7 +58,6 @@ body{
 }
 .title .center .ch_name{
 	margin-bottom:0;
-	 font-weight:100;
 }
 .title .center .en_name{
 	margin-top:20px;
@@ -225,7 +224,7 @@ body{
 .message .details{
 	margin-left:12px;
 	padding-top:5px;
-	font-size: 34px;
+	font-size: 38px;
 	border-bottom: 1px solid #4c4f4f;
 }
 .message .details img{
@@ -275,7 +274,7 @@ body{
 
 .message .details .aaa{
 	float: right;
-  	width: 370px;
+  	width: 442px;
   	padding: 28px 0;
 }
 
@@ -284,7 +283,6 @@ body{
 }
 
 .message .details #web{
-	text-align: left;
     white-space:nowrap;    
     word-break:keep-all;    
     overflow:hidden;    
