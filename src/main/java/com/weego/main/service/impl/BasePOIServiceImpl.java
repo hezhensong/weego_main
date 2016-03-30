@@ -199,7 +199,7 @@ public class BasePOIServiceImpl implements BasePOIService {
 				if (poiDetailSumDto.getComments() != null && poiDetailSumDto.getComments().size() > 0) {
 					mv.addObject("comments", poiDetailSumDto.getComments().get(0));
 				} else {
-					mv.addObject("comments", "null");
+					mv.addObject("comments", null);
 				}
 
 				// 后面一段

@@ -8,7 +8,7 @@ if(_tag == ""){
 	$(".type").hide();
 }
 
-if(_comment_from == "来自google"){
+if(_comment_from == "来自于google"){
 	$("#comment_pic").attr("src","../resource/img/poi/google.png");
 }else{
 	$("#comment_pic").attr("src","../resource/img/poi/tripadvisor.png");

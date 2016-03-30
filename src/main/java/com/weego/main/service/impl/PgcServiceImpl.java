@@ -211,13 +211,13 @@ public class PgcServiceImpl implements PgcService {
             mv.addObject("title", pgc.getTitle());
             
             if (Strings.isNullOrEmpty(pgc.getPerson())) {
-                mv.addObject("person", "null");
+                mv.addObject("person", null);
             } else {
                 Person person = peopleDao.getPersonById(pgc.getPerson().trim());
                 if(person!=null){
                     mv.addObject("person", person);
                 }else{
-                    mv.addObject("person", "null");
+                    mv.addObject("person", null);
                 }
             }
             PgcOriginal original = pgc.getOriginal();

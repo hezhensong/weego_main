@@ -99,18 +99,18 @@
 		padding-top: 10px;
 		font-size: 38px;
 		position: relative;
-		top: -500px;
+		top: -600px;
 		background-image:url(../resource/img/pgc/lable.png);
 		background-size: cover;
 		height: 60px;
-		width: 215px;
+		width: 222px;
 	}
 	.page .poi .center{
 		width: 550px;
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
 		position: relative;
-		top: -445px;
+		top: -517px;
 	}
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;
@@ -141,7 +141,7 @@
 	}
 	.page .page_pic h3{
 		margin:2% 0 6% 0;
-		font-size:24px ;
+		font-size:30px ;
 		text-align: center;
 		opacity: 0.5;
 	}

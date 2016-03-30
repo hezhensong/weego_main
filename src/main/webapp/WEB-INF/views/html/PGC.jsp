@@ -11,7 +11,7 @@
 header {
 	background-image: url(${cover_img});
 	background-size: cover;
-	height: 50%;
+	height: 52%;
 	width: 100%;
 }
 
@@ -28,7 +28,7 @@ header {
 	</header>
 
 	<c:choose>
-		<c:when test="${person =='' || person == 'null' || person == null}">
+		<c:when test="${person =='' || person == null}">
 			<div style="display: none" class="author"></div>
 		</c:when>
 		<c:otherwise>
@@ -45,7 +45,7 @@ header {
 
 	<c:choose>
 		<c:when
-			test="${original.author =='' || original.author =='null' || original.author == null}">
+			test="${original.author =='' || original.author == null}">
 			<div style="display: none" class="from"></div>
 		</c:when>
 		<c:otherwise>
@@ -66,7 +66,7 @@ header {
 		<div class="page">
 			<c:choose>
 				<c:when
-					test="${PgcPoi.paragraph.title =='' || PgcPoi.paragraph.title == 'null'}">
+					test="${PgcPoi.paragraph.title =='' || PgcPoi.paragraph.title == null}">
 					<div style="display: none" class="page_title">
 						<div class="small"></div>
 						<h2 id="text_title">${PgcPoi.paragraph.title}</h2>
@@ -82,7 +82,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == 'null' || PgcPoi.paragraph.desc == null}">
+					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == null}">
 					<div style="display: none" id="text" class="drb">${PgcPoi.paragraph.desc}</div>
 				</c:when>
 				<c:otherwise>
@@ -92,7 +92,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null' || PgcPoi.poi.image == null}">
+					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == null}">
 					<div style="display: none" class="poi" id="poi"></div>
 				</c:when>
 				<c:otherwise>
@@ -113,7 +113,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null' || PgcPoi.image.url == null}">
+					test="${PgcPoi.image.url =='' || PgcPoi.image.url == null}">
 					<div style="display: none" class="page_pic"></div>
 				</c:when>
 				<c:otherwise>
@@ -130,7 +130,7 @@ header {
 
 	<c:choose>
 		<c:when
-			test="${original.author =='' || original.author =='null' || original.author == null}">
+			test="${original.author =='' || original.author == null}">
 			<footer>
 				<div style="display: none" class="from"></div>
 			</footer>
