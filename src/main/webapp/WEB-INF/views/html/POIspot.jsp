@@ -167,7 +167,7 @@ header {
 				<p class="main_comment">${comments.title}</p>
 			</c:if>
 			<div class="good_comment">
-				<img class="float_l" src="../resource/img/poi/yin1.png"><br />
+				<img class="float_l" src="../resource/img/poi/yin1.png">
 				<c:if test="${comments.text != '' }">
 					<p class="desc">${comments.text}</p>
 				</c:if>
