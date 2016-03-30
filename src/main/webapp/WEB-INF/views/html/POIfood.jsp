@@ -63,7 +63,7 @@ header {
 			<c:if test="${tags !='' && tags != null}">
 				<div class="special">
 					<c:forEach items="${tags}" var="tag">
-						<div class="single first">${tag.name}</div>
+						<div id="single" class="single">${tag.name}</div>
 						<!-- 需要循环遍历 -->
 					</c:forEach>
 				</div>

@@ -3,6 +3,9 @@ var _comment_from = $("#comment_from").html();
 var _comments_rating =$(".comments_rating").html();
 var _reviews =$(".reviews").html();
 
+$(document).ready(function(){
+	$("#single").addClass("first")
+})
 
 if(_tag == ""){
 	$(".type").hide();

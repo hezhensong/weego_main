@@ -16,9 +16,9 @@ header {
 }
 
 .page .poi {
-	height: 40%;
+	height: 35%;
 	background-size: cover;
-	margin: 30px 0;
+	margin: 30px 0 40px 0;
 }
 </style>
 </head>
@@ -38,7 +38,7 @@ header {
 				</div>
 				<h1 id="author_name">${person.userName}</h1>
 				<p>${person.jobDesc}</p>
-				<div class="line"></div>
+				<div class="line"><img src="../resource/img/pgc/line3x.png"/></div>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -100,7 +100,9 @@ header {
 						id="poi">
 						<img class="overlay" id="poi_pic"
 							src="../resource/img/pgc/overlay.png">
-						<div class="type" id="poi_tag">${PgcPoi.poi.tag}</div>
+						<div class="type" id="poi_tag">
+						<div class="type_text" id="type_text">${PgcPoi.poi.tag}</div>
+						</div>
 						<div class="center">
 							<div class="line"></div>
 							<img class="icon" alt="${PgcPoi.poi.type}" src="">
@@ -118,7 +120,7 @@ header {
 				</c:when>
 				<c:otherwise>
 					<div class="page_pic">
-						<img id="pic" src="${PgcPoi.image.url}">
+					<div id="pic" style="background-image:url(${PgcPoi.image.url})"></div>
 						<h3 class="resource">
 							(图片来源：<span id="pic_resource">${PgcPoi.image.source}</span>)
 						</h3>

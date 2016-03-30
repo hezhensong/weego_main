@@ -17,11 +17,12 @@ html,body{width:100%; position:relative;}
 
 .float_r{
 	float: right;
-	margin-top:-20px;
+	margin-top:-17px;
 }
 
 .float_l{
 	float: left;
+	margin-top:-28px;
 }
 .title{
 	margin:6% auto;
@@ -44,11 +45,12 @@ html,body{width:100%; position:relative;}
 }
 .title .center .ch_name{
 	margin-bottom:0;
+	margin-top:34px;
 	 font-weight:normal;
 }
 .title .center .en_name{
-	margin-top:20px;
-	font-size: 38px;
+	margin-top:10px;
+	font-size: 42px;
 	 font-weight:normal;
 }
 .title .center h3{
@@ -86,7 +88,7 @@ html,body{width:100%; position:relative;}
 	margin: 4% auto;
 }
 .tips .special .single{
-	font-size: 34px;
+	font-size: 35px;
 	width: 200px;
 	text-align: center;
 	border:3px solid #ff514e;
@@ -184,7 +186,7 @@ html,body{width:100%; position:relative;}
 	margin-bottom: 20px;
 }
 .tips .comment .left p{
-	font-size: 30px;
+	font-size: 31px;
 }
 .tips .comment .right{
 	display: inline-block;
@@ -196,7 +198,7 @@ html,body{width:100%; position:relative;}
 	margin-bottom: 63px;
 }
 .tips .main_comment{
-	font-size: 45px;
+	font-size: 47px;
 	text-align: center;
 	margin-top:90px;
 }
@@ -205,11 +207,16 @@ html,body{width:100%; position:relative;}
 	font-size: 30px;
 	line-height: 50px;
 }
+
+.tips .good_comment img{
+	width:4%;
+}
+
 .tips .good_comment .desc{
 	margin:0 55px;
 }
 .message{
-	margin:-60px 20px 100px 20px;
+	margin:-115px 20px 100px 20px;
 }
 .message .details{
 	margin-left:12px;

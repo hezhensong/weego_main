@@ -10,10 +10,11 @@
 	}
 	.float-r{
 		float: right;
-		margin-top:-20px;
+		margin-top:-16px;
 	}
 	.float-l{
 		float:left;
+		margin-top:-28px;
 	}
 	.extra{
 		margin-top: -204px;
@@ -25,6 +26,7 @@
 		text-align: center;
 		font-size:68px ;
 		font-weight: bold;
+		text-shadow:1px 1px 1px rgba(0,0,48,0.6);
 	}
 	.author{
 		text-align: center;
@@ -52,13 +54,15 @@
 		font-size: 38px;
 		line-height: 50px;
 		text-align: center;
+		margin-top:40px;
 	}
 	.author .line{
 		margin:60px 0;
-		background-image: url(../resource/img/pgc/line3x.png);
-		background-position: center;
-		height: 33px;
+		height: 30px;
 		background-repeat:no-repeat;
+	}
+	.author .line img{
+		height: 20px;
 	}
 	.from{
 		margin: 6% 3%;
@@ -66,23 +70,27 @@
     	font: 30px HelveticaNeue-Light;
 	}
 	.drb{
-		margin:50px 28px;
+		margin:36px 28px 40px 28px;
 		font-size: 38px;
-		line-height: 60px;
+		line-height: 65px;
 	}
+	
+	.drb img{
+	width: 4%;
+    }
 	.page{
 		margin:5% 0;
 	}
 	.page .page_title{
-		margin:80px 30px 40px 30px;
-		font:50px HelveticaNeue-Bold;
+		margin:70px 30px 36px 30px;
+		font:35px HelveticaNeue-Bold;
 		text-align: center;
 	}
 	.page .page_title .small{
-	    margin-bottom:-3px;
-		margin-right: 25px;
-		height: 60px;
-		width: 8px;
+	    margin-bottom:-8px;
+	    margin-right:10px;
+		height: 54px;
+		width: 11px;
 		background-color: #ff4f4e;
 		display: inline-block;
 	}
@@ -95,22 +103,25 @@
 		height:100%;
 	}
 	.page .poi .type{
-		padding-left: 28px;
-		padding-top: 10px;
-		font-size: 38px;
+		padding-top: 6px;
+		font-size: 37px;
 		position: relative;
-		top: -600px;
-		background-image:url(../resource/img/pgc/lable.png);
+		top: -500px;
+		background-image:url(../resource/img/pgc/lable@2x.png);
 		background-size: cover;
-		height: 60px;
-		width: 222px;
+		height: 66px;
+		width: 223px;
+	}
+	.page .poi .type .type_text{
+	width: 191px;
+	text-align:center;
 	}
 	.page .poi .center{
 		width: 550px;
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
 		position: relative;
-		top: -517px;
+		top: -490px;
 	}
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;
@@ -126,22 +137,26 @@
 		background-size: cover;
 	}
 	.page .poi .center h2{
-		font-size: 58px;
+		font-size: 59px;
 		font-weight: bold;
 		text-align: center;
 		color: #fff;
 		z-index: 200;
+		text-shadow:1px 1px 1px rgba(0,0,48,0.6);
+		margin:56px 0;
 	}
 	.page .page_pic{
 		margin-bottom: 5%;
 	}
-	.page .page_pic img{
+	.page .page_pic #pic{
+	    background-size:cover;
 		width: 100%;
-		height: 549px;
+		height: 35%;
 	}
 	.page .page_pic h3{
-		margin:2% 0 6% 0;
-		font-size:30px ;
+	    font-weight:normal;
+		margin:2% 0 4% 0;
+		font-size:26px ;
 		text-align: center;
 		opacity: 0.5;
 	}
