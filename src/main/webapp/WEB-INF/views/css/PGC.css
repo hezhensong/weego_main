@@ -106,26 +106,29 @@
 		height:100%;
 	}
 	.page .poi .type{
-		padding-top: 6px;
-		font-size: 37px;
-		position: relative;
-		top: -89%;
-		background-image:url(../resource/img/pgc/lable@2x.png);
+		padding-left: 28px;
+		padding-top: 12px;
+		font-size: 38px;
+		position: absolute;
+		top: 8%;
+		background-image:url(../resource/img/pgc/lable.png);
 		background-size: cover;
-		height: 68px;
-		width: 223px;
+		height: 60px;
+		width: 215px;
 	}
 	.page .poi .type .type_text{
 	width: 191px;
 	text-align:center;
 	}
+	
 	.page .poi .center{
 		width: 550px;
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
-		position: relative;
-		top: -86%;
+		position: absolute;
+		top: 45%;
 	}
+	
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;
 		width: 200px;
