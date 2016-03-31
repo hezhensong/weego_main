@@ -46,18 +46,15 @@ public class ActivityTimeUtil {
 	 */
 	public static void main(String[] args) {
 		Calendar calendar1 = Calendar.getInstance();
-		calendar1.set(1970, 7, 2);
-		Date date1 = calendar1.getTime();
-		Calendar calendar2 = Calendar.getInstance();
-		calendar2.set(2016, 2, 29);
-		Date date2 =  calendar2.getTime();
-		System.out.println(date2);
-		System.out.println(new Date());
-		try {
-			System.out.println(DateUtil.daysBetween(date2 , new Date()));
-		} catch (ParseException e) {
-			e.printStackTrace();
+//		Date date = new Date();
+		calendar1.set(2016,5,20,5,1);
+		int hour = 0;
+		System.out.println(calendar1.get(Calendar.MINUTE));
+		if(calendar1.get(Calendar.MINUTE) > 0) {
+			hour = calendar1.get(Calendar.HOUR_OF_DAY) + 1;
+		} else {
+			hour = calendar1.get(Calendar.HOUR_OF_DAY);
 		}
-		
+		System.out.println(hour);
 	}
 }
