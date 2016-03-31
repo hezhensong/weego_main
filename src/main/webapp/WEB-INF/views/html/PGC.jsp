@@ -11,14 +11,15 @@
 header {
 	background-image: url(${cover_img});
 	background-size: cover;
-	height: 52%;
+	height: 50%;
 	width: 100%;
 }
 
 .page .poi {
-	height: 35%;
+	position: relative;
+	height: 549px;
 	background-size: cover;
-	margin: 30px 0 40px 0;
+	margin: 30px 0;
 }
 </style>
 </head>
@@ -36,7 +37,7 @@ header {
 				<div class="head">
 					<img id="author_pic" src="${person.headImage}">
 				</div>
-				<h1 id="author_name">${person.userName}</h1>
+				<h1 id="author_name">${person.username}</h1>
 				<p>${person.jobDesc}</p>
 			</div>
 			<div class="line1"><img src="../resource/img/pgc/line3x.png"/></div>
@@ -100,9 +101,11 @@ header {
 						id="poi">
 						<img class="overlay" id="poi_pic"
 							src="../resource/img/pgc/overlay.png">
-						<div class="type" id="poi_tag">
-						<div class="type_text" id="type_text">${PgcPoi.poi.tag}</div>
-						</div>
+						<c:if test="${PgcPoi.poi.tag != null && PgcPoi.poi.tag != '' }">
+							<div class="type" id="poi_tag">
+							<div class="type_text" id="type_text">${PgcPoi.poi.tag}</div>
+							</div>
+						</c:if>
 						<div class="center">
 							<div class="line"></div>
 							<img class="icon" alt="${PgcPoi.poi.type}" src="">
