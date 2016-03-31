@@ -3,7 +3,6 @@ var _comment_from = $("#comment_from").html();
 var _comments_rating =$(".comments_rating").html();
 var _reviews =$(".reviews").html();
 
-
 if(_tag == ""){
 	$(".type").hide();
 }

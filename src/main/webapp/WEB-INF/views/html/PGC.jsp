@@ -16,6 +16,7 @@ header {
 }
 
 .page .poi {
+	position: relative;
 	height: 549px;
 	background-size: cover;
 	margin: 30px 0;
@@ -36,7 +37,7 @@ header {
 				<div class="head">
 					<img id="author_pic" src="${person.headImage}">
 				</div>
-				<h1 id="author_name">${person.userName}</h1>
+				<h1 id="author_name">${person.username}</h1>
 				<p>${person.jobDesc}</p>
 				<div class="line"></div>
 			</div>
@@ -100,7 +101,11 @@ header {
 						id="poi">
 						<img class="overlay" id="poi_pic"
 							src="../resource/img/pgc/overlay.png">
-						<div class="type" id="poi_tag">${PgcPoi.poi.tag}</div>
+
+						<div class="type" id="poi_tag">${PgcPoi.poi.tag}
+							
+
+						</div>
 						<div class="center">
 							<div class="line"></div>
 							<img class="icon" alt="${PgcPoi.poi.type}" src="">

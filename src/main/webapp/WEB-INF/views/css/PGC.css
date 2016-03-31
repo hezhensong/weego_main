@@ -98,8 +98,8 @@
 		padding-left: 28px;
 		padding-top: 12px;
 		font-size: 38px;
-		position: relative;
-		top: -500px;
+		position: absolute;
+		top: 8%;
 		background-image:url(../resource/img/pgc/lable.png);
 		background-size: cover;
 		height: 60px;
@@ -109,8 +109,8 @@
 		width: 550px;
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
-		position: relative;
-		top: -445px;
+		position: absolute;
+		top: 45%;
 	}
 	.page .poi .center .line{
 		border-bottom: 1px solid #fff;
