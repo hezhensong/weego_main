@@ -63,7 +63,9 @@ header {
 			<c:if test="${tags !='' && tags != null}">
 				<div class="special">
 					<c:forEach items="${tags}" var="tag">
+
 						<div id="single" class="single">${tag.name}</div>
+
 						<!-- 需要循环遍历 -->
 					</c:forEach>
 				</div>
@@ -109,7 +111,9 @@ header {
 					<div class="h3">小贴士</div>
 				</div>
 				<div class="margin">
-					<p id="little_tip">${tips}</p>
+					<c:forEach items="${recommends}" var="recommend">
+						<p id="little_tip">${tips}</p>
+					</c:forEach>
 				</div>
 			</div>
 		</c:otherwise>

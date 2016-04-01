@@ -101,11 +101,13 @@ header {
 						id="poi">
 						<img class="overlay" id="poi_pic"
 							src="../resource/img/pgc/overlay.png">
+
 						<c:if test="${PgcPoi.poi.tag != null && PgcPoi.poi.tag != '' }">
 							<div class="type" id="poi_tag">
 							<div class="type_text" id="type_text">${PgcPoi.poi.tag}</div>
 							</div>
 						</c:if>
+
 						<div class="center">
 							<div class="line"></div>
 							<img class="icon" alt="${PgcPoi.poi.type}" src="">

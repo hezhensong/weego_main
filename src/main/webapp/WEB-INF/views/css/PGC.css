@@ -106,7 +106,7 @@
 		height:100%;
 	}
 	.page .poi .type{
-		padding-left: 28px;
+		padding-right: 28px;
 		padding-top: 12px;
 		font-size: 38px;
 		position: absolute;
@@ -126,7 +126,8 @@
 		margin:0 auto;
 		border-bottom: 1px solid #fff;
 		position: absolute;
-		top: 45%;
+		top: 28%;
+		left: 20%;
 	}
 	
 	.page .poi .center .line{

@@ -180,6 +180,8 @@ html,body{width:100%; position:relative;}
 .rating_pic{
 	width: 75%;
 }
+
+
 .tips .comment .left{
 	border-right: 1px solid rgba(138,138,138,0.4);
 	padding-right: 40px;
@@ -219,6 +221,7 @@ html,body{width:100%; position:relative;}
 .tips .good_comment .desc{
 	margin:0 55px;
 }
+
 .message{
 	margin:-115px 20px 100px 20px;
 }
@@ -246,19 +249,21 @@ html,body{width:100%; position:relative;}
 }
 .message .details #price{
 	color: #fff;
+	white-space: nowrap;
+	word-break: keep-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .message .details .h3 a{
 	color: #ff4f4e;
 	text-decoration: none;
 }
-
-
-
 .message .details .aaa{
+	display: inline-block;
+	font-size: 38px;
 	float: right;
-  	width: 442px;
-  	padding: 28px 0;
+	padding: 30px 0;
 }
 .message .details .bbb{
 	margin:10px 0;
