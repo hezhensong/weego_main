@@ -211,13 +211,13 @@ public class PgcServiceImpl implements PgcService {
             mv.addObject("title", pgc.getTitle());
             
             if (Strings.isNullOrEmpty(pgc.getPerson())) {
-                mv.addObject("person", "null");
+                mv.addObject("person", null);
             } else {
                 Person person = peopleDao.getPersonById(pgc.getPerson().trim());
                 if(person!=null){
                     mv.addObject("person", person);
                 }else{
-                    mv.addObject("person", "null");
+                    mv.addObject("person", null);
                 }
             }
             PgcOriginal original = pgc.getOriginal();
@@ -238,10 +238,7 @@ public class PgcServiceImpl implements PgcService {
                     pgcPoiDto.setImage(Strings.nullToEmpty(pgcPoi.getPoiImage()));
                     pgcPoiDto.setType(Strings.nullToEmpty(pgcPoi.getType()));
                     pgcPoiDto.setTitle(Strings.nullToEmpty(pgcPoi.getName()));
-                    String tag = getPoiTagbyType(pgcPoi.getId(), pgcPoi.getType());
-                    if(tag==null || tag.endsWith("")){
-                        pgcPoiDto.setTag(tag);
-                    }
+                    pgcPoiDto.setTag(getPoiTagbyType(pgcPoi.getId(), pgcPoi.getType()));
                     pgcContentDto.setPoi(pgcPoiDto);
 
                     PgcImageDto pgcImageDto = new PgcImageDto();

@@ -29,7 +29,7 @@ header {
 	</header>
 
 	<c:choose>
-		<c:when test="${person =='' || person == 'null' || person == null}">
+		<c:when test="${person =='' || person == null}">
 			<div style="display: none" class="author"></div>
 		</c:when>
 		<c:otherwise>
@@ -39,14 +39,14 @@ header {
 				</div>
 				<h1 id="author_name">${person.username}</h1>
 				<p>${person.jobDesc}</p>
-				<div class="line"></div>
 			</div>
+			<div class="line1"><img src="../resource/img/pgc/line3x.png"/></div>
 		</c:otherwise>
 	</c:choose>
 
 	<c:choose>
 		<c:when
-			test="${original.author =='' || original.author =='null' || original.author == null}">
+			test="${original.author =='' || original.author == null}">
 			<div style="display: none" class="from"></div>
 		</c:when>
 		<c:otherwise>
@@ -56,10 +56,10 @@ header {
 		</c:otherwise>
 	</c:choose>
 
-	<div class="drb">
+	<div class="drb ccc">
 		<img class="float-l" src="../resource/img/pgc/yin1.png">
 		<div>
-			<span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;</span>${breif}
+			<span style="font-size: 38px;">&nbsp;&nbsp;&nbsp;</span>${breif}
 		</div>
 		<img class="float-r" src="../resource/img/pgc/yin2.png">
 	</div>
@@ -67,7 +67,7 @@ header {
 		<div class="page">
 			<c:choose>
 				<c:when
-					test="${PgcPoi.paragraph.title =='' || PgcPoi.paragraph.title == 'null'}">
+					test="${PgcPoi.paragraph.title =='' || PgcPoi.paragraph.title == null}">
 					<div style="display: none" class="page_title">
 						<div class="small"></div>
 						<h2 id="text_title">${PgcPoi.paragraph.title}</h2>
@@ -83,7 +83,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == 'null' || PgcPoi.paragraph.desc == null}">
+					test="${PgcPoi.paragraph.desc =='' || PgcPoi.paragraph.desc == null}">
 					<div style="display: none" id="text" class="drb">${PgcPoi.paragraph.desc}</div>
 				</c:when>
 				<c:otherwise>
@@ -93,7 +93,7 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == 'null' || PgcPoi.poi.image == null}">
+					test="${PgcPoi.poi.image =='' || PgcPoi.poi.image == null}">
 					<div style="display: none" class="poi" id="poi"></div>
 				</c:when>
 				<c:otherwise>
@@ -102,10 +102,12 @@ header {
 						<img class="overlay" id="poi_pic"
 							src="../resource/img/pgc/overlay.png">
 
-						<div class="type" id="poi_tag">${PgcPoi.poi.tag}
-							
+						<c:if test="${PgcPoi.poi.tag != null && PgcPoi.poi.tag != '' }">
+							<div class="type" id="poi_tag">
+							<div class="type_text" id="type_text">${PgcPoi.poi.tag}</div>
+							</div>
+						</c:if>
 
-						</div>
 						<div class="center">
 							<div class="line"></div>
 							<img class="icon" alt="${PgcPoi.poi.type}" src="">
@@ -118,12 +120,12 @@ header {
 
 			<c:choose>
 				<c:when
-					test="${PgcPoi.image.url =='' || PgcPoi.image.url == 'null' || PgcPoi.image.url == null}">
+					test="${PgcPoi.image.url =='' || PgcPoi.image.url == null}">
 					<div style="display: none" class="page_pic"></div>
 				</c:when>
 				<c:otherwise>
 					<div class="page_pic">
-						<img id="pic" src="${PgcPoi.image.url}">
+					<div id="pic" style="background-image:url(${PgcPoi.image.url})"></div>
 						<h3 class="resource">
 							(图片来源：<span id="pic_resource">${PgcPoi.image.source}</span>)
 						</h3>
@@ -135,7 +137,7 @@ header {
 
 	<c:choose>
 		<c:when
-			test="${original.author =='' || original.author =='null' || original.author == null}">
+			test="${original.author =='' || original.author == null}">
 			<footer>
 				<div style="display: none" class="from"></div>
 			</footer>
