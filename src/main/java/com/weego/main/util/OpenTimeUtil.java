@@ -34,7 +34,13 @@ public class OpenTimeUtil {
 		if(openTimeValue.startsWith(index+1 + "-")) {
 			
 			int span = openTimeValue.split(",").length;
-			int hour = calendar.get(Calendar.HOUR);
+			int hour = 0;
+			if(calendar.get(Calendar.MINUTE) > 0) {
+				hour = calendar.get(Calendar.HOUR_OF_DAY) + 1;
+			} else {
+				hour = calendar.get(Calendar.HOUR_OF_DAY);
+			}
+			
 			if(span == 1) {
 				if(splitTime(openTimeValue, hour)) {
 					return OpenTimeUtil.OPEN;

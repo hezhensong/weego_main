@@ -3,6 +3,7 @@ package com.weego.main.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +31,7 @@ import com.weego.main.model.BasePOITag;
 import com.weego.main.model.Shopping;
 import com.weego.main.model.ShoppingBrand;
 import com.weego.main.service.ShoppingService;
+import com.weego.main.util.ActivityTimeUtil;
 import com.weego.main.util.DateUtil;
 import com.weego.main.util.DistanceUtil;
 import com.weego.main.util.OpenTimeUtil;
@@ -151,22 +153,23 @@ public class ShoppingServiceImpl implements ShoppingService {
 				if (basePOIActivities != null && basePOIActivities.size() > 0) {
 					for (BasePOIActivities basePOIActivity : basePOIActivities) {
 						POIDetailActivitiesDto poiDetailActivitiesDto = new POIDetailActivitiesDto();
-						poiDetailActivitiesDto.setActivityId(basePOIActivity
-								.getId());
+						poiDetailActivitiesDto.setActivityId(basePOIActivity.getId());
 						poiDetailActivitiesDto.setTitle(basePOIActivity.getTitle());
 
-						Activity activity = activityDao
-								.getSpecifiedActivity(basePOIActivity.getId());
+						Activity activity = activityDao.getSpecifiedActivity(basePOIActivity.getId());
 						if (activity != null) {
-							poiDetailActivitiesDto
-									.setActTime(activity.getActTime());
-							poiDetailActivitiesDto.setCoverImage(activity
-									.getCoverImage());
-							poiDetailActivitiesDto.setDesc(activity
-									.getDescription());
+							Date date1 = activity.getOpenTime();
+							Date date2 = activity.getCloseTime();
+							poiDetailActivitiesDto.setActTime(ActivityTimeUtil.getActivityTimeDesc(date1, date2));
+							poiDetailActivitiesDto.setCoverImage(activity.getCoverImage());
+							poiDetailActivitiesDto.setDesc(activity.getDescription());
+							poiDetailActivitiesDto.setTag("");
+						} else {
+							poiDetailActivitiesDto.setActTime("");
+							poiDetailActivitiesDto.setCoverImage("");
+							poiDetailActivitiesDto.setDesc("");
 							poiDetailActivitiesDto.setTag("");
 						}
-
 						poiDetailActivitiesDtos.add(poiDetailActivitiesDto);
 					}
 				}
