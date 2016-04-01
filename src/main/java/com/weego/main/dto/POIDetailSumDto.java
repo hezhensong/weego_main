@@ -1,6 +1,7 @@
 package com.weego.main.dto;
 
 import java.util.List;
+import java.util.Map;
 
 public class POIDetailSumDto {
 	private String id;
@@ -32,7 +33,7 @@ public class POIDetailSumDto {
 	private String openTimeDesc;
 	private String openTableUrl;
 	private Integer openDay;
-	private POIDetailFacilitiesDto facilities;
+	private Map<Object, Object> facilities;
 
 	public String getId() {
 		return id;
@@ -266,11 +267,11 @@ public class POIDetailSumDto {
 		this.openDay = openDay;
 	}
 
-	public POIDetailFacilitiesDto getFacilities() {
+	public Map<Object, Object> getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(POIDetailFacilitiesDto facilities) {
+	public void setFacilities(Map<Object, Object> facilities) {
 		this.facilities = facilities;
 	}
 

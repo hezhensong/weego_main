@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -108,11 +109,20 @@ public class ShoppingServiceImpl implements ShoppingService {
 						String latitude = coordination.split(",")[1];
 						String longitude = coordination.split(",")[0];
 						Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
-						poiDetailSumDto.setDistance(distance);
+						if(distance != null) {
+							poiDetailSumDto.setDistance(distance);
+						} else {
+							poiDetailSumDto.setDistance(-1.0);
+						}
 					} else {
 						logger.info("coordination 参数值有误");
 					}
+				} else {
+					poiDetailSumDto.setDistance(-1.0);
+					poiDetailSumDto.setLatitude("");
+					poiDetailSumDto.setLongitude("");
 				}
+				
 				poiDetailSumDto.setImage(shopping.getImage());
 				poiDetailSumDto.setCoverImage(shopping.getCoverImage());
 				
@@ -122,8 +132,11 @@ public class ShoppingServiceImpl implements ShoppingService {
 					for(BasePOIOpenTime openTime : openTimes) {
 						openTimeDesc.add(openTime.getDesc());
 					}
-					poiDetailSumDto.setOpenTime(openTimeDesc);
+					poiDetailSumDto.setOpenTime(OpenTimeUtil.changeTimeDesc(openTimeDesc));
+				} else {
+					poiDetailSumDto.setOpenTime(new ArrayList<String>());
 				}
+				
 				String openDesc = OpenTimeUtil.getOpenDesc(openTimes);
 				poiDetailSumDto.setOpenTimeDesc(openDesc);
 				
@@ -211,8 +224,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 				poiDetailSumDto.setComments(poiDetailCommentsDtos);
 				poiDetailSumDto.setOpenTableUrl(shopping.getOpenTableUrl());
 				poiDetailSumDto.setOpenDay(0);
-
-				poiDetailSumDto.setFacilities(null);
+				poiDetailSumDto.setFacilities(new HashMap<Object, Object>());
 			}
 		} catch (Exception e) {
 			logger.info("探索城市购物详情页出错!");

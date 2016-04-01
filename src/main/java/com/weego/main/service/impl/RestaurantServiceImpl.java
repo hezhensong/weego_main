@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -91,8 +92,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				poiDetailSumDto.setAddress(restaurant.getAddress());
 				poiDetailSumDto.setTel(restaurant.getTel());
 				poiDetailSumDto.setWebsite(restaurant.getWebsite());
-				poiDetailSumDto.setBriefIntroduction(restaurant
-						.getBriefIntroduction());
+				poiDetailSumDto.setBriefIntroduction(restaurant.getBriefIntroduction());
 				poiDetailSumDto.setIntroduction(restaurant.getIntroduction());
 				poiDetailSumDto.setCityName(restaurant.getCityName());
 				poiDetailSumDto.setCityId(restaurant.getCityId());
@@ -103,15 +103,23 @@ public class RestaurantServiceImpl implements RestaurantService {
 					String newLongitude = newCoordination.split(",")[0];
 					poiDetailSumDto.setLatitude(newLatitude);
 					poiDetailSumDto.setLongitude(newLongitude);
-					
+
 					if(coordination.split(",").length >= 2) {
 						String latitude = coordination.split(",")[1];
 						String longitude = coordination.split(",")[0];
 						Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
-						poiDetailSumDto.setDistance(distance);
+						if(distance != null) {
+							poiDetailSumDto.setDistance(distance);
+						} else {
+							poiDetailSumDto.setDistance(-1.0);
+						}
 					} else {
 						logger.info("coordination 参数值有误");
 					}
+				} else {
+					poiDetailSumDto.setDistance(-1.0);
+					poiDetailSumDto.setLatitude("");
+					poiDetailSumDto.setLongitude("");
 				}
 
 				poiDetailSumDto.setImage(restaurant.getImage());
@@ -123,8 +131,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 					for(BasePOIOpenTime openTime : openTimes) {
 						openTimeDesc.add(openTime.getDesc());
 					}
-					poiDetailSumDto.setOpenTime(openTimeDesc);
+					poiDetailSumDto.setOpenTime(OpenTimeUtil.changeTimeDesc(openTimeDesc));
+				} else {
+					poiDetailSumDto.setOpenTime(new ArrayList<String>());
 				}
+				
 				String openDesc = OpenTimeUtil.getOpenDesc(openTimes);
 				poiDetailSumDto.setOpenTimeDesc(openDesc);
 				
@@ -214,31 +225,26 @@ public class RestaurantServiceImpl implements RestaurantService {
 				poiDetailSumDto.setOpenTableUrl(restaurant.getOpenTableUrl());
 				poiDetailSumDto.setOpenDay(0);
 
-				POIDetailFacilitiesDto poiDetailFacilitiesDto = new POIDetailFacilitiesDto();
+				HashMap<Object, Object>  facilities = new HashMap<Object, Object>(); 
 				RestaurantFacilities restaurantFacilities = restaurant.getRestaurantFacilities();
 				if (restaurantFacilities != null) {
-					poiDetailFacilitiesDto.setAlcohol(restaurantFacilities
-							.getAlcohol());
-					poiDetailFacilitiesDto
-							.setNoise(restaurantFacilities.getNoise());
-					poiDetailFacilitiesDto.setWaiter(restaurantFacilities
-							.isWaiter());
-					poiDetailFacilitiesDto.setTv(restaurantFacilities.isTv());
-					poiDetailFacilitiesDto.setOutseat(restaurantFacilities
-							.isOutseat());
-					poiDetailFacilitiesDto.setGroup(restaurantFacilities.isGroup());
-					poiDetailFacilitiesDto.setKid(restaurantFacilities.isKid());
-					poiDetailFacilitiesDto.setCard(restaurantFacilities.isCard());
-					poiDetailFacilitiesDto.setTakeout(restaurantFacilities
-							.isTakeout());
-					poiDetailFacilitiesDto.setDelivery(restaurantFacilities
-							.isDelivery());
-					poiDetailFacilitiesDto.setReserve(restaurantFacilities
-							.isReserve());
-					poiDetailFacilitiesDto.setWifi(restaurantFacilities.isWifi());
+					facilities.put("alcohol", restaurantFacilities.getAlcohol());
+					facilities.put("noise", restaurantFacilities.getNoise());
+					facilities.put("waiter", restaurantFacilities.isWaiter());
+					facilities.put("tv", restaurantFacilities.isTv());
+					facilities.put("outseat", restaurantFacilities.isOutseat());
+					facilities.put("group", restaurantFacilities.isGroup());
+					facilities.put("kid", restaurantFacilities.isKid());
+					facilities.put("card", restaurantFacilities.isCard());
+					facilities.put("takeout", restaurantFacilities.isTakeout());
+					facilities.put("delivery", restaurantFacilities.isDelivery());
+					facilities.put("reserve", restaurantFacilities.isReserve());
+					facilities.put("wifi", restaurantFacilities.isWifi());
+					poiDetailSumDto.setFacilities(facilities);
 				}
-
-				poiDetailSumDto.setFacilities(poiDetailFacilitiesDto);
+				else {
+					poiDetailSumDto.setFacilities(new HashMap<Object, Object>());
+				}
 			}
 		} catch (Exception e) {
 			logger.info("探索城市餐厅详情页出错!");

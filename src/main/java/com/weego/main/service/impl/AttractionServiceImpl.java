@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -95,22 +96,28 @@ public class AttractionServiceImpl implements AttractionService {
 				poiDetailSumDto.setCityName(attraction.getCityName());
 				poiDetailSumDto.setCityId(attraction.getCityId());
 
-				
 				String newCoordination = attraction.getCoordination();
 				if (newCoordination != null && newCoordination.split(",").length >= 2) {
 					String newLatitude = newCoordination.split(",")[1];
 					String newLongitude = newCoordination.split(",")[0];
 					poiDetailSumDto.setLatitude(newLatitude);
 					poiDetailSumDto.setLongitude(newLongitude);
-					
 					if(coordination.split(",").length >= 2) {
 						String latitude = coordination.split(",")[1];
 						String longitude = coordination.split(",")[0];
 						Double distance =  DistanceUtil.getDistance(latitude, longitude, newLatitude, newLongitude);
-						poiDetailSumDto.setDistance(distance);
+						if(distance != null) {
+							poiDetailSumDto.setDistance(distance);
+						} else {
+							poiDetailSumDto.setDistance(-1.0);
+						}
 					} else {
 						logger.info("coordination 参数值有误");
 					}
+				} else {
+					poiDetailSumDto.setDistance(-1.0);
+					poiDetailSumDto.setLatitude("");
+					poiDetailSumDto.setLongitude("");
 				}
 
 				poiDetailSumDto.setImage(attraction.getImage());
@@ -122,8 +129,11 @@ public class AttractionServiceImpl implements AttractionService {
 					for(BasePOIOpenTime openTime : openTimes) {
 						openTimeDesc.add(openTime.getDesc());
 					}
-					poiDetailSumDto.setOpenTime(openTimeDesc);
+					poiDetailSumDto.setOpenTime(OpenTimeUtil.changeTimeDesc(openTimeDesc));
+				} else {
+					poiDetailSumDto.setOpenTime(new ArrayList<String>());
 				}
+				
 				String openDesc = OpenTimeUtil.getOpenDesc(openTimes);
 				poiDetailSumDto.setOpenTimeDesc(openDesc);
 				
@@ -203,15 +213,14 @@ public class AttractionServiceImpl implements AttractionService {
 						poiDetailCommentsDto.setText(basePOIComment.getText());
 						poiDetailCommentsDto.setRating(basePOIComment.getRating());
 						poiDetailCommentsDto.setTitle(basePOIComment.getTitle());
-						poiDetailCommentsDto.setLanguage(basePOIComment
-								.getLanguage());
+						poiDetailCommentsDto.setLanguage(basePOIComment.getLanguage());
 						poiDetailCommentsDtos.add(poiDetailCommentsDto);
 					}
 				}
 				poiDetailSumDto.setComments(poiDetailCommentsDtos);
 				poiDetailSumDto.setOpenTableUrl(attraction.getOpenTableUrl());
 				poiDetailSumDto.setOpenDay(0);
-				poiDetailSumDto.setFacilities(null);
+				poiDetailSumDto.setFacilities(new HashMap<Object, Object>());
 			}
 		} catch (Exception e) {
 			logger.info("探索城市景点详情页接口出错!");
@@ -304,7 +313,6 @@ public class AttractionServiceImpl implements AttractionService {
 					if (newCoordination != null && newCoordination.split(",").length >= 2) {
 						String newLatitude = newCoordination.split(",")[1];
 						String newLongitude = newCoordination.split(",")[0];
-
 						if (!coordination.contains(",")) {
 							logger.info("coordination 参数值有误");
 						} else {
@@ -312,11 +320,19 @@ public class AttractionServiceImpl implements AttractionService {
 								String latitude = coordination.split(",")[1];
 								String longitude = coordination.split(",")[0];
 								Double distance = DistanceUtil.getDistance(newLatitude, newLongitude, latitude, longitude);
-								searchNearByListDto.setDistance(distance);
+								if(distance != null) {
+									searchNearByListDto.setDistance(distance);
+								} else{
+									searchNearByListDto.setDistance(-1.0);
+								}
 							}
 						}
 						searchNearByListDto.setLatitude(newLatitude);
 						searchNearByListDto.setLongitude(newLongitude);
+					} else {
+						searchNearByListDto.setDistance(-1.0);
+						searchNearByListDto.setLatitude("");
+						searchNearByListDto.setLongitude("");
 					}
 
 					searchNearByListDto.setScore(attraction.getRating());
