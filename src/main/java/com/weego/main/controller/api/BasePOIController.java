@@ -126,7 +126,7 @@ public class BasePOIController {
 		return pResponseDto;
 	}
 	
-	@RequestMapping(value = "/discovery/translate", method = RequestMethod.GET)
+	@RequestMapping(value = "/discovery/translate", method = {RequestMethod.GET, RequestMethod.POST} )
 	@ResponseBody
 	public ResponseDto<POITranslationBaseDto> getPOITranslation(
 			@RequestParam("content") String content,
